@@ -78,12 +78,15 @@ const IMAGE_KW = {
     chocolate: 'chocolate', icecream: 'ice cream', candy: 'candy',
     oil: 'cooking oil', salt: 'salt', spices: 'spices', noodles: 'instant noodles', frozenfood: 'frozen food'
 };
-function hashId(s) { let h = 0; for (let i = 0; i < (s || '').length; i++) h = (h * 31 + s.charCodeAt(i)) % 100000; return h; }
-// Real product photos are bundled locally under img/<subcategory>-{1,2,3}.jpg so they
-// load instantly on any device/network (no external CDN dependency).
+// Real, brand-matched product photos are bundled locally under img/<product_id>-N.jpg
+// (sourced per product from OpenFoodFacts / OpenBeautyFacts / OpenPetFoodFacts /
+// OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
+// so galleries never show a broken/placeholder slide.
+let imgManifest = {};
 function productImages(product) {
-    const sub = product.subcategory || 'grocery';
-    return [1, 2, 3].map(i => `img/${sub}-${i}.jpg`);
+    const pid = product.product_id || product.id;
+    const n = imgManifest[pid] || 3;
+    return Array.from({ length: n }, (_, i) => `img/${pid}-${i + 1}.jpg`);
 }
 function placeholderImg(product) {
     const label = (product.product_name || '').split(' ').slice(0, 3).join(' ');
@@ -103,6 +106,9 @@ async function init() {
     const userRes = await fetch('../data/user_profiles.json');
     userProfiles = await userRes.json();
 
+    // Manifest of locally-bundled product images (product_id -> count).
+    try { imgManifest = await (await fetch('img/manifest.json')).json(); } catch (e) { imgManifest = {}; }
+
     renderApp();
     applyUrlIntent();
 }
@@ -112,7 +118,7 @@ async function init() {
 function applyUrlIntent() {
     const p = new URLSearchParams(location.search);
     const cat = p.get('cat'), q = p.get('q'), view = p.get('view');
-    if (cat && trustData.category_signals[cat]) {
+    if (cat && ALL_CATEGORIES.some(c => c.id === cat)) {
         selectCategory(cat);
     } else if (q) {
         const inp = document.getElementById('searchInput');
