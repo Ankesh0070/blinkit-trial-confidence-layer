@@ -1,0 +1,140 @@
+[
+  {
+    "product_id": "ELEC-001",
+    "product_name": "boAt Airdopes 141 TWS Earbuds",
+    "category": "electronics",
+    "subcategory": "earbuds",
+    "price": 1299,
+    "mrp": 2990,
+    "image": "earbuds",
+    "trust_signals": {
+      "avg_rating": 3.8,
+      "total_ratings": 142,
+      "total_reviews": 89,
+      "repeat_purchase_pct": 12,
+      "review_highlights": [
+        { "theme": "delivery_speed", "sentiment": "positive", "count": 34, "sample_quote": "Delivered in 12 minutes, packaging was intact" },
+        { "theme": "product_quality", "sentiment": "mixed", "count": 28, "sample_quote": "Sound quality is decent for the price, bass could be better" },
+        { "theme": "return_experience", "sentiment": "negative", "count": 18, "sample_quote": "Return process took 4 days and multiple follow-ups with support" }
+      ],
+      "confidence_level": "high",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  },
+  {
+    "product_id": "ELEC-002",
+    "product_name": "Ambrane 10000mAh Power Bank",
+    "category": "electronics",
+    "subcategory": "power_bank",
+    "price": 699,
+    "mrp": 1499,
+    "image": "powerbank",
+    "trust_signals": {
+      "avg_rating": 4.1,
+      "total_ratings": 203,
+      "total_reviews": 117,
+      "repeat_purchase_pct": 8,
+      "review_highlights": [
+        { "theme": "product_quality", "sentiment": "positive", "count": 52, "sample_quote": "Charges my phone twice, compact size for travel" },
+        { "theme": "delivery_speed", "sentiment": "positive", "count": 41, "sample_quote": "Got it in 10 mins when I needed it urgently at office" },
+        { "theme": "packaging", "sentiment": "positive", "count": 19, "sample_quote": "Came in original sealed box, no tampering" }
+      ],
+      "confidence_level": "high",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  },
+  {
+    "product_id": "ELEC-003",
+    "product_name": "USB-C Fast Charging Cable (1m)",
+    "category": "electronics",
+    "subcategory": "cable",
+    "price": 199,
+    "mrp": 499,
+    "image": "cable",
+    "trust_signals": {
+      "avg_rating": 3.4,
+      "total_ratings": 87,
+      "total_reviews": 52,
+      "repeat_purchase_pct": 22,
+      "review_highlights": [
+        { "theme": "convenience", "sentiment": "positive", "count": 21, "sample_quote": "Needed a cable urgently, got it in 8 minutes — lifesaver" },
+        { "theme": "durability", "sentiment": "mixed", "count": 15, "sample_quote": "Works fine but feels cheaper than Amazon cables at same price" },
+        { "theme": "compatibility", "sentiment": "negative", "count": 9, "sample_quote": "Did not support fast charging on my Samsung despite listing saying so" }
+      ],
+      "confidence_level": "high",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  },
+  {
+    "product_id": "ELEC-004",
+    "product_name": "boAt Rockerz 450 Headphones",
+    "category": "electronics",
+    "subcategory": "headphones",
+    "price": 1499,
+    "mrp": 3990,
+    "image": "headphones",
+    "trust_signals": {
+      "avg_rating": 3.9,
+      "total_ratings": 98,
+      "total_reviews": 61,
+      "repeat_purchase_pct": 6,
+      "review_highlights": [
+        { "theme": "product_quality", "sentiment": "positive", "count": 31, "sample_quote": "Great sound quality, comfortable for long use" },
+        { "theme": "delivery_speed", "sentiment": "positive", "count": 22, "sample_quote": "Ordered at 11pm, delivered by 11:15pm — impressive" },
+        { "theme": "packaging", "sentiment": "mixed", "count": 8, "sample_quote": "Box was slightly dented but product was fine inside" }
+      ],
+      "confidence_level": "high",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  },
+  {
+    "product_id": "ELEC-005",
+    "product_name": "LED Desk Lamp (Rechargeable)",
+    "category": "electronics",
+    "subcategory": "led",
+    "price": 449,
+    "mrp": 999,
+    "image": "led",
+    "trust_signals": {
+      "avg_rating": 4.2,
+      "total_ratings": 76,
+      "total_reviews": 43,
+      "repeat_purchase_pct": 15,
+      "review_highlights": [
+        { "theme": "product_quality", "sentiment": "positive", "count": 28, "sample_quote": "Three brightness levels, battery lasts 6+ hours" },
+        { "theme": "value_for_money", "sentiment": "positive", "count": 18, "sample_quote": "Same lamp is Rs 100 more on Amazon, instant delivery bonus" },
+        { "theme": "delivery_speed", "sentiment": "positive", "count": 12, "sample_quote": "Emergency purchase during power cut, arrived in 9 mins" }
+      ],
+      "confidence_level": "high",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  },
+  {
+    "product_id": "ELEC-006",
+    "product_name": "20W USB-C Adapter (Fast Charger)",
+    "category": "electronics",
+    "subcategory": "adapter",
+    "price": 599,
+    "mrp": 1290,
+    "image": "adapter",
+    "trust_signals": {
+      "avg_rating": 3.6,
+      "total_ratings": 64,
+      "total_reviews": 38,
+      "repeat_purchase_pct": 11,
+      "review_highlights": [
+        { "theme": "convenience", "sentiment": "positive", "count": 19, "sample_quote": "Lost my charger, ordered this at midnight and got it immediately" },
+        { "theme": "product_quality", "sentiment": "mixed", "count": 12, "sample_quote": "Charges slower than original Apple adapter but works" },
+        { "theme": "return_experience", "sentiment": "negative", "count": 5, "sample_quote": "Stopped working in 2 weeks, return process was frustrating" }
+      ],
+      "confidence_level": "medium",
+      "data_source": "manually_curated_first_party",
+      "last_updated": "2026-07-18"
+    }
+  }
+]

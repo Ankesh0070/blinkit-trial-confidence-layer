@@ -1,0 +1,178 @@
+QUICK-COMMERCE DISCOVERY ENGINE — PIPELINE NOTES
+=================================================
+(Blinkit growth case study — Part 1: AI-powered discovery engine)
+
+PIPELINE ORDER
+--------------
+1. collect_reviews.py   -> reviews_raw.csv
+      Scrapes Google Play, Apple App Store (multi-region RSS), and Reddit
+      (posts + comments). Cleans on save: drops duplicates, AutoModerator/bot
+      boilerplate, and entries under 6 real words (URLs stripped before counting).
+
+1a. collect_youtube.py  -> appends YouTube comments to reviews_raw.csv
+      Fetches comments on Blinkit-related YouTube videos via YouTube Data API
+      v3 (free tier, ~10k units/day; needs YOUTUBE_API_KEY env var). Applies
+      the same cleaning rules and dedupe pass before writing.
+
+1a-extras. collect_extras.py -> appends 3 more sources
+      (i)  Play Store reviews in Indian LANGUAGES beyond English (Hindi,
+           Tamil, Bengali, Marathi, Gujarati, Telugu, Kannada, Malayalam,
+           Punjabi) - each locale returns different reviews, so this is a
+           genuine expansion, not a re-fetch.
+      (ii) YouTube comments on videos found via HINDI/HINGLISH queries
+           ("blinkit shikayat", "blinkit anubhav" etc).
+      (iii) HackerNews stories mentioning Blinkit + their comment threads
+           (free Algolia HN search API - no auth).
+
+1a-pissedconsumer. collect_pissedconsumer.py -> appends PissedConsumer reviews
+      Scrapes blinkit.pissedconsumer.com (a dedicated consumer complaint
+      platform, ~19.8k Blinkit reviews) - detailed, high-signal CUSTOMER
+      complaints with star ratings. Best source for specific non-grocery
+      category mentions (baby, pet, personal care).
+
+1a-extras3. collect_extras3.py -> a third-round expansion
+      (i)  YouTube: 25 category-specific / comparison / regional-language
+           queries (personal care, electronics, baby, pharmacy, pet,
+           zepto/instamart comparisons, Tamil/Telugu/Bengali/Kannada/
+           Marathi/Gujarati).
+      (ii) Reddit: sweep of 22 Indian city + topic subreddits (searching
+           "blinkit" within each) plus 12 more global queries.
+      Network-resilient (safe_get retries) and CUSTOMER-ONLY (employee filter).
+
+1a-extras2. collect_extras2.py -> a second-round expansion
+      (i)  Blinkit-specific SUBREDDITS: r/blinkit + r/FuckBlinkit (new/top/hot
+           sorts) - pure high-signal discussion pool untouched by the earlier
+           keyword-search pass. Also 5 more targeted queries (grofers,
+           blinkit refund, blinkit delivery late, blinkit fake, instamart
+           vs blinkit).
+      (ii) YouTube: 9 more untapped queries (unboxing haul, dark store,
+           ambulance, ipo, marathi, tamil, etc.) plus a REPLIES pass on
+           already-scraped videos (previously only top-level comments).
+      (iii) Play Store: MOST_RELEVANT and LOWEST_RATING sort orders (in
+           English + Hindi) - these surface different reviews than the
+           original NEWEST-sorted collection, especially the most-critical
+           low-rating complaints most relevant to the business question.
+
+      (Attempted but NOT usable in 2026 - documented as a known limitation:
+       Twitter/X (login wall), Quora (Cloudflare), MouthShut (redirect loop),
+       Trustpilot (403), ConsumerComplaints.in, ComplaintsBoard, Sitejabber
+       (3 reviews total), Bluesky (Cloudflare 403 even via real browser),
+       APKPure/APKCombo (timeout). Reachable but WRONG VOICE, so excluded:
+       AmbitionBox (employee reviews), Mastodon (news-bot headlines).)
+
+1b. tag_categories.py   -> reviews_raw.csv (adds "category" col) + category_coverage.csv
+      Tags each review with the product category it discusses (keyword-based,
+      precision-first: avoids ambiguous bare words like "pet"=stomach-in-Hindi,
+      "cream"=ice-cream, "baby"=term-of-address). category_coverage.csv is the
+      multi-label per-category volume table used to quantify the coverage gap.
+
+2. analyze_themes.py    -> themes_raw.json (+ themes_batches_done.json)
+      Batches reviews (~40/batch) and sends each to the Gemini API to extract
+      themes tied to the business question. Saves after every batch; resumable.
+
+3. aggregate_themes.py  -> themes_summary.csv
+      Uses Gemini to semantically cluster the raw theme entries into canonical
+      themes; frequency_count and num_sources_it_appeared_in are then computed
+      deterministically in Python from source_batch metadata. Coverage logic
+      guarantees every raw entry maps to exactly one theme (dedupes repeated
+      indices, drops out-of-range ones, back-fills any the model skipped).
+
+4. validate_themes.py   -> themes_summary.csv (adds validation cols) + VALIDATION_METHODOLOGY.txt
+      Cross-checks the top 10 themes against the raw text with a keyword hit
+      count. See VALIDATION_METHODOLOGY.txt for the exact method + caveats.
+
+FINAL DATASET
+-------------
+reviews_raw.csv : 32,999 unique records (0 duplicates, all >= 6 real words, Latin-script only)
+  YouTube           18,941   (English + Hindi + category/comparison/regional queries + replies)
+  PissedConsumer     7,925   (dedicated consumer-complaint platform, ~550 pages)
+  Reddit (comment)   2,761   (broad search + Blinkit subreddits + 22 city/topic subs)
+  Play Store         2,367   (English + 9 Indian languages, multiple sort orders)
+  Reddit (post)        507
+  HackerNews           323
+  App Store            175   (IN + 5 other regions)
+
+CUSTOMER-VOICE ONLY: employee / gig-worker content is filtered out in two passes
+(~196 job/picker/packer rows, then 121 delivery-partner VOICE rows - "my payout
+nahi aaya", "my id was blocked", "onboarding fees", "as a delivery rider" - via
+a precise filter that KEEPS customer reviews merely mentioning a delivery
+partner). The corpus reflects customers/users, not workers. AmbitionBox
+(employee reviews) and Mastodon (news-bot headlines) were also deliberately
+excluded as the wrong voice.
+
+NON-LATIN SCRIPT REMOVAL: 995 rows with >40% non-Latin characters were removed
+(Devanagari 642, Malayalam 143, Tamil 84, Telugu 48, Bengali 44, Kannada 9,
+Arabic/Urdu 5, Gujarati 4, Gurmukhi 2, other 14). By source: YouTube 772,
+Play Store 163, PissedConsumer 59, Reddit 1. These reviews were in native
+Indian scripts (not Hinglish) and could not be reliably analysed by the
+English-focused theme pipeline. Translation via Gemini API was attempted but
+failed; reviews were removed as the fallback.
+
+CONSUMER-FORUM SHEET (consumer_forum_complaints.csv): the dedicated
+consumer-complaint-forum voice (source="PissedConsumer", a star-rated grievance
+platform) is extracted into a standalone sheet via build_consumer_forum_sheet.py
+and enriched with a `complaint_type` column (refund_and_support, product_quality,
+delivery_issues, wrong_or_missing_item, pricing_and_fees, non_grocery_category,
+other). 7,925 complaints. Breakdown: refund_and_support 3,051 (~38% - the single
+biggest grievance class, corroborating AI Theme #5 Post-Purchase Support & Return
+Friction), product_quality 459, delivery_issues 314, wrong_or_missing_item 248,
+non_grocery_category 151, pricing_and_fees 49, other 3,653. This data ALSO remains
+integrated in reviews_raw.csv (source="PissedConsumer") - the sheet is a
+classified view, not a separate corpus.
+  Other consumer-forum / consumer-court sources probed (2026) and NOT usable -
+  documented, not gaps in effort: ComplaintsBoard.com (no Blinkit entries - US-only
+  site), ConsumerComplaints.in (404 / Cloudflare), Voxya (company pages are
+  marketing only; complaints not scrapably aggregated), complaintboard.in /
+  grahakseva / consumerdaddy / complaintsindia (dead DNS / connection timeout in
+  2026), Indian Kanoon consumer-court judgment search (Blinkit/Grofers appear only
+  tangentially in higher-court/trademark/tax matters; no dedicated
+  deficiency-of-service consumer-forum judgment corpus).
+
+The theme pipeline (steps 2-4) currently reflects the earlier 2,216-row
+corpus. Corpus has since grown ~15x. Re-running the theme pipeline on the full
+32,999-row corpus is the natural next step. The category-coverage numbers in
+Finding A below ARE recomputed on the full 32,999-row corpus.
+
+Historical: an even earlier pass ran on a 2,248-row version; after 32 bot/URL-
+junk rows were removed the pipeline was re-run end-to-end on 2,216 rows, and
+the same core themes re-emerged - confirming cleaning did not distort results.
+The 2,248 outputs are in _backup_2248/ for reference.
+
+Note: Reddit comments were kept in full for breadth. Many are broader Indian
+quick-commerce / consumer discussion rather than Blinkit-specific; the theme
+model filtered these at analysis time.
+
+TWO FINDINGS WORTH FLAGGING (for the write-up / to motivate user interviews)
+----------------------------------------------------------------------------
+A. NEW-CATEGORY COVERAGE GAP.  (precise figures: category_coverage.csv)
+   The business question is about new categories (personal care, baby, pet
+   supplies), but the corpus barely covers them (multi-label, % of 32,999):
+       groceries ~3.4% (1114)   snacks/beverages ~2.0% (659)
+       electronics ~1.5% (509)   personal care ~0.7% (233)
+       pharmacy/health ~0.5% (152)   baby ~0.1% (41)
+       home/cleaning ~0.1% (32)   pet ~0.1% (23)   intimate/personal ~0.1% (21)
+   92.0% of reviews name no specific product category at all (they discuss
+   delivery / service / the app, not a specific product).
+   From an original 2,216-row corpus to 32,999 rows (~15x growth across three
+   expansion rounds + ~8,000 PissedConsumer complaints, minus 995 non-Latin
+   script rows), absolute volume in some categories grew meaningfully
+   (electronics 28 -> 509, personal care 9 -> 233, pharmacy 14 -> 152,
+   groceries 145 -> 1114). The deepest target categories rose off zero
+   (baby 0 -> 41, pet 1 -> 23) but at ~0.1% of the corpus remain negligible
+   even at 15x scale. This is itself a
+   strong signal: users who don't explore these categories don't create
+   public content about them, at any scale of scraping. Reviews alone
+   therefore cannot explain the target-category experience - this is the
+   strongest justification for the user-interview stage. (Notable:
+   "intimate/personal" items are still the most-discussed sensitive
+   category, almost entirely about delivery discretion / packaging - see
+   the "Privacy & Discretion" theme.)
+
+B. HIGH THEMATIC SALIENCE, LOW LITERAL PREVALENCE (e.g. "Trust and Quality
+   Concerns in Non-Grocery Categories": frequency_count 19 but validation_hits ~2).
+   This divergence is expected and consistent with finding A: the theme is
+   prominent whenever non-grocery purchases ARE discussed (so the model flags it
+   across many batches), but non-grocery discussion is sparse and phrased in
+   varied language, so literal keyword matches are few. frequency_count measures
+   thematic prominence; validation_hits is a conservative literal-keyword floor.
+   Read them together, not as contradictions.

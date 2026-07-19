@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: blinkit-trial-confidence
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      # Set the actual values in the Render dashboard (Environment tab).
+      # Leave them unset to deploy without the optional AI features.
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false

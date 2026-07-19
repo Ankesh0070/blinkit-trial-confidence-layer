@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Dashboard | Phase 4</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; }
+        .dash-title { font-size: 24px; font-weight: 800; color: #fff; }
+        .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+        .dash-card { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; }
+        .dash-card-title { font-size: 14px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 12px; }
+        .dash-metric { font-size: 36px; font-weight: 800; color: var(--blinkit-yellow); margin-bottom: 4px; }
+        .dash-metric.good { color: var(--blinkit-green); }
+        .dash-metric.alert { color: #e54d4d; }
+        .dash-subtext { font-size: 12px; color: var(--text-muted); }
+        
+        .chart-container { height: 160px; display: flex; align-items: flex-end; gap: 12px; margin-top: 16px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
+        .bar { flex: 1; background: var(--theme-electronics); border-radius: 4px 4px 0 0; position: relative; }
+        .bar::after { content: attr(data-label); position: absolute; bottom: -20px; left: 0; width: 100%; text-align: center; font-size: 10px; color: var(--text-muted); }
+        .bar-baby { background: var(--theme-baby, #ff9f43); }
+
+        .cycle-analysis { background: rgba(255, 159, 67, 0.1); border: 1px solid rgba(255, 159, 67, 0.3); border-radius: var(--radius-md); padding: 16px; margin-top: 24px; }
+        .cycle-title { font-size: 16px; font-weight: 700; color: #ff9f43; margin-bottom: 8px; }
+        
+        .back-link { color: var(--active-theme); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dash-header">
+            <div class="dash-title">Guardrail Metrics Dashboard</div>
+            <a href="index.html" class="back-link">← Back to Prototype</a>
+        </div>
+
+        <div class="dash-grid">
+            <div class="dash-card">
+                <div class="dash-card-title">Recommendation Diversity</div>
+                <div class="dash-metric good">3.2 : 1</div>
+                <div class="dash-subtext">Novel Categories Shown vs Clicked</div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--blinkit-green);">Healthy (No Narrowing Loops Detected)</div>
+            </div>
+            
+            <div class="dash-card">
+                <div class="dash-card-title">Cross-Category Activation (CCAR)</div>
+                <div class="dash-metric">18.4%</div>
+                <div class="dash-subtext">Users w/ non-grocery purchases (90d)</div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--text-secondary);">+4.2% since Phase 1</div>
+            </div>
+
+            <div class="dash-card" style="grid-column: span 2;">
+                <div class="dash-card-title">Category Abandonment Rate</div>
+                <div class="dash-metric alert" style="font-size: 24px; color: #fff;">System Average: 1.2% (Stable)</div>
+                
+                <div class="chart-container">
+                    <div class="bar" style="height: 40%;" data-label="Electronics"></div>
+                    <div class="bar" style="height: 35%; background: var(--theme-beauty);" data-label="Beauty"></div>
+                    <div class="bar" style="height: 60%; background: var(--theme-pharmacy);" data-label="Pharmacy"></div>
+                    <div class="bar bar-baby" style="height: 95%;" data-label="Baby"></div>
+                    <div class="bar" style="height: 25%; background: var(--theme-home);" data-label="Home"></div>
+                    <div class="bar" style="height: 45%; background: var(--theme-pet);" data-label="Pet"></div>
+                    <div class="bar" style="height: 30%; background: var(--theme-intimate);" data-label="Intimate"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cycle-analysis">
+            <div class="cycle-title">Baby Category: Inverted Root Cause Analysis</div>
+            <p style="font-size: 13px; color: var(--text-primary); line-height: 1.5;">
+                <strong>Observation:</strong> The Baby category shows an artificially high 30-day "Abandonment Rate" (represented by the tall bar above).
+            </p>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-top: 8px;">
+                <strong>Analysis:</strong> Unlike electronics or groceries, baby products (like bulk diapers) have a long replacement cycle. A user not purchasing for 30 days is <em>satisfied and dormant</em>, not burned. The Trust Badges successfully increased Trial Conversion, and we must extend the CCAR lookback window for Baby specifically to 60+ days to avoid false-positive abandonment alerts.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

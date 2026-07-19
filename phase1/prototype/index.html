@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit — Electronics | Trial Confidence Badge Prototype</title>
+    <meta name="description" content="Phase 1 MVP Prototype: Trial Confidence Layer for cross-category adoption on Blinkit electronics products">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top App Bar -->
+    <header class="app-bar">
+        <div class="app-bar-inner">
+            <div class="app-bar-left">
+                <div class="blinkit-logo">
+                    <span class="logo-b">b</span>linkit
+                </div>
+                <div class="delivery-info">
+                    <span class="delivery-badge">⚡ 10 min</span>
+                    <span class="location-text">Varanasi, 221001</span>
+                </div>
+            </div>
+            <div class="app-bar-right">
+                <div class="search-bar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <span>Search for "earbuds", "charger", "power bank"...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Navigation -->
+    <nav class="category-nav">
+        <div class="category-nav-inner">
+            <a href="#" class="cat-pill">🥬 Grocery</a>
+            <a href="#" class="cat-pill">🍪 Snacks</a>
+            <a href="#" class="cat-pill active">🔌 Electronics</a>
+            <a href="#" class="cat-pill">💄 Beauty</a>
+            <a href="#" class="cat-pill">💊 Pharmacy</a>
+            <a href="#" class="cat-pill">🧹 Cleaning</a>
+            <a href="#" class="cat-pill">🍼 Baby</a>
+        </div>
+    </nav>
+
+    <!-- AB Test Indicator -->
+    <div class="ab-indicator">
+        <div class="ab-indicator-inner">
+            <div class="ab-dot"></div>
+            <span>Phase 1 A/B Test — <strong>Badge Variant</strong> (Treatment Group)</span>
+            <button class="toggle-variant" onclick="toggleVariant()">Switch to Control</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h1>Electronics</h1>
+            <p class="section-subtitle">Delivered in minutes, not days</p>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="productGrid">
+            <!-- Products injected via JS -->
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="productModal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+        <div class="cart-footer-inner">
+            <div class="cart-info">
+                <span class="cart-count" id="cartCount">0 items</span>
+                <span class="cart-total" id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-btn">View Cart →</button>
+        </div>
+    </div>
+
+    <!-- Metrics Sidebar -->
+    <div class="metrics-panel" id="metricsPanel">
+        <button class="metrics-toggle" onclick="toggleMetrics()">📊</button>
+        <div class="metrics-body" id="metricsBody">
+            <h3>Phase 1 Live Metrics</h3>
+            <div class="metric-card">
+                <div class="metric-label">Badge Impressions</div>
+                <div class="metric-value" id="metricImpressions">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Badge Clicks (Expanded)</div>
+                <div class="metric-value" id="metricClicks">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Add to Cart (Badge Users)</div>
+                <div class="metric-value" id="metricAddToCart">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Trial Conversion Rate</div>
+                <div class="metric-value" id="metricConversion">0%</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-label">⚠️ Grocery Completion Rate</div>
+                <div class="metric-value" id="metricGrocery">99.2%</div>
+                <div class="metric-note">Guardrail — must not degrade</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-label">⚠️ Return Rate (Electronics)</div>
+                <div class="metric-value" id="metricReturn">—</div>
+                <div class="metric-note">Kill signal if spikes above baseline</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

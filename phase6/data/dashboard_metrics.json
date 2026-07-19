@@ -1,0 +1,10 @@
+{
+  "kpis": {
+    "ccar": { "value": "1.8%", "trend": "22.1%" },
+    "recommendation_diversity": { "value": "3.5:1", "target": "3.0:1" },
+    "ai_inference_latency": { "value": "38" }
+  },
+  "abandonment_rates": {
+    "tech": 15, "home": 10, "baby": 32, "apparel": 18, "beauty": 6
+  }
+}

@@ -1,0 +1,14 @@
+# Secrets — NEVER commit these. Set them as environment variables on the host.
+.env
+.env.*
+
+# Dependencies (the host runs `npm install` itself)
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS / editor junk
+.DS_Store
+Thumbs.db

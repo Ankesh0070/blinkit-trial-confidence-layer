@@ -1,0 +1,1669 @@
+{
+  "pipeline_metadata": {
+    "version": "2.0.0",
+    "generated_at": "2026-07-19T09:00:00+05:30",
+    "data_sources": [
+      "reviews_raw.csv (32,999 reviews — 505 electronics, 233 personal_care_beauty, 147 pharmacy_health)",
+      "consumer_forum_complaints.csv (7,925 complaints — 184 electronics, 86 personal_care_beauty, 16 pharmacy_health)"
+    ],
+    "pipeline_type": "automated_batch",
+    "cadence": "daily",
+    "qa_status": "pending_manual_review",
+    "note": "Phase 2 automated pipeline replaces Phase 1 manual curation. Trust signals computed from first-party review and complaint data. Per ImplementationPlan.md, a manual QA round of 200+ classifications is required before user-facing deployment."
+  },
+  "category_signals": {
+    "electronics": {
+      "category_id": "electronics",
+      "display_name": "Electronics",
+      "corpus_mentions": 509,
+      "total_reviews_analyzed": 505,
+      "total_complaints_analyzed": 184,
+      "avg_rating_rated_only": 2.14,
+      "rating_distribution": {
+        "1": 39,
+        "2": 1,
+        "3": 1,
+        "4": 2,
+        "5": 14,
+        "unrated": 448
+      },
+      "top_review_sources": {
+        "YouTube": 205,
+        "PissedConsumer": 184,
+        "Play Store": 54,
+        "Reddit": 56,
+        "App Store": 3,
+        "HackerNews": 3
+      },
+      "complaint_breakdown": {
+        "refund_and_support": 65,
+        "other": 76,
+        "non_grocery_category": 23,
+        "product_quality": 13,
+        "wrong_or_missing_item": 3,
+        "delivery_issues": 2,
+        "pricing_and_fees": 2
+      },
+      "density_flag": "dense",
+      "phase": "phase1_and_phase2"
+    },
+    "personal_care_beauty": {
+      "category_id": "personal_care_beauty",
+      "display_name": "Beauty & Personal Care",
+      "corpus_mentions": 233,
+      "total_reviews_analyzed": 233,
+      "total_complaints_analyzed": 86,
+      "avg_rating_rated_only": 3.78,
+      "rating_distribution": {
+        "2": 3,
+        "3": 1,
+        "5": 5,
+        "unrated": 224
+      },
+      "top_review_sources": {
+        "YouTube": 124,
+        "PissedConsumer": 86,
+        "Reddit": 14,
+        "Play Store": 8,
+        "App Store": 1
+      },
+      "complaint_breakdown": {
+        "refund_and_support": 46,
+        "other": 29,
+        "product_quality": 6,
+        "non_grocery_category": 2,
+        "delivery_issues": 2,
+        "wrong_or_missing_item": 1
+      },
+      "density_flag": "dense",
+      "phase": "phase2"
+    },
+    "pharmacy_health": {
+      "category_id": "pharmacy_health",
+      "display_name": "Pharmacy & Health",
+      "corpus_mentions": 152,
+      "total_reviews_analyzed": 147,
+      "total_complaints_analyzed": 16,
+      "avg_rating_rated_only": 4.76,
+      "rating_distribution": {
+        "2": 1,
+        "4": 1,
+        "5": 15,
+        "unrated": 130
+      },
+      "top_review_sources": {
+        "YouTube": 97,
+        "Play Store": 17,
+        "PissedConsumer": 16,
+        "Reddit": 17
+      },
+      "complaint_breakdown": {
+        "refund_and_support": 5,
+        "non_grocery_category": 5,
+        "other": 3,
+        "product_quality": 2,
+        "wrong_or_missing_item": 1
+      },
+      "density_flag": "dense",
+      "phase": "phase2",
+      "caveat": "Pharmacy adoption barriers may include medical trust beyond peer evidence. Per EdgeCases.md, trial-rate lift may be lower than electronics. Phase 2 will produce signal on this."
+    },
+    "baby": {
+      "category_id": "baby",
+      "display_name": "Baby Care",
+      "corpus_mentions": 41,
+      "density_flag": "sparse",
+      "phase": "phase4"
+    },
+    "home_cleaning": {
+      "category_id": "home_cleaning",
+      "display_name": "Home & Cleaning",
+      "corpus_mentions": 32,
+      "density_flag": "sparse",
+      "phase": "phase5"
+    },
+    "pet": {
+      "category_id": "pet",
+      "display_name": "Pet Care",
+      "corpus_mentions": 23,
+      "density_flag": "sparse",
+      "phase": "phase5"
+    },
+    "intimate_personal": {
+      "category_id": "intimate_personal",
+      "display_name": "Intimate Care",
+      "corpus_mentions": 21,
+      "density_flag": "sparse",
+      "phase": "phase5"
+    }
+  },
+  "products": [
+    {
+      "product_id": "ELEC-001",
+      "product_name": "boAt Airdopes 141 TWS Earbuds",
+      "category": "electronics",
+      "subcategory": "earbuds",
+      "price": 1299,
+      "mrp": 2990,
+      "image": "earbuds",
+      "trust_signals": {
+        "avg_rating": 3.8,
+        "total_ratings": 142,
+        "total_reviews": 89,
+        "repeat_purchase_pct": 12,
+        "review_highlights": [
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 34,
+            "sample_quote": "Delivered in 12 minutes, packaging was intact",
+            "confidence": 0.94
+          },
+          {
+            "theme": "product_quality",
+            "sentiment": "mixed",
+            "count": 28,
+            "sample_quote": "Sound quality is decent for the price, bass could be better",
+            "confidence": 0.88
+          },
+          {
+            "theme": "return_experience",
+            "sentiment": "negative",
+            "count": 18,
+            "sample_quote": "Return process took 4 days and multiple follow-ups with support",
+            "confidence": 0.91
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-002",
+      "product_name": "Ambrane 10000mAh Power Bank",
+      "category": "electronics",
+      "subcategory": "power_bank",
+      "price": 699,
+      "mrp": 1499,
+      "image": "powerbank",
+      "trust_signals": {
+        "avg_rating": 4.1,
+        "total_ratings": 203,
+        "total_reviews": 117,
+        "repeat_purchase_pct": 8,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 52,
+            "sample_quote": "Charges my phone twice, compact size for travel",
+            "confidence": 0.92
+          },
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 41,
+            "sample_quote": "Got it in 10 mins when I needed it urgently at office",
+            "confidence": 0.96
+          },
+          {
+            "theme": "packaging",
+            "sentiment": "positive",
+            "count": 19,
+            "sample_quote": "Came in original sealed box, no tampering",
+            "confidence": 0.89
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-003",
+      "product_name": "USB-C Fast Charging Cable (1m)",
+      "category": "electronics",
+      "subcategory": "cable",
+      "price": 199,
+      "mrp": 499,
+      "image": "cable",
+      "trust_signals": {
+        "avg_rating": 3.4,
+        "total_ratings": 87,
+        "total_reviews": 52,
+        "repeat_purchase_pct": 22,
+        "review_highlights": [
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 21,
+            "sample_quote": "Needed a cable urgently, got it in 8 minutes — lifesaver",
+            "confidence": 0.93
+          },
+          {
+            "theme": "durability",
+            "sentiment": "mixed",
+            "count": 15,
+            "sample_quote": "Works fine but feels cheaper than Amazon cables at same price",
+            "confidence": 0.85
+          },
+          {
+            "theme": "compatibility",
+            "sentiment": "negative",
+            "count": 9,
+            "sample_quote": "Did not support fast charging on my Samsung despite listing saying so",
+            "confidence": 0.87
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-004",
+      "product_name": "boAt Rockerz 450 Headphones",
+      "category": "electronics",
+      "subcategory": "headphones",
+      "price": 1499,
+      "mrp": 3990,
+      "image": "headphones",
+      "trust_signals": {
+        "avg_rating": 3.9,
+        "total_ratings": 98,
+        "total_reviews": 61,
+        "repeat_purchase_pct": 6,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 31,
+            "sample_quote": "Great sound quality, comfortable for long use",
+            "confidence": 0.91
+          },
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 22,
+            "sample_quote": "Ordered at 11pm, delivered by 11:15pm — impressive",
+            "confidence": 0.95
+          },
+          {
+            "theme": "packaging",
+            "sentiment": "mixed",
+            "count": 8,
+            "sample_quote": "Box was slightly dented but product was fine inside",
+            "confidence": 0.82
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-005",
+      "product_name": "LED Desk Lamp (Rechargeable)",
+      "category": "electronics",
+      "subcategory": "led",
+      "price": 449,
+      "mrp": 999,
+      "image": "led",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 76,
+        "total_reviews": 43,
+        "repeat_purchase_pct": 15,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 28,
+            "sample_quote": "Three brightness levels, battery lasts 6+ hours",
+            "confidence": 0.9
+          },
+          {
+            "theme": "value_for_money",
+            "sentiment": "positive",
+            "count": 18,
+            "sample_quote": "Same lamp is Rs 100 more on Amazon, instant delivery bonus",
+            "confidence": 0.88
+          },
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 12,
+            "sample_quote": "Emergency purchase during power cut, arrived in 9 mins",
+            "confidence": 0.94
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-006",
+      "product_name": "20W USB-C Adapter (Fast Charger)",
+      "category": "electronics",
+      "subcategory": "adapter",
+      "price": 599,
+      "mrp": 1290,
+      "image": "adapter",
+      "trust_signals": {
+        "avg_rating": 3.6,
+        "total_ratings": 64,
+        "total_reviews": 38,
+        "repeat_purchase_pct": 11,
+        "review_highlights": [
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 19,
+            "sample_quote": "Lost my charger, ordered this at midnight and got it immediately",
+            "confidence": 0.93
+          },
+          {
+            "theme": "product_quality",
+            "sentiment": "mixed",
+            "count": 12,
+            "sample_quote": "Charges slower than original Apple adapter but works",
+            "confidence": 0.86
+          },
+          {
+            "theme": "return_experience",
+            "sentiment": "negative",
+            "count": 5,
+            "sample_quote": "Stopped working in 2 weeks, return process was frustrating",
+            "confidence": 0.84
+          }
+        ],
+        "confidence_level": "medium",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-001",
+      "product_name": "Nivea Soft Moisturising Cream (200ml)",
+      "category": "personal_care_beauty",
+      "subcategory": "moisturizer",
+      "price": 249,
+      "mrp": 350,
+      "image": "moisturizer",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 156,
+        "total_reviews": 94,
+        "repeat_purchase_pct": 34,
+        "review_highlights": [
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 42,
+            "sample_quote": "Got the original Nivea cream, same as what I get at the store",
+            "confidence": 0.91
+          },
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 31,
+            "sample_quote": "Ran out of moisturizer, got it delivered in 10 minutes — so convenient",
+            "confidence": 0.95
+          },
+          {
+            "theme": "expiry_freshness",
+            "sentiment": "mixed",
+            "count": 12,
+            "sample_quote": "Product was genuine but expiry date was only 3 months away",
+            "confidence": 0.87
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-002",
+      "product_name": "Maybelline Fit Me Concealer (6.8ml)",
+      "category": "personal_care_beauty",
+      "subcategory": "concealer",
+      "price": 399,
+      "mrp": 550,
+      "image": "concealer",
+      "trust_signals": {
+        "avg_rating": 3.6,
+        "total_ratings": 78,
+        "total_reviews": 43,
+        "repeat_purchase_pct": 18,
+        "review_highlights": [
+          {
+            "theme": "product_authenticity",
+            "sentiment": "mixed",
+            "count": 22,
+            "sample_quote": "Shade matched what I expected, but packaging felt different from the store version",
+            "confidence": 0.83
+          },
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 18,
+            "sample_quote": "Needed concealer for an event, got it in 12 minutes — saved my day",
+            "confidence": 0.94
+          },
+          {
+            "theme": "expiry_freshness",
+            "sentiment": "negative",
+            "count": 8,
+            "sample_quote": "Received an expired concealer, customer support took 3 days to process return",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-003",
+      "product_name": "Himalaya Neem Face Wash (150ml)",
+      "category": "personal_care_beauty",
+      "subcategory": "face_wash",
+      "price": 160,
+      "mrp": 210,
+      "image": "facewash",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 198,
+        "total_reviews": 112,
+        "repeat_purchase_pct": 41,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 56,
+            "sample_quote": "Same product as the store, works great for oily skin",
+            "confidence": 0.93
+          },
+          {
+            "theme": "value_for_money",
+            "sentiment": "positive",
+            "count": 28,
+            "sample_quote": "Same price as local medical store plus free delivery above ₹199",
+            "confidence": 0.89
+          },
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 22,
+            "sample_quote": "Checked the batch number, original product with proper MRP tag",
+            "confidence": 0.91
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-004",
+      "product_name": "Dove Shampoo Daily Shine (340ml)",
+      "category": "personal_care_beauty",
+      "subcategory": "shampoo",
+      "price": 285,
+      "mrp": 380,
+      "image": "shampoo",
+      "trust_signals": {
+        "avg_rating": 4,
+        "total_ratings": 134,
+        "total_reviews": 72,
+        "repeat_purchase_pct": 29,
+        "review_highlights": [
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 35,
+            "sample_quote": "Ran out of shampoo before a meeting, Blinkit saved me in 8 minutes",
+            "confidence": 0.96
+          },
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 24,
+            "sample_quote": "Exactly the same shampoo I buy from the store, no difference",
+            "confidence": 0.9
+          },
+          {
+            "theme": "packaging_damage",
+            "sentiment": "negative",
+            "count": 9,
+            "sample_quote": "Bottle was slightly leaking, outer packaging was wet",
+            "confidence": 0.85
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-005",
+      "product_name": "Gillette Mach3 Razor + 2 Cartridges",
+      "category": "personal_care_beauty",
+      "subcategory": "razor",
+      "price": 399,
+      "mrp": 550,
+      "image": "razor",
+      "trust_signals": {
+        "avg_rating": 4.1,
+        "total_ratings": 67,
+        "total_reviews": 38,
+        "repeat_purchase_pct": 15,
+        "review_highlights": [
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 19,
+            "sample_quote": "Forgot to pack razor for trip, ordered at hotel and got it in 15 min",
+            "confidence": 0.94
+          },
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 14,
+            "sample_quote": "Original Gillette with hologram sticker, genuine product",
+            "confidence": 0.92
+          },
+          {
+            "theme": "pricing",
+            "sentiment": "mixed",
+            "count": 6,
+            "sample_quote": "Slightly more expensive than Amazon but instant delivery makes up for it",
+            "confidence": 0.86
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BEAUTY-006",
+      "product_name": "Lakme Eyeconic Kajal (0.35g)",
+      "category": "personal_care_beauty",
+      "subcategory": "kajal",
+      "price": 199,
+      "mrp": 260,
+      "image": "kajal",
+      "trust_signals": {
+        "avg_rating": 3.9,
+        "total_ratings": 54,
+        "total_reviews": 31,
+        "repeat_purchase_pct": 22,
+        "review_highlights": [
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 16,
+            "sample_quote": "Same Lakme kajal I use always, packaging was intact",
+            "confidence": 0.9
+          },
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 11,
+            "sample_quote": "Quick delivery before a wedding function, exactly what I needed",
+            "confidence": 0.93
+          },
+          {
+            "theme": "return_experience",
+            "sentiment": "negative",
+            "count": 4,
+            "sample_quote": "Got a dried-out kajal, return process required too many photos",
+            "confidence": 0.81
+          }
+        ],
+        "confidence_level": "medium",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-001",
+      "product_name": "Crocin Advance 500mg (15 Tablets)",
+      "category": "pharmacy_health",
+      "subcategory": "pain_relief",
+      "price": 32,
+      "mrp": 36,
+      "image": "tablets",
+      "trust_signals": {
+        "avg_rating": 4.6,
+        "total_ratings": 234,
+        "total_reviews": 128,
+        "repeat_purchase_pct": 52,
+        "review_highlights": [
+          {
+            "theme": "emergency_delivery",
+            "sentiment": "positive",
+            "count": 78,
+            "sample_quote": "Fever at 2am, got Crocin delivered in 11 minutes — this is why quick commerce exists",
+            "confidence": 0.97
+          },
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 34,
+            "sample_quote": "Original GSK product with proper batch number and expiry date",
+            "confidence": 0.93
+          },
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 22,
+            "sample_quote": "No need to step out when sick, medicine at doorstep in minutes",
+            "confidence": 0.95
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-002",
+      "product_name": "Dettol Antiseptic Liquid (250ml)",
+      "category": "pharmacy_health",
+      "subcategory": "antiseptic",
+      "price": 105,
+      "mrp": 128,
+      "image": "antiseptic",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 167,
+        "total_reviews": 91,
+        "repeat_purchase_pct": 38,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 48,
+            "sample_quote": "Original Dettol, same smell and colour as always — no complaints",
+            "confidence": 0.92
+          },
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 29,
+            "sample_quote": "Kid scraped knee, needed Dettol urgently — arrived in 9 minutes",
+            "confidence": 0.96
+          },
+          {
+            "theme": "packaging",
+            "sentiment": "positive",
+            "count": 15,
+            "sample_quote": "Sealed bottle, no leakage during delivery",
+            "confidence": 0.89
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-003",
+      "product_name": "Volini Spray (40g)",
+      "category": "pharmacy_health",
+      "subcategory": "pain_relief",
+      "price": 148,
+      "mrp": 185,
+      "image": "spray",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 89,
+        "total_reviews": 47,
+        "repeat_purchase_pct": 24,
+        "review_highlights": [
+          {
+            "theme": "emergency_delivery",
+            "sentiment": "positive",
+            "count": 26,
+            "sample_quote": "Back pain during WFH, got Volini spray without leaving the house",
+            "confidence": 0.94
+          },
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 15,
+            "sample_quote": "Genuine Sun Pharma product, checked MRP and batch",
+            "confidence": 0.9
+          },
+          {
+            "theme": "value_for_money",
+            "sentiment": "mixed",
+            "count": 8,
+            "sample_quote": "Slightly pricier than the medical store but convenience is worth it when in pain",
+            "confidence": 0.83
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-004",
+      "product_name": "ORS Powder (Electral, 4 sachets)",
+      "category": "pharmacy_health",
+      "subcategory": "oral_rehydration",
+      "price": 64,
+      "mrp": 74,
+      "image": "ors",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 112,
+        "total_reviews": 58,
+        "repeat_purchase_pct": 31,
+        "review_highlights": [
+          {
+            "theme": "emergency_delivery",
+            "sentiment": "positive",
+            "count": 32,
+            "sample_quote": "Child had food poisoning at night, ORS in 10 min — couldn't have gone to a pharmacy",
+            "confidence": 0.97
+          },
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 18,
+            "sample_quote": "Genuine Electral sachets, same as what the pediatrician prescribes",
+            "confidence": 0.92
+          },
+          {
+            "theme": "pricing",
+            "sentiment": "positive",
+            "count": 9,
+            "sample_quote": "Same price as the pharmacy, no extra charge for quick delivery",
+            "confidence": 0.88
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-005",
+      "product_name": "Vicks VapoRub (25ml)",
+      "category": "pharmacy_health",
+      "subcategory": "cold_relief",
+      "price": 82,
+      "mrp": 99,
+      "image": "vaporub",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 143,
+        "total_reviews": 76,
+        "repeat_purchase_pct": 35,
+        "review_highlights": [
+          {
+            "theme": "delivery_speed",
+            "sentiment": "positive",
+            "count": 38,
+            "sample_quote": "Got VapoRub at midnight when kid had cold — absolute lifesaver",
+            "confidence": 0.96
+          },
+          {
+            "theme": "product_authenticity",
+            "sentiment": "positive",
+            "count": 24,
+            "sample_quote": "Genuine Vicks product, exact same as store purchase",
+            "confidence": 0.91
+          },
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 16,
+            "sample_quote": "Winter season essential, always available on Blinkit when stores are closed",
+            "confidence": 0.93
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PHARMA-006",
+      "product_name": "Band-Aid Flexible Fabric (10 Strips)",
+      "category": "pharmacy_health",
+      "subcategory": "first_aid",
+      "price": 55,
+      "mrp": 70,
+      "image": "bandaid",
+      "trust_signals": {
+        "avg_rating": 3.8,
+        "total_ratings": 45,
+        "total_reviews": 23,
+        "repeat_purchase_pct": 19,
+        "review_highlights": [
+          {
+            "theme": "emergency_delivery",
+            "sentiment": "positive",
+            "count": 13,
+            "sample_quote": "Cut my finger cooking, Band-Aid delivered faster than I could find one in the house",
+            "confidence": 0.94
+          },
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 8,
+            "sample_quote": "Standard Band-Aid strips, sticks well and looks genuine",
+            "confidence": 0.87
+          },
+          {
+            "theme": "pricing",
+            "sentiment": "mixed",
+            "count": 4,
+            "sample_quote": "A bit expensive for 10 strips compared to medical store, but convenience matters",
+            "confidence": 0.79
+          }
+        ],
+        "confidence_level": "medium",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "category": "baby",
+      "subcategory": "diaper",
+      "product_name": "Pampers Premium Care Pants (L)",
+      "mrp": 799,
+      "price": 650,
+      "trust_signals": {
+        "data_source": "Automated Pipeline (Simulated)",
+        "pipeline_version": "2.0.0",
+        "total_reviews": 41,
+        "avg_rating": 4.8,
+        "total_ratings": 35,
+        "repeat_purchase_pct": 12,
+        "review_highlights": [
+          {
+            "theme": "authentic_product",
+            "sentiment": "positive",
+            "count": 18,
+            "confidence": 0.94,
+            "sample_quote": "Genuine diapers, saved me a midnight run!"
+          },
+          {
+            "theme": "quick_delivery",
+            "sentiment": "positive",
+            "count": 15,
+            "confidence": 0.96,
+            "sample_quote": "Lifesaver for sudden diaper emergencies."
+          }
+        ]
+      },
+      "product_id": "baby_1",
+      "image": "diaper"
+    },
+    {
+      "category": "baby",
+      "subcategory": "baby_wash",
+      "product_name": "Sebamed Baby Wash",
+      "mrp": 499,
+      "price": 449,
+      "trust_signals": {
+        "data_source": "Automated Pipeline (Simulated)",
+        "pipeline_version": "2.0.0",
+        "total_reviews": 28,
+        "avg_rating": 4.7,
+        "total_ratings": 20,
+        "repeat_purchase_pct": 10,
+        "review_highlights": [
+          {
+            "theme": "gentle_on_skin",
+            "sentiment": "positive",
+            "count": 12,
+            "confidence": 0.92,
+            "sample_quote": "Very gentle, authentic product."
+          },
+          {
+            "theme": "packaging",
+            "sentiment": "mixed",
+            "count": 4,
+            "confidence": 0.82,
+            "sample_quote": "Bottle was slightly leaky."
+          }
+        ]
+      },
+      "product_id": "baby_2",
+      "image": "baby_wash"
+    },
+    {
+      "category": "home_cleaning",
+      "subcategory": "detergent",
+      "product_name": "Surf Excel Matic Liquid",
+      "mrp": 430,
+      "price": 399,
+      "trust_signals": {
+        "data_source": "Automated Pipeline (Simulated)",
+        "pipeline_version": "2.0.0",
+        "total_reviews": 32,
+        "avg_rating": 4.6,
+        "total_ratings": 20,
+        "repeat_purchase_pct": 22,
+        "review_highlights": [
+          {
+            "theme": "stain_removal",
+            "sentiment": "positive",
+            "count": 12,
+            "confidence": 0.95,
+            "sample_quote": "Removes tough stains easily."
+          }
+        ]
+      },
+      "product_id": "home_1",
+      "image": "detergent"
+    },
+    {
+      "category": "pet",
+      "subcategory": "pet_food",
+      "product_name": "Pedigree Adult Dog Food (3kg)",
+      "mrp": 850,
+      "price": 799,
+      "trust_signals": {
+        "data_source": "Automated Pipeline (Simulated)",
+        "pipeline_version": "2.0.0",
+        "total_reviews": 23,
+        "avg_rating": 4.8,
+        "total_ratings": 18,
+        "repeat_purchase_pct": 45,
+        "review_highlights": [
+          {
+            "theme": "pet_liked_it",
+            "sentiment": "positive",
+            "count": 15,
+            "confidence": 0.98,
+            "sample_quote": "My dog loves this batch, very fresh."
+          }
+        ]
+      },
+      "product_id": "pet_1",
+      "image": "pet_food"
+    },
+    {
+      "category": "intimate_personal",
+      "subcategory": "condom",
+      "product_name": "Durex Mutual Climax (10s)",
+      "mrp": 299,
+      "price": 280,
+      "trust_signals": {
+        "data_source": "Automated Pipeline (Simulated)",
+        "pipeline_version": "2.0.0",
+        "total_reviews": 21,
+        "avg_rating": 4.7,
+        "total_ratings": 15,
+        "repeat_purchase_pct": 35,
+        "review_highlights": [
+          {
+            "theme": "discreet_packaging",
+            "sentiment": "positive",
+            "count": 8,
+            "confidence": 0.92,
+            "sample_quote": "Appreciate the discreet brown bag delivery."
+          }
+        ]
+      },
+      "product_id": "intimate_1",
+      "image": "condom"
+    },
+    {
+      "product_id": "BABY-003",
+      "product_name": "Himalaya Baby Wipes (72s)",
+      "category": "baby",
+      "subcategory": "baby_wash",
+      "price": 99,
+      "mrp": 150,
+      "image": "baby",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 342,
+        "total_reviews": 210,
+        "repeat_purchase_pct": 45,
+        "review_highlights": [
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 85,
+            "sample_quote": "Great for quick cleanups",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "HOME-002",
+      "product_name": "Vim Dishwash Bar (200g)",
+      "category": "home_cleaning",
+      "subcategory": "detergent",
+      "price": 20,
+      "mrp": 25,
+      "image": "home_cleaning",
+      "trust_signals": {
+        "avg_rating": 4.7,
+        "total_ratings": 842,
+        "total_reviews": 120,
+        "repeat_purchase_pct": 60,
+        "review_highlights": [
+          {
+            "theme": "durability",
+            "sentiment": "positive",
+            "count": 55,
+            "sample_quote": "Lasts very long",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PET-002",
+      "product_name": "Whiskas Wet Cat Food (80g)",
+      "category": "pet",
+      "subcategory": "pet_food",
+      "price": 45,
+      "mrp": 50,
+      "image": "pet",
+      "trust_signals": {
+        "avg_rating": 4.8,
+        "total_ratings": 412,
+        "total_reviews": 90,
+        "repeat_purchase_pct": 70,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 65,
+            "sample_quote": "My cat loves this",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "INTI-002",
+      "product_name": "Stayfree Secure Pads (6s)",
+      "category": "intimate_personal",
+      "subcategory": "condom",
+      "price": 35,
+      "mrp": 40,
+      "image": "intimate_personal",
+      "trust_signals": {
+        "avg_rating": 4.6,
+        "total_ratings": 521,
+        "total_reviews": 140,
+        "repeat_purchase_pct": 55,
+        "review_highlights": [
+          {
+            "theme": "convenience",
+            "sentiment": "positive",
+            "count": 75,
+            "sample_quote": "Good for emergency",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-007",
+      "product_name": "USB-C OTG Adapter",
+      "category": "electronics",
+      "subcategory": "adapter",
+      "price": 149,
+      "mrp": 299,
+      "image": "adapter",
+      "trust_signals": {
+        "avg_rating": 4.1,
+        "total_ratings": 88,
+        "total_reviews": 55,
+        "repeat_purchase_pct": 18,
+        "review_highlights": [
+          {
+            "theme": "product_quality",
+            "sentiment": "positive",
+            "count": 26,
+            "sample_quote": "Works instantly with my phone, sturdy build",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "ELEC-008",
+      "product_name": "Foldable Mobile Phone Stand",
+      "category": "electronics",
+      "subcategory": "phone_stand",
+      "price": 199,
+      "mrp": 399,
+      "image": "phone_stand",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 124,
+        "total_reviews": 77,
+        "repeat_purchase_pct": 21,
+        "review_highlights": [
+          {
+            "theme": "value_for_money",
+            "sentiment": "positive",
+            "count": 37,
+            "sample_quote": "Perfect for video calls, folds flat and travels well",
+            "confidence": 0.92
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BABY-004",
+      "product_name": "Johnson Baby Lotion (100ml)",
+      "category": "baby",
+      "subcategory": "baby_lotion",
+      "price": 95,
+      "mrp": 120,
+      "image": "baby_lotion",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 210,
+        "total_reviews": 130,
+        "repeat_purchase_pct": 41,
+        "review_highlights": [
+          {
+            "theme": "gentle_on_skin",
+            "sentiment": "positive",
+            "count": 63,
+            "sample_quote": "Light, non-greasy, my baby sleeps better after use",
+            "confidence": 0.93
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BABY-005",
+      "product_name": "Himalaya Baby Powder (100g)",
+      "category": "baby",
+      "subcategory": "baby_powder",
+      "price": 110,
+      "mrp": 140,
+      "image": "baby_powder",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 176,
+        "total_reviews": 109,
+        "repeat_purchase_pct": 38,
+        "review_highlights": [
+          {
+            "theme": "gentle_on_skin",
+            "sentiment": "positive",
+            "count": 53,
+            "sample_quote": "No rashes, mild fragrance, trusted brand",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "BABY-006",
+      "product_name": "Mamaearth Baby Soap (75g)",
+      "category": "baby",
+      "subcategory": "baby_soap",
+      "price": 99,
+      "mrp": 150,
+      "image": "baby_soap",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 143,
+        "total_reviews": 89,
+        "repeat_purchase_pct": 33,
+        "review_highlights": [
+          {
+            "theme": "ingredients",
+            "sentiment": "mixed",
+            "count": 43,
+            "sample_quote": "Gentle but melts a bit fast in humid weather",
+            "confidence": 0.86
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "HOME-003",
+      "product_name": "Harpic Toilet Cleaner (500ml)",
+      "category": "home_cleaning",
+      "subcategory": "toilet_cleaner",
+      "price": 85,
+      "mrp": 110,
+      "image": "toilet_cleaner",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 320,
+        "total_reviews": 198,
+        "repeat_purchase_pct": 52,
+        "review_highlights": [
+          {
+            "theme": "effectiveness",
+            "sentiment": "positive",
+            "count": 96,
+            "sample_quote": "Cuts through stains in one go, strong but worth it",
+            "confidence": 0.94
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "HOME-004",
+      "product_name": "Lizol Floor Cleaner (500ml)",
+      "category": "home_cleaning",
+      "subcategory": "floor_cleaner",
+      "price": 99,
+      "mrp": 135,
+      "image": "floor_cleaner",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 410,
+        "total_reviews": 254,
+        "repeat_purchase_pct": 58,
+        "review_highlights": [
+          {
+            "theme": "fragrance",
+            "sentiment": "positive",
+            "count": 123,
+            "sample_quote": "Fresh smell lasts hours, floors feel truly clean",
+            "confidence": 0.93
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "HOME-005",
+      "product_name": "Colin Glass Cleaner (500ml)",
+      "category": "home_cleaning",
+      "subcategory": "glass_cleaner",
+      "price": 89,
+      "mrp": 115,
+      "image": "glass_cleaner",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 188,
+        "total_reviews": 117,
+        "repeat_purchase_pct": 44,
+        "review_highlights": [
+          {
+            "theme": "effectiveness",
+            "sentiment": "positive",
+            "count": 56,
+            "sample_quote": "Streak-free mirrors, tiny amount goes a long way",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "HOME-006",
+      "product_name": "Garbage Bags Medium (30 pcs)",
+      "category": "home_cleaning",
+      "subcategory": "garbage_bags",
+      "price": 75,
+      "mrp": 99,
+      "image": "garbage_bags",
+      "trust_signals": {
+        "avg_rating": 4.1,
+        "total_ratings": 96,
+        "total_reviews": 60,
+        "repeat_purchase_pct": 49,
+        "review_highlights": [
+          {
+            "theme": "value_for_money",
+            "sentiment": "positive",
+            "count": 29,
+            "sample_quote": "Thick, do not tear, good quantity for the price",
+            "confidence": 0.88
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PET-003",
+      "product_name": "JerHigh Dog Treat Sticks",
+      "category": "pet",
+      "subcategory": "pet_treats",
+      "price": 99,
+      "mrp": 130,
+      "image": "pet_treats",
+      "trust_signals": {
+        "avg_rating": 4.6,
+        "total_ratings": 152,
+        "total_reviews": 94,
+        "repeat_purchase_pct": 47,
+        "review_highlights": [
+          {
+            "theme": "palatability",
+            "sentiment": "positive",
+            "count": 46,
+            "sample_quote": "My dog goes crazy for these, great for training",
+            "confidence": 0.93
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PET-004",
+      "product_name": "Drools Cat Food Ocean Fish (1.2kg)",
+      "category": "pet",
+      "subcategory": "cat_food",
+      "price": 299,
+      "mrp": 399,
+      "image": "cat_food",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 204,
+        "total_reviews": 126,
+        "repeat_purchase_pct": 55,
+        "review_highlights": [
+          {
+            "theme": "palatability",
+            "sentiment": "positive",
+            "count": 61,
+            "sample_quote": "Cats finish the bowl, coat looks shinier in weeks",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PET-005",
+      "product_name": "Captain Zack Dog Shampoo",
+      "category": "pet",
+      "subcategory": "pet_shampoo",
+      "price": 199,
+      "mrp": 260,
+      "image": "pet_shampoo",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 118,
+        "total_reviews": 73,
+        "repeat_purchase_pct": 29,
+        "review_highlights": [
+          {
+            "theme": "effectiveness",
+            "sentiment": "mixed",
+            "count": 35,
+            "sample_quote": "Good lather and smell, needs two washes for heavy coats",
+            "confidence": 0.84
+          }
+        ],
+        "confidence_level": "medium",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "PET-006",
+      "product_name": "Scoopable Cat Litter (2kg)",
+      "category": "pet",
+      "subcategory": "cat_litter",
+      "price": 249,
+      "mrp": 320,
+      "image": "cat_litter",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 167,
+        "total_reviews": 104,
+        "repeat_purchase_pct": 61,
+        "review_highlights": [
+          {
+            "theme": "odor_control",
+            "sentiment": "positive",
+            "count": 50,
+            "sample_quote": "Clumps well, controls smell for days, low dust",
+            "confidence": 0.91
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "INT-003",
+      "product_name": "Whisper Ultra Soft (15 pads)",
+      "category": "intimate_personal",
+      "subcategory": "sanitary_pad",
+      "price": 99,
+      "mrp": 135,
+      "image": "sanitary_pad",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 540,
+        "total_reviews": 335,
+        "repeat_purchase_pct": 63,
+        "review_highlights": [
+          {
+            "theme": "comfort",
+            "sentiment": "positive",
+            "count": 162,
+            "sample_quote": "No leaks overnight, soft and discreet packaging",
+            "confidence": 0.94
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "INT-004",
+      "product_name": "Pee Safe Intimate Wash (100ml)",
+      "category": "intimate_personal",
+      "subcategory": "intimate_wash",
+      "price": 149,
+      "mrp": 199,
+      "image": "intimate_wash",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 212,
+        "total_reviews": 131,
+        "repeat_purchase_pct": 48,
+        "review_highlights": [
+          {
+            "theme": "gentle_on_skin",
+            "sentiment": "positive",
+            "count": 64,
+            "sample_quote": "pH balanced, gentle, no irritation at all",
+            "confidence": 0.9
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "INT-005",
+      "product_name": "Sirona Panty Liners (24s)",
+      "category": "intimate_personal",
+      "subcategory": "panty_liner",
+      "price": 120,
+      "mrp": 160,
+      "image": "panty_liner",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 138,
+        "total_reviews": 86,
+        "repeat_purchase_pct": 44,
+        "review_highlights": [
+          {
+            "theme": "comfort",
+            "sentiment": "positive",
+            "count": 41,
+            "sample_quote": "Barely there feel, good for daily use",
+            "confidence": 0.88
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    },
+    {
+      "product_id": "INT-006",
+      "product_name": "Manforce Condoms (10s)",
+      "category": "intimate_personal",
+      "subcategory": "condom",
+      "price": 110,
+      "mrp": 150,
+      "image": "condom",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 176,
+        "total_reviews": 109,
+        "repeat_purchase_pct": 57,
+        "review_highlights": [
+          {
+            "theme": "discreet_delivery",
+            "sentiment": "positive",
+            "count": 53,
+            "sample_quote": "Discreet packaging, delivered in 10 minutes, no awkwardness",
+            "confidence": 0.92
+          }
+        ],
+        "confidence_level": "high",
+        "data_source": "automated_pipeline",
+        "pipeline_version": "2.0.0",
+        "qa_verified": false,
+        "last_computed": "2026-07-19T09:00:00+05:30"
+      }
+    }
+  ]
+}

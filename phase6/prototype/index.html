@@ -1,0 +1,309 @@
+<!DOCTYPE html><html class="light" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#e0e0e0",
+                      "on-surface-variant": "#4a4a4a",
+                      "on-primary-fixed-variant": "#332800",
+                      "primary-fixed": "#fce885",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#f0f0f0",
+                      "on-tertiary-container": "#000000",
+                      "primary-container": "#fce885",
+                      "surface-container-highest": "#e6e6e6",
+                      "inverse-surface": "#222222",
+                      "surface-bright": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#000000",
+                      "on-secondary-container": "#000000",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#f5f5f5",
+                      "secondary-fixed-dim": "#cccccc",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#757575",
+                      "surface-tint": "#f7d032",
+                      "on-secondary-fixed": "#000000",
+                      "on-tertiary-fixed-variant": "#4a4a4a",
+                      "on-primary-fixed": "#000000",
+                      "on-surface": "#000000",
+                      "secondary": "#333333",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#e0e0e0",
+                      "on-tertiary-fixed": "#000000",
+                      "on-background": "#000000",
+                      "surface-dim": "#d9d9d9",
+                      "on-primary-container": "#332800",
+                      "outline-variant": "#c4c4c4",
+                      "tertiary": "#666666",
+                      "on-secondary-fixed-variant": "#333333",
+                      "tertiary-container": "#cccccc",
+                      "tertiary-fixed": "#e0e0e0",
+                      "surface-container-low": "#fafafa",
+                      "surface-container-high": "#ebebeb",
+                      "error": "#ba1a1a",
+                      "surface": "#ffffff",
+                      "inverse-primary": "#fce885",
+                      "inverse-on-surface": "#f0f0f0",
+                      "secondary-fixed": "#e0e0e0",
+                      "background": "#ffffff",
+                      "primary": "#f7d032",
+                      "primary-fixed-dim": "#f7d032"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "20px",
+                      "gutter": "16px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Outfit"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Outfit"
+                      ],
+                      "headline-md": [
+                              "Outfit"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Outfit"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      }catch(_e){}</script><link rel="stylesheet" href="styles.css">
+</head><body class="bg-background text-on-background min-h-screen pb-24 md:pb-0 md:pl-72 lg:pl-72 flex flex-col antialiased">
+<!-- Top App Bar (Mobile & Desktop) -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface-container/70 backdrop-blur-xl border-b border-outline-variant/10 dark:border-outline-variant/5 shadow-sm md:w-[calc(100%-18rem)] md:ml-72 flex justify-between items-center px-container-margin py-stack-sm h-[72px]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-highest shadow-sm shrink-0">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a stylish young professional looking directly at the camera with a confident, warm smile. The lighting is soft and natural, emphasizing a bright, high-key modern aesthetic. The background is completely blurred out, hinting at a modern, bright office space with subtle sleek architectural lines. High definition, bright, airy, perfect for a modern web app avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTydMGulk-doOIwvY4-af9PXxIxsvrgtixHPlTn08QVXmhBylD8Jgm6KPoYx6-sEHcabTWM2G1kEyM6SGkWELDW4LzY5rhJYUocL2yw4iPaJx-pT68rr7EVWkpY73oR3uEhySGI4tPHpSwAeVXxIzY9W1J4231_ZPZLXqNVvkfhvHBoyi7IGLKrW6jN3MBHBEdmGkwBfhwq5mcUCmn6lXbv2r_M9B7oC2b7qNZNkqsL0HTe7lKJG8P-L3PeekdL_vVxDpsqCx9">
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+    <select id="profileSwitcher" onchange="switchProfile(this.value)" class="bg-surface-container-lowest border border-outline-variant/50 rounded px-2 py-1 text-xs focus:ring-primary focus:border-primary">
+        <option value="user_a">Profile: New Buyer</option>
+        <option value="user_b">Profile: Electronics Buyer</option>
+    </select>
+</span>
+<img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIqnWRB-qht75QUD31DSFIW7UAmCxvzPHddUFSB9Tw1zUi32zHlV2VUq1p4CfXorrYgoQ_RFYxmctI1wPQhNW8m0jO0tGSy4jTMy4YwxrgZQa6DO4Oyz6YE8Bu7XHbJUF2LW4G9O-3P2VPbL1EIa-52JonFUURJjcPN5HC4YyDSoOx0CF0hNIayA5nahWnQjViGxpluCc4nVg6z4WRG5HjEC_DeqcCuOppEVNy2SzthVeJeMCK6eocconT8Tmx-kxPWlTdPk_h" alt="Blinkit Logo" class="h-8 w-auto object-contain hidden md:block">
+</div>
+</div>
+<div class="flex-1 max-w-md mx-4 hidden sm:block">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input id="searchInput" oninput="doSearch(this.value)" onkeypress="if(event.key==='Enter'){doSearch(this.value)}" class="w-full bg-surface-container-lowest border border-outline-variant/50 text-on-surface rounded-2xl pl-10 pr-4 py-2 font-body-md text-body-md shadow-inner focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search for anything..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button onclick="openMobileSearch()" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-variant/30 transition-colors sm:hidden">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button onclick="showNotifications()" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-variant/30 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button onclick="openCart()" aria-label="Cart" class="p-2 rounded-full text-on-surface-variant hover:bg-surface-variant/30 transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span id="cartBadge" class="hidden absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-primary text-on-primary text-[10px] font-bold rounded-full items-center justify-center">0</span>
+</button>
+</div>
+</header>
+<!-- Side Navigation (Desktop only) -->
+<aside class="hidden md:flex flex-col h-screen w-72 flex-shrink-0 bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant/30 shadow-lg fixed left-0 top-0 z-40 py-stack-lg pt-24">
+<nav class="flex-1 px-4 flex flex-col gap-2">
+<a id="navHome" onclick="showView('home')" class="cursor-pointer flex items-center gap-4 font-label-md text-label-md text-on-surface dark:text-inverse-primary font-bold border-r-4 border-primary dark:border-inverse-primary bg-primary-fixed/30 p-3 rounded-l-lg hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                 Home
+             </a>
+<a id="navCategories" onclick="showView('categories')" class="cursor-pointer flex items-center gap-4 font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform p-3 rounded-lg">
+<span class="material-symbols-outlined">grid_view</span>
+                 Categories
+             </a>
+<a id="navOrders" onclick="showView('orders')" class="cursor-pointer flex items-center gap-4 font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform p-3 rounded-lg">
+<span class="material-symbols-outlined">shopping_bag</span>
+                 Orders
+             </a>
+<a class="flex items-center gap-4 font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform p-3 rounded-lg" href="dashboard.html">
+<span class="material-symbols-outlined">person</span>
+                 Profile
+             </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 mt-[72px] p-container-margin w-full max-w-[1440px] mx-auto overflow-x-hidden">
+
+<!-- ============ HOME VIEW ============ -->
+<div id="homeView">
+<!-- Category Nav -->
+<section class="mb-stack-lg">
+<div id="categoryNav" class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 pt-1 -mx-container-margin px-container-margin md:mx-0 md:px-0 scroll-smooth"></div>
+</section>
+<!-- Trial Confidence Strip -->
+<section class="mb-stack-lg">
+<div id="recStrip"></div>
+</section>
+
+    <!-- Product Grid -->
+    <section id="productsSection">
+        <div class="flex items-center justify-between mb-4">
+            <h2 id="productsHeading" class="font-headline-md text-on-surface">Products</h2>
+        </div>
+        <div id="fallbackMessage" style="display:none;" class="mb-4 bg-error-container text-on-error-container p-4 rounded-xl">
+            Sparse category detected (<span id="mentionCount"></span> mentions). Falling back to generic products.
+        </div>
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </section>
+</div>
+
+<!-- ============ CATEGORIES VIEW ============ -->
+<div id="categoriesView" class="hidden">
+    <h2 class="font-headline-lg text-on-surface mb-1">Explore Categories</h2>
+    <p class="text-sm text-on-surface-variant mb-6">Pick a category to start a trial. New-to-you categories are tagged.</p>
+    <div id="categoriesGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+</div>
+
+<!-- ============ SEARCH VIEW ============ -->
+<div id="searchView" class="hidden">
+    <div class="flex items-center gap-2 mb-4">
+        <button onclick="showView('home')" class="p-1.5 rounded-full hover:bg-surface-variant/40"><span class="material-symbols-outlined text-on-surface-variant">arrow_back</span></button>
+        <h2 class="font-headline-md text-on-surface">Search results</h2>
+    </div>
+    <div class="relative w-full mb-4 sm:hidden">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+        <input id="searchInputMobile" oninput="doSearch(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant/50 text-on-surface rounded-2xl pl-10 pr-4 py-2.5 text-base focus:outline-none focus:border-primary" placeholder="Search products..." type="text">
+    </div>
+    <p id="searchMeta" class="text-sm text-on-surface-variant mb-4"></p>
+    <div id="searchGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+</div>
+
+<!-- ============ ORDERS VIEW ============ -->
+<div id="ordersView" class="hidden">
+    <h2 class="font-headline-lg text-on-surface mb-1">Your Orders</h2>
+    <p class="text-sm text-on-surface-variant mb-6">Reorder in one tap. A repeat order is the real test of a category trial.</p>
+    <div id="ordersList"></div>
+</div>
+
+    <!-- PDP Bottom Sheet (Hidden by default) -->
+    <div id="pdpSheet" class="fixed inset-0 z-[100] flex items-end justify-center pointer-events-none opacity-0 transition-opacity">
+        <div class="absolute inset-0 bg-black/40" onclick="closePdp()"></div>
+        <div id="pdpContent" class="w-full max-w-[600px] bg-surface rounded-t-3xl p-6 transform translate-y-full transition-transform relative z-10">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- App Sheet: Cart / Checkout / Order Confirmation (Hidden by default) -->
+    <div id="appSheet" class="fixed inset-0 z-[120] flex items-end md:items-center justify-center pointer-events-none opacity-0 transition-opacity">
+        <div class="absolute inset-0 bg-black/50" onclick="closeAppSheet()"></div>
+        <div id="appSheetContent" class="w-full max-w-[560px] max-h-[92vh] overflow-y-auto bg-surface rounded-t-3xl md:rounded-3xl transform translate-y-full md:translate-y-6 transition-transform relative z-10 shadow-2xl">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+    </div>
+</main>
+<!-- Bottom Nav Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface/70 dark:bg-surface-container/70 backdrop-blur-xl border-t border-outline-variant/10 dark:border-outline-variant/5 shadow-[0_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl pb-safe">
+<div class="flex justify-around items-center px-4 py-2">
+<a id="mnavHome" onclick="showView('home')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface dark:text-inverse-primary bg-primary-fixed/40 rounded-xl p-2 w-16 scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] mt-1">Home</span>
+</a>
+<a id="mnavCategories" onclick="showView('categories')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] mt-1">Categories</span>
+</a>
+<a id="mnavOrders" onclick="showView('orders')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] mt-1">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors" href="dashboard.html">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-1">Profile</span>
+</a></div></nav><script src="app.js?v=2.0"></script>
+<script src="chatbot.js?v=2.0"></script>
+</body></html>

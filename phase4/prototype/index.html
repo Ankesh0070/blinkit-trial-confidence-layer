@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit | Phase 2 Trial Confidence Prototype</title>
+    <meta name="description" content="Phase 2 MVP Prototype: Automated Pipeline & Category Expansion">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top App Bar -->
+    <header class="app-bar">
+        <div class="app-bar-inner">
+            <div class="app-bar-left">
+                <div class="blinkit-logo">
+                    <span class="logo-b">b</span>linkit
+                </div>
+                <div class="delivery-info">
+                    <span class="delivery-badge">⚡ 10 min</span>
+                    <span class="location-text">Varanasi, 221001</span>
+                </div>
+            </div>
+            <div class="app-bar-right" style="display: flex; align-items: center; gap: 16px;">
+                <a href="dashboard.html" style="color: var(--blinkit-yellow); font-size: 11px; font-weight: 700; text-transform: uppercase; text-decoration: none;">View Dashboard →</a>
+                <div class="search-bar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <span>Search for "earbuds", "diapers"...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Phase 3 User Switcher -->
+    <div class="user-switcher-bar">
+        <div class="user-switcher-inner">
+            <span class="user-switcher-label">Viewing As:</span>
+            <select id="userSelect" onchange="switchUser(this.value)">
+                <option value="user_a">User A (Grocery Only / Cold Start)</option>
+                <option value="user_b">User B (Electronics Explorer / Recently Bought)</option>
+                <option value="user_c">User C (Dormant / Bought Beauty 120d ago)</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Phase 3 Recommendation Strip -->
+    <div class="recommendation-strip" id="recStrip">
+        <!-- Injected via JS based on Diversity Logic -->
+    </div>
+
+    <!-- Phase 4 Header & Pipeline Status -->
+    <div class="phase-header">
+        <div class="phase-header-inner">
+            <div class="phase-title">Phase 4: Scale & Monitor</div>
+            <div class="pipeline-status" id="pipelineStatus">
+                <div class="status-indicator active"></div>
+                <span class="status-text">Pipeline: <strong>Scale (Testing Sparse)</strong></span>
+                <span class="qa-badge pending" id="qaBadge">QA Pending</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Navigation (Phase 2 Expansion) -->
+    <nav class="category-nav">
+        <div class="category-nav-inner" id="categoryNav">
+            <!-- Categories injected via JS based on data -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h1 id="pageTitle">Electronics</h1>
+            <p class="section-subtitle" id="pageSubtitle">Delivered in minutes, not days</p>
+        </div>
+
+        <!-- Pharmacy Caveat (Hidden by default) -->
+        <div class="category-caveat" id="pharmacyCaveat" style="display: none;">
+            <div class="caveat-icon">⚕️</div>
+            <div class="caveat-text">
+                <strong>Medical Trust Factor:</strong> Pharmacy category trial rates may be lower than electronics due to medical trust barriers (per EdgeCases.md).
+            </div>
+        </div>
+
+        <!-- Sparse Category Fallback (Hidden by default) -->
+        <div class="sparse-fallback" id="sparseFallback" style="display: none;">
+            <div class="fallback-icon">📊</div>
+            <div class="fallback-text">
+                <strong>Insufficient Data Density</strong>
+                <p>This category has <span id="mentionCount">0</span> mentions in our corpus (below the 50-mention threshold). AI-generated trust signals are disabled to prevent hallucination. Showing top-rated defaults.</p>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="productGrid">
+            <!-- Products injected via JS -->
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="productModal">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics Sidebar -->
+    <div class="metrics-panel" id="metricsPanel">
+        <button class="metrics-toggle" onclick="toggleMetrics()">📊</button>
+        <div class="metrics-body" id="metricsBody">
+            <div class="metrics-header">
+                <h3>Phase 3 Metrics</h3>
+                <div class="ab-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="abToggleCheckbox" checked onchange="toggleVariant()">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label" id="abToggleLabel">Badge Active</span>
+                </div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Cross-Category Activation (CCAR)</div>
+                <div class="metric-value" id="metricCCAR">0%</div>
+                <div class="metric-note">Target: > baseline</div>
+            </div>
+            
+            <!-- New Phase 3 Metrics -->
+            <div class="metric-card highlight">
+                <div class="metric-label">Recommendation Diversity</div>
+                <div class="metric-value" id="metricDiversity">0%</div>
+                <div class="metric-note">Novel categories shown vs clicked</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-label">Second-Purchase Rate (30d)</div>
+                <div class="metric-value" id="metricRepeat">0%</div>
+            </div>
+            
+            <div class="metric-separator"></div>
+            
+            <div class="metric-card dev-tool">
+                <div class="metric-label">Dev: Pipeline Simulation</div>
+                <button class="dev-btn" onclick="toggleQAStatus()">Toggle QA Verification</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

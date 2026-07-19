@@ -1,0 +1,213 @@
+Problem Statement — Blinkit Cross-Category Discovery
+
+Project: Graduation Project — Growth PM Case Study
+Company: Blinkit (quick commerce)
+Role: Product Manager, Growth Team
+Strategic goal: Increase the % of Monthly Active Customers (MAC) who purchase from at least one new category every month.
+
+
+1. Context: the business situation
+
+Blinkit has won the hardest part of the quick-commerce game — habit formation. Users have folded the app into their weekly routine for groceries, snacks & beverages, and household essentials. Retention and order frequency in these core categories are healthy.
+
+That same habit is now the constraint. Habit is efficient by design: it removes deliberation. A user who has learned "Blinkit = milk, bread, snacks, in 10 minutes" executes that routine without ever re-evaluating what else the platform sells. The platform has, in effect, trained its own users into a narrow lane.
+
+This matters because Blinkit's assortment has expanded far beyond groceries — electronics, personal care & beauty, pharmacy, baby, pet, home & cleaning, intimate care — but usage has not expanded with it. The strategic goal is therefore not an assortment problem or an awareness campaign; it is a behaviour-change problem on an audience that is already active, already retained, and already transacting.
+
+
+2. Evidence of the problem
+
+2.1 Quantitative signal — what 32,999 public conversations show
+
+Corpus analysed: 32,999 user-generated items across Play Store, App Store, Reddit (posts + comments), YouTube, HackerNews and the PissedConsumer complaint forum, spanning Jan 2023 – Sep 2025.
+
+Finding 1 — Conversation is overwhelmingly concentrated in grocery.
+
+CategoryItems mentioning it% of corpusgeneral (no category signal)30,35592.0%groceries_fresh1,1143.4%snacks_beverages6592.0%electronics5091.5%personal_care_beauty2330.7%pharmacy_health1520.5%baby410.1%home_cleaning320.1%pet230.1%intimate_personal210.1%
+
+Only 8.5% of all conversation carries any category signal at all. Within that slice, grocery + snacks outweigh every non-grocery category combined by 1.75:1. Baby, pet, home-cleaning and intimate care together account for 0.4% of the corpus — categories that exist commercially but are close to invisible in user discourse.
+
+Interpretation: Users are not debating whether to buy pet food on Blinkit. The category is not in the consideration set at all. This is a discovery and trust gap, not a preference gap.
+
+Finding 2 — When users do venture into non-grocery, the experience disproportionately fails.
+
+Within the 7,925 formal consumer-forum complaints, a dedicated non_grocery_category complaint type exists (151 cases), and electronics is the single largest identified category within it (23 cases), followed by baby (15). Electronics represents 1.5% of category mentions but a far higher share of category-specific complaints — the categories users try least are the categories that fail them most when they do try.
+
+Interpretation: Low trial volume and high failure rate are compounding. Every failed trial removes a user from the pool of potential cross-category buyers, likely permanently (see 2.2).
+
+Honest limitation: this corpus is public review data. It over-represents users motivated to complain, under-represents silent satisfied users, and cannot measure actual purchase behaviour. It tells us what the friction is; it cannot tell us why, and it cannot size the opportunity. That is what the primary research was for.
+
+2.2 Qualitative signal — 7 in-depth user interviews
+
+Respondents: 7 active Blinkit users, ages 24–42, Varanasi / tier-2 context, order frequency from emergency-only to 3–4×/week, tenure 3 months to 4 years, income Rs 37k–90k/month. Mix of working professionals, homemakers, a government employee, a researcher and an academic.
+
+Five patterns held across the sample.
+
+Pattern A — First-experience determinism (the strongest and most consistent finding).
+A single category trial permanently decides that category's fate for the user. It is not a gradual erosion of confidence; it is a one-shot verdict.
+
+
+One respondent stated the rule explicitly: if the first experience in a category is good she continues ordering from it regularly; if it is bad she stops using that category entirely.
+Another received faulty electronics three separate times — replacements were processed correctly, but he will not order electronics on Blinkit again.
+Another tested a viral claim by ordering a tomato in June 2025; by December 2025 it had hardened rather than rotted. She has not ordered a fresh item since.
+A fourth, on hearing a neighbour's story about a fan arriving with a missing component in front of guests, concluded: if the order's purpose isn't fulfilled, what is the point of ordering on Blinkit.
+
+
+The asymmetry is the key insight: upside from a good trial is one new category; downside from a bad trial is that category closed forever, plus contagion to adjacent categories via word of mouth. Users are behaving rationally under that payoff structure by not trying.
+
+Pattern B — Social proof is the only accepted trust currency; the platform supplies none.
+Every one of the 7 respondents independently named friend or family recommendation as their trust unlock for a new category. Two named it as sufficient on its own with no budget ceiling. Critically, respondents explicitly rejected platform-generated suggestions — one wanted "good reviews on the specific product I'm considering, not generic suggestions"; another said reviews visible on every listed product would make him willing to try new categories.
+
+When asked how they sequence a purchase decision, 5 of 7 named reviews or brand before price. Their primary decision input — peer evidence — is largely absent at the point of decision on Blinkit. They fall back to the platforms that do provide it.
+
+Pattern C — Fee economics tax exactly the behaviour we want.
+A first trial in a new category is by definition small, cheap and cautious — a single facewash, one pack of pet treats. Blinkit's fee structure penalises precisely that basket.
+
+
+"Cost triples for small volume / low price items due to delivery charge."
+One respondent contrasted Blinkit's platform/handling/tax fees against Rs 3–10 on Myntra/Amazon/Flipkart and now treats quick commerce as a "last resort."
+Another described handling charges on small, light items, plus tax layered on the fees, as unfair.
+A "human error tax" was described: forget one item and you pay the full delivery charge again for that single item.
+
+
+Pattern D — Category-specialist mental models are already locked in.
+Users have assigned platforms to jobs: Myntra for clothes, Amazon for electronics and books, Blinkit for groceries. One respondent said Blinkit is "trapped in a stereotype" in her mind and, after two years of use, still feels it is "not compatible or trustworthy" for non-grocery needs. Another said he trusts specialists over generalists, because specialisation signals depth of range. Narrow assortment then confirms the stereotype: two respondents cited limited range (baby products, footwear, books) as the reason a category feels unreliable.
+
+Pattern E — Discovery surfaces are being structurally bypassed.
+Users arrive in intent mode, not browse mode. One never noticed a homepage banner in three months of use. Another goes straight to search and never browses the home screen. A third navigates directly to the category she already needs. Banners and homepage merchandising — the current cross-category levers — are being rendered to users who are not looking at them.
+
+The one counter-example, which is the most important data point in the sample.
+One respondent tried period panties once on Blinkit, had a good experience, and now orders them regularly. It is the only unprompted positive non-grocery gateway story across 7 interviews. It demonstrates that the mechanism works: when a first trial succeeds, category adoption is immediate and sticky. The problem is not that users can't be converted. It is that the first trial almost never happens, and when it does it too often fails.
+
+A warning signal on the incumbent business. The single most engaged user in the sample (3–4 orders/week, 4 years tenure) has already moved her fresh-produce purchases to a competing quick-commerce app. Category concentration is not a safe status quo — it is a single point of failure.
+
+2.3 Where primary research validated the AI insights — and where it challenged them
+
+AI/corpus insightInterview verdictNon-grocery categories are near-absent from user conversationValidated. Respondents could not recall considering them.Non-grocery trials fail at disproportionate ratesValidated and sharpened. Interviews revealed the failures are terminal, not merely annoying.Frustration is dominated by refunds/supportChallenged. Refund friction is real, but it is a symptom. The decision-blocking variable is missing pre-purchase information, not post-purchase recovery.Users don't know the categories exist (awareness hypothesis)Challenged / rejected. Respondents knew the categories existed. They chose specialist platforms instead. This is a trust and information problem, not an awareness problem — which invalidates banner/notification-led solutions.Price is the primary barrierPartially challenged. Absolute price matters, but fee-to-basket ratio on small trial orders is the real blocker, and 5 of 7 respondents rank reviews or brand above price in their decision sequence.
+
+The rejection of the awareness hypothesis is the single most consequential outcome of the primary research, because it rules out the most obvious class of solution.
+
+
+3. Target user segment
+
+Habituated grocery regulars.
+
+
+Ordering ≥1×/week for ≥3 months, concentrated in groceries, snacks and household essentials
+Have either never transacted in a non-grocery category, or tried once and abandoned it
+Already trust Blinkit for speed and convenience within their lane
+Actively buy the same non-grocery categories elsewhere (Amazon, Myntra, Flipkart, local market)
+
+
+Why this segment: it is the largest, highest-frequency, already-retained cohort — the shortest distance to a behaviour change. The barrier is trust and information, not acquisition. Every respondent in the sample except the emergency-only users fits this profile, and the one successful gateway story came from inside it.
+
+Explicitly out of scope: new users (<1 month, still forming the core habit — introducing cross-category friction here risks the primary loop) and emergency-only low-frequency users (insufficient session volume for the intervention to land).
+
+
+4. Root cause
+
+
+Trying a new category on Blinkit is a high-risk, low-information, fee-penalised decision — and the cost of a bad first trial is permanent category closure. Users are behaving rationally by not trying.
+
+
+
+Four reinforcing forces:
+
+
+Information vacuum at the decision point. Peer evidence is the users' stated primary decision input and Blinkit does not surface it where the decision is made.
+Asymmetric downside. One bad experience permanently closes a category; there is no product mechanism to recover a burned user.
+Economics that punish trial. Fee structure is regressive against exactly the small, cautious basket a first trial takes.
+Structural bypass of discovery surfaces. Users are in search-intent mode, so banner and homepage merchandising never reaches them.
+
+
+Underneath these sits the mental model — Blinkit = grocery, specialists = everything else — which each of the four forces reconfirms every time a user opens the app.
+
+
+5. Existing user workarounds
+
+Users have already solved this problem for themselves — just not on Blinkit.
+
+WorkaroundEvidenceRoute non-grocery to specialist platformsUniversal: Myntra (clothes), Amazon (electronics, books), FlipkartFall back to offline shops where the product can be physically inspectedElectronics, personal care; one respondent values the personal shopkeeper relationship as a trust substituteAsk friends/family before any new-category purchaseAll 7 respondents; functions as an out-of-app review systemPermanently blacklist a category after one failure4 of 7 respondentsSwitch quick-commerce apps for the failing category rather than complainPower user moved fresh produce to a competitorBatch orders to avoid re-paying delivery feesDirect response to the "human error tax"
+
+The existence of a stable, well-functioning set of workarounds is the clearest proof the need is real — and the clearest warning that a weak solution will simply be ignored.
+
+
+6. Why solving this creates user value
+
+
+Removes decision risk. Peer evidence at the point of decision replaces guesswork on an unfamiliar category.
+Collapses effort. Consolidating a purchase currently spread across 3–4 apps into one 10-minute delivery is a real convenience gain, not a nudge.
+Makes trial economically rational. If the fee overhead on a small first basket is neutralised, the cost of being wrong falls to near zero.
+Serves genuine unmet demand. Respondents volunteered categories they want on Blinkit — a wider footwear range, a better book selection — and said they would switch if range improved. Demand exists; the bridge does not.
+
+
+7. Why solving this makes business sense
+
+
+Margin mix. Grocery is a thin-margin, high-frequency workhorse. Non-grocery categories (personal care & beauty, electronics accessories, pet, baby) carry materially higher margins. Moving basket mix, not just basket count, is how quick-commerce unit economics improve. (Exact margin deltas to be validated against internal finance data.)
+Retention and defensibility. A user transacting in 3 categories has 3 reasons to open the app instead of 1. Multi-category users are structurally harder for a competitor to take — and the interview data shows single-category users are already being taken.
+Assortment ROI. Blinkit has already paid the cost of stocking these categories in dark stores. Inventory that 92% of users never see is capital tied up without return. This is a demand-side unlock on supply that already exists.
+Compounding data asset. Every cross-category trial generates preference data that improves subsequent recommendations for every user — a flywheel a competitor cannot copy by shipping the same feature, because they would not have the trial data underneath it.
+
+
+
+8. Success metrics
+
+North star metric
+
+Cross-Category Activation Rate (CCAR) — % of MAC who purchase from at least one new category in a given month.
+
+
+Numerator: count of monthly active customers who, in month M, place ≥1 order containing ≥1 item from an L2 category from which they have made no purchase in the preceding 90 days
+Denominator: total monthly active customers in month M (≥1 order placed)
+Grain: L2 category; 90-day lookback so a lapsed-and-returned category still counts as re-activation, while a monthly-repeating category does not inflate the metric
+Why this metric: it is the direct operationalisation of the strategic goal, it is behavioural rather than attitudinal (a purchase, not a click), and the 90-day window prevents the metric being gamed by users cycling between two habitual categories.
+
+
+Supporting metrics
+
+MetricDefinitionWhy it is trackedNew-category trial rateUsers with ≥1 new-category item added to cart / MACIsolates intent from conversion — separates "wouldn't consider" from "considered and dropped off"Second-purchase rate (retention of trial)Users who repeat-purchase in a new category within 30 days of first trial / users who made a first trialThe real test. First-experience determinism means a trial that does not repeat has likely burned the category permanentlyTrial basket AOV & fee ratioFees as % of trial-order valueDirectly measures the economic barrier identified in Pattern CCategory spread per userDistinct L2 categories purchased per user per monthTracks depth of the behaviour change, not just the first conversion
+
+Counter-metrics (guardrails)
+
+
+Core-order friction: grocery order completion rate and time-to-checkout must not degrade. The primary habit loop is the business; protecting it outranks the growth goal.
+Category-abandonment rate: users who trial and then never return to that category. A rising number here means the intervention is driving trials into a bad experience — which is worse than no intervention, because it burns categories at scale.
+Return/complaint rate on newly-trialled categories, watched closely for the categories that already fail disproportionately.
+
+
+Baseline: to be established from internal transaction data. (Public review data cannot measure purchase behaviour — corpus category share, where non-grocery is 8.5% of conversation, is a directional proxy only, not a baseline.)
+
+
+9. Scope
+
+In scope
+
+
+AI-powered discovery engine over 32,999 public items (Play Store, App Store, Reddit, YouTube, HackerNews, PissedConsumer), Jan 2023 – Sep 2025
+Primary research: 7 in-depth interviews with the target segment
+A deployed AI-native MVP addressing the root cause for habituated grocery regulars
+Metrics framework, failure modes and mitigation, competitive moat, iteration roadmap
+
+
+Out of scope
+
+
+Fee restructuring and pricing policy (finance-owned; identified as a contributing force, flagged as a dependency, not solved here)
+Dark-store assortment expansion and supply-chain changes
+Quality assurance and returns process re-engineering (a genuine root-cause contributor, but a separate operational programme — the MVP must instead be designed so it does not push users toward categories likely to fail them)
+New user acquisition; loyalty and subscription redesign
+
+
+Key assumptions to be validated
+
+
+Non-grocery margins are materially higher than grocery (needs internal finance validation)
+Peer evidence surfaced in-app is accepted as a substitute for a friend's recommendation — respondents rejected generic platform suggestions, so the MVP must be designed and tested against this specific risk
+Sample of 7 in one tier-2 city is directionally representative; it should be pressure-tested against a broader quantitative survey before large-scale rollout
+
+
+
+10. Problem statement in one line
+
+Habituated Blinkit grocery regulars will not try a new category because trying is a high-risk, low-information, fee-penalised bet whose downside is permanent — and Blinkit currently supplies no in-app peer evidence to de-risk that first trial, so users route those purchases to specialist platforms instead.
