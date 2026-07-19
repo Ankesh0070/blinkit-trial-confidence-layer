@@ -1,0 +1,136 @@
+<!DOCTYPE html><html class="light" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Discovery Assistant · Blinkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>try{tailwind.config={theme:{extend:{colors:{
+  "primary":"#f7d032","primary-fixed":"#fce885","on-primary":"#1a1a1a",
+  "surface":"#ffffff","surface-container-low":"#fafafa","surface-container":"#f4f5f7","surface-container-high":"#eceef1",
+  "on-surface":"#17181b","on-surface-variant":"#5b5f66","outline-variant":"#dce0e6","bg":"#f6f7f9"
+},fontFamily:{display:["Outfit"],body:["Inter"]}}}}}catch(_e){}</script>
+<style>
+  body{font-family:'Inter',sans-serif;background:#f6f7f9;color:#17181b}
+  .font-display{font-family:'Outfit',sans-serif}
+  #messages{scrollbar-width:thin}
+  #messages::-webkit-scrollbar{width:8px}#messages::-webkit-scrollbar-thumb{background:#dce0e6;border-radius:8px}
+  .dot{width:6px;height:6px;border-radius:9999px;background:#9aa0a8;animation:bounce 1s infinite}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-4px);opacity:1}}
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-2xl mx-auto min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 bg-bg/85 backdrop-blur-md border-b border-outline-variant/60 px-4 py-3 flex items-center gap-3">
+    <a href="index.html" class="p-2 -ml-2 rounded-full hover:bg-surface-container transition-colors" aria-label="Back to store">
+      <span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+    </a>
+    <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-on-primary">smart_toy</span>
+    </div>
+    <div class="flex-1">
+      <div class="font-display font-semibold text-on-surface leading-tight">Discovery Assistant</div>
+      <div class="text-[11px] text-on-surface-variant flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-[#0d8345]"></span> Online · helps you find products</div>
+    </div>
+    <a href="index.html" class="text-sm font-semibold text-on-surface bg-white border border-outline-variant/60 hover:bg-surface-container px-3 py-1.5 rounded-xl transition-colors">Store</a>
+  </header>
+
+  <!-- Messages -->
+  <div id="messages" class="flex-1 overflow-y-auto px-4 py-5 flex flex-col gap-3">
+    <div class="self-start max-w-[85%] bg-white border border-outline-variant/50 shadow-sm p-3 rounded-2xl rounded-tl-sm text-on-surface text-sm">
+      Hi! I'm your Blinkit product discovery assistant. Tell me what you need and I'll point you to the right category to try.
+    </div>
+    <div id="suggestions" class="self-start flex flex-wrap gap-2 max-w-[90%]">
+      <button onclick="quickAsk(this)" class="text-xs font-semibold bg-white border border-outline-variant/60 text-on-surface px-3 py-1.5 rounded-full hover:bg-surface-container transition-colors">Something for my baby</button>
+      <button onclick="quickAsk(this)" class="text-xs font-semibold bg-white border border-outline-variant/60 text-on-surface px-3 py-1.5 rounded-full hover:bg-surface-container transition-colors">Good earbuds under 1500</button>
+      <button onclick="quickAsk(this)" class="text-xs font-semibold bg-white border border-outline-variant/60 text-on-surface px-3 py-1.5 rounded-full hover:bg-surface-container transition-colors">Home cleaning essentials</button>
+      <button onclick="quickAsk(this)" class="text-xs font-semibold bg-white border border-outline-variant/60 text-on-surface px-3 py-1.5 rounded-full hover:bg-surface-container transition-colors">First thing to try for my dog</button>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="sticky bottom-0 bg-bg/90 backdrop-blur-md border-t border-outline-variant/60 px-4 py-3">
+    <div class="flex gap-2 items-center bg-white border border-outline-variant/60 rounded-full pl-4 pr-1.5 py-1.5 shadow-sm focus-within:border-primary transition-colors">
+      <input id="input" type="text" placeholder="Ask about products…" onkeypress="if(event.key==='Enter')send()"
+             class="flex-1 bg-transparent text-sm text-on-surface focus:outline-none">
+      <button onclick="send()" class="bg-primary text-on-primary w-9 h-9 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity shrink-0">
+        <span class="material-symbols-outlined text-[20px]">send</span>
+      </button>
+    </div>
+    <p class="text-[10px] text-on-surface-variant text-center mt-2">Product discovery only · cannot process refunds or orders</p>
+  </div>
+</div>
+
+<script>
+const CHAT_CATEGORIES = [
+  { id:'electronics', name:'Electronics', emoji:'🔌', kw:['electronic','earbud','headphone','charger','power bank','powerbank','cable','gadget','adapter'] },
+  { id:'personal_care_beauty', name:'Beauty & Personal Care', emoji:'💄', kw:['beauty','personal care','skincare','skin care','face wash','moisturiz','makeup','shampoo','razor'] },
+  { id:'pharmacy_health', name:'Pharmacy & Health', emoji:'💊', kw:['pharmacy','medicine','health','tablet','pain relief','first aid','antiseptic','bandage'] },
+  { id:'baby', name:'Baby Care', emoji:'🧸', kw:['baby','diaper','infant','wipes','baby lotion','baby powder'] },
+  { id:'home_cleaning', name:'Home & Cleaning', emoji:'🧹', kw:['clean','detergent','floor','toilet','dishwash','glass cleaner','garbage'] },
+  { id:'pet', name:'Pet Care', emoji:'🐕', kw:['pet','dog','cat','litter','pet food','treats'] },
+  { id:'intimate_personal', name:'Intimate Care', emoji:'🛡️', kw:['intimate','sanitary','feminine','condom','panty liner'] }
+];
+let history = [];
+
+function quickAsk(btn){ document.getElementById('input').value = btn.textContent; send(); }
+
+function bubble(role, text){
+  const m = document.getElementById('messages');
+  const d = document.createElement('div');
+  d.className = 'max-w-[85%] p-3 rounded-2xl text-sm shadow-sm border ' + (role==='user'
+    ? 'self-end bg-primary-fixed text-on-surface border-primary/20 rounded-tr-sm'
+    : 'self-start bg-white text-on-surface border-outline-variant/50 rounded-tl-sm');
+  d.textContent = text;
+  m.appendChild(d); m.scrollTop = m.scrollHeight;
+}
+
+function loading(){
+  const m = document.getElementById('messages');
+  const d = document.createElement('div'); const id = 'l'+Date.now(); d.id = id;
+  d.className = 'self-start bg-white border border-outline-variant/50 p-3 rounded-2xl rounded-tl-sm flex gap-1 items-center h-10 shadow-sm';
+  d.innerHTML = '<span class="dot"></span><span class="dot" style="animation-delay:.15s"></span><span class="dot" style="animation-delay:.3s"></span>';
+  m.appendChild(d); m.scrollTop = m.scrollHeight; return id;
+}
+
+function actionLinks(reply, userText){
+  const t = (reply+' '+userText).toLowerCase();
+  const hasWord = p => new RegExp('\\b'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(t);
+  let found = CHAT_CATEGORIES.filter(c => hasWord(c.name.toLowerCase()) || hasWord(c.id.replace(/_/g,' ')) || c.kw.some(k=>hasWord(k))).slice(0,3);
+  const m = document.getElementById('messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'self-start max-w-[90%] flex flex-wrap gap-2';
+  if(found.length===0){
+    wrap.innerHTML = `<a href="index.html?view=categories" class="inline-flex items-center gap-1 bg-primary-fixed text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full border border-primary/20 hover:opacity-90">🧭 Browse all categories <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`;
+  } else {
+    wrap.innerHTML = found.map(c=>`<a href="index.html?cat=${c.id}" class="inline-flex items-center gap-1 bg-primary-fixed text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full border border-primary/20 hover:opacity-90">${c.emoji} Explore ${c.name} <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`).join('');
+  }
+  m.appendChild(wrap); m.scrollTop = m.scrollHeight;
+}
+
+async function send(){
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if(!text) return;
+  const sug = document.getElementById('suggestions'); if(sug) sug.remove();
+  input.value = '';
+  bubble('user', text);
+  history.push({ role:'user', content:text });
+  const lid = loading();
+  try{
+    const res = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ messages: history }) });
+    const data = await res.json();
+    document.getElementById(lid)?.remove();
+    if(data.success){
+      history.push({ role:'assistant', content:data.reply });
+      bubble('assistant', data.reply);
+      actionLinks(data.reply, text);
+    } else {
+      bubble('assistant', 'Sorry, I hit an error. Please try again.');
+    }
+  }catch(e){
+    document.getElementById(lid)?.remove();
+    bubble('assistant', 'Network error. Please try again.');
+  }
+}
+</script>
+</body></html>
