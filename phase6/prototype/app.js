@@ -79,11 +79,11 @@ const IMAGE_KW = {
     oil: 'cooking oil', salt: 'salt', spices: 'spices', noodles: 'instant noodles', frozenfood: 'frozen food'
 };
 function hashId(s) { let h = 0; for (let i = 0; i < (s || '').length; i++) h = (h * 31 + s.charCodeAt(i)) % 100000; return h; }
-function imgKeyword(product) { return IMAGE_KW[product.subcategory] || catDisplayName(product.category) || 'grocery'; }
+// Real product photos are bundled locally under img/<subcategory>-{1,2,3}.jpg so they
+// load instantly on any device/network (no external CDN dependency).
 function productImages(product) {
-    const kw = encodeURIComponent(imgKeyword(product));
-    const seed = hashId(product.product_id || product.id);
-    return [0, 1, 2].map(i => `https://loremflickr.com/500/500/${kw}?lock=${seed + i + 1}`);
+    const sub = product.subcategory || 'grocery';
+    return [1, 2, 3].map(i => `img/${sub}-${i}.jpg`);
 }
 function placeholderImg(product) {
     const label = (product.product_name || '').split(' ').slice(0, 3).join(' ');

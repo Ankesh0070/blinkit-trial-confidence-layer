@@ -102,7 +102,7 @@ function actionLinks(reply, userText){
   if(found.length===0){
     wrap.innerHTML = `<a href="index.html?view=categories" class="inline-flex items-center gap-1 bg-primary-fixed text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full border border-primary/20 hover:opacity-90">🧭 Browse all categories <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`;
   } else {
-    wrap.innerHTML = found.map(c=>`<a href="index.html?cat=${c.id}" class="inline-flex items-center gap-1 bg-primary-fixed text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full border border-primary/20 hover:opacity-90">${c.emoji} Explore ${c.name} <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`).join('');
+    wrap.innerHTML = found.map(c=>`<a href="index.html?cat=${c.id}" class="inline-flex items-center gap-1 bg-primary-fixed text-on-surface text-xs font-semibold px-3 py-1.5 rounded-full border border-primary/20 hover:opacity-90">${c.emoji} Explore <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`).join('');
   }
   m.appendChild(wrap); m.scrollTop = m.scrollHeight;
 }

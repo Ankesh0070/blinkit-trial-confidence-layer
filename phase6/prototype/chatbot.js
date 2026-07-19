@@ -187,7 +187,7 @@ function appendActionLinks(replyText, userText) {
         wrap.innerHTML = actions.map(c => `
             <a href="index.html?cat=${c.id}" onclick="return chipNav('${c.id}')"
                class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">
-               ${c.emoji} Explore ${c.name} <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+               ${c.emoji} Explore <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </a>`).join('');
     }
     messagesDiv.appendChild(wrap);
