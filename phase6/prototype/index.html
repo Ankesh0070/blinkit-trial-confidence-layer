@@ -248,9 +248,9 @@
 
 <!-- ============ CATEGORIES VIEW ============ -->
 <div id="categoriesView" class="hidden">
-    <h2 class="font-headline-lg text-on-surface mb-1">Explore Categories</h2>
-    <p class="text-sm text-on-surface-variant mb-6">Pick a category to start a trial. New-to-you categories are tagged.</p>
-    <div id="categoriesGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    <h2 class="font-headline-lg text-on-surface mb-1">All Categories</h2>
+    <p class="text-sm text-on-surface-variant mb-6">Everything on Blinkit. New-to-you categories are tagged so you can try with confidence.</p>
+    <div id="categoriesContainer"></div>
 </div>
 
 <!-- ============ SEARCH VIEW ============ -->
@@ -282,7 +282,7 @@
     <!-- PDP Bottom Sheet (Hidden by default) -->
     <div id="pdpSheet" class="fixed inset-0 z-[100] flex items-end justify-center pointer-events-none opacity-0 transition-opacity">
         <div class="absolute inset-0 bg-black/40" onclick="closePdp()"></div>
-        <div id="pdpContent" class="w-full max-w-[600px] bg-surface rounded-t-3xl p-6 transform translate-y-full transition-transform relative z-10">
+        <div id="pdpContent" class="w-full max-w-[600px] max-h-[92vh] overflow-y-auto bg-surface rounded-t-3xl p-6 transform translate-y-full transition-transform relative z-10">
             <!-- Populated by JS -->
         </div>
     </div>
@@ -314,6 +314,6 @@
 <a id="mnavProfile" onclick="showView('profile')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] mt-1">Profile</span>
-</a></div></nav><script src="app.js?v=3.1"></script>
-<script src="chatbot.js?v=3.1"></script>
+</a></div></nav><script src="app.js?v=4.0"></script>
+<script src="chatbot.js?v=4.0"></script>
 </body></html>

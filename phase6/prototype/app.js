@@ -18,8 +18,80 @@ const EMOJIS = {
     'toilet_cleaner': '🚽', 'floor_cleaner': '🧽', 'glass_cleaner': '🪟', 'garbage_bags': '🗑️', 'dishwash': '🍽️',
     'pet_treats': '🦴', 'cat_food': '🐈', 'pet_shampoo': '🧴', 'cat_litter': '🐈',
     'sanitary_pad': '🩸', 'intimate_wash': '🧴', 'panty_liner': '🌸',
-    'electronics': '🔌', 'personal_care_beauty': '💄', 'pharmacy_health': '💊', 'baby': '🧸', 'home_cleaning': '🧹', 'pet': '🐕', 'intimate_personal': '🛡️'
+    'electronics': '🔌', 'personal_care_beauty': '💄', 'pharmacy_health': '💊', 'baby': '🧸', 'home_cleaning': '🧹', 'pet': '🐕', 'intimate_personal': '🛡️',
+    // grocery / daily category emojis
+    'vegetables_fruits': '🥬', 'dairy_bread_eggs': '🥛', 'munchies': '🍿', 'cold_drinks_juices': '🥤',
+    'atta_rice_dal': '🌾', 'tea_coffee': '☕', 'biscuits_bakery': '🍪', 'sweet_tooth': '🍫',
+    'masala_oil': '🧂', 'instant_frozen': '🧊',
+    // grocery subcategory emojis
+    'tomato': '🍅', 'onion': '🧅', 'banana': '🍌', 'apple': '🍎', 'potato': '🥔',
+    'milk': '🥛', 'bread': '🍞', 'eggs': '🥚', 'butter': '🧈', 'paneer': '🧀',
+    'chips': '🍟', 'namkeen': '🥨', 'popcorn': '🍿', 'snacks': '🍿',
+    'softdrink': '🥤', 'juice': '🧃', 'energydrink': '⚡',
+    'atta': '🌾', 'rice': '🍚', 'dal': '🫘', 'flour': '🌾',
+    'tea': '🍵', 'coffee': '☕', 'healthdrink': '🥤',
+    'biscuits': '🍪', 'rusk': '🍞', 'cake': '🍰', 'cookies': '🍪',
+    'chocolate': '🍫', 'icecream': '🍨', 'candy': '🍬',
+    'oil': '🛢️', 'salt': '🧂', 'spices': '🌶️', 'noodles': '🍜', 'frozenfood': '🧊'
 };
+
+// ── Master category list (real Blinkit-style categories) ──
+// type 'grocery' = habitual everyday (no AI trial signal); 'trial' = non-grocery trial categories with AI trust signals.
+const ALL_CATEGORIES = [
+    { id: 'vegetables_fruits', name: 'Vegetables & Fruits', type: 'grocery' },
+    { id: 'dairy_bread_eggs', name: 'Dairy, Bread & Eggs', type: 'grocery' },
+    { id: 'atta_rice_dal', name: 'Atta, Rice & Dal', type: 'grocery' },
+    { id: 'masala_oil', name: 'Masala, Oil & More', type: 'grocery' },
+    { id: 'munchies', name: 'Munchies', type: 'grocery' },
+    { id: 'cold_drinks_juices', name: 'Cold Drinks & Juices', type: 'grocery' },
+    { id: 'tea_coffee', name: 'Tea, Coffee & Health Drinks', type: 'grocery' },
+    { id: 'biscuits_bakery', name: 'Biscuits & Bakery', type: 'grocery' },
+    { id: 'sweet_tooth', name: 'Sweet Tooth', type: 'grocery' },
+    { id: 'instant_frozen', name: 'Instant & Frozen', type: 'grocery' },
+    { id: 'electronics', name: 'Electronics', type: 'trial' },
+    { id: 'personal_care_beauty', name: 'Beauty & Personal Care', type: 'trial' },
+    { id: 'pharmacy_health', name: 'Pharmacy & Health', type: 'trial' },
+    { id: 'baby', name: 'Baby Care', type: 'trial' },
+    { id: 'home_cleaning', name: 'Home & Cleaning', type: 'trial' },
+    { id: 'pet', name: 'Pet Care', type: 'trial' },
+    { id: 'intimate_personal', name: 'Intimate Care', type: 'trial' }
+];
+const GROCERY_IDS = new Set(ALL_CATEGORIES.filter(c => c.type === 'grocery').map(c => c.id));
+const catDisplayName = id => trustData?.category_signals?.[id]?.display_name || ALL_CATEGORIES.find(c => c.id === id)?.name || id;
+
+// ── Real product images (keyword photos with a reliable placeholder fallback) ──
+const IMAGE_KW = {
+    earbuds: 'earbuds', powerbank: 'power bank', cable: 'usb cable', headphones: 'headphones', led: 'desk lamp', adapter: 'usb adapter', phone_stand: 'phone stand',
+    moisturizer: 'face cream', concealer: 'makeup', face_wash: 'face wash', shampoo: 'shampoo', razor: 'razor', kajal: 'eyeliner',
+    tablets: 'medicine tablets', antiseptic: 'antiseptic liquid', spray: 'spray bottle', ors: 'medicine sachet', vaporub: 'ointment', bandaid: 'bandage',
+    diaper: 'baby diaper', baby_wash: 'baby wash', baby_lotion: 'baby lotion', baby_powder: 'baby powder', baby_soap: 'soap',
+    detergent: 'laundry detergent', dishwash: 'dishwashing', toilet_cleaner: 'cleaning bottle', floor_cleaner: 'floor cleaner', glass_cleaner: 'spray cleaner', garbage_bags: 'garbage bag',
+    pet_food: 'dog food', cat_food: 'cat food', pet_treats: 'dog treats', pet_shampoo: 'pet grooming', cat_litter: 'cat litter',
+    condom: 'condom', sanitary_pad: 'sanitary pad', intimate_wash: 'wash bottle', panty_liner: 'hygiene',
+    tomato: 'tomato', onion: 'onion', banana: 'banana', apple: 'apple', potato: 'potato',
+    milk: 'milk', bread: 'bread', eggs: 'eggs', butter: 'butter', paneer: 'paneer cheese',
+    chips: 'potato chips', namkeen: 'snacks', popcorn: 'popcorn', snacks: 'snacks',
+    softdrink: 'soft drink', juice: 'fruit juice', energydrink: 'energy drink',
+    atta: 'wheat flour', rice: 'rice', dal: 'lentils', flour: 'flour',
+    tea: 'tea', coffee: 'coffee', healthdrink: 'health drink',
+    biscuits: 'biscuits', rusk: 'toast rusk', cake: 'cake', cookies: 'cookies',
+    chocolate: 'chocolate', icecream: 'ice cream', candy: 'candy',
+    oil: 'cooking oil', salt: 'salt', spices: 'spices', noodles: 'instant noodles', frozenfood: 'frozen food'
+};
+function hashId(s) { let h = 0; for (let i = 0; i < (s || '').length; i++) h = (h * 31 + s.charCodeAt(i)) % 100000; return h; }
+function imgKeyword(product) { return IMAGE_KW[product.subcategory] || catDisplayName(product.category) || 'grocery'; }
+function productImages(product) {
+    const kw = encodeURIComponent(imgKeyword(product));
+    const seed = hashId(product.product_id || product.id);
+    return [0, 1, 2].map(i => `https://loremflickr.com/500/500/${kw}?lock=${seed + i + 1}`);
+}
+function placeholderImg(product) {
+    const label = (product.product_name || '').split(' ').slice(0, 3).join(' ');
+    return `https://placehold.co/500x500/f4f5f7/8a8f98?text=${encodeURIComponent(label)}`;
+}
+function imgTag(url, product, cls) {
+    return `<img src="${url}" class="${cls}" onerror="this.onerror=null;this.src='${placeholderImg(product)}'">`;
+}
 
 async function init() {
     const trustRes = await fetch('../data/trust_signals_automated.json');
@@ -60,8 +132,13 @@ function renderApp() {
 
 // Logic: Check if we show AI signals based on density flags (Phase 5 override)
 function evaluateConfidenceGate(categoryId) {
+    // Grocery / everyday categories are the user's habitual lanes — no AI trial signal, no sparse warning.
+    if (GROCERY_IDS.has(categoryId)) {
+        return { show_ai_signals: false, recommend: false, is_grocery: true, reason: "grocery" };
+    }
+
     const flag = densityFlags.categories[categoryId]?.density_flag || 'sparse';
-    
+
     if (flag === 'sparse' && !['baby', 'home_cleaning', 'pet', 'intimate_personal'].includes(categoryId)) {
         return { show_ai_signals: false, recommend: false, reason: "sparse_category" };
     }
@@ -129,24 +206,20 @@ function renderRecommendationStrip() {
 function renderCategoryNav() {
     const nav = document.getElementById('categoryNav');
     nav.innerHTML = '';
-    
-    const categories = ['electronics', 'personal_care_beauty', 'pharmacy_health', 'baby', 'home_cleaning', 'pet', 'intimate_personal'];
-    
-    categories.forEach(catId => {
-        const catData = trustData.category_signals[catId];
+
+    ALL_CATEGORIES.forEach(cat => {
+        const catId = cat.id;
         const isActive = currentCategory === catId;
-        
         const btn = document.createElement('button');
-        
+
         if (isActive) {
-            btn.className = "shrink-0 px-6 py-3 rounded-full font-label-md text-label-md bg-primary-fixed/40 text-on-surface border border-primary-fixed/50 whitespace-nowrap shadow-sm";
+            btn.className = "shrink-0 px-5 py-2.5 rounded-full font-label-md text-label-md bg-primary-fixed/40 text-on-surface border border-primary-fixed/50 whitespace-nowrap shadow-sm";
         } else {
-            btn.className = "shrink-0 px-6 py-3 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/20 whitespace-nowrap";
+            btn.className = "shrink-0 px-5 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/20 whitespace-nowrap";
         }
-        
+
         btn.onclick = () => selectCategory(catId);
-        btn.innerHTML = `${EMOJIS[catId]} ${catData.display_name}`;
-        
+        btn.innerHTML = `${EMOJIS[catId] || '🛒'} ${cat.name}`;
         nav.appendChild(btn);
     });
 }
@@ -160,14 +233,14 @@ function selectCategory(categoryId) {
 function renderCategoryView() {
     const gateStatus = evaluateConfidenceGate(currentCategory);
     const fallbackMessage = document.getElementById('fallbackMessage');
-    
-    if (!gateStatus.show_ai_signals && !['baby', 'home_cleaning', 'pet', 'intimate_personal'].includes(currentCategory)) {
+
+    if (gateStatus.reason === 'sparse_category') {
         fallbackMessage.style.display = 'block';
-        document.getElementById('mentionCount').textContent = densityFlags.categories[currentCategory].mentions;
+        document.getElementById('mentionCount').textContent = densityFlags.categories[currentCategory]?.mentions || 0;
     } else {
         fallbackMessage.style.display = 'none';
     }
-    
+
     renderProducts();
 }
 
@@ -194,10 +267,13 @@ function createProductCard(product, showAi) {
     card.className = "product-card rounded-3xl overflow-hidden flex flex-col cursor-pointer group bg-surface shadow-sm border border-outline-variant/20 hover:shadow-md transition-shadow";
     card.onclick = () => openPdp(pid);
 
+    const imgs = productImages(product);
+    const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
     card.innerHTML = `
-        <div class="product-image-container relative aspect-square bg-surface-container-low overflow-hidden">
-            <div class="w-full h-full flex items-center justify-center text-6xl group-hover:scale-110 transition-transform duration-500">${EMOJIS[product.subcategory] || '📦'}</div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none"></div>
+        <div class="product-image-container relative aspect-square bg-white overflow-hidden">
+            ${imgTag(imgs[0], product, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')}
+            ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
+            <span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>
         </div>
         <div class="p-4 flex-grow flex flex-col gap-2">
             <h3 class="font-label-md text-label-md text-on-surface line-clamp-2">${product.product_name}</h3>
@@ -214,36 +290,80 @@ function renderProducts() {
     const gateStatus = evaluateConfidenceGate(currentCategory);
     const heading = document.getElementById('productsHeading');
     if (heading) {
-        const cat = trustData.category_signals[currentCategory];
-        heading.textContent = `${EMOJIS[currentCategory] || ''} ${cat ? cat.display_name : 'Products'}`;
+        heading.textContent = `${EMOJIS[currentCategory] || ''} ${catDisplayName(currentCategory)}`;
     }
     products.forEach(product => grid.appendChild(createProductCard(product, gateStatus.show_ai_signals)));
 }
 
+// Image slider state for the PDP gallery.
+let pdpImages = [];
+let pdpSlideIdx = 0;
+
+function renderPdpGallery(product) {
+    pdpImages = productImages(product);
+    pdpSlideIdx = 0;
+    const slides = pdpImages.map(url => `<div class="w-full shrink-0 aspect-square">${imgTag(url, product, 'w-full h-full object-cover')}</div>`).join('');
+    const dots = pdpImages.map((_, i) => `<button onclick="pdpGoto(${i})" class="pdp-dot w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-5' : 'bg-white/70 border border-outline-variant/40'}"></button>`).join('');
+    return `
+        <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-4 select-none"
+             ontouchstart="pdpTouchStart(event)" ontouchend="pdpTouchEnd(event)">
+            <div id="pdpSlides" class="flex h-full transition-transform duration-300" style="transform:translateX(0%)">${slides}</div>
+            <button onclick="pdpSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur shadow flex items-center justify-center hover:bg-white transition-colors">
+                <span class="material-symbols-outlined text-on-surface">chevron_left</span>
+            </button>
+            <button onclick="pdpSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur shadow flex items-center justify-center hover:bg-white transition-colors">
+                <span class="material-symbols-outlined text-on-surface">chevron_right</span>
+            </button>
+            <div id="pdpDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">${dots}</div>
+        </div>`;
+}
+
+function pdpGoto(i) {
+    if (!pdpImages.length) return;
+    pdpSlideIdx = (i + pdpImages.length) % pdpImages.length;
+    const track = document.getElementById('pdpSlides');
+    if (track) track.style.transform = `translateX(-${pdpSlideIdx * 100}%)`;
+    document.querySelectorAll('#pdpDots .pdp-dot').forEach((d, idx) => {
+        d.className = `pdp-dot w-2 h-2 rounded-full transition-all ${idx === pdpSlideIdx ? 'bg-primary w-5' : 'bg-white/70 border border-outline-variant/40'}`;
+    });
+}
+function pdpSlide(dir) { pdpGoto(pdpSlideIdx + dir); }
+let pdpTouchX = null;
+function pdpTouchStart(e) { pdpTouchX = e.changedTouches[0].clientX; }
+function pdpTouchEnd(e) {
+    if (pdpTouchX === null) return;
+    const dx = e.changedTouches[0].clientX - pdpTouchX;
+    if (Math.abs(dx) > 40) pdpSlide(dx < 0 ? 1 : -1);
+    pdpTouchX = null;
+}
+
 function openPdp(productId) {
     const product = trustData.products.find(p => p.product_id === productId || p.id === productId);
-    const highlight = product.trust_signals.review_highlights[0];
     const pdpContent = document.getElementById('pdpContent');
     const unifiedId = product.product_id || product.id;
     currentPdpProductId = unifiedId;
 
-    pdpContent.innerHTML = `
-        <div class="w-12 h-1 bg-outline-variant/30 rounded-full mx-auto mb-6"></div>
-        <div class="flex gap-4 items-start mb-6">
-            <div class="w-24 h-24 bg-surface-container-low rounded-2xl flex items-center justify-center text-4xl">${EMOJIS[product.subcategory] || '📦'}</div>
-            <div>
-                <h2 class="font-headline-md text-on-surface mb-1">${product.product_name}</h2>
-                <div class="font-headline-md font-bold text-on-surface">₹${product.price}</div>
+    const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
+    const priceBlock = `
+        <div class="mb-5">
+            <h2 class="font-headline-md text-on-surface mb-1">${product.product_name}</h2>
+            <div class="flex items-center gap-2">
+                <span class="font-headline-md font-bold text-on-surface">₹${product.price}</span>
+                ${product.mrp > product.price ? `<span class="text-sm text-outline line-through">₹${product.mrp}</span>` : ''}
+                ${off ? `<span class="text-xs font-bold text-on-primary bg-primary px-2 py-0.5 rounded-md">${off}% OFF</span>` : ''}
             </div>
-        </div>
-        
+        </div>`;
+
+    let aiSection = '';
+    if (product.trust_signals && product.trust_signals.review_highlights.length) {
+        const highlight = product.trust_signals.review_highlights[0];
+        aiSection = `
         <div id="pdpAiBox" class="glass-panel p-6 rounded-3xl ai-glow relative overflow-hidden mb-6 border border-primary-fixed/30 bg-primary-fixed/10">
             <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-fixed rounded-full blur-3xl opacity-20 pointer-events-none"></div>
             <div class="flex items-center gap-2 mb-4 relative z-10">
                 <span class="material-symbols-outlined text-[#F7D032]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                 <span class="font-label-md font-bold text-on-surface">AI Review Analysis</span>
             </div>
-            
             <div class="grid grid-cols-2 gap-4 relative z-10 mb-4">
                 <div class="bg-surface rounded-2xl p-4 flex flex-col items-center justify-center shadow-sm">
                     <div class="text-2xl font-bold text-on-surface mb-1">${product.trust_signals.repeat_purchase_pct}%</div>
@@ -254,21 +374,26 @@ function openPdp(productId) {
                     <div class="text-xs text-on-surface-variant text-center">Avg Rating (${product.trust_signals.total_ratings}+)</div>
                 </div>
             </div>
-            
             <div class="bg-surface rounded-2xl p-4 relative z-10 shadow-sm">
                 <div class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Top Theme</div>
                 <div class="inline-block bg-primary-fixed/40 text-on-surface px-3 py-1 rounded-full text-xs font-semibold mb-3">${highlight.theme.replace(/_/g, ' ')}</div>
                 <div class="text-sm italic text-on-surface-variant">"${highlight.sample_quote}"</div>
             </div>
         </div>
-        
         <button id="liveAiBtn" class="w-full bg-surface-container-high text-on-surface py-3 rounded-xl font-label-md font-bold shadow-sm hover:bg-surface-variant transition-colors mb-3 border border-outline-variant/30" onclick="runLiveAnalysis('${unifiedId}')">
             ✨ Run Live LLM Analysis (Groq)
-        </button>
+        </button>`;
+    }
+
+    pdpContent.innerHTML = `
+        <div class="w-12 h-1 bg-outline-variant/30 rounded-full mx-auto mb-4"></div>
+        ${renderPdpGallery(product)}
+        ${priceBlock}
+        ${aiSection}
         <button class="w-full bg-primary text-on-primary py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-opacity" onclick="addToCart()">Add to Cart</button>
-        <button class="w-full bg-surface-container-high text-on-surface py-4 rounded-xl font-label-md font-bold hover:bg-surface-container-highest transition-colors" onclick="buyNow()">Buy Now</button>
+        <button class="w-full mt-2 bg-surface-container-high text-on-surface py-4 rounded-xl font-label-md font-bold hover:bg-surface-container-highest transition-colors" onclick="buyNow()">Buy Now</button>
     `;
-    
+
     document.getElementById('pdpSheet').classList.remove('opacity-0', 'pointer-events-none');
     document.getElementById('pdpContent').classList.remove('translate-y-full');
 }
@@ -396,7 +521,7 @@ function addToCart(productId, opts = {}) {
             mrp: product.mrp,
             image: product.image || product.subcategory,
             category: product.category,
-            category_name: trustData.category_signals[product.category]?.display_name || product.category,
+            category_name: catDisplayName(product.category),
             qty: 1
         });
     }
@@ -451,10 +576,15 @@ function cartSavings() {
     return cart.reduce((s, i) => s + Math.max(0, (i.mrp - i.price)) * i.qty, 0);
 }
 
-// Distinct novel (new-to-user) categories currently in the cart.
+// A category counts toward CCAR only if it's a non-grocery TRIAL category new to the user.
+function isTrialNovel(categoryId) {
+    return !GROCERY_IDS.has(categoryId) && isNovelCategory(categoryId);
+}
+
+// Distinct novel (new-to-user) trial categories currently in the cart.
 function novelCategoriesInCart() {
     const set = new Set();
-    cart.forEach(i => { if (isNovelCategory(i.category)) set.add(i.category); });
+    cart.forEach(i => { if (isTrialNovel(i.category)) set.add(i.category); });
     return [...set];
 }
 
@@ -513,7 +643,7 @@ function renderCart() {
             <div class="flex-1 min-w-0">
                 <div class="font-label-md text-on-surface line-clamp-1">${item.name}</div>
                 <div class="text-xs text-on-surface-variant flex items-center gap-1">
-                    ${isNovelCategory(item.category) ? '<span class="text-[10px] bg-primary-fixed/50 text-on-surface px-1.5 py-0.5 rounded-full font-semibold">✨ New trial</span>' : `<span>${item.category_name}</span>`}
+                    ${isTrialNovel(item.category) ? '<span class="text-[10px] bg-primary-fixed/50 text-on-surface px-1.5 py-0.5 rounded-full font-semibold">✨ New trial</span>' : `<span>${item.category_name}</span>`}
                 </div>
                 <div class="text-sm font-bold text-on-surface mt-0.5">₹${item.price} <span class="text-[11px] text-outline font-normal line-through">₹${item.mrp}</span></div>
             </div>
@@ -791,25 +921,45 @@ function showView(name, opts = {}) {
 
 // ---- Categories overview ----
 function renderCategoriesOverview() {
-    const grid = document.getElementById('categoriesGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    const categories = ['electronics', 'personal_care_beauty', 'pharmacy_health', 'baby', 'home_cleaning', 'pet', 'intimate_personal'];
-    categories.forEach(catId => {
-        const cat = trustData.category_signals[catId];
-        const count = trustData.products.filter(p => p.category === catId).length;
-        const novel = isNovelCategory(catId);
-        const card = document.createElement('button');
-        card.className = "text-left product-card rounded-3xl p-5 flex flex-col gap-2 cursor-pointer bg-surface shadow-sm border border-outline-variant/20 hover:shadow-md hover:-translate-y-0.5 transition-all";
-        card.onclick = () => selectCategory(catId);
-        card.innerHTML = `
-            <div class="text-4xl mb-1">${EMOJIS[catId] || '📦'}</div>
-            <div class="font-label-md text-on-surface">${cat.display_name}</div>
-            <div class="text-xs text-on-surface-variant">${count} products</div>
-            ${novel ? '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-primary-fixed/40 text-on-surface px-2 py-0.5 rounded-full font-semibold">✨ New for you</span>' : '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-semibold">Already tried</span>'}
-        `;
-        grid.appendChild(card);
-    });
+    const container = document.getElementById('categoriesContainer');
+    if (!container) return;
+
+    const tile = cat => {
+        const count = trustData.products.filter(p => p.category === cat.id).length;
+        const isTrial = cat.type === 'trial';
+        const novel = isTrial && isNovelCategory(cat.id);
+        const tag = !isTrial
+            ? '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-semibold">Everyday</span>'
+            : (novel
+                ? '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-primary-fixed/50 text-on-surface px-2 py-0.5 rounded-full font-semibold">✨ New for you</span>'
+                : '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-semibold">Already tried</span>');
+        return `
+            <button onclick="selectCategory('${cat.id}')" class="text-left product-card rounded-3xl p-5 flex flex-col gap-1.5 cursor-pointer bg-surface shadow-sm border border-outline-variant/20 hover:shadow-md hover:-translate-y-0.5 transition-all">
+                <div class="text-4xl mb-1">${EMOJIS[cat.id] || '🛒'}</div>
+                <div class="font-label-md text-on-surface leading-tight">${cat.name}</div>
+                <div class="text-xs text-on-surface-variant">${count} products</div>
+                ${tag}
+            </button>`;
+    };
+
+    const grocery = ALL_CATEGORIES.filter(c => c.type === 'grocery');
+    const trial = ALL_CATEGORIES.filter(c => c.type === 'trial');
+    const gridCls = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4';
+
+    container.innerHTML = `
+        <div class="mb-6">
+            <h3 class="font-headline-md text-on-surface mb-1">Your everyday</h3>
+            <p class="text-xs text-on-surface-variant mb-3">Groceries and daily essentials you already shop.</p>
+            <div class="${gridCls}">${grocery.map(tile).join('')}</div>
+        </div>
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;color:#f7d032">auto_awesome</span>
+                <h3 class="font-headline-md text-on-surface">New categories to try</h3>
+            </div>
+            <p class="text-xs text-on-surface-variant mb-3">Backed by AI trust signals from real reviews — try with confidence.</p>
+            <div class="${gridCls}">${trial.map(tile).join('')}</div>
+        </div>`;
 }
 
 // ---- Search ----

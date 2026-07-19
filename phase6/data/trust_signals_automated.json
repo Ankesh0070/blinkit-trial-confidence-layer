@@ -1664,6 +1664,366 @@
         "qa_verified": false,
         "last_computed": "2026-07-19T09:00:00+05:30"
       }
+    },
+    {
+      "product_id": "VEG-1",
+      "product_name": "Fresh Tomato 1kg",
+      "category": "vegetables_fruits",
+      "subcategory": "tomato",
+      "price": 32,
+      "mrp": 40,
+      "image": "tomato"
+    },
+    {
+      "product_id": "VEG-2",
+      "product_name": "Onion 1kg",
+      "category": "vegetables_fruits",
+      "subcategory": "onion",
+      "price": 35,
+      "mrp": 45,
+      "image": "onion"
+    },
+    {
+      "product_id": "VEG-3",
+      "product_name": "Banana 6 pcs",
+      "category": "vegetables_fruits",
+      "subcategory": "banana",
+      "price": 40,
+      "mrp": 55,
+      "image": "banana"
+    },
+    {
+      "product_id": "VEG-4",
+      "product_name": "Royal Gala Apple 1kg",
+      "category": "vegetables_fruits",
+      "subcategory": "apple",
+      "price": 150,
+      "mrp": 200,
+      "image": "apple"
+    },
+    {
+      "product_id": "VEG-5",
+      "product_name": "Potato 1kg",
+      "category": "vegetables_fruits",
+      "subcategory": "potato",
+      "price": 30,
+      "mrp": 40,
+      "image": "potato"
+    },
+    {
+      "product_id": "DBE-1",
+      "product_name": "Amul Taaza Milk 500ml",
+      "category": "dairy_bread_eggs",
+      "subcategory": "milk",
+      "price": 28,
+      "mrp": 30,
+      "image": "milk"
+    },
+    {
+      "product_id": "DBE-2",
+      "product_name": "Brown Bread",
+      "category": "dairy_bread_eggs",
+      "subcategory": "bread",
+      "price": 45,
+      "mrp": 55,
+      "image": "bread"
+    },
+    {
+      "product_id": "DBE-3",
+      "product_name": "Farm Eggs 6 pcs",
+      "category": "dairy_bread_eggs",
+      "subcategory": "eggs",
+      "price": 48,
+      "mrp": 60,
+      "image": "eggs"
+    },
+    {
+      "product_id": "DBE-4",
+      "product_name": "Amul Butter 100g",
+      "category": "dairy_bread_eggs",
+      "subcategory": "butter",
+      "price": 56,
+      "mrp": 62,
+      "image": "butter"
+    },
+    {
+      "product_id": "DBE-5",
+      "product_name": "Fresh Paneer 200g",
+      "category": "dairy_bread_eggs",
+      "subcategory": "paneer",
+      "price": 85,
+      "mrp": 99,
+      "image": "paneer"
+    },
+    {
+      "product_id": "MUN-1",
+      "product_name": "Lays Classic Salted",
+      "category": "munchies",
+      "subcategory": "chips",
+      "price": 20,
+      "mrp": 20,
+      "image": "chips"
+    },
+    {
+      "product_id": "MUN-2",
+      "product_name": "Haldiram Aloo Bhujia 200g",
+      "category": "munchies",
+      "subcategory": "namkeen",
+      "price": 75,
+      "mrp": 90,
+      "image": "namkeen"
+    },
+    {
+      "product_id": "MUN-3",
+      "product_name": "Act II Popcorn",
+      "category": "munchies",
+      "subcategory": "popcorn",
+      "price": 40,
+      "mrp": 50,
+      "image": "popcorn"
+    },
+    {
+      "product_id": "MUN-4",
+      "product_name": "Kurkure Masala Munch",
+      "category": "munchies",
+      "subcategory": "snacks",
+      "price": 20,
+      "mrp": 20,
+      "image": "snacks"
+    },
+    {
+      "product_id": "CDJ-1",
+      "product_name": "Coca-Cola 750ml",
+      "category": "cold_drinks_juices",
+      "subcategory": "softdrink",
+      "price": 40,
+      "mrp": 45,
+      "image": "softdrink"
+    },
+    {
+      "product_id": "CDJ-2",
+      "product_name": "Real Mixed Fruit Juice 1L",
+      "category": "cold_drinks_juices",
+      "subcategory": "juice",
+      "price": 110,
+      "mrp": 130,
+      "image": "juice"
+    },
+    {
+      "product_id": "CDJ-3",
+      "product_name": "Sprite Can 300ml",
+      "category": "cold_drinks_juices",
+      "subcategory": "softdrink",
+      "price": 40,
+      "mrp": 40,
+      "image": "softdrink"
+    },
+    {
+      "product_id": "CDJ-4",
+      "product_name": "Red Bull Energy 250ml",
+      "category": "cold_drinks_juices",
+      "subcategory": "energydrink",
+      "price": 125,
+      "mrp": 135,
+      "image": "energydrink"
+    },
+    {
+      "product_id": "ARD-1",
+      "product_name": "Aashirvaad Atta 5kg",
+      "category": "atta_rice_dal",
+      "subcategory": "atta",
+      "price": 270,
+      "mrp": 310,
+      "image": "atta"
+    },
+    {
+      "product_id": "ARD-2",
+      "product_name": "Daawat Basmati Rice 1kg",
+      "category": "atta_rice_dal",
+      "subcategory": "rice",
+      "price": 95,
+      "mrp": 120,
+      "image": "rice"
+    },
+    {
+      "product_id": "ARD-3",
+      "product_name": "Toor Dal 1kg",
+      "category": "atta_rice_dal",
+      "subcategory": "dal",
+      "price": 150,
+      "mrp": 175,
+      "image": "dal"
+    },
+    {
+      "product_id": "ARD-4",
+      "product_name": "Besan 500g",
+      "category": "atta_rice_dal",
+      "subcategory": "flour",
+      "price": 60,
+      "mrp": 75,
+      "image": "flour"
+    },
+    {
+      "product_id": "TCH-1",
+      "product_name": "Tata Tea Gold 500g",
+      "category": "tea_coffee",
+      "subcategory": "tea",
+      "price": 255,
+      "mrp": 290,
+      "image": "tea"
+    },
+    {
+      "product_id": "TCH-2",
+      "product_name": "Nescafe Classic 100g",
+      "category": "tea_coffee",
+      "subcategory": "coffee",
+      "price": 290,
+      "mrp": 320,
+      "image": "coffee"
+    },
+    {
+      "product_id": "TCH-3",
+      "product_name": "Horlicks Classic 500g",
+      "category": "tea_coffee",
+      "subcategory": "healthdrink",
+      "price": 255,
+      "mrp": 290,
+      "image": "healthdrink"
+    },
+    {
+      "product_id": "TCH-4",
+      "product_name": "Green Tea 25 bags",
+      "category": "tea_coffee",
+      "subcategory": "tea",
+      "price": 150,
+      "mrp": 190,
+      "image": "tea"
+    },
+    {
+      "product_id": "BIS-1",
+      "product_name": "Parle-G Biscuits",
+      "category": "biscuits_bakery",
+      "subcategory": "biscuits",
+      "price": 10,
+      "mrp": 10,
+      "image": "biscuits"
+    },
+    {
+      "product_id": "BIS-2",
+      "product_name": "Britannia Rusk",
+      "category": "biscuits_bakery",
+      "subcategory": "rusk",
+      "price": 45,
+      "mrp": 55,
+      "image": "rusk"
+    },
+    {
+      "product_id": "BIS-3",
+      "product_name": "Chocolate Cake Slice",
+      "category": "biscuits_bakery",
+      "subcategory": "cake",
+      "price": 99,
+      "mrp": 120,
+      "image": "cake"
+    },
+    {
+      "product_id": "BIS-4",
+      "product_name": "Good Day Cookies",
+      "category": "biscuits_bakery",
+      "subcategory": "cookies",
+      "price": 30,
+      "mrp": 35,
+      "image": "cookies"
+    },
+    {
+      "product_id": "SWT-1",
+      "product_name": "Cadbury Dairy Milk",
+      "category": "sweet_tooth",
+      "subcategory": "chocolate",
+      "price": 40,
+      "mrp": 45,
+      "image": "chocolate"
+    },
+    {
+      "product_id": "SWT-2",
+      "product_name": "Vanilla Ice Cream 500ml",
+      "category": "sweet_tooth",
+      "subcategory": "icecream",
+      "price": 120,
+      "mrp": 150,
+      "image": "icecream"
+    },
+    {
+      "product_id": "SWT-3",
+      "product_name": "Cadbury Gems",
+      "category": "sweet_tooth",
+      "subcategory": "candy",
+      "price": 20,
+      "mrp": 20,
+      "image": "candy"
+    },
+    {
+      "product_id": "MOM-1",
+      "product_name": "Fortune Sunflower Oil 1L",
+      "category": "masala_oil",
+      "subcategory": "oil",
+      "price": 140,
+      "mrp": 165,
+      "image": "oil"
+    },
+    {
+      "product_id": "MOM-2",
+      "product_name": "Tata Salt 1kg",
+      "category": "masala_oil",
+      "subcategory": "salt",
+      "price": 28,
+      "mrp": 30,
+      "image": "salt"
+    },
+    {
+      "product_id": "MOM-3",
+      "product_name": "Turmeric Powder 100g",
+      "category": "masala_oil",
+      "subcategory": "spices",
+      "price": 45,
+      "mrp": 55,
+      "image": "spices"
+    },
+    {
+      "product_id": "MOM-4",
+      "product_name": "Garam Masala 50g",
+      "category": "masala_oil",
+      "subcategory": "spices",
+      "price": 55,
+      "mrp": 65,
+      "image": "spices"
+    },
+    {
+      "product_id": "INF-1",
+      "product_name": "Maggi Noodles 4-pack",
+      "category": "instant_frozen",
+      "subcategory": "noodles",
+      "price": 55,
+      "mrp": 64,
+      "image": "noodles"
+    },
+    {
+      "product_id": "INF-2",
+      "product_name": "Frozen Green Peas 500g",
+      "category": "instant_frozen",
+      "subcategory": "frozenfood",
+      "price": 90,
+      "mrp": 110,
+      "image": "frozenfood"
+    },
+    {
+      "product_id": "INF-3",
+      "product_name": "McCain French Fries",
+      "category": "instant_frozen",
+      "subcategory": "frozenfood",
+      "price": 99,
+      "mrp": 125,
+      "image": "frozenfood"
     }
   ]
 }
