@@ -86,10 +86,11 @@ async function sendMessage() {
         
         const data = await response.json();
         removeLoading(loadingId);
-        
+
         if (data.success) {
             chatHistory.push({ role: 'assistant', content: data.reply });
             appendMessage('assistant', data.reply);
+            appendActionLinks(data.reply, text);   // clickable "Explore →" links
         } else {
             appendMessage('assistant', 'Sorry, I encountered an error. Please try again.');
         }
@@ -128,4 +129,76 @@ function appendLoading() {
 function removeLoading(id) {
     const el = document.getElementById(id);
     if (el) el.remove();
+}
+
+// ============================================================
+// ACTION LINKS — turn the assistant's category suggestions into
+// clickable links that take the user straight to that category.
+// Self-contained (works even on pages where app.js isn't loaded).
+// ============================================================
+const CHAT_CATEGORIES = [
+    { id: 'electronics', name: 'Electronics', emoji: '🔌', kw: ['electronic', 'earbud', 'headphone', 'charger', 'power bank', 'powerbank', 'cable', 'gadget', 'adapter', 'phone stand'] },
+    { id: 'personal_care_beauty', name: 'Beauty & Personal Care', emoji: '💄', kw: ['beauty', 'personal care', 'skincare', 'skin care', 'face wash', 'moisturiz', 'makeup', 'shampoo', 'razor', 'kajal', 'concealer', 'cosmetic'] },
+    { id: 'pharmacy_health', name: 'Pharmacy & Health', emoji: '💊', kw: ['pharmacy', 'medicine', 'health', 'tablet', 'pain relief', 'first aid', 'antiseptic', 'ors', 'band-aid', 'bandage'] },
+    { id: 'baby', name: 'Baby Care', emoji: '🧸', kw: ['baby', 'diaper', 'infant', 'wipes', 'baby wash', 'baby lotion', 'baby powder'] },
+    { id: 'home_cleaning', name: 'Home & Cleaning', emoji: '🧹', kw: ['clean', 'detergent', 'floor', 'toilet', 'dishwash', 'home care', 'glass cleaner', 'garbage'] },
+    { id: 'pet', name: 'Pet Care', emoji: '🐕', kw: ['pet', 'dog', 'cat', 'litter', 'pet food', 'treats'] },
+    { id: 'intimate_personal', name: 'Intimate Care', emoji: '🛡️', kw: ['intimate', 'sanitary', 'sanitary pad', 'feminine', 'condom', 'panty liner'] }
+];
+
+// In-page navigation if the store app is loaded; otherwise let the href load it.
+function chipNav(catId) {
+    if (typeof selectCategory === 'function' && document.getElementById('productGrid')) {
+        selectCategory(catId);
+        if (isChatOpen) toggleChat();
+        return false; // handled in-page, don't follow the link
+    }
+    return true; // e.g. from the dashboard — follow href to the store
+}
+
+function extractChatActions(replyText, userText) {
+    const t = (replyText + ' ' + userText).toLowerCase();
+    // Whole-word match so "cat" doesn't fire on "category", "pet" on "carpet", etc.
+    const hasWord = (phrase) => new RegExp('\\b' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(t);
+    const found = [];
+    CHAT_CATEGORIES.forEach(c => {
+        const hit = hasWord(c.name.toLowerCase())
+            || hasWord(c.id.replace(/_/g, ' '))
+            || c.kw.some(k => hasWord(k));
+        if (hit) found.push(c);
+    });
+    return found.slice(0, 3);
+}
+
+function appendActionLinks(replyText, userText) {
+    let actions = extractChatActions(replyText, userText);
+    const messagesDiv = document.getElementById('chatMessages');
+    const wrap = document.createElement('div');
+    wrap.className = 'self-start max-w-[90%] flex flex-wrap gap-2 -mt-1';
+
+    if (actions.length === 0) {
+        // Always give at least one link.
+        wrap.innerHTML = `
+            <a href="index.html?view=categories" onclick="return chipCategories()"
+               class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">
+               🧭 Browse all categories <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>`;
+    } else {
+        wrap.innerHTML = actions.map(c => `
+            <a href="index.html?cat=${c.id}" onclick="return chipNav('${c.id}')"
+               class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">
+               ${c.emoji} Explore ${c.name} <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>`).join('');
+    }
+    messagesDiv.appendChild(wrap);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function chipCategories() {
+    if (typeof showView === 'function' && document.getElementById('productGrid')) {
+        showView('categories');
+        if (isChatOpen) toggleChat();
+        return false;
+    }
+    return true;
 }

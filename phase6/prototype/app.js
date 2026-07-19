@@ -30,8 +30,25 @@ async function init() {
     
     const userRes = await fetch('../data/user_profiles.json');
     userProfiles = await userRes.json();
-    
+
     renderApp();
+    applyUrlIntent();
+}
+
+// Deep-link support so chatbot / shared links can land on a category, a
+// search, or the categories view — e.g. index.html?cat=baby or ?q=diapers
+function applyUrlIntent() {
+    const p = new URLSearchParams(location.search);
+    const cat = p.get('cat'), q = p.get('q'), view = p.get('view');
+    if (cat && trustData.category_signals[cat]) {
+        selectCategory(cat);
+    } else if (q) {
+        const inp = document.getElementById('searchInput');
+        if (inp) inp.value = q;
+        doSearch(q);
+    } else if (view === 'categories') {
+        showView('categories');
+    }
 }
 
 function renderApp() {
