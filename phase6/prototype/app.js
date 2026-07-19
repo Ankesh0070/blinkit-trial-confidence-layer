@@ -80,6 +80,11 @@ function evaluateConfidenceGate(categoryId) {
 function switchProfile(profileId) {
     currentProfile = profileId;
     renderApp();
+    // Keep the current view in sync with the newly selected profile.
+    if (typeof currentView !== 'undefined') {
+        if (currentView === 'profile') renderProfile();
+        else if (currentView === 'categories') renderCategoriesOverview();
+    }
 }
 
 function renderRecommendationStrip() {
@@ -763,15 +768,15 @@ let currentView = 'home';
 
 function showView(name, opts = {}) {
     currentView = name;
-    const views = { home: 'homeView', categories: 'categoriesView', search: 'searchView', orders: 'ordersView' };
+    const views = { home: 'homeView', categories: 'categoriesView', search: 'searchView', orders: 'ordersView', profile: 'profileView' };
     Object.values(views).forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.toggle('hidden', id !== views[name]);
     });
 
     // Highlight the active nav item (desktop + mobile).
-    const activeMap = { home: ['navHome', 'mnavHome'], categories: ['navCategories', 'mnavCategories'], orders: ['navOrders', 'mnavOrders'] };
-    ['navHome','navCategories','navOrders','mnavHome','mnavCategories','mnavOrders'].forEach(id => {
+    const activeMap = { home: ['navHome', 'mnavHome'], categories: ['navCategories', 'mnavCategories'], orders: ['navOrders', 'mnavOrders'], profile: ['navProfile', 'mnavProfile'] };
+    ['navHome','navCategories','navOrders','navProfile','mnavHome','mnavCategories','mnavOrders','mnavProfile'].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
         el.classList.remove('bg-primary-fixed/30','bg-primary-fixed/40','text-on-surface','font-bold','border-r-4','border-primary');
@@ -786,6 +791,7 @@ function showView(name, opts = {}) {
 
     if (name === 'categories') renderCategoriesOverview();
     if (name === 'orders') renderOrders();
+    if (name === 'profile') renderProfile();
     if (!opts.silent) window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -912,6 +918,125 @@ function reorder(orderId) {
         showToast('Items added back to your cart');
     }
     openCheckout();
+}
+
+// ---- User Profile view ----
+const GROCERY_NAMES = { groceries_fresh: 'Groceries & Fresh', snacks_beverages: 'Snacks & Beverages', dairy: 'Dairy' };
+const GROCERY_EMOJI = { groceries_fresh: '🥬', snacks_beverages: '🍫', dairy: '🥛' };
+
+function renderProfile() {
+    const el = document.getElementById('profileContent');
+    if (!el) return;
+    const u = userProfiles.users[currentProfile];
+
+    const catName = c => trustData.category_signals[c]?.display_name || GROCERY_NAMES[c] || c;
+    const catEmoji = c => EMOJIS[c] || GROCERY_EMOJI[c] || '🛒';
+
+    const newCatsTried = (u.categories_purchased_90d || []).filter(c => trustData.category_signals[c]);
+    const allCats = u.categories_purchased_90d || [];
+    const diversity = u.diversity_ratio || { novel_categories_shown: 0, novel_categories_clicked: 0 };
+    const myOrders = JSON.parse(localStorage.getItem('blinkit_orders') || '[]').filter(o => o.profile === currentProfile);
+
+    const stat = (icon, value, label) => `
+        <div class="bg-surface rounded-2xl border border-outline-variant/20 shadow-sm p-4 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px] text-on-surface">${icon}</span>
+            </div>
+            <div>
+                <div class="font-headline-md text-on-surface leading-none">${value}</div>
+                <div class="text-[11px] text-on-surface-variant mt-1">${label}</div>
+            </div>
+        </div>`;
+
+    const catChips = allCats.map(c =>
+        `<span class="inline-flex items-center gap-1 text-xs font-semibold ${trustData.category_signals[c] ? 'bg-primary-fixed/40 text-on-surface' : 'bg-surface-container text-on-surface-variant'} px-3 py-1.5 rounded-full">${catEmoji(c)} ${catName(c)}</span>`
+    ).join(' ');
+
+    const ccarCard = u.is_ccar_active ? `
+        <div class="rounded-2xl p-5 border border-primary-fixed/40 ai-glow relative overflow-hidden" style="background:linear-gradient(135deg, rgba(247,208,50,0.18), rgba(247,208,50,0.04))">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-on-surface" style="font-variation-settings:'FILL' 1;color:#0d8345">workspace_premium</span>
+                <h3 class="font-headline-md text-on-surface">Cross-Category Active ✓</h3>
+            </div>
+            <p class="text-sm text-on-surface-variant">You've broken out of single-category shopping — you count toward the CCAR North Star this month. Keep the streak: a second purchase is what makes a category stick.</p>
+        </div>` : `
+        <div class="rounded-2xl p-5 border border-outline-variant/30 bg-surface-container-low">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-on-surface-variant">rocket_launch</span>
+                <h3 class="font-headline-md text-on-surface">Try your first new category</h3>
+            </div>
+            <p class="text-sm text-on-surface-variant mb-3">You mostly shop groceries. Trying one new category activates cross-category shopping for you.</p>
+            <button onclick="showView('categories')" class="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-label-md font-bold text-sm">Explore categories</button>
+        </div>`;
+
+    const ordersBlock = myOrders.length ? myOrders.slice(0, 3).map(o => {
+        const when = new Date(o.placedAt).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+        return `
+            <div class="flex items-center justify-between py-2.5 border-b border-outline-variant/15 last:border-0">
+                <div class="min-w-0">
+                    <div class="text-sm font-medium text-on-surface">Order ${o.orderId}</div>
+                    <div class="text-[11px] text-on-surface-variant truncate">${o.items.map(i => i.name).join(', ')}</div>
+                </div>
+                <div class="text-right shrink-0 ml-3">
+                    <div class="text-sm font-semibold text-on-surface">₹${o.total}</div>
+                    <div class="text-[10px] text-on-surface-variant">${when}</div>
+                </div>
+            </div>`;
+    }).join('') : `<p class="text-sm text-on-surface-variant py-2">No orders in this session yet.</p>`;
+
+    el.innerHTML = `
+        <!-- Identity header -->
+        <div class="bg-surface rounded-3xl border border-outline-variant/20 shadow-sm p-6 mb-4 flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-primary-fixed/50 flex items-center justify-center text-3xl shrink-0">${currentProfile === 'user_b' ? '🔌' : '🛒'}</div>
+            <div class="flex-1 min-w-0">
+                <h2 class="font-headline-lg text-on-surface leading-tight">${u.persona}</h2>
+                <p class="text-sm text-on-surface-variant">${u.user_id} · Habituated grocery regular</p>
+                <div class="mt-1.5">
+                    ${u.is_ccar_active
+                        ? '<span class="inline-flex items-center gap-1 text-[11px] font-semibold bg-primary-fixed/50 text-on-surface px-2.5 py-1 rounded-full">✓ Cross-category active</span>'
+                        : '<span class="inline-flex items-center gap-1 text-[11px] font-semibold bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-full">Grocery-only so far</span>'}
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+            ${stat('shopping_bag', u.total_orders_90d, 'Orders (90 days)')}
+            ${stat('grid_view', newCatsTried.length, 'New categories tried')}
+            ${stat('hub', `${diversity.novel_categories_shown}:${diversity.novel_categories_clicked}`, 'Novel shown : clicked')}
+            ${stat('workspace_premium', u.is_ccar_active ? 'Yes' : 'No', 'CCAR active')}
+        </div>
+
+        <!-- CCAR status -->
+        <div class="mb-5">${ccarCard}</div>
+
+        <!-- Categories shopped -->
+        <div class="bg-surface rounded-2xl border border-outline-variant/20 shadow-sm p-5 mb-4">
+            <h3 class="font-headline-md text-on-surface mb-3">Categories you shop</h3>
+            <div class="flex flex-wrap gap-2">${catChips || '<span class="text-sm text-on-surface-variant">None yet</span>'}</div>
+        </div>
+
+        <!-- Recent orders -->
+        <div class="bg-surface rounded-2xl border border-outline-variant/20 shadow-sm p-5 mb-4">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-headline-md text-on-surface">Recent orders</h3>
+                <button onclick="showView('orders')" class="text-primary text-sm font-semibold">View all</button>
+            </div>
+            ${ordersBlock}
+        </div>
+
+        <!-- Admin (kept separate from the customer profile) -->
+        <a href="dashboard.html" class="flex items-center justify-between bg-surface-container-low rounded-2xl border border-outline-variant/20 p-4 hover:bg-surface-container transition-colors">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-on-surface-variant">insights</span>
+                <div>
+                    <div class="text-sm font-medium text-on-surface">Growth Metrics Dashboard</div>
+                    <div class="text-[11px] text-on-surface-variant">Admin view — CCAR, guardrails & trial economics</div>
+                </div>
+            </div>
+            <span class="material-symbols-outlined text-on-surface-variant">arrow_forward</span>
+        </a>
+    `;
 }
 
 // ---- Notifications ----

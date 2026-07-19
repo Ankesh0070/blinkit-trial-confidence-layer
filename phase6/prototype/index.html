@@ -209,7 +209,7 @@
 <span class="material-symbols-outlined">shopping_bag</span>
                  Orders
              </a>
-<a class="flex items-center gap-4 font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform p-3 rounded-lg" href="dashboard.html">
+<a id="navProfile" onclick="showView('profile')" class="cursor-pointer flex items-center gap-4 font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high hover:translate-x-1 transition-transform p-3 rounded-lg">
 <span class="material-symbols-outlined">person</span>
                  Profile
              </a>
@@ -269,6 +269,11 @@
     <div id="ordersList"></div>
 </div>
 
+<!-- ============ PROFILE VIEW ============ -->
+<div id="profileView" class="hidden">
+    <div id="profileContent"></div>
+</div>
+
     <!-- PDP Bottom Sheet (Hidden by default) -->
     <div id="pdpSheet" class="fixed inset-0 z-[100] flex items-end justify-center pointer-events-none opacity-0 transition-opacity">
         <div class="absolute inset-0 bg-black/40" onclick="closePdp()"></div>
@@ -301,9 +306,9 @@
 <span class="material-symbols-outlined">shopping_bag</span>
 <span class="text-[10px] mt-1">Orders</span>
 </a>
-<a class="flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors" href="dashboard.html">
+<a id="mnavProfile" onclick="showView('profile')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] mt-1">Profile</span>
-</a></div></nav><script src="app.js?v=2.1"></script>
-<script src="chatbot.js?v=2.1"></script>
+</a></div></nav><script src="app.js?v=3.0"></script>
+<script src="chatbot.js?v=3.0"></script>
 </body></html>
