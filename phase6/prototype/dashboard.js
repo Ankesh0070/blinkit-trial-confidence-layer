@@ -1,78 +1,110 @@
-async function initDashboard() {
-    try {
-        const response = await fetch('../data/dashboard_metrics.json');
-        const data = await response.json();
-        
-        // 1. Update KPIs
-        document.getElementById('kpi-ccar').innerText = data.kpis.ccar.value;
-        document.getElementById('kpi-diversity').innerText = data.kpis.recommendation_diversity.value;
-        document.getElementById('kpi-latency').innerText = data.kpis.ai_inference_latency.value;
-        
-        // 2. Update Bars and Labels
-        const categories = ['tech', 'home', 'baby', 'apparel', 'beauty'];
-        categories.forEach(cat => {
-            const val = data.abandonment_rates[cat];
-            const bar = document.getElementById(`bar-${cat}`);
-            const label = document.getElementById(`label-${cat}`);
-            
-            if (bar && label) {
-                // Remove existing styling classes that might conflict
-                bar.className = bar.className.replace(/h-\[\d+%\]/g, '');
-                
-                // Set inline height
-                const visualHeight = Math.min(val * 2.5, 100);
-                bar.style.height = `${visualHeight}%`;
-                
-                // Set text
-                label.innerText = `${val}%`;
+// ============================================================
+// Guardrail Metrics Dashboard — data-driven, minimal light theme.
+// Renders KPIs, per-category abandonment, guardrails, and a LIVE
+// panel computed from real orders placed in the Store UI.
+// ============================================================
 
-                // Handle Dynamic Alerts for high abandonment (> 25%)
-                if (val > 25) {
-                    // Update label styles
-                    label.classList.add('text-error', 'font-bold');
-                    label.classList.remove('text-outline-variant');
-                    
-                    // Update bar styles
-                    bar.className = bar.className.replace(/bg-[\w-\/]+/g, ''); // Remove existing background
-                    bar.classList.add('bg-error-container', 'shadow-[0_0_20px_rgba(255,218,214,0.3)]', 'border', 'border-error/50');
-                    
-                    // Inject Alert Pulse and Tooltip
-                    const alertHtml = `
-                        <div class="absolute -top-4 w-4 h-4 rounded-full bg-error/20 flex items-center justify-center animate-bounce">
-                            <div class="w-2 h-2 rounded-full bg-error"></div>
-                        </div>
-                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-48 p-3 bg-inverse-surface border border-error/30 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 transform translate-y-2 group-hover:translate-y-0">
-                            <div class="flex items-start gap-2">
-                                <span class="material-symbols-outlined text-error text-[18px]">warning</span>
-                                <div>
-                                    <p class="font-label-sm text-label-sm text-surface-container-lowest font-bold">Alert Triggered</p>
-                                    <p class="font-label-sm text-label-sm text-outline-variant mt-1 text-[11px] leading-tight">High Abandonment Rate (${val}%) detected.</p>
-                                </div>
-                            </div>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-inverse-surface border-b border-r border-error/30 transform rotate-45"></div>
-                        </div>
-                    `;
-                    bar.parentElement.insertAdjacentHTML('afterbegin', alertHtml);
-                    
-                } else {
-                    // Normal state resets (in case of live updates)
-                    label.classList.remove('text-error', 'font-bold');
-                    label.classList.add('text-outline-variant');
-                }
-            }
-        });
-        
-        console.log("Dashboard loaded and populated successfully!");
-        
+async function initDashboard() {
+    let data;
+    try {
+        const res = await fetch('../data/dashboard_metrics.json');
+        data = await res.json();
     } catch (e) {
         console.error("Failed to load dashboard metrics:", e);
+        return;
+    }
+    renderKpis(data.kpis);
+    renderCategoryChart(data.category_abandonment, data.abandonment_alert_threshold);
+    renderGuardrails(data.guardrails);
+    renderLiveActivity();
+}
+
+// ---- KPI cards ----
+function renderKpis(kpis) {
+    const row = document.getElementById('kpiRow');
+    if (!row) return;
+    row.innerHTML = kpis.map(k => {
+        const trend = (k.trend === null || k.trend === undefined) ? '' : `
+            <span class="inline-flex items-center gap-0.5 text-xs font-semibold ${k.trend >= 0 ? 'text-success' : 'text-error'}">
+                <span class="material-symbols-outlined text-[15px]">${k.trend >= 0 ? 'trending_up' : 'trending_down'}</span>${k.trend >= 0 ? '+' : ''}${k.trend}%
+            </span>`;
+        return `
+        <div class="card card-hover p-5 relative overflow-hidden ${k.star ? 'ring-1 ring-primary/40' : ''}">
+            ${k.star ? '<div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl -mr-8 -mt-8"></div>' : ''}
+            <div class="flex items-center justify-between mb-3 relative">
+                <div class="w-9 h-9 rounded-xl ${k.star ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface'} flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[20px]">${k.icon}</span>
+                </div>
+                ${k.star ? '<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface bg-primary-fixed/60 px-2 py-1 rounded-md">North Star</span>' : trend}
+            </div>
+            <div class="flex items-end gap-2 relative">
+                <div class="font-display text-3xl font-bold text-on-surface leading-none">${k.value}</div>
+                ${k.star ? trend : ''}
+            </div>
+            <div class="text-sm font-medium text-on-surface mt-2">${k.label}</div>
+            <div class="text-[11px] text-on-surface-variant mt-0.5 leading-tight">${k.sublabel}</div>
+            <div id="kpi-${k.id}-live" class="text-[11px] font-semibold text-on-surface mt-1.5 hidden"></div>
+        </div>`;
+    }).join('');
+}
+
+// ---- Category abandonment (horizontal bars, real categories) ----
+function renderCategoryChart(cats, threshold) {
+    const el = document.getElementById('categoryChart');
+    if (!el) return;
+    const max = Math.max(...cats.map(c => c.value), threshold + 5);
+    let anyAlert = false;
+
+    el.innerHTML = cats.map(c => {
+        const alert = c.value > threshold;
+        if (alert) anyAlert = true;
+        const pct = Math.round((c.value / max) * 100);
+        return `
+        <div class="flex items-center gap-3">
+            <div class="w-32 shrink-0 flex items-center gap-2 text-sm text-on-surface">
+                <span>${c.emoji}</span><span class="truncate">${c.name}</span>
+            </div>
+            <div class="flex-1 bar-track h-2.5">
+                <div class="bar-fill h-full ${alert ? 'bg-error' : 'bg-primary'}" style="width:${pct}%"></div>
+            </div>
+            <div class="w-14 shrink-0 text-right text-sm font-semibold ${alert ? 'text-error' : 'text-on-surface'}">
+                ${c.value}%${alert ? ' <span class="material-symbols-outlined text-[14px] align-middle">warning</span>' : ''}
+            </div>
+        </div>`;
+    }).join('');
+
+    const note = document.getElementById('chartAlertNote');
+    if (note) {
+        const hot = cats.filter(c => c.value > threshold);
+        if (anyAlert) {
+            note.innerHTML = `<span class="material-symbols-outlined text-[16px]">warning</span><span><b>Alert:</b> ${hot.map(c => c.name).join(', ')} above the ${threshold}% threshold. Note: Baby has long replacement cycles — investigate whether this is genuine abandonment or a slow re-purchase cadence before acting.</span>`;
+            note.classList.remove('hidden');
+        } else {
+            note.classList.add('hidden');
+        }
     }
 }
 
+// ---- Guardrails ----
+function renderGuardrails(items) {
+    const el = document.getElementById('guardrails');
+    if (!el || !items) return;
+    el.innerHTML = items.map(g => `
+        <div class="flex items-center justify-between">
+            <div>
+                <div class="text-sm font-medium text-on-surface">${g.label}</div>
+                <div class="text-[11px] text-on-surface-variant">${g.note}</div>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <span class="font-display font-semibold text-on-surface">${g.value}</span>
+                <span class="material-symbols-outlined text-[18px] ${g.status === 'ok' ? 'text-success' : 'text-error'}" style="font-variation-settings:'FILL' 1">${g.status === 'ok' ? 'check_circle' : 'error'}</span>
+            </div>
+        </div>`).join('');
+}
+
 // ============================================================
-// LIVE PROTOTYPE ACTIVITY — reads real orders placed in the Store UI
-// (localStorage is shared across pages on the same origin), so the
-// North Star CCAR visibly responds to the end-user journey.
+// LIVE PROTOTYPE ACTIVITY — real orders from the Store UI
+// (localStorage shared across pages on the same origin).
 // ============================================================
 const CAT_NAMES = {
     electronics: 'Electronics', personal_care_beauty: 'Beauty & Personal Care',
@@ -100,7 +132,6 @@ function renderLiveActivity() {
     trials.forEach(o => o.novelCategories.forEach(c => activated.add(c)));
     const trialTotals = trials.map(o => o.total);
     const avgTrial = trialTotals.length ? Math.round(trialTotals.reduce((a, b) => a + b, 0) / trialTotals.length) : 0;
-    const totalSpend = orders.reduce((s, o) => s + o.total, 0);
 
     // Annotate the CCAR North Star card with the live delta.
     const ccarLive = document.getElementById('kpi-ccar-live');
@@ -110,39 +141,39 @@ function renderLiveActivity() {
     }
 
     const stat = (icon, value, label) => `
-        <div class="glass-panel rounded-2xl p-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-inverse-surface flex items-center justify-center border border-outline/10 shrink-0">
-                <span class="material-symbols-outlined text-brand-yellow">${icon}</span>
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white border border-outline-variant/60 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[20px] text-on-surface">${icon}</span>
             </div>
             <div>
-                <div class="font-headline-md text-headline-md text-surface-container-lowest leading-none">${value}</div>
-                <div class="font-label-sm text-label-sm text-outline-variant mt-1">${label}</div>
+                <div class="font-display text-xl font-bold text-on-surface leading-none">${value}</div>
+                <div class="text-[11px] text-on-surface-variant mt-1">${label}</div>
             </div>
         </div>`;
 
     const chips = [...activated].map(c =>
-        `<span class="inline-flex items-center gap-1 text-label-sm bg-brand-yellow/10 text-brand-yellow px-3 py-1 rounded-full border border-brand-yellow/20">${CAT_EMOJI[c] || ''} ${CAT_NAMES[c] || c}</span>`
+        `<span class="inline-flex items-center gap-1 text-xs font-semibold bg-primary-fixed/50 text-on-surface px-3 py-1 rounded-full">${CAT_EMOJI[c] || ''} ${CAT_NAMES[c] || c}</span>`
     ).join(' ');
 
     container.innerHTML = `
-        <div class="glass-panel rounded-3xl p-6 border border-brand-yellow/20 mb-2">
-            <div class="flex items-center justify-between mb-4">
+        <div class="card p-6 border-primary/20">
+            <div class="flex items-center justify-between mb-1 flex-wrap gap-2">
                 <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-brand-yellow shadow-[0_0_8px_#F7D032] animate-pulse"></span>
-                    <h2 class="font-headline-md text-headline-md text-surface-container-lowest">Live Prototype Activity</h2>
+                    <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                    <h3 class="font-display text-lg font-semibold text-on-surface">Live Prototype Activity</h3>
                 </div>
-                <button onclick="resetLiveActivity()" class="font-label-sm text-label-sm text-outline-variant hover:text-brand-yellow flex items-center gap-1 transition-colors">
+                <button onclick="resetLiveActivity()" class="text-xs text-on-surface-variant hover:text-on-surface flex items-center gap-1 transition-colors">
                     <span class="material-symbols-outlined text-[16px]">restart_alt</span> Reset session
                 </button>
             </div>
-            <p class="font-label-sm text-label-sm text-outline-variant mb-4">These update in real time from orders placed in the Store UI — the North Star responding to the actual user journey.</p>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-gutter">
+            <p class="text-xs text-on-surface-variant mb-5">Updating in real time from orders placed in the Store UI — the North Star responding to the actual user journey.</p>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
                 ${stat('shopping_bag', orders.length, 'Orders placed')}
                 ${stat('rocket_launch', trials.length, 'New-category trials')}
                 ${stat('workspace_premium', activated.size, 'Categories activated (CCAR)')}
                 ${stat('payments', '₹' + avgTrial, 'Avg trial basket')}
             </div>
-            ${activated.size > 0 ? `<div class="mt-4 flex flex-wrap gap-2">${chips}</div>` : ''}
+            ${activated.size > 0 ? `<div class="mt-5 pt-4 border-t border-outline-variant/50 flex flex-wrap gap-2 items-center"><span class="text-xs text-on-surface-variant mr-1">Activated:</span>${chips}</div>` : ''}
         </div>`;
 }
 
@@ -153,8 +184,4 @@ function resetLiveActivity() {
     renderLiveActivity();
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    initDashboard();
-    renderLiveActivity();
-});
+document.addEventListener('DOMContentLoaded', initDashboard);
