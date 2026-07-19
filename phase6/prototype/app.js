@@ -113,7 +113,7 @@ function renderRecommendationStrip() {
                         </div>
                     </div>
                     <button class="shrink-0 bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md text-label-md hover:-translate-y-1 shadow-md transition-all z-10" onclick="selectCategory('${catId}')">
-                        Explore ${catData.display_name}
+                        Explore
                     </button>
                 </div>
             `;
@@ -153,15 +153,8 @@ function renderCategoryNav() {
 
 function selectCategory(categoryId) {
     currentCategory = categoryId;
-    showView('home', { silent: true });   // ensure we're on the home view
-    renderCategoryNav();
-    renderCategoryView();
-    // Scroll to the product grid so the category switch is clearly visible
-    // (the recommendation strip can be tall for cold-start users).
-    const section = document.getElementById('productsSection');
-    if (section) {
-        setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-    }
+    renderCategoryNav();          // keep the home pills in sync
+    showView('products');         // open the dedicated products page (renders the grid)
 }
 
 function renderCategoryView() {
@@ -753,8 +746,8 @@ function renderConfirmation({ orderId, fees, novel, orderedItems, payment }) {
 
             ${ccarPanel}
 
-            <button onclick="closeAppSheet()" class="w-full mt-6 bg-primary text-on-primary py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90">Continue Shopping</button>
-            <a href="dashboard.html" class="block mt-2 text-primary text-sm font-semibold">View impact on the metrics dashboard →</a>
+            <button onclick="closeAppSheet(); showView('home');" class="w-full mt-6 bg-primary text-on-primary py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90">Continue Shopping</button>
+            <a onclick="closeAppSheet(); showView('orders');" class="block mt-2 text-primary text-sm font-semibold cursor-pointer">View your orders →</a>
         </div>
     `);
 }
@@ -768,7 +761,7 @@ let currentView = 'home';
 
 function showView(name, opts = {}) {
     currentView = name;
-    const views = { home: 'homeView', categories: 'categoriesView', search: 'searchView', orders: 'ordersView', profile: 'profileView' };
+    const views = { home: 'homeView', products: 'productsView', categories: 'categoriesView', search: 'searchView', orders: 'ordersView', profile: 'profileView' };
     Object.values(views).forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.toggle('hidden', id !== views[name]);
@@ -789,6 +782,7 @@ function showView(name, opts = {}) {
         el.classList.add(id.startsWith('m') ? 'bg-primary-fixed/40' : 'bg-primary-fixed/30', 'text-on-surface', 'font-bold');
     });
 
+    if (name === 'products') renderCategoryView();
     if (name === 'categories') renderCategoriesOverview();
     if (name === 'orders') renderOrders();
     if (name === 'profile') renderProfile();
@@ -1024,18 +1018,6 @@ function renderProfile() {
             </div>
             ${ordersBlock}
         </div>
-
-        <!-- Admin (kept separate from the customer profile) -->
-        <a href="dashboard.html" class="flex items-center justify-between bg-surface-container-low rounded-2xl border border-outline-variant/20 p-4 hover:bg-surface-container transition-colors">
-            <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-on-surface-variant">insights</span>
-                <div>
-                    <div class="text-sm font-medium text-on-surface">Growth Metrics Dashboard</div>
-                    <div class="text-[11px] text-on-surface-variant">Admin view — CCAR, guardrails & trial economics</div>
-                </div>
-            </div>
-            <span class="material-symbols-outlined text-on-surface-variant">arrow_forward</span>
-        </a>
     `;
 }
 

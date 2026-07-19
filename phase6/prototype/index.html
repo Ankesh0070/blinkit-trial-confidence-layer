@@ -218,8 +218,12 @@
 <!-- Main Content -->
 <main class="flex-1 mt-[72px] p-container-margin w-full max-w-[1440px] mx-auto overflow-x-hidden">
 
-<!-- ============ HOME VIEW ============ -->
+<!-- ============ HOME VIEW (discovery only) ============ -->
 <div id="homeView">
+<section class="mb-stack-md">
+<h1 class="font-headline-lg text-on-surface">Discover new categories</h1>
+<p class="text-sm text-on-surface-variant mt-1">Tap a category or Explore to see products you can try.</p>
+</section>
 <!-- Category Nav -->
 <section class="mb-stack-lg">
 <div id="categoryNav" class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 pt-1 -mx-container-margin px-container-margin md:mx-0 md:px-0 scroll-smooth"></div>
@@ -228,17 +232,18 @@
 <section class="mb-stack-lg">
 <div id="recStrip"></div>
 </section>
+</div>
 
-    <!-- Product Grid -->
-    <section id="productsSection">
-        <div class="flex items-center justify-between mb-4">
-            <h2 id="productsHeading" class="font-headline-md text-on-surface">Products</h2>
-        </div>
-        <div id="fallbackMessage" style="display:none;" class="mb-4 bg-error-container text-on-error-container p-4 rounded-xl">
-            Sparse category detected (<span id="mentionCount"></span> mentions). Falling back to generic products.
-        </div>
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
-    </section>
+<!-- ============ PRODUCTS VIEW (opens on category/Explore click) ============ -->
+<div id="productsView" class="hidden">
+    <div class="flex items-center gap-2 mb-4">
+        <button onclick="showView('home')" class="p-1.5 rounded-full hover:bg-surface-variant/40"><span class="material-symbols-outlined text-on-surface-variant">arrow_back</span></button>
+        <h2 id="productsHeading" class="font-headline-md text-on-surface">Products</h2>
+    </div>
+    <div id="fallbackMessage" style="display:none;" class="mb-4 bg-error-container text-on-error-container p-4 rounded-xl">
+        Sparse category detected (<span id="mentionCount"></span> mentions). Falling back to generic products.
+    </div>
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 </div>
 
 <!-- ============ CATEGORIES VIEW ============ -->
@@ -309,6 +314,6 @@
 <a id="mnavProfile" onclick="showView('profile')" class="cursor-pointer flex flex-col items-center justify-center font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant p-2 w-16 hover:bg-surface-variant/30 transition-colors">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] mt-1">Profile</span>
-</a></div></nav><script src="app.js?v=3.0"></script>
-<script src="chatbot.js?v=3.0"></script>
+</a></div></nav><script src="app.js?v=3.1"></script>
+<script src="chatbot.js?v=3.1"></script>
 </body></html>
