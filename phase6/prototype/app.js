@@ -83,7 +83,7 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
-const IMG_VER = '11'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
+const IMG_VER = '12'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
     const pid = product.product_id || product.id;
     const n = imgManifest[pid] || 3;
@@ -188,9 +188,9 @@ function renderRecommendationStrip() {
             div.innerHTML = `
                 <div class="glass-panel rounded-3xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ai-glow relative overflow-hidden mb-4 border border-primary-fixed/30 bg-surface">
                     <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary-fixed rounded-full blur-3xl opacity-40 pointer-events-none"></div>
-                    <div class="flex items-start gap-4 relative z-10">
-                        <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-on-surface">
-                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    <div class="flex items-center gap-4 relative z-10">
+                        <div class="w-16 h-16 rounded-2xl bg-primary-fixed/40 flex items-center justify-center shrink-0 p-3 shadow-sm ring-1 ring-primary-fixed/50">
+                            <img src="img/icons/${catId}.svg?v=${IMG_VER}" alt="${catData.display_name}" class="w-full h-full object-contain">
                         </div>
                         <div>
                             <h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-on-surface mb-1">Try ${catData.display_name}</h2>
@@ -952,7 +952,7 @@ function renderCategoriesOverview() {
                 : '<span class="mt-1 inline-flex items-center gap-1 self-start text-[10px] bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded-full font-semibold">Already tried</span>');
         return `
             <button onclick="selectCategory('${cat.id}')" class="text-left product-card rounded-3xl p-5 flex flex-col gap-1.5 cursor-pointer bg-surface shadow-sm border border-outline-variant/20 hover:shadow-md hover:-translate-y-0.5 transition-all">
-                <div class="text-4xl mb-1">${EMOJIS[cat.id] || '🛒'}</div>
+                <div class="w-14 h-14 rounded-2xl bg-primary-fixed/30 flex items-center justify-center p-2.5 mb-1"><img src="img/icons/${cat.id}.svg?v=${IMG_VER}" alt="${cat.name}" class="w-full h-full object-contain"></div>
                 <div class="font-label-md text-on-surface leading-tight">${cat.name}</div>
                 <div class="text-xs text-on-surface-variant">${count} products</div>
                 ${tag}
