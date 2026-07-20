@@ -83,7 +83,7 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
-const IMG_VER = '10'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
+const IMG_VER = '11'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
     const pid = product.product_id || product.id;
     const n = imgManifest[pid] || 3;
@@ -286,6 +286,9 @@ function createProductCard(product, showAi) {
         <div class="p-4 flex-grow flex flex-col gap-2">
             <h3 class="font-label-md text-label-md text-on-surface line-clamp-2">${product.product_name}</h3>
             <div class="font-headline-md text-on-surface font-bold">₹${product.price} <span class="text-xs text-outline font-normal line-through">₹${product.mrp}</span></div>
+            <div class="flex items-center gap-1 text-[11px] font-semibold text-[#0d8345] -mt-1">
+                <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1;">bolt</span> Delivery in minutes
+            </div>
             ${aiHtml}
         </div>`;
     return card;
@@ -362,6 +365,9 @@ function openPdp(productId) {
                 <span class="font-headline-md font-bold text-on-surface">₹${product.price}</span>
                 ${product.mrp > product.price ? `<span class="text-sm text-outline line-through">₹${product.mrp}</span>` : ''}
                 ${off ? `<span class="text-xs font-bold text-on-primary bg-primary px-2 py-0.5 rounded-md">${off}% OFF</span>` : ''}
+            </div>
+            <div class="flex items-center gap-1 text-xs font-semibold text-[#0d8345] mt-1">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1;">bolt</span> Delivery in minutes
             </div>
         </div>`;
 
