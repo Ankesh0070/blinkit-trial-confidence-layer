@@ -83,7 +83,7 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
-const IMG_VER = '6'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
+const IMG_VER = '7'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
     const pid = product.product_id || product.id;
     const n = imgManifest[pid] || 3;
