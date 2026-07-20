@@ -115,12 +115,17 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`=========================================`);
-    console.log(`🚀 Backend Server is running on port ${PORT}`);
-    console.log(`🌐 Frontend UI available at: http://localhost:${PORT}/prototype/index.html`);
-    console.log(`📊 Dashboard available at: http://localhost:${PORT}/prototype/dashboard.html`);
-    console.log(`=========================================`);
-    if (process.env.GEMINI_API_KEY) console.log(`✅ Gemini API Key detected`);
-    if (process.env.GROQ_API_KEY) console.log(`✅ Groq API Key detected`);
-});
+// Vercel runs this file as a serverless function (imports `app` and never calls
+// listen itself), so only bind a port when running directly with `node server.js`.
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`=========================================`);
+        console.log(`🚀 Backend Server is running on port ${PORT}`);
+        console.log(`🌐 Frontend UI available at: http://localhost:${PORT}/prototype/index.html`);
+        console.log(`=========================================`);
+        if (process.env.GEMINI_API_KEY) console.log(`✅ Gemini API Key detected`);
+        if (process.env.GROQ_API_KEY) console.log(`✅ Groq API Key detected`);
+    });
+}
+
+module.exports = app;
