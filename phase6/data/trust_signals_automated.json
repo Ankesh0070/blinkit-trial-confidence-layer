@@ -398,7 +398,7 @@
     },
     {
       "product_id": "BEAUTY-001",
-      "product_name": "Nivea Soft Moisturising Cream (200ml)",
+      "product_name": "Body & Face Moisturising Lotion",
       "category": "personal_care_beauty",
       "subcategory": "moisturizer",
       "price": 249,
@@ -441,7 +441,7 @@
     },
     {
       "product_id": "BEAUTY-002",
-      "product_name": "Maybelline Fit Me Concealer (6.8ml)",
+      "product_name": "Compact Face Powder",
       "category": "personal_care_beauty",
       "subcategory": "concealer",
       "price": 399,
@@ -484,7 +484,7 @@
     },
     {
       "product_id": "BEAUTY-003",
-      "product_name": "Himalaya Neem Face Wash (150ml)",
+      "product_name": "Gentle Face & Body Wash",
       "category": "personal_care_beauty",
       "subcategory": "face_wash",
       "price": 160,
@@ -527,7 +527,7 @@
     },
     {
       "product_id": "BEAUTY-004",
-      "product_name": "Dove Shampoo Daily Shine (340ml)",
+      "product_name": "Nourishing Hand Wash",
       "category": "personal_care_beauty",
       "subcategory": "shampoo",
       "price": 285,
@@ -613,7 +613,7 @@
     },
     {
       "product_id": "BEAUTY-006",
-      "product_name": "Lakme Eyeconic Kajal (0.35g)",
+      "product_name": "Lash Volumising Mascara",
       "category": "personal_care_beauty",
       "subcategory": "kajal",
       "price": 199,
@@ -1007,7 +1007,7 @@
     {
       "category": "pet",
       "subcategory": "pet_food",
-      "product_name": "Pedigree Adult Dog Food (3kg)",
+      "product_name": "Dog Food (Adult, 3kg)",
       "mrp": 850,
       "price": 799,
       "trust_signals": {
@@ -1116,7 +1116,7 @@
     },
     {
       "product_id": "PET-002",
-      "product_name": "Whiskas Wet Cat Food (80g)",
+      "product_name": "Cat Food (Wet, 80g)",
       "category": "pet",
       "subcategory": "pet_food",
       "price": 45,
@@ -1667,7 +1667,7 @@
     },
     {
       "product_id": "DBE-1",
-      "product_name": "Amul Taaza Milk 500ml",
+      "product_name": "Fresh Toned Milk (500ml)",
       "category": "dairy_bread_eggs",
       "subcategory": "milk",
       "price": 28,
@@ -1685,7 +1685,7 @@
     },
     {
       "product_id": "DBE-3",
-      "product_name": "Farm Eggs 6 pcs",
+      "product_name": "Farm Fresh Eggs (6 pcs)",
       "category": "dairy_bread_eggs",
       "subcategory": "eggs",
       "price": 48,
@@ -1712,7 +1712,7 @@
     },
     {
       "product_id": "MUN-1",
-      "product_name": "Lays Classic Salted",
+      "product_name": "Lay's Potato Chips (52g)",
       "category": "munchies",
       "subcategory": "chips",
       "price": 20,
@@ -1739,7 +1739,7 @@
     },
     {
       "product_id": "MUN-4",
-      "product_name": "Kurkure Masala Munch",
+      "product_name": "Kurkure Namkeen (90g)",
       "category": "munchies",
       "subcategory": "snacks",
       "price": 20,
@@ -1757,7 +1757,7 @@
     },
     {
       "product_id": "CDJ-2",
-      "product_name": "Real Mixed Fruit Juice 1L",
+      "product_name": "Real Fruit Juice (1L)",
       "category": "cold_drinks_juices",
       "subcategory": "juice",
       "price": 110,
@@ -1793,7 +1793,7 @@
     },
     {
       "product_id": "ARD-2",
-      "product_name": "Daawat Basmati Rice 1kg",
+      "product_name": "Basmati Rice (1kg)",
       "category": "atta_rice_dal",
       "subcategory": "rice",
       "price": 95,
@@ -1829,7 +1829,7 @@
     },
     {
       "product_id": "TCH-2",
-      "product_name": "Nescafe Classic 100g",
+      "product_name": "Instant Coffee (100g)",
       "category": "tea_coffee",
       "subcategory": "coffee",
       "price": 290,
@@ -1847,7 +1847,7 @@
     },
     {
       "product_id": "TCH-4",
-      "product_name": "Green Tea 25 bags",
+      "product_name": "Green Tea Bags (25s)",
       "category": "tea_coffee",
       "subcategory": "tea",
       "price": 150,
@@ -1874,7 +1874,7 @@
     },
     {
       "product_id": "BIS-3",
-      "product_name": "Chocolate Cake Slice",
+      "product_name": "Bakery Chocolate Cake (100g)",
       "category": "biscuits_bakery",
       "subcategory": "cake",
       "price": 99,
@@ -1901,7 +1901,7 @@
     },
     {
       "product_id": "SWT-2",
-      "product_name": "Vanilla Ice Cream 500ml",
+      "product_name": "Vanilla Ice Cream (500ml)",
       "category": "sweet_tooth",
       "subcategory": "icecream",
       "price": 120,
@@ -1919,7 +1919,7 @@
     },
     {
       "product_id": "MOM-1",
-      "product_name": "Fortune Sunflower Oil 1L",
+      "product_name": "Cooking Oil (1L)",
       "category": "masala_oil",
       "subcategory": "oil",
       "price": 140,
@@ -1946,7 +1946,7 @@
     },
     {
       "product_id": "MOM-4",
-      "product_name": "Garam Masala 50g",
+      "product_name": "Garam Masala (50g)",
       "category": "masala_oil",
       "subcategory": "spices",
       "price": 55,
@@ -2339,7 +2339,7 @@
     },
     {
       "product_id": "MUN-7",
-      "product_name": "Uncle Chipps Spicy Treat (55g)",
+      "product_name": "Uncle Chipps Potato Chips (55g)",
       "category": "munchies",
       "subcategory": "chips",
       "price": 20,
@@ -2348,7 +2348,7 @@
     },
     {
       "product_id": "MUN-8",
-      "product_name": "Too Yumm Multigrain Chips (50g)",
+      "product_name": "Too Yumm Baked Chips (50g)",
       "category": "munchies",
       "subcategory": "chips",
       "price": 30,
@@ -2528,7 +2528,7 @@
     },
     {
       "product_id": "SWT-7",
-      "product_name": "Haldiram Soan Papdi (250g)",
+      "product_name": "Soan Papdi (250g)",
       "category": "sweet_tooth",
       "subcategory": "candy",
       "price": 95,
@@ -2564,7 +2564,7 @@
     },
     {
       "product_id": "MOM-7",
-      "product_name": "MDH Chana Masala (100g)",
+      "product_name": "Chana Masala (100g)",
       "category": "masala_oil",
       "subcategory": "spices",
       "price": 65,
@@ -2591,7 +2591,7 @@
     },
     {
       "product_id": "INF-5",
-      "product_name": "Knorr Sweet Corn Soup (44g)",
+      "product_name": "Instant Cup Soup (44g)",
       "category": "instant_frozen",
       "subcategory": "soup",
       "price": 55,
@@ -2609,7 +2609,7 @@
     },
     {
       "product_id": "INF-7",
-      "product_name": "ID Fresh Idli Dosa Batter (1kg)",
+      "product_name": "Idli & Dosa Batter (1kg)",
       "category": "instant_frozen",
       "subcategory": "frozenfood",
       "price": 75,
@@ -2618,7 +2618,7 @@
     },
     {
       "product_id": "INF-8",
-      "product_name": "Safal Frozen Sweet Corn (500g)",
+      "product_name": "Frozen Sweet Corn (500g)",
       "category": "instant_frozen",
       "subcategory": "frozenfood",
       "price": 90,
