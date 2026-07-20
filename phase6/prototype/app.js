@@ -83,11 +83,11 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
-const IMG_VER = '9'; // bump when images are re-fetched so browsers load fresh copies
-// Every product uses a single clean, type-accurate SVG icon (uniform, no photo/flavour mismatch).
+const IMG_VER = '10'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
     const pid = product.product_id || product.id;
-    return [`img/svg/${pid}.svg?v=${IMG_VER}`];
+    const n = imgManifest[pid] || 3;
+    return Array.from({ length: n }, (_, i) => `img/${pid}-${i + 1}.jpg?v=${IMG_VER}`);
 }
 function placeholderImg(product) {
     const label = (product.product_name || '').split(' ').slice(0, 3).join(' ');
@@ -107,6 +107,9 @@ async function init() {
 
     const userRes = await fetch('../data/user_profiles.json' + cb);
     userProfiles = await userRes.json();
+
+    // Manifest of locally-bundled product images (product_id -> count).
+    try { imgManifest = await (await fetch('img/manifest.json' + cb)).json(); } catch (e) { imgManifest = {}; }
 
     renderApp();
     applyUrlIntent();
@@ -275,8 +278,8 @@ function createProductCard(product, showAi) {
     const imgs = productImages(product);
     const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
     card.innerHTML = `
-        <div class="product-image-container relative aspect-square bg-surface-container-low overflow-hidden flex items-center justify-center">
-            ${imgTag(imgs[0], product, 'w-3/5 h-3/5 object-contain group-hover:scale-110 transition-transform duration-500')}
+        <div class="product-image-container relative aspect-square bg-white overflow-hidden">
+            ${imgTag(imgs[0], product, 'w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500')}
             ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
             ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>` : ''}
         </div>
@@ -307,7 +310,7 @@ let pdpSlideIdx = 0;
 function renderPdpGallery(product) {
     pdpImages = productImages(product);
     pdpSlideIdx = 0;
-    const slides = pdpImages.map(url => `<div class="w-full shrink-0 aspect-square flex items-center justify-center bg-surface-container-low">${imgTag(url, product, 'w-1/2 h-1/2 object-contain')}</div>`).join('');
+    const slides = pdpImages.map(url => `<div class="w-full shrink-0 aspect-square">${imgTag(url, product, 'w-full h-full object-contain bg-white')}</div>`).join('');
     const multi = pdpImages.length > 1;
     const dots = pdpImages.map((_, i) => `<button onclick="pdpGoto(${i})" class="pdp-dot w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-5' : 'bg-white/70 border border-outline-variant/40'}"></button>`).join('');
     const controls = multi ? `

@@ -183,7 +183,7 @@
     },
     {
       "product_id": "ELEC-002",
-      "product_name": "Magnetic Power Bank (10000mAh)",
+      "product_name": "Smartwatch",
       "category": "electronics",
       "subcategory": "power_bank",
       "price": 699,
@@ -226,7 +226,7 @@
     },
     {
       "product_id": "ELEC-003",
-      "product_name": "USB-C Fast Charging Cable",
+      "product_name": "Phone Case (MagSafe)",
       "category": "electronics",
       "subcategory": "cable",
       "price": 199,
@@ -269,7 +269,7 @@
     },
     {
       "product_id": "ELEC-004",
-      "product_name": "Over-Ear Wireless Headphones",
+      "product_name": "Tablet (8.3\")",
       "category": "electronics",
       "subcategory": "headphones",
       "price": 1499,
@@ -312,7 +312,7 @@
     },
     {
       "product_id": "ELEC-005",
-      "product_name": "Rechargeable Table Lamp",
+      "product_name": "Android Tablet",
       "category": "electronics",
       "subcategory": "led",
       "price": 449,
@@ -355,7 +355,7 @@
     },
     {
       "product_id": "ELEC-006",
-      "product_name": "Wireless Charging Pad",
+      "product_name": "Laptop (14\")",
       "category": "electronics",
       "subcategory": "adapter",
       "price": 599,
@@ -398,7 +398,7 @@
     },
     {
       "product_id": "BEAUTY-001",
-      "product_name": "Body & Face Moisturising Lotion",
+      "product_name": "Body & Face Lotion",
       "category": "personal_care_beauty",
       "subcategory": "moisturizer",
       "price": 249,
@@ -441,7 +441,7 @@
     },
     {
       "product_id": "BEAUTY-002",
-      "product_name": "Compact Face Powder",
+      "product_name": "Moisturising Body Wash",
       "category": "personal_care_beauty",
       "subcategory": "concealer",
       "price": 399,
@@ -484,7 +484,7 @@
     },
     {
       "product_id": "BEAUTY-003",
-      "product_name": "Gentle Face & Body Wash",
+      "product_name": "Gentle Hand Wash",
       "category": "personal_care_beauty",
       "subcategory": "face_wash",
       "price": 160,
@@ -527,7 +527,7 @@
     },
     {
       "product_id": "BEAUTY-004",
-      "product_name": "Nourishing Hand Wash",
+      "product_name": "CK One Eau de Toilette",
       "category": "personal_care_beauty",
       "subcategory": "shampoo",
       "price": 285,
@@ -570,7 +570,7 @@
     },
     {
       "product_id": "BEAUTY-005",
-      "product_name": "Gillette Mach3 Razor + 2 Cartridges",
+      "product_name": "Chanel Coco Noir Perfume",
       "category": "personal_care_beauty",
       "subcategory": "razor",
       "price": 399,
@@ -613,7 +613,7 @@
     },
     {
       "product_id": "BEAUTY-006",
-      "product_name": "Lash Volumising Mascara",
+      "product_name": "Dior J adore Perfume",
       "category": "personal_care_beauty",
       "subcategory": "kajal",
       "price": 199,
@@ -1174,7 +1174,7 @@
     },
     {
       "product_id": "ELEC-007",
-      "product_name": "USB Fast Charger Adapter",
+      "product_name": "Ultrabook Laptop",
       "category": "electronics",
       "subcategory": "adapter",
       "price": 149,
@@ -1203,7 +1203,7 @@
     },
     {
       "product_id": "ELEC-008",
-      "product_name": "Selfie Stick + Phone Stand",
+      "product_name": "Smartphone",
       "category": "electronics",
       "subcategory": "phone_stand",
       "price": 199,
@@ -2054,7 +2054,7 @@
     },
     {
       "product_id": "BEAUTY-007",
-      "product_name": "Mamaearth Vitamin C Serum (30ml)",
+      "product_name": "Dolce Shine Eau de Parfum",
       "category": "personal_care_beauty",
       "subcategory": "serum",
       "price": 399,
@@ -2074,7 +2074,7 @@
     },
     {
       "product_id": "BEAUTY-008",
-      "product_name": "Colgate MaxFresh Toothpaste (150g)",
+      "product_name": "Gucci Bloom Perfume",
       "category": "personal_care_beauty",
       "subcategory": "toothpaste",
       "price": 95,
