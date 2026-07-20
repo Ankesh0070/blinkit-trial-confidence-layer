@@ -65,40 +65,55 @@ function handleChatKeyPress(event) {
     }
 }
 
+const SMART_REPLIES = [
+    { kw: ['baby','diaper','infant','wipe','newborn','toddler'], reply: 'We have a great Baby Care section! You\'ll find diapers, baby wash, lotions, powder, and baby food — all delivered in minutes. Tap below to explore!' },
+    { kw: ['electronic','earphone','earbud','headphone','charger','power bank','cable','gadget','phone'], reply: 'Check out our Electronics section! We have wireless earbuds, power banks, chargers, neckbands, and more — all under ₹2000 with delivery in minutes.' },
+    { kw: ['beauty','face wash','moisturi','skin','makeup','shampoo','lotion','cream','serum','perfume'], reply: 'Our Beauty & Personal Care section has body wash, lotions, hand wash, perfumes and more. Great options for your daily routine, delivered in minutes!' },
+    { kw: ['medicine','pharmacy','health','pain','fever','cold','tablet','first aid','antiseptic','dettol','bandage','vitamin'], reply: 'Need health essentials? Our Pharmacy section has pain relief, antiseptics, first aid, multivitamins, and more. Delivered to your door in minutes!' },
+    { kw: ['clean','detergent','floor','toilet','harpic','dish','mop','garbage','home'], reply: 'Home cleaning supplies? We\'ve got toilet cleaners, floor cleaners, detergents, garbage bags, and more in our Home & Cleaning section!' },
+    { kw: ['pet','dog','cat','food','treat','litter','puppy','kitten'], reply: 'We love pets too! Check out our Pet Care section for dog food, cat food, treats, pet shampoo, and cat litter. Delivered in minutes!' },
+    { kw: ['intimate','sanitary','pad','condom','feminine','panty liner'], reply: 'Our Intimate Care section has everything you need — sanitary pads, intimate wash, and more. Discreet packaging, delivered in minutes.' },
+    { kw: ['snack','chip','munch','namkeen','popcorn','biscuit','cookie'], reply: 'Craving snacks? We have chips, namkeen, popcorn, biscuits, cookies and more in our Munchies & Biscuits sections. All under ₹200!' },
+    { kw: ['drink','cold drink','juice','coke','pepsi','frooti','soda','water'], reply: 'Thirsty? Check out our Cold Drinks & Juices section — soft drinks, juices, energy drinks, all chilled and delivered in minutes!' },
+    { kw: ['tea','coffee','chai','green tea','bru','nescafe'], reply: 'Tea or coffee lover? We have a great Tea & Coffee section with green tea, instant coffee, health drinks and more!' },
+    { kw: ['chocolate','sweet','candy','ice cream','mithai','dessert'], reply: 'Got a sweet tooth? Our Sweet Tooth section has chocolates, ice cream, candies, and traditional sweets — perfect treats delivered fast!' },
+    { kw: ['milk','bread','egg','butter','paneer','cheese','curd','dairy'], reply: 'Daily essentials? Our Dairy, Bread & Eggs section has fresh milk, bread, eggs, butter, paneer, cheese and curd. Fresh and delivered in minutes!' },
+    { kw: ['atta','rice','dal','flour','grain','wheat'], reply: 'Stocking up on staples? We have atta, rice, dal, and flour in our Atta, Rice & Dal section — all the pantry essentials you need!' },
+    { kw: ['oil','masala','spice','salt','jeera','haldi','mirch'], reply: 'Need cooking essentials? Our Masala & Oil section has cooking oils, salt, and all kinds of spices for your kitchen!' },
+    { kw: ['noodle','maggi','instant','frozen','soup','ready to eat'], reply: 'Quick meals? Check our Instant & Frozen section for noodles, soups, frozen foods, and ready-to-eat options!' },
+    { kw: ['vegetable','fruit','apple','potato','onion','tamatar','sabzi','fresh'], reply: 'Fresh produce? Our Vegetables & Fruits section has farm-fresh veggies and fruits delivered to your door in minutes!' },
+    { kw: ['refund','cancel','order','complaint','return','wrong','damage','missing'], reply: 'I\'m only a product discovery assistant and can\'t process refunds or handle order issues. Please contact Blinkit Customer Support through the app for help with your order.' },
+    { kw: ['hello','hi','hey','hii','namaste','good morning','good evening'], reply: 'Hello! Welcome to Blinkit. I can help you discover products across 17 categories. What are you looking for today?' },
+    { kw: ['thank','thanks','dhanyavad','shukriya'], reply: 'You\'re welcome! Happy to help. Feel free to ask anytime you need to find something on Blinkit!' },
+];
+
+function getSmartReply(text) {
+    const t = text.toLowerCase();
+    for (const r of SMART_REPLIES) {
+        if (r.kw.some(k => t.includes(k))) return r.reply;
+    }
+    return 'I can help you find products on Blinkit! Try asking about categories like baby care, electronics, snacks, dairy, beauty, pharmacy, pet care, or home cleaning. You can also browse all categories below!';
+}
+
 async function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
     if (!text) return;
-    
+
     input.value = '';
     appendMessage('user', text);
     chatHistory.push({ role: 'user', content: text });
-    
-    // show loading
-    const loadingId = appendLoading();
-    
-    try {
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ messages: chatHistory })
-        });
-        
-        const data = await response.json();
-        removeLoading(loadingId);
 
-        if (data.success) {
-            chatHistory.push({ role: 'assistant', content: data.reply });
-            appendMessage('assistant', data.reply);
-            appendActionLinks(data.reply, text);   // clickable "Explore →" links
-        } else {
-            appendMessage('assistant', 'Sorry, I encountered an error. Please try again.');
-        }
-    } catch (err) {
-        console.error(err);
-        removeLoading(loadingId);
-        appendMessage('assistant', 'Network error. Please try again.');
-    }
+    const loadingId = appendLoading();
+
+    // Simulate natural typing delay (300-800ms)
+    await new Promise(r => setTimeout(r, 300 + Math.random() * 500));
+
+    removeLoading(loadingId);
+    const reply = getSmartReply(text);
+    chatHistory.push({ role: 'assistant', content: reply });
+    appendMessage('assistant', reply);
+    appendActionLinks(reply, text);
 }
 
 function appendMessage(role, content) {
