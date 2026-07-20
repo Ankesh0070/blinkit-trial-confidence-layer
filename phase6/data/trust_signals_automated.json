@@ -312,7 +312,7 @@
     },
     {
       "product_id": "ELEC-005",
-      "product_name": "LED Desk Lamp (Rechargeable)",
+      "product_name": "Rechargeable Table Lamp",
       "category": "electronics",
       "subcategory": "led",
       "price": 449,
@@ -1666,51 +1666,6 @@
       }
     },
     {
-      "product_id": "VEG-1",
-      "product_name": "Fresh Tomato 1kg",
-      "category": "vegetables_fruits",
-      "subcategory": "tomato",
-      "price": 32,
-      "mrp": 40,
-      "image": "tomato"
-    },
-    {
-      "product_id": "VEG-2",
-      "product_name": "Onion 1kg",
-      "category": "vegetables_fruits",
-      "subcategory": "onion",
-      "price": 35,
-      "mrp": 45,
-      "image": "onion"
-    },
-    {
-      "product_id": "VEG-3",
-      "product_name": "Banana 6 pcs",
-      "category": "vegetables_fruits",
-      "subcategory": "banana",
-      "price": 40,
-      "mrp": 55,
-      "image": "banana"
-    },
-    {
-      "product_id": "VEG-4",
-      "product_name": "Royal Gala Apple 1kg",
-      "category": "vegetables_fruits",
-      "subcategory": "apple",
-      "price": 150,
-      "mrp": 200,
-      "image": "apple"
-    },
-    {
-      "product_id": "VEG-5",
-      "product_name": "Potato 1kg",
-      "category": "vegetables_fruits",
-      "subcategory": "potato",
-      "price": 30,
-      "mrp": 40,
-      "image": "potato"
-    },
-    {
       "product_id": "DBE-1",
       "product_name": "Amul Taaza Milk 500ml",
       "category": "dairy_bread_eggs",
@@ -2024,6 +1979,78 @@
       "price": 99,
       "mrp": 125,
       "image": "frozenfood"
+    },
+    {
+      "product_id": "VEG-1",
+      "product_name": "Fresh Apple (1 kg)",
+      "category": "vegetables_fruits",
+      "subcategory": "apple",
+      "price": 150,
+      "mrp": 200,
+      "image": "apple"
+    },
+    {
+      "product_id": "VEG-2",
+      "product_name": "Potato (1 kg)",
+      "category": "vegetables_fruits",
+      "subcategory": "potato",
+      "price": 30,
+      "mrp": 40,
+      "image": "potato"
+    },
+    {
+      "product_id": "VEG-3",
+      "product_name": "Red Onion (1 kg)",
+      "category": "vegetables_fruits",
+      "subcategory": "onion",
+      "price": 35,
+      "mrp": 45,
+      "image": "onion"
+    },
+    {
+      "product_id": "VEG-4",
+      "product_name": "Fresh Lemon (250 g)",
+      "category": "vegetables_fruits",
+      "subcategory": "lemon",
+      "price": 25,
+      "mrp": 35,
+      "image": "lemon"
+    },
+    {
+      "product_id": "VEG-5",
+      "product_name": "Cucumber (500 g)",
+      "category": "vegetables_fruits",
+      "subcategory": "cucumber",
+      "price": 30,
+      "mrp": 40,
+      "image": "cucumber"
+    },
+    {
+      "product_id": "VEG-6",
+      "product_name": "Strawberry (200 g)",
+      "category": "vegetables_fruits",
+      "subcategory": "strawberry",
+      "price": 90,
+      "mrp": 120,
+      "image": "strawberry"
+    },
+    {
+      "product_id": "VEG-7",
+      "product_name": "Kiwi (3 pcs)",
+      "category": "vegetables_fruits",
+      "subcategory": "kiwi",
+      "price": 99,
+      "mrp": 130,
+      "image": "kiwi"
+    },
+    {
+      "product_id": "VEG-8",
+      "product_name": "Green Capsicum (500 g)",
+      "category": "vegetables_fruits",
+      "subcategory": "capsicum",
+      "price": 40,
+      "mrp": 55,
+      "image": "capsicum"
     }
   ]
 }

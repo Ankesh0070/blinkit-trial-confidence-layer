@@ -83,10 +83,11 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
+const IMG_VER = '5'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
     const pid = product.product_id || product.id;
     const n = imgManifest[pid] || 3;
-    return Array.from({ length: n }, (_, i) => `img/${pid}-${i + 1}.jpg`);
+    return Array.from({ length: n }, (_, i) => `img/${pid}-${i + 1}.jpg?v=${IMG_VER}`);
 }
 function placeholderImg(product) {
     const label = (product.product_name || '').split(' ').slice(0, 3).join(' ');
@@ -277,9 +278,9 @@ function createProductCard(product, showAi) {
     const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
     card.innerHTML = `
         <div class="product-image-container relative aspect-square bg-white overflow-hidden">
-            ${imgTag(imgs[0], product, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500')}
+            ${imgTag(imgs[0], product, 'w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500')}
             ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
-            <span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>
+            ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>` : ''}
         </div>
         <div class="p-4 flex-grow flex flex-col gap-2">
             <h3 class="font-label-md text-label-md text-on-surface line-clamp-2">${product.product_name}</h3>
@@ -308,19 +309,22 @@ let pdpSlideIdx = 0;
 function renderPdpGallery(product) {
     pdpImages = productImages(product);
     pdpSlideIdx = 0;
-    const slides = pdpImages.map(url => `<div class="w-full shrink-0 aspect-square">${imgTag(url, product, 'w-full h-full object-cover')}</div>`).join('');
+    const slides = pdpImages.map(url => `<div class="w-full shrink-0 aspect-square">${imgTag(url, product, 'w-full h-full object-contain bg-white')}</div>`).join('');
+    const multi = pdpImages.length > 1;
     const dots = pdpImages.map((_, i) => `<button onclick="pdpGoto(${i})" class="pdp-dot w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-5' : 'bg-white/70 border border-outline-variant/40'}"></button>`).join('');
-    return `
-        <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-surface-container-low mb-4 select-none"
-             ontouchstart="pdpTouchStart(event)" ontouchend="pdpTouchEnd(event)">
-            <div id="pdpSlides" class="flex h-full transition-transform duration-300" style="transform:translateX(0%)">${slides}</div>
+    const controls = multi ? `
             <button onclick="pdpSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur shadow flex items-center justify-center hover:bg-white transition-colors">
                 <span class="material-symbols-outlined text-on-surface">chevron_left</span>
             </button>
             <button onclick="pdpSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 backdrop-blur shadow flex items-center justify-center hover:bg-white transition-colors">
                 <span class="material-symbols-outlined text-on-surface">chevron_right</span>
             </button>
-            <div id="pdpDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">${dots}</div>
+            <div id="pdpDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">${dots}</div>` : '';
+    return `
+        <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-white mb-4 select-none border border-outline-variant/20"
+             ontouchstart="pdpTouchStart(event)" ontouchend="pdpTouchEnd(event)">
+            <div id="pdpSlides" class="flex h-full transition-transform duration-300" style="transform:translateX(0%)">${slides}</div>
+            ${controls}
         </div>`;
 }
 
