@@ -98,17 +98,18 @@ function imgTag(url, product, cls) {
 }
 
 async function init() {
-    const trustRes = await fetch('../data/trust_signals_automated.json');
+    const cb = `?v=${IMG_VER}`; // cache-bust data so catalog/image updates show without a manual clear
+    const trustRes = await fetch('../data/trust_signals_automated.json' + cb);
     trustData = await trustRes.json();
-    
-    const densityRes = await fetch('../data/category_density_flags.json');
+
+    const densityRes = await fetch('../data/category_density_flags.json' + cb);
     densityFlags = await densityRes.json();
-    
-    const userRes = await fetch('../data/user_profiles.json');
+
+    const userRes = await fetch('../data/user_profiles.json' + cb);
     userProfiles = await userRes.json();
 
     // Manifest of locally-bundled product images (product_id -> count).
-    try { imgManifest = await (await fetch('img/manifest.json')).json(); } catch (e) { imgManifest = {}; }
+    try { imgManifest = await (await fetch('img/manifest.json' + cb)).json(); } catch (e) { imgManifest = {}; }
 
     renderApp();
     applyUrlIntent();

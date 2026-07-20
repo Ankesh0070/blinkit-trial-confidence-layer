@@ -2051,6 +2051,579 @@
       "price": 40,
       "mrp": 55,
       "image": "capsicum"
+    },
+    {
+      "product_id": "BEAUTY-007",
+      "product_name": "Mamaearth Vitamin C Serum (30ml)",
+      "category": "personal_care_beauty",
+      "subcategory": "serum",
+      "price": 399,
+      "mrp": 599,
+      "image": "serum",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 2100,
+        "repeat_purchase_pct": 38,
+        "review_highlights": [
+          {
+            "theme": "visible_glow",
+            "sample_quote": "Skin looks brighter in 2 weeks."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "BEAUTY-008",
+      "product_name": "Colgate MaxFresh Toothpaste (150g)",
+      "category": "personal_care_beauty",
+      "subcategory": "toothpaste",
+      "price": 95,
+      "mrp": 110,
+      "image": "toothpaste",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 8600,
+        "repeat_purchase_pct": 61,
+        "review_highlights": [
+          {
+            "theme": "long_lasting_freshness",
+            "sample_quote": "Mouth feels fresh for hours."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "PHARMA-007",
+      "product_name": "Digene Antacid Gel (200ml)",
+      "category": "pharmacy_health",
+      "subcategory": "antacid",
+      "price": 145,
+      "mrp": 160,
+      "image": "antacid",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 3400,
+        "repeat_purchase_pct": 47,
+        "review_highlights": [
+          {
+            "theme": "fast_relief",
+            "sample_quote": "Acidity gone within minutes."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "PHARMA-008",
+      "product_name": "Revital H Multivitamin (30 caps)",
+      "category": "pharmacy_health",
+      "subcategory": "multivitamin",
+      "price": 285,
+      "mrp": 320,
+      "image": "multivitamin",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 1900,
+        "repeat_purchase_pct": 44,
+        "review_highlights": [
+          {
+            "theme": "daily_energy",
+            "sample_quote": "Feel less tired through the day."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "BABY-007",
+      "product_name": "Cerelac Baby Cereal Wheat (300g)",
+      "category": "baby",
+      "subcategory": "baby_cereal",
+      "price": 240,
+      "mrp": 275,
+      "image": "baby_cereal",
+      "trust_signals": {
+        "avg_rating": 4.6,
+        "total_ratings": 5200,
+        "repeat_purchase_pct": 58,
+        "review_highlights": [
+          {
+            "theme": "baby_loves_taste",
+            "sample_quote": "My baby finishes the bowl happily."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "BABY-008",
+      "product_name": "Johnson Baby Shampoo (200ml)",
+      "category": "baby",
+      "subcategory": "baby_shampoo",
+      "price": 165,
+      "mrp": 190,
+      "image": "baby_shampoo",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 7800,
+        "repeat_purchase_pct": 63,
+        "review_highlights": [
+          {
+            "theme": "no_tears_gentle",
+            "sample_quote": "Gentle, no stinging eyes."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "HOME-007",
+      "product_name": "Comfort Fabric Conditioner (860ml)",
+      "category": "home_cleaning",
+      "subcategory": "fabric_conditioner",
+      "price": 180,
+      "mrp": 210,
+      "image": "fabric_conditioner",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 2600,
+        "repeat_purchase_pct": 52,
+        "review_highlights": [
+          {
+            "theme": "long_lasting_fragrance",
+            "sample_quote": "Clothes smell fresh for days."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "HOME-008",
+      "product_name": "Odonil Air Freshener Block (48g)",
+      "category": "home_cleaning",
+      "subcategory": "air_freshener",
+      "price": 55,
+      "mrp": 65,
+      "image": "air_freshener",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 1800,
+        "repeat_purchase_pct": 49,
+        "review_highlights": [
+          {
+            "theme": "strong_fragrance",
+            "sample_quote": "Bathroom smells clean all day."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "PET-007",
+      "product_name": "Pedigree Puppy Dry Food (1.2kg)",
+      "category": "pet",
+      "subcategory": "pet_food",
+      "price": 320,
+      "mrp": 370,
+      "image": "pet_food",
+      "trust_signals": {
+        "avg_rating": 4.5,
+        "total_ratings": 2200,
+        "repeat_purchase_pct": 55,
+        "review_highlights": [
+          {
+            "theme": "puppy_loves_it",
+            "sample_quote": "My pup is more active and healthy."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "PET-008",
+      "product_name": "Meat Up Dog Biscuits (500g)",
+      "category": "pet",
+      "subcategory": "pet_treats",
+      "price": 155,
+      "mrp": 180,
+      "image": "pet_treats",
+      "trust_signals": {
+        "avg_rating": 4.2,
+        "total_ratings": 900,
+        "repeat_purchase_pct": 41,
+        "review_highlights": [
+          {
+            "theme": "good_training_treat",
+            "sample_quote": "Great for training rewards."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "INT-007",
+      "product_name": "Durex Extra Thin Condoms (10s)",
+      "category": "intimate_personal",
+      "subcategory": "condom",
+      "price": 199,
+      "mrp": 240,
+      "image": "condom",
+      "trust_signals": {
+        "avg_rating": 4.4,
+        "total_ratings": 3100,
+        "repeat_purchase_pct": 46,
+        "review_highlights": [
+          {
+            "theme": "discreet_delivery",
+            "sample_quote": "Packaging was discreet, quality good."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "INT-008",
+      "product_name": "Everteen Intimate Wipes (10s)",
+      "category": "intimate_personal",
+      "subcategory": "intimate_wash",
+      "price": 99,
+      "mrp": 120,
+      "image": "intimate_wash",
+      "trust_signals": {
+        "avg_rating": 4.3,
+        "total_ratings": 1200,
+        "repeat_purchase_pct": 43,
+        "review_highlights": [
+          {
+            "theme": "fresh_convenient",
+            "sample_quote": "Handy and gentle for daily use."
+          }
+        ]
+      }
+    },
+    {
+      "product_id": "DBE-6",
+      "product_name": "Amul Cheese Slices (100g)",
+      "category": "dairy_bread_eggs",
+      "subcategory": "cheese",
+      "price": 85,
+      "mrp": 95,
+      "image": "cheese"
+    },
+    {
+      "product_id": "DBE-7",
+      "product_name": "Mother Dairy Curd (400g)",
+      "category": "dairy_bread_eggs",
+      "subcategory": "curd",
+      "price": 40,
+      "mrp": 50,
+      "image": "curd"
+    },
+    {
+      "product_id": "DBE-8",
+      "product_name": "Amul Masti Buttermilk (200ml)",
+      "category": "dairy_bread_eggs",
+      "subcategory": "buttermilk",
+      "price": 15,
+      "mrp": 20,
+      "image": "buttermilk"
+    },
+    {
+      "product_id": "MUN-5",
+      "product_name": "Bingo Mad Angles (80g)",
+      "category": "munchies",
+      "subcategory": "chips",
+      "price": 30,
+      "mrp": 35,
+      "image": "chips"
+    },
+    {
+      "product_id": "MUN-6",
+      "product_name": "Doritos Nacho Cheese (100g)",
+      "category": "munchies",
+      "subcategory": "chips",
+      "price": 60,
+      "mrp": 70,
+      "image": "chips"
+    },
+    {
+      "product_id": "MUN-7",
+      "product_name": "Uncle Chipps Spicy Treat (55g)",
+      "category": "munchies",
+      "subcategory": "chips",
+      "price": 20,
+      "mrp": 20,
+      "image": "chips"
+    },
+    {
+      "product_id": "MUN-8",
+      "product_name": "Too Yumm Multigrain Chips (50g)",
+      "category": "munchies",
+      "subcategory": "chips",
+      "price": 30,
+      "mrp": 35,
+      "image": "chips"
+    },
+    {
+      "product_id": "CDJ-5",
+      "product_name": "Pepsi (750ml)",
+      "category": "cold_drinks_juices",
+      "subcategory": "softdrink",
+      "price": 40,
+      "mrp": 45,
+      "image": "softdrink"
+    },
+    {
+      "product_id": "CDJ-6",
+      "product_name": "Tropicana Orange Juice (1L)",
+      "category": "cold_drinks_juices",
+      "subcategory": "juice",
+      "price": 110,
+      "mrp": 130,
+      "image": "juice"
+    },
+    {
+      "product_id": "CDJ-7",
+      "product_name": "Frooti Mango Drink (250ml)",
+      "category": "cold_drinks_juices",
+      "subcategory": "juice",
+      "price": 20,
+      "mrp": 20,
+      "image": "juice"
+    },
+    {
+      "product_id": "CDJ-8",
+      "product_name": "7UP Lemon Drink (250ml)",
+      "category": "cold_drinks_juices",
+      "subcategory": "softdrink",
+      "price": 40,
+      "mrp": 40,
+      "image": "softdrink"
+    },
+    {
+      "product_id": "ARD-5",
+      "product_name": "Fortune Chakki Fresh Atta (5kg)",
+      "category": "atta_rice_dal",
+      "subcategory": "atta",
+      "price": 265,
+      "mrp": 300,
+      "image": "atta"
+    },
+    {
+      "product_id": "ARD-6",
+      "product_name": "India Gate Basmati Rice (1kg)",
+      "category": "atta_rice_dal",
+      "subcategory": "rice",
+      "price": 120,
+      "mrp": 150,
+      "image": "rice"
+    },
+    {
+      "product_id": "ARD-7",
+      "product_name": "Tata Sampann Moong Dal (1kg)",
+      "category": "atta_rice_dal",
+      "subcategory": "dal",
+      "price": 130,
+      "mrp": 155,
+      "image": "dal"
+    },
+    {
+      "product_id": "ARD-8",
+      "product_name": "Tata Sampann Chana Dal (1kg)",
+      "category": "atta_rice_dal",
+      "subcategory": "dal",
+      "price": 110,
+      "mrp": 130,
+      "image": "dal"
+    },
+    {
+      "product_id": "TCH-5",
+      "product_name": "Red Label Natural Care Tea (500g)",
+      "category": "tea_coffee",
+      "subcategory": "tea",
+      "price": 260,
+      "mrp": 295,
+      "image": "tea"
+    },
+    {
+      "product_id": "TCH-6",
+      "product_name": "Bru Instant Coffee (100g)",
+      "category": "tea_coffee",
+      "subcategory": "coffee",
+      "price": 210,
+      "mrp": 240,
+      "image": "coffee"
+    },
+    {
+      "product_id": "TCH-7",
+      "product_name": "Cadbury Bournvita (500g)",
+      "category": "tea_coffee",
+      "subcategory": "healthdrink",
+      "price": 245,
+      "mrp": 275,
+      "image": "healthdrink"
+    },
+    {
+      "product_id": "TCH-8",
+      "product_name": "Lipton Green Tea (25 bags)",
+      "category": "tea_coffee",
+      "subcategory": "tea",
+      "price": 150,
+      "mrp": 190,
+      "image": "tea"
+    },
+    {
+      "product_id": "BIS-5",
+      "product_name": "Oreo Chocolate Creme (120g)",
+      "category": "biscuits_bakery",
+      "subcategory": "biscuits",
+      "price": 35,
+      "mrp": 40,
+      "image": "biscuits"
+    },
+    {
+      "product_id": "BIS-6",
+      "product_name": "Hide & Seek Chocolate Chip (120g)",
+      "category": "biscuits_bakery",
+      "subcategory": "biscuits",
+      "price": 35,
+      "mrp": 40,
+      "image": "biscuits"
+    },
+    {
+      "product_id": "BIS-7",
+      "product_name": "Britannia Marie Gold (250g)",
+      "category": "biscuits_bakery",
+      "subcategory": "biscuits",
+      "price": 35,
+      "mrp": 40,
+      "image": "biscuits"
+    },
+    {
+      "product_id": "BIS-8",
+      "product_name": "Britannia Bourbon (150g)",
+      "category": "biscuits_bakery",
+      "subcategory": "biscuits",
+      "price": 30,
+      "mrp": 35,
+      "image": "biscuits"
+    },
+    {
+      "product_id": "SWT-4",
+      "product_name": "Nestle KitKat (37g)",
+      "category": "sweet_tooth",
+      "subcategory": "chocolate",
+      "price": 40,
+      "mrp": 45,
+      "image": "chocolate"
+    },
+    {
+      "product_id": "SWT-5",
+      "product_name": "Ferrero Rocher (3 pcs)",
+      "category": "sweet_tooth",
+      "subcategory": "chocolate",
+      "price": 120,
+      "mrp": 140,
+      "image": "chocolate"
+    },
+    {
+      "product_id": "SWT-6",
+      "product_name": "Amul Dark Chocolate (150g)",
+      "category": "sweet_tooth",
+      "subcategory": "chocolate",
+      "price": 90,
+      "mrp": 100,
+      "image": "chocolate"
+    },
+    {
+      "product_id": "SWT-7",
+      "product_name": "Haldiram Soan Papdi (250g)",
+      "category": "sweet_tooth",
+      "subcategory": "candy",
+      "price": 95,
+      "mrp": 110,
+      "image": "candy"
+    },
+    {
+      "product_id": "SWT-8",
+      "product_name": "Nestle Munch (4 pack)",
+      "category": "sweet_tooth",
+      "subcategory": "chocolate",
+      "price": 40,
+      "mrp": 40,
+      "image": "chocolate"
+    },
+    {
+      "product_id": "MOM-5",
+      "product_name": "Saffola Gold Cooking Oil (1L)",
+      "category": "masala_oil",
+      "subcategory": "oil",
+      "price": 165,
+      "mrp": 190,
+      "image": "oil"
+    },
+    {
+      "product_id": "MOM-6",
+      "product_name": "Everest Red Chilli Powder (100g)",
+      "category": "masala_oil",
+      "subcategory": "spices",
+      "price": 45,
+      "mrp": 55,
+      "image": "spices"
+    },
+    {
+      "product_id": "MOM-7",
+      "product_name": "MDH Chana Masala (100g)",
+      "category": "masala_oil",
+      "subcategory": "spices",
+      "price": 65,
+      "mrp": 75,
+      "image": "spices"
+    },
+    {
+      "product_id": "MOM-8",
+      "product_name": "Catch Black Pepper Powder (50g)",
+      "category": "masala_oil",
+      "subcategory": "spices",
+      "price": 70,
+      "mrp": 85,
+      "image": "spices"
+    },
+    {
+      "product_id": "INF-4",
+      "product_name": "Sunfeast Yippee Noodles (4 pack)",
+      "category": "instant_frozen",
+      "subcategory": "noodles",
+      "price": 48,
+      "mrp": 56,
+      "image": "noodles"
+    },
+    {
+      "product_id": "INF-5",
+      "product_name": "Knorr Sweet Corn Soup (44g)",
+      "category": "instant_frozen",
+      "subcategory": "soup",
+      "price": 55,
+      "mrp": 65,
+      "image": "soup"
+    },
+    {
+      "product_id": "INF-6",
+      "product_name": "McCain Aloo Tikki (400g)",
+      "category": "instant_frozen",
+      "subcategory": "frozenfood",
+      "price": 99,
+      "mrp": 120,
+      "image": "frozenfood"
+    },
+    {
+      "product_id": "INF-7",
+      "product_name": "ID Fresh Idli Dosa Batter (1kg)",
+      "category": "instant_frozen",
+      "subcategory": "frozenfood",
+      "price": 75,
+      "mrp": 90,
+      "image": "frozenfood"
+    },
+    {
+      "product_id": "INF-8",
+      "product_name": "Safal Frozen Sweet Corn (500g)",
+      "category": "instant_frozen",
+      "subcategory": "frozenfood",
+      "price": 90,
+      "mrp": 110,
+      "image": "frozenfood"
     }
   ]
 }
