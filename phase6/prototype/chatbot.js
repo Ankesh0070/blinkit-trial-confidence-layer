@@ -9,7 +9,7 @@ function injectChatbot() {
     <!-- Chatbot FAB & Window -->
     <div id="chatWidget" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[110] flex flex-col items-end">
         <!-- Chat Window -->
-        <div id="chatWindow" class="hidden w-[350px] h-[500px] max-h-[70vh] bg-surface rounded-2xl shadow-2xl border border-outline-variant/30 flex flex-col overflow-hidden mb-4 transition-all duration-300 transform origin-bottom-right">
+        <div id="chatWindow" class="pointer-events-none opacity-0 scale-90 w-[350px] h-[500px] max-h-[70vh] bg-surface rounded-2xl shadow-2xl border border-outline-variant/30 flex flex-col overflow-hidden mb-4 transition-[opacity,transform] duration-200 ease-out origin-bottom-right">
             <!-- Header -->
             <div class="bg-primary flex items-center justify-between p-4 text-on-primary">
                 <div class="flex items-center gap-2">
@@ -53,9 +53,11 @@ function toggleChat() {
     const chatWindow = document.getElementById('chatWindow');
     isChatOpen = !isChatOpen;
     if (isChatOpen) {
-        chatWindow.classList.remove('hidden');
+        chatWindow.classList.remove('pointer-events-none', 'opacity-0', 'scale-90');
+        chatWindow.classList.add('pointer-events-auto', 'opacity-100', 'scale-100');
     } else {
-        chatWindow.classList.add('hidden');
+        chatWindow.classList.remove('pointer-events-auto', 'opacity-100', 'scale-100');
+        chatWindow.classList.add('pointer-events-none', 'opacity-0', 'scale-90');
     }
 }
 
