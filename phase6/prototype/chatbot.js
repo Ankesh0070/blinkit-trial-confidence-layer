@@ -1,6 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     injectChatbot();
+    loadChatCatalog();
 });
+
+// The chatbot searches the real product catalog so it can confirm a specific
+// product ("do you have maggi?") or say a polite "coming soon" when we don't.
+let CHAT_CATALOG = [];
+async function loadChatCatalog() {
+    // Reuse the store's already-loaded catalog when available (same page).
+    if (window.trustData && Array.isArray(window.trustData.products)) {
+        CHAT_CATALOG = window.trustData.products;
+        return;
+    }
+    for (const path of ['../data/trust_signals_automated.json', 'data/trust_signals_automated.json']) {
+        try {
+            const r = await fetch(path);
+            if (!r.ok) continue;
+            const j = await r.json();
+            if (Array.isArray(j.products) && j.products.length) { CHAT_CATALOG = j.products; return; }
+        } catch (e) { /* try next path */ }
+    }
+}
 
 function injectChatbot() {
     if (document.getElementById('chatWidget')) return;
@@ -97,6 +117,78 @@ function getSmartReply(text) {
     return 'I can help you find products on Blinkit! Try asking about categories like baby care, electronics, snacks, dairy, beauty, pharmacy, pet care, or home cleaning. You can also browse all categories below!';
 }
 
+// --- Specific-product lookup against the real catalog ---------------------
+const CHAT_STOP = new Set(['the', 'a', 'an', 'is', 'are', 'do', 'you', 'have', 'got', 'any',
+    'some', 'me', 'i', 'want', 'need', 'show', 'find', 'get', 'buy', 'looking', 'for', 'to',
+    'and', 'or', 'of', 'my', 'please', 'can', 'could', 'would', 'there', 'in', 'stock',
+    'available', 'sell', 'selling', 'price', 'cost', 'ka', 'ki', 'ke', 'hai', 'kya', 'koi',
+    'chahiye', 'mujhe', 'dikhao', 'do', 'de', 'karo', 'milega', 'mil', 'sakta']);
+const chatNorm = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+function chatTokens(q) {
+    return chatNorm(q).split(' ').filter(t => t.length > 2 && !CHAT_STOP.has(t));
+}
+
+function findProducts(q) {
+    if (!CHAT_CATALOG.length) return [];
+    const tokens = chatTokens(q);
+    if (!tokens.length) return [];
+    // Score by how many query tokens each product matches, then keep only the
+    // best-matching set so "boat earbuds" returns boAt earbuds, not boAt chargers.
+    const scored = [];
+    for (const p of CHAT_CATALOG) {
+        const hay = chatNorm(`${p.product_name} ${p.subcategory} ${p.category}`);
+        let s = 0;
+        for (const t of tokens) if (hay.includes(t)) s++;
+        if (s > 0) scored.push({ p, s });
+    }
+    if (!scored.length) return [];
+    const max = Math.max(...scored.map(x => x.s));
+    return scored.filter(x => x.s === max).map(x => x.p);
+}
+
+// Word-boundary test so greeting "hi" doesn't fire inside "chips".
+function hasWholeWord(text, word) {
+    return new RegExp('\\b' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
+}
+
+// Decide the assistant's reply: specific product first (user's priority),
+// then greeting/canned, then category hint, then a polite coming-soon.
+function buildReply(text) {
+    const t = text.toLowerCase();
+
+    // 1) Specific product lookup wins — "lays chips", "maggi", "boat earbuds".
+    const hits = findProducts(text);
+    if (hits.length) {
+        const names = [...new Set(hits.map(p => p.product_name))].slice(0, 3);
+        const cheapest = hits.reduce((a, b) => (b.price < a.price ? b : a));
+        const list = names.map(n => '• ' + n).join('\n');
+        const more = hits.length > names.length ? `\n…and ${hits.length - names.length} more` : '';
+        return {
+            text: `Yes! We have ${hits.length} option${hits.length > 1 ? 's' : ''} for you 🛒\n\n${list}${more}\n\nStarting at ₹${cheapest.price} · delivered in minutes ⚡\nTap below to see them all 👇`,
+            searchQuery: chatTokens(text).join(' ')
+        };
+    }
+
+    // 2) Greetings / thanks / refund — whole-word so "hi" != "chips".
+    const isCanned = r => r.kw.includes('hello') || r.kw.includes('thank') || r.kw.includes('refund');
+    for (const r of SMART_REPLIES) {
+        if (isCanned(r) && r.kw.some(k => hasWholeWord(t, k))) return { text: r.reply, browse: true };
+    }
+
+    // 3) Category hint if the words map to one (substring stems like "moisturi").
+    for (const r of SMART_REPLIES) {
+        if (!isCanned(r) && r.kw.some(k => t.includes(k))) return { text: r.reply, browse: false };
+    }
+
+    // 4) Truly nothing — polite "coming soon".
+    const q = text.trim().replace(/[<>]/g, '');
+    return {
+        text: `Sorry! "${q}" abhi humaare paas available nahi hai 😔\n\nHum ise jaldi hi laa rahe hain — stay tuned! 🚀🔜\n\nTab tak aap ye popular categories explore kar sakte hain 👇`,
+        browse: true
+    };
+}
+
 async function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
@@ -112,18 +204,18 @@ async function sendMessage() {
     await new Promise(r => setTimeout(r, 300 + Math.random() * 500));
 
     removeLoading(loadingId);
-    const reply = getSmartReply(text);
-    chatHistory.push({ role: 'assistant', content: reply });
-    appendMessage('assistant', reply);
+    const reply = buildReply(text);
+    chatHistory.push({ role: 'assistant', content: reply.text });
+    appendMessage('assistant', reply.text);
     appendActionLinks(reply, text);
 }
 
 function appendMessage(role, content) {
     const messagesDiv = document.getElementById('chatMessages');
     const msgDiv = document.createElement('div');
-    msgDiv.className = `max-w-[85%] p-3 rounded-2xl text-sm font-body-md border border-outline-variant/20 shadow-sm ${
-        role === 'user' 
-        ? 'self-end bg-primary-container text-on-primary-container rounded-tr-sm' 
+    msgDiv.className = `max-w-[85%] p-3 rounded-2xl text-sm font-body-md border border-outline-variant/20 shadow-sm whitespace-pre-wrap ${
+        role === 'user'
+        ? 'self-end bg-primary-container text-on-primary-container rounded-tr-sm'
         : 'self-start bg-surface-container text-on-surface rounded-tl-sm'
     }`;
     msgDiv.textContent = content;
@@ -187,28 +279,44 @@ function extractChatActions(replyText, userText) {
     return found.slice(0, 3);
 }
 
-function appendActionLinks(replyText, userText) {
-    let actions = extractChatActions(replyText, userText);
+function appendActionLinks(reply, userText) {
+    // Back-compat: allow a plain string reply too.
+    if (typeof reply === 'string') reply = { text: reply };
     const messagesDiv = document.getElementById('chatMessages');
     const wrap = document.createElement('div');
     wrap.className = 'self-start max-w-[90%] flex flex-wrap gap-2 -mt-1';
+    const chip = (href, onclick, label) =>
+        `<a href="${href}" onclick="${onclick}" class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">${label} <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>`;
 
+    // Product match -> one chip that opens the search results for that query.
+    if (reply.searchQuery) {
+        const q = reply.searchQuery.replace(/'/g, '');
+        wrap.innerHTML = chip(`index.html?q=${encodeURIComponent(q)}`, `return chipSearch('${q}')`, `🔍 View products`);
+        messagesDiv.appendChild(wrap);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        return;
+    }
+
+    // Otherwise fall back to category chips derived from the text.
+    let actions = reply.browse ? [] : extractChatActions(reply.text, userText);
     if (actions.length === 0) {
-        // Always give at least one link.
-        wrap.innerHTML = `
-            <a href="index.html?view=categories" onclick="return chipCategories()"
-               class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">
-               🧭 Browse all categories <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </a>`;
+        wrap.innerHTML = chip('index.html?view=categories', 'return chipCategories()', '🧭 Browse all categories');
     } else {
-        wrap.innerHTML = actions.map(c => `
-            <a href="index.html?cat=${c.id}" onclick="return chipNav('${c.id}')"
-               class="inline-flex items-center gap-1 bg-primary-container text-on-primary-container text-xs font-semibold px-3 py-1.5 rounded-full border border-outline-variant/20 hover:opacity-90 transition-opacity">
-               ${c.emoji} Explore <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </a>`).join('');
+        wrap.innerHTML = actions.map(c =>
+            chip(`index.html?cat=${c.id}`, `return chipNav('${c.id}')`, `${c.emoji} Explore`)).join('');
     }
     messagesDiv.appendChild(wrap);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+// In-page search if the store app is loaded; otherwise follow the href.
+function chipSearch(query) {
+    if (typeof doSearch === 'function' && document.getElementById('searchGrid')) {
+        doSearch(query);
+        if (isChatOpen) toggleChat();
+        return false;
+    }
+    return true;
 }
 
 function chipCategories() {

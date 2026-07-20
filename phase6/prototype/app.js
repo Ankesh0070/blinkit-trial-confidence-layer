@@ -83,8 +83,14 @@ const IMAGE_KW = {
 // OpenProductsFacts / DummyJSON). imgManifest maps product_id -> how many exist,
 // so galleries never show a broken/placeholder slide.
 let imgManifest = {};
-const IMG_VER = '13'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
+const IMG_VER = '14'; // bump when images are re-fetched so browsers load fresh copies (fixes stale card/PDP mismatch)
 function productImages(product) {
+    // New expanded catalog ships an explicit per-product image list (pooled per
+    // subcategory). Prefer it; fall back to the id-based manifest lookup for any
+    // legacy product that predates the `images` field.
+    if (Array.isArray(product.images) && product.images.length) {
+        return product.images.map(f => `img/${f}?v=${IMG_VER}`);
+    }
     const pid = product.product_id || product.id;
     const n = imgManifest[pid] || 3;
     return Array.from({ length: n }, (_, i) => `img/${pid}-${i + 1}.jpg?v=${IMG_VER}`);
