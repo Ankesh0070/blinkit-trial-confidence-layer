@@ -12,6 +12,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Diagnostic: reports WHICH keys are configured (booleans only — never the values).
+app.get('/api/health', (req, res) => res.json({
+    groq_configured: !!process.env.GROQ_API_KEY,
+    gemini_configured: !!process.env.GEMINI_API_KEY,
+    env_var_names_seen: Object.keys(process.env).filter(k => /GROQ|GEMINI|API/i.test(k))
+}));
+
 // Open the bare URL straight into the store UI.
 app.get('/', (req, res) => res.redirect('/prototype/index.html'));
 
