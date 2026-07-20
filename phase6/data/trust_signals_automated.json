@@ -140,7 +140,7 @@
   "products": [
     {
       "product_id": "ELEC-001",
-      "product_name": "boAt Airdopes 141 TWS Earbuds",
+      "product_name": "Wireless Earbuds (TWS)",
       "category": "electronics",
       "subcategory": "earbuds",
       "price": 1299,
@@ -183,7 +183,7 @@
     },
     {
       "product_id": "ELEC-002",
-      "product_name": "Ambrane 10000mAh Power Bank",
+      "product_name": "Magnetic Power Bank (10000mAh)",
       "category": "electronics",
       "subcategory": "power_bank",
       "price": 699,
@@ -226,7 +226,7 @@
     },
     {
       "product_id": "ELEC-003",
-      "product_name": "USB-C Fast Charging Cable (1m)",
+      "product_name": "USB-C Fast Charging Cable",
       "category": "electronics",
       "subcategory": "cable",
       "price": 199,
@@ -269,7 +269,7 @@
     },
     {
       "product_id": "ELEC-004",
-      "product_name": "boAt Rockerz 450 Headphones",
+      "product_name": "Over-Ear Wireless Headphones",
       "category": "electronics",
       "subcategory": "headphones",
       "price": 1499,
@@ -355,7 +355,7 @@
     },
     {
       "product_id": "ELEC-006",
-      "product_name": "20W USB-C Adapter (Fast Charger)",
+      "product_name": "Wireless Charging Pad",
       "category": "electronics",
       "subcategory": "adapter",
       "price": 599,
@@ -1174,7 +1174,7 @@
     },
     {
       "product_id": "ELEC-007",
-      "product_name": "USB-C OTG Adapter",
+      "product_name": "USB Fast Charger Adapter",
       "category": "electronics",
       "subcategory": "adapter",
       "price": 149,
@@ -1203,7 +1203,7 @@
     },
     {
       "product_id": "ELEC-008",
-      "product_name": "Foldable Mobile Phone Stand",
+      "product_name": "Selfie Stick + Phone Stand",
       "category": "electronics",
       "subcategory": "phone_stand",
       "price": 199,
