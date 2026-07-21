@@ -986,17 +986,17 @@ function renderCategoriesOverview() {
 
     container.innerHTML = `
         <div class="mb-6">
-            <h3 class="font-headline-md text-on-surface mb-1">Your everyday</h3>
-            <p class="text-xs text-on-surface-variant mb-3">Groceries and daily essentials you already shop.</p>
-            <div class="${gridCls}">${grocery.map(tile).join('')}</div>
-        </div>
-        <div>
             <div class="flex items-center gap-2 mb-1">
                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;color:#f7d032">auto_awesome</span>
                 <h3 class="font-headline-md text-on-surface">New categories to try</h3>
             </div>
             <p class="text-xs text-on-surface-variant mb-3">Backed by AI trust signals from real reviews — try with confidence.</p>
             <div class="${gridCls}">${trial.map(tile).join('')}</div>
+        </div>
+        <div>
+            <h3 class="font-headline-md text-on-surface mb-1">Your everyday</h3>
+            <p class="text-xs text-on-surface-variant mb-3">Groceries and daily essentials you already shop.</p>
+            <div class="${gridCls}">${grocery.map(tile).join('')}</div>
         </div>`;
 }
 
