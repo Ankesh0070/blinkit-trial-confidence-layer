@@ -148,8 +148,7 @@
       "mrp": 2430,
       "image": "earbuds",
       "images": [
-        "ELEC-001-1.jpg",
-        "ELEC-001-2.jpg"
+        "GEN-ELE-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -228,8 +227,7 @@
       "mrp": 295,
       "image": "cable",
       "images": [
-        "ELEC-003-1.jpg",
-        "ELEC-003-2.jpg"
+        "GEN-ELE-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -268,8 +266,7 @@
       "mrp": 1254,
       "image": "headphones",
       "images": [
-        "ELEC-004-1.jpg",
-        "ELEC-004-2.jpg"
+        "GEN-ELE-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -308,8 +305,7 @@
       "mrp": 624,
       "image": "led",
       "images": [
-        "ELEC-005-1.jpg",
-        "ELEC-005-2.jpg"
+        "GEN-ELE-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -348,8 +344,7 @@
       "mrp": 1356,
       "image": "adapter",
       "images": [
-        "ELEC-006-1.jpg",
-        "ELEC-007-1.jpg"
+        "GEN-ELE-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -395,7 +390,7 @@
       "mrp": 195,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -434,8 +429,7 @@
       "mrp": 1938,
       "image": "earbuds",
       "images": [
-        "ELEC-001-2.jpg",
-        "ELEC-001-3.jpg"
+        "GEN-ELE-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -481,8 +475,7 @@
       "mrp": 2237,
       "image": "power_bank",
       "images": [
-        "ELEC-002-2.jpg",
-        "ELEC-002-3.jpg"
+        "GEN-ELE-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -521,8 +514,7 @@
       "mrp": 533,
       "image": "cable",
       "images": [
-        "ELEC-003-2.jpg",
-        "ELEC-003-3.jpg"
+        "GEN-ELE-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -568,8 +560,7 @@
       "mrp": 866,
       "image": "headphones",
       "images": [
-        "ELEC-004-2.jpg",
-        "ELEC-004-1.jpg"
+        "GEN-ELE-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -608,8 +599,7 @@
       "mrp": 267,
       "image": "led",
       "images": [
-        "ELEC-005-2.jpg",
-        "ELEC-005-1.jpg"
+        "GEN-ELE-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -641,8 +631,7 @@
       "mrp": 1337,
       "image": "adapter",
       "images": [
-        "ELEC-007-1.jpg",
-        "ELEC-006-1.jpg"
+        "GEN-ELE-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -727,8 +716,7 @@
       "mrp": 1638,
       "image": "earbuds",
       "images": [
-        "ELEC-001-3.jpg",
-        "ELEC-001-1.jpg"
+        "GEN-ELE-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -760,8 +748,7 @@
       "mrp": 1054,
       "image": "power_bank",
       "images": [
-        "ELEC-002-3.jpg",
-        "ELEC-002-1.jpg"
+        "GEN-ELE-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -793,8 +780,7 @@
       "mrp": 478,
       "image": "cable",
       "images": [
-        "ELEC-003-3.jpg",
-        "ELEC-003-4.jpg"
+        "GEN-ELE-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -840,8 +826,7 @@
       "mrp": 799,
       "image": "headphones",
       "images": [
-        "ELEC-004-1.jpg",
-        "ELEC-004-2.jpg"
+        "GEN-ELE-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -873,8 +858,7 @@
       "mrp": 378,
       "image": "led",
       "images": [
-        "ELEC-005-1.jpg",
-        "ELEC-005-2.jpg"
+        "GEN-ELE-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -913,8 +897,7 @@
       "mrp": 582,
       "image": "adapter",
       "images": [
-        "ELEC-006-1.jpg",
-        "ELEC-007-1.jpg"
+        "GEN-ELE-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -992,8 +975,7 @@
       "mrp": 2296,
       "image": "earbuds",
       "images": [
-        "ELEC-001-1.jpg",
-        "ELEC-001-2.jpg"
+        "GEN-ELE-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -1025,8 +1007,7 @@
       "mrp": 1136,
       "image": "headphones",
       "images": [
-        "ELEC-004-2.jpg",
-        "ELEC-004-1.jpg"
+        "GEN-ELE-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -1065,8 +1046,7 @@
       "mrp": 974,
       "image": "led",
       "images": [
-        "ELEC-005-2.jpg",
-        "ELEC-005-1.jpg"
+        "GEN-ELE-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1159,7 +1139,7 @@
       "mrp": 565,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1198,8 +1178,7 @@
       "mrp": 1698,
       "image": "earbuds",
       "images": [
-        "ELEC-001-2.jpg",
-        "ELEC-001-3.jpg"
+        "GEN-ELE-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -1238,8 +1217,7 @@
       "mrp": 316,
       "image": "cable",
       "images": [
-        "ELEC-003-4.jpg",
-        "ELEC-003-1.jpg"
+        "GEN-ELE-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1271,8 +1249,7 @@
       "mrp": 1162,
       "image": "headphones",
       "images": [
-        "ELEC-004-1.jpg",
-        "ELEC-004-2.jpg"
+        "GEN-ELE-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -1358,8 +1335,7 @@
       "mrp": 693,
       "image": "adapter",
       "images": [
-        "ELEC-006-1.jpg",
-        "ELEC-007-1.jpg"
+        "GEN-ELE-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -1405,7 +1381,7 @@
       "mrp": 683,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1444,8 +1420,7 @@
       "mrp": 1268,
       "image": "earbuds",
       "images": [
-        "ELEC-001-3.jpg",
-        "ELEC-001-1.jpg"
+        "GEN-ELE-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1484,8 +1459,7 @@
       "mrp": 2207,
       "image": "power_bank",
       "images": [
-        "ELEC-002-1.jpg",
-        "ELEC-002-2.jpg"
+        "GEN-ELE-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1531,8 +1505,7 @@
       "mrp": 684,
       "image": "cable",
       "images": [
-        "ELEC-003-1.jpg",
-        "ELEC-003-2.jpg"
+        "GEN-ELE-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1571,8 +1544,7 @@
       "mrp": 914,
       "image": "headphones",
       "images": [
-        "ELEC-004-2.jpg",
-        "ELEC-004-1.jpg"
+        "GEN-ELE-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1618,8 +1590,7 @@
       "mrp": 1229,
       "image": "led",
       "images": [
-        "ELEC-005-2.jpg",
-        "ELEC-005-1.jpg"
+        "GEN-ELE-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1658,8 +1629,7 @@
       "mrp": 1011,
       "image": "adapter",
       "images": [
-        "ELEC-007-1.jpg",
-        "ELEC-006-1.jpg"
+        "GEN-ELE-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -1698,7 +1668,7 @@
       "mrp": 188,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1730,8 +1700,7 @@
       "mrp": 1987,
       "image": "earbuds",
       "images": [
-        "ELEC-001-1.jpg",
-        "ELEC-001-2.jpg"
+        "GEN-ELE-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1770,8 +1739,7 @@
       "mrp": 1252,
       "image": "power_bank",
       "images": [
-        "ELEC-002-2.jpg",
-        "ELEC-002-3.jpg"
+        "GEN-ELE-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -1803,8 +1771,7 @@
       "mrp": 494,
       "image": "cable",
       "images": [
-        "ELEC-003-2.jpg",
-        "ELEC-003-3.jpg"
+        "GEN-ELE-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1843,8 +1810,7 @@
       "mrp": 2303,
       "image": "headphones",
       "images": [
-        "ELEC-004-1.jpg",
-        "ELEC-004-2.jpg"
+        "GEN-ELE-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -1883,8 +1849,7 @@
       "mrp": 1398,
       "image": "adapter",
       "images": [
-        "ELEC-006-1.jpg",
-        "ELEC-007-1.jpg"
+        "GEN-ELE-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -1923,7 +1888,7 @@
       "mrp": 785,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2002,8 +1967,7 @@
       "mrp": 733,
       "image": "cable",
       "images": [
-        "ELEC-003-3.jpg",
-        "ELEC-003-4.jpg"
+        "GEN-ELE-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2042,8 +2006,7 @@
       "mrp": 1206,
       "image": "headphones",
       "images": [
-        "ELEC-004-2.jpg",
-        "ELEC-004-1.jpg"
+        "GEN-ELE-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -2082,8 +2045,7 @@
       "mrp": 832,
       "image": "led",
       "images": [
-        "ELEC-005-1.jpg",
-        "ELEC-005-2.jpg"
+        "GEN-ELE-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2115,8 +2077,7 @@
       "mrp": 1149,
       "image": "adapter",
       "images": [
-        "ELEC-007-1.jpg",
-        "ELEC-006-1.jpg"
+        "GEN-ELE-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2148,8 +2109,7 @@
       "mrp": 951,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-1.jpg",
-        "BEAUTY-001-2.jpg"
+        "GEN-BEA-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
