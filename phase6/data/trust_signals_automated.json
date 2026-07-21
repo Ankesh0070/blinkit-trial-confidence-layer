@@ -24376,8 +24376,7 @@
       "mrp": 20,
       "image": "biscuits",
       "images": [
-        "BIS-7-1.jpg",
-        "BIS-8-1.jpg"
+        "GEN-BIS-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -24409,7 +24408,7 @@
       "mrp": 125,
       "image": "rusk",
       "images": [
-        "BIS-2-1.jpg"
+        "GEN-BIS-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -24455,7 +24454,7 @@
       "mrp": 213,
       "image": "cake",
       "images": [
-        "BIS-3-1.jpg"
+        "GEN-BIS-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -24494,7 +24493,7 @@
       "mrp": 187,
       "image": "cookies",
       "images": [
-        "BIS-4-1.jpg"
+        "GEN-BIS-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -24540,8 +24539,7 @@
       "mrp": 47,
       "image": "biscuits",
       "images": [
-        "BIS-8-1.jpg",
-        "BIS-1-1.jpg"
+        "GEN-BIS-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -24580,7 +24578,7 @@
       "mrp": 168,
       "image": "rusk",
       "images": [
-        "BIS-2-1.jpg"
+        "GEN-BIS-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -24612,7 +24610,7 @@
       "mrp": 282,
       "image": "cake",
       "images": [
-        "BIS-3-1.jpg"
+        "GEN-BIS-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24658,7 +24656,7 @@
       "mrp": 123,
       "image": "cookies",
       "images": [
-        "BIS-4-1.jpg"
+        "GEN-BIS-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -24697,8 +24695,7 @@
       "mrp": 182,
       "image": "biscuits",
       "images": [
-        "BIS-1-1.jpg",
-        "BIS-5-1.jpg"
+        "GEN-BIS-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -24737,7 +24734,7 @@
       "mrp": 81,
       "image": "rusk",
       "images": [
-        "BIS-2-1.jpg"
+        "GEN-BIS-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -24769,7 +24766,7 @@
       "mrp": 84,
       "image": "cake",
       "images": [
-        "BIS-3-1.jpg"
+        "GEN-BIS-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -24808,7 +24805,7 @@
       "mrp": 275,
       "image": "cookies",
       "images": [
-        "BIS-4-1.jpg"
+        "GEN-BIS-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -24847,8 +24844,7 @@
       "mrp": 95,
       "image": "biscuits",
       "images": [
-        "BIS-5-1.jpg",
-        "BIS-6-1.jpg"
+        "GEN-BIS-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24887,7 +24883,7 @@
       "mrp": 41,
       "image": "rusk",
       "images": [
-        "BIS-2-1.jpg"
+        "GEN-BIS-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -24926,7 +24922,7 @@
       "mrp": 211,
       "image": "cake",
       "images": [
-        "BIS-3-1.jpg"
+        "GEN-BIS-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -24965,7 +24961,7 @@
       "mrp": 205,
       "image": "cookies",
       "images": [
-        "BIS-4-1.jpg"
+        "GEN-BIS-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -25011,8 +25007,7 @@
       "mrp": 101,
       "image": "biscuits",
       "images": [
-        "BIS-6-1.jpg",
-        "BIS-7-1.jpg"
+        "GEN-BIS-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -25058,7 +25053,7 @@
       "mrp": 146,
       "image": "rusk",
       "images": [
-        "BIS-2-1.jpg"
+        "GEN-BIS-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -25090,7 +25085,7 @@
       "mrp": 284,
       "image": "cake",
       "images": [
-        "BIS-3-1.jpg"
+        "GEN-BIS-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25129,7 +25124,7 @@
       "mrp": 45,
       "image": "cookies",
       "images": [
-        "BIS-4-1.jpg"
+        "GEN-BIS-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25168,8 +25163,7 @@
       "mrp": 357,
       "image": "chocolate",
       "images": [
-        "SWT-1-1.jpg",
-        "SWT-4-1.jpg"
+        "GEN-SWT-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -25201,8 +25195,7 @@
       "mrp": 297,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25241,8 +25234,7 @@
       "mrp": 85,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25281,8 +25273,7 @@
       "mrp": 260,
       "image": "chocolate",
       "images": [
-        "SWT-4-1.jpg",
-        "SWT-5-1.jpg"
+        "GEN-SWT-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25321,8 +25312,7 @@
       "mrp": 147,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -25361,8 +25351,7 @@
       "mrp": 109,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -25401,8 +25390,7 @@
       "mrp": 112,
       "image": "chocolate",
       "images": [
-        "SWT-5-1.jpg",
-        "SWT-6-1.jpg"
+        "GEN-SWT-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -25441,8 +25429,7 @@
       "mrp": 148,
       "image": "icecream",
       "images": [
-        "SWT-2-3.jpg",
-        "SWT-2-1.jpg"
+        "GEN-SWT-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -25474,8 +25461,7 @@
       "mrp": 201,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25507,8 +25493,7 @@
       "mrp": 391,
       "image": "chocolate",
       "images": [
-        "SWT-6-1.jpg",
-        "SWT-8-1.jpg"
+        "GEN-SWT-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25540,8 +25525,7 @@
       "mrp": 123,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -25587,8 +25571,7 @@
       "mrp": 229,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25627,8 +25610,7 @@
       "mrp": 379,
       "image": "chocolate",
       "images": [
-        "SWT-8-1.jpg",
-        "SWT-1-1.jpg"
+        "GEN-SWT-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25667,8 +25649,7 @@
       "mrp": 297,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -25700,8 +25681,7 @@
       "mrp": 212,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25740,8 +25720,7 @@
       "mrp": 117,
       "image": "chocolate",
       "images": [
-        "SWT-1-1.jpg",
-        "SWT-4-1.jpg"
+        "GEN-SWT-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25773,8 +25752,7 @@
       "mrp": 348,
       "image": "icecream",
       "images": [
-        "SWT-2-3.jpg",
-        "SWT-2-1.jpg"
+        "GEN-SWT-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -25813,8 +25791,7 @@
       "mrp": 227,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25860,8 +25837,7 @@
       "mrp": 224,
       "image": "chocolate",
       "images": [
-        "SWT-4-1.jpg",
-        "SWT-5-1.jpg"
+        "GEN-SWT-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -25900,8 +25876,7 @@
       "mrp": 305,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25947,8 +25922,7 @@
       "mrp": 110,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -25987,8 +25961,7 @@
       "mrp": 336,
       "image": "chocolate",
       "images": [
-        "SWT-5-1.jpg",
-        "SWT-6-1.jpg"
+        "GEN-SWT-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -26027,8 +26000,7 @@
       "mrp": 157,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -26074,8 +26046,7 @@
       "mrp": 190,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26121,8 +26092,7 @@
       "mrp": 80,
       "image": "chocolate",
       "images": [
-        "SWT-6-1.jpg",
-        "SWT-8-1.jpg"
+        "GEN-SWT-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -26161,8 +26131,7 @@
       "mrp": 381,
       "image": "icecream",
       "images": [
-        "SWT-2-3.jpg",
-        "SWT-2-1.jpg"
+        "GEN-SWT-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -26194,8 +26163,7 @@
       "mrp": 149,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -26234,8 +26202,7 @@
       "mrp": 236,
       "image": "chocolate",
       "images": [
-        "SWT-8-1.jpg",
-        "SWT-1-1.jpg"
+        "GEN-SWT-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -26274,8 +26241,7 @@
       "mrp": 52,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26314,8 +26280,7 @@
       "mrp": 141,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -26347,8 +26312,7 @@
       "mrp": 215,
       "image": "chocolate",
       "images": [
-        "SWT-1-1.jpg",
-        "SWT-4-1.jpg"
+        "GEN-SWT-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -26394,8 +26358,7 @@
       "mrp": 56,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -26427,8 +26390,7 @@
       "mrp": 240,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -26467,8 +26429,7 @@
       "mrp": 99,
       "image": "chocolate",
       "images": [
-        "SWT-4-1.jpg",
-        "SWT-5-1.jpg"
+        "GEN-SWT-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26507,8 +26468,7 @@
       "mrp": 100,
       "image": "icecream",
       "images": [
-        "SWT-2-3.jpg",
-        "SWT-2-1.jpg"
+        "GEN-SWT-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26554,8 +26514,7 @@
       "mrp": 245,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -26601,8 +26560,7 @@
       "mrp": 430,
       "image": "chocolate",
       "images": [
-        "SWT-5-1.jpg",
-        "SWT-6-1.jpg"
+        "GEN-SWT-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -26634,8 +26592,7 @@
       "mrp": 254,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -26674,8 +26631,7 @@
       "mrp": 6,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26721,8 +26677,7 @@
       "mrp": 17,
       "image": "chocolate",
       "images": [
-        "SWT-6-1.jpg",
-        "SWT-8-1.jpg"
+        "GEN-SWT-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26768,8 +26723,7 @@
       "mrp": 238,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -26808,8 +26762,7 @@
       "mrp": 32,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -26848,8 +26801,7 @@
       "mrp": 290,
       "image": "chocolate",
       "images": [
-        "SWT-8-1.jpg",
-        "SWT-1-1.jpg"
+        "GEN-SWT-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -26888,8 +26840,7 @@
       "mrp": 211,
       "image": "icecream",
       "images": [
-        "SWT-2-3.jpg",
-        "SWT-2-1.jpg"
+        "GEN-SWT-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26935,8 +26886,7 @@
       "mrp": 85,
       "image": "candy",
       "images": [
-        "SWT-3-1.jpg",
-        "SWT-7-1.jpg"
+        "GEN-SWT-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -26982,8 +26932,7 @@
       "mrp": 189,
       "image": "chocolate",
       "images": [
-        "SWT-1-1.jpg",
-        "SWT-4-1.jpg"
+        "GEN-SWT-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -27015,8 +26964,7 @@
       "mrp": 141,
       "image": "icecream",
       "images": [
-        "SWT-2-1.jpg",
-        "SWT-2-2.jpg"
+        "GEN-SWT-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -27055,8 +27003,7 @@
       "mrp": 228,
       "image": "candy",
       "images": [
-        "SWT-7-1.jpg",
-        "SWT-3-1.jpg"
+        "GEN-SWT-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -27095,8 +27042,7 @@
       "mrp": 84,
       "image": "chocolate",
       "images": [
-        "SWT-4-1.jpg",
-        "SWT-5-1.jpg"
+        "GEN-SWT-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -27135,8 +27081,7 @@
       "mrp": 230,
       "image": "icecream",
       "images": [
-        "SWT-2-2.jpg",
-        "SWT-2-3.jpg"
+        "GEN-SWT-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -27175,8 +27120,7 @@
       "mrp": 2124,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -27222,7 +27166,7 @@
       "mrp": 46,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -27261,8 +27205,7 @@
       "mrp": 130,
       "image": "spices",
       "images": [
-        "MOM-3-1.jpg",
-        "MOM-4-1.jpg"
+        "GEN-MOO-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -27294,8 +27237,7 @@
       "mrp": 2006,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -27341,7 +27283,7 @@
       "mrp": 80,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -27373,8 +27315,7 @@
       "mrp": 456,
       "image": "spices",
       "images": [
-        "MOM-4-1.jpg",
-        "MOM-6-1.jpg"
+        "GEN-MOO-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -27420,8 +27361,7 @@
       "mrp": 215,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -27460,7 +27400,7 @@
       "mrp": 34,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -27506,8 +27446,7 @@
       "mrp": 401,
       "image": "spices",
       "images": [
-        "MOM-6-1.jpg",
-        "MOM-7-1.jpg"
+        "GEN-MOO-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -27546,8 +27485,7 @@
       "mrp": 1693,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -27586,7 +27524,7 @@
       "mrp": 174,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -27625,8 +27563,7 @@
       "mrp": 513,
       "image": "spices",
       "images": [
-        "MOM-7-1.jpg",
-        "MOM-8-1.jpg"
+        "GEN-MOO-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -27665,8 +27602,7 @@
       "mrp": 1163,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -27705,7 +27641,7 @@
       "mrp": 184,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -27737,8 +27673,7 @@
       "mrp": 108,
       "image": "spices",
       "images": [
-        "MOM-8-1.jpg",
-        "MOM-3-1.jpg"
+        "GEN-MOO-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -27784,8 +27719,7 @@
       "mrp": 2063,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -27817,8 +27751,7 @@
       "mrp": 449,
       "image": "spices",
       "images": [
-        "MOM-3-1.jpg",
-        "MOM-4-1.jpg"
+        "GEN-MOO-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -27857,8 +27790,7 @@
       "mrp": 1828,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -27897,7 +27829,7 @@
       "mrp": 146,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -27943,8 +27875,7 @@
       "mrp": 510,
       "image": "spices",
       "images": [
-        "MOM-4-1.jpg",
-        "MOM-6-1.jpg"
+        "GEN-MOO-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -27990,8 +27921,7 @@
       "mrp": 865,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -28037,7 +27967,7 @@
       "mrp": 73,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -28076,8 +28006,7 @@
       "mrp": 400,
       "image": "spices",
       "images": [
-        "MOM-6-1.jpg",
-        "MOM-7-1.jpg"
+        "GEN-MOO-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -28116,8 +28045,7 @@
       "mrp": 2087,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -28156,7 +28084,7 @@
       "mrp": 157,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -28188,8 +28116,7 @@
       "mrp": 216,
       "image": "spices",
       "images": [
-        "MOM-7-1.jpg",
-        "MOM-8-1.jpg"
+        "GEN-MOO-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -28228,8 +28155,7 @@
       "mrp": 1957,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -28268,7 +28194,7 @@
       "mrp": 25,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -28307,8 +28233,7 @@
       "mrp": 138,
       "image": "spices",
       "images": [
-        "MOM-8-1.jpg",
-        "MOM-3-1.jpg"
+        "GEN-MOO-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -28340,8 +28265,7 @@
       "mrp": 1852,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -28373,7 +28297,7 @@
       "mrp": 46,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -28412,8 +28336,7 @@
       "mrp": 179,
       "image": "spices",
       "images": [
-        "MOM-3-1.jpg",
-        "MOM-4-1.jpg"
+        "GEN-MOO-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -28452,8 +28375,7 @@
       "mrp": 1297,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -28492,7 +28414,7 @@
       "mrp": 46,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -28531,8 +28453,7 @@
       "mrp": 327,
       "image": "spices",
       "images": [
-        "MOM-4-1.jpg",
-        "MOM-6-1.jpg"
+        "GEN-MOO-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -28571,8 +28492,7 @@
       "mrp": 1056,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -28604,8 +28524,7 @@
       "mrp": 389,
       "image": "spices",
       "images": [
-        "MOM-6-1.jpg",
-        "MOM-7-1.jpg"
+        "GEN-MOO-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -28644,8 +28563,7 @@
       "mrp": 1070,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -28684,7 +28602,7 @@
       "mrp": 157,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -28716,8 +28634,7 @@
       "mrp": 116,
       "image": "spices",
       "images": [
-        "MOM-7-1.jpg",
-        "MOM-8-1.jpg"
+        "GEN-MOO-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -28756,8 +28673,7 @@
       "mrp": 1376,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -28796,8 +28712,7 @@
       "mrp": 56,
       "image": "spices",
       "images": [
-        "MOM-8-1.jpg",
-        "MOM-3-1.jpg"
+        "GEN-MOO-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -28836,8 +28751,7 @@
       "mrp": 661,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -28883,7 +28797,7 @@
       "mrp": 136,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -28922,8 +28836,7 @@
       "mrp": 48,
       "image": "spices",
       "images": [
-        "MOM-3-1.jpg",
-        "MOM-4-1.jpg"
+        "GEN-MOO-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -28962,8 +28875,7 @@
       "mrp": 1219,
       "image": "oil",
       "images": [
-        "MOM-1-1.jpg",
-        "MOM-5-1.jpg"
+        "GEN-MOO-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -29002,7 +28914,7 @@
       "mrp": 67,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -29041,8 +28953,7 @@
       "mrp": 276,
       "image": "spices",
       "images": [
-        "MOM-4-1.jpg",
-        "MOM-6-1.jpg"
+        "GEN-MOO-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -29081,8 +28992,7 @@
       "mrp": 1212,
       "image": "oil",
       "images": [
-        "MOM-5-1.jpg",
-        "MOM-1-1.jpg"
+        "GEN-MOO-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -29121,7 +29031,7 @@
       "mrp": 81,
       "image": "salt",
       "images": [
-        "MOM-2-1.jpg"
+        "GEN-MOO-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -29160,8 +29070,7 @@
       "mrp": 39,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -29207,8 +29116,7 @@
       "mrp": 449,
       "image": "frozenfood",
       "images": [
-        "INF-2-1.jpg",
-        "INF-3-1.jpg"
+        "GEN-INF-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -29247,7 +29155,7 @@
       "mrp": 63,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -29286,8 +29194,7 @@
       "mrp": 133,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -29326,8 +29233,7 @@
       "mrp": 166,
       "image": "frozenfood",
       "images": [
-        "INF-3-1.jpg",
-        "INF-6-1.jpg"
+        "GEN-INF-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -29359,7 +29265,7 @@
       "mrp": 51,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -29398,8 +29304,7 @@
       "mrp": 140,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -29438,8 +29343,7 @@
       "mrp": 166,
       "image": "frozenfood",
       "images": [
-        "INF-6-1.jpg",
-        "INF-7-1.jpg"
+        "GEN-INF-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -29478,7 +29382,7 @@
       "mrp": 103,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -29517,8 +29421,7 @@
       "mrp": 76,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -29550,8 +29453,7 @@
       "mrp": 145,
       "image": "frozenfood",
       "images": [
-        "INF-7-1.jpg",
-        "INF-8-1.jpg"
+        "GEN-INF-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -29590,7 +29492,7 @@
       "mrp": 125,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -29629,8 +29531,7 @@
       "mrp": 106,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -29669,8 +29570,7 @@
       "mrp": 409,
       "image": "frozenfood",
       "images": [
-        "INF-8-1.jpg",
-        "INF-2-1.jpg"
+        "GEN-INF-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -29702,7 +29602,7 @@
       "mrp": 102,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -29741,8 +29641,7 @@
       "mrp": 60,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -29788,8 +29687,7 @@
       "mrp": 98,
       "image": "frozenfood",
       "images": [
-        "INF-2-1.jpg",
-        "INF-3-1.jpg"
+        "GEN-INF-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -29821,7 +29719,7 @@
       "mrp": 66,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -29853,8 +29751,7 @@
       "mrp": 104,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -29893,8 +29790,7 @@
       "mrp": 124,
       "image": "frozenfood",
       "images": [
-        "INF-3-1.jpg",
-        "INF-6-1.jpg"
+        "GEN-INF-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -29926,8 +29822,7 @@
       "mrp": 71,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -29966,8 +29861,7 @@
       "mrp": 231,
       "image": "frozenfood",
       "images": [
-        "INF-6-1.jpg",
-        "INF-7-1.jpg"
+        "GEN-INF-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -30013,7 +29907,7 @@
       "mrp": 116,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -30052,8 +29946,7 @@
       "mrp": 182,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -30092,8 +29985,7 @@
       "mrp": 277,
       "image": "frozenfood",
       "images": [
-        "INF-7-1.jpg",
-        "INF-8-1.jpg"
+        "GEN-INF-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -30125,7 +30017,7 @@
       "mrp": 121,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -30157,8 +30049,7 @@
       "mrp": 199,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -30197,8 +30088,7 @@
       "mrp": 212,
       "image": "frozenfood",
       "images": [
-        "INF-8-1.jpg",
-        "INF-2-1.jpg"
+        "GEN-INF-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -30237,8 +30127,7 @@
       "mrp": 138,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -30270,8 +30159,7 @@
       "mrp": 529,
       "image": "frozenfood",
       "images": [
-        "INF-2-1.jpg",
-        "INF-3-1.jpg"
+        "GEN-INF-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -30303,7 +30191,7 @@
       "mrp": 48,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -30349,8 +30237,7 @@
       "mrp": 35,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
