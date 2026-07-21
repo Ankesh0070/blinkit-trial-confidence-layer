@@ -1006,6 +1006,19 @@ function openMobileSearch() {
     setTimeout(() => { const el = document.getElementById('searchInputMobile'); if (el) el.focus(); }, 50);
 }
 
+// Word-based relevance score: rewards whole-word and word-prefix matches only
+// (not arbitrary substrings), so a single letter doesn't flood the results and
+// ranking is by relevance rather than catalog order.
+function searchScore(text, tokens) {
+    const words = (text || '').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+    let s = 0;
+    for (const t of tokens) {
+        if (words.includes(t)) s += 4;                       // exact word
+        else if (words.some(w => w.startsWith(t))) s += 3;   // word prefix
+    }
+    return s;
+}
+
 function doSearch(query) {
     query = (query || '').trim().toLowerCase();
     // Keep both search inputs in sync.
@@ -1016,18 +1029,41 @@ function doSearch(query) {
     if (query.length === 0) { showView('home'); return; }
     showView('search', { silent: true });
 
-    const results = trustData.products.filter(p => {
-        const cat = trustData.category_signals[p.category];
-        return p.product_name.toLowerCase().includes(query)
-            || (p.subcategory || '').toLowerCase().includes(query)
-            || (cat && cat.display_name.toLowerCase().includes(query));
-    });
+    const tokens = query.split(/\s+/).filter(Boolean);
 
-    document.getElementById('searchMeta').textContent = `${results.length} result${results.length === 1 ? '' : 's'} for "${query}"`;
+    // Categories whose name matches the typed words → shown as jump-in chips.
+    const catMatches = ALL_CATEGORIES.filter(c => searchScore(catDisplayName(c.id), tokens) > 0);
+    const matchedCatIds = new Set(catMatches.map(c => c.id));
+
+    // Products ranked by word relevance; products in a matched category are
+    // included too (so searching a category name lists its items).
+    const scored = trustData.products.map(p => {
+        let s = Math.max(searchScore(p.product_name, tokens), searchScore(p.subcategory, tokens));
+        if (matchedCatIds.has(p.category)) s = Math.max(s, 2);
+        return { p, s };
+    }).filter(x => x.s > 0);
+    scored.sort((a, b) => b.s - a.s || (b.p.trust_signals?.avg_rating || 0) - (a.p.trust_signals?.avg_rating || 0));
+    const results = scored.slice(0, 48).map(x => x.p);
+
     const grid = document.getElementById('searchGrid');
     grid.innerHTML = '';
-    if (results.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-10 text-on-surface-variant">No products found. Try "earbuds", "baby", "cleaner"…</div>`;
+
+    // Category suggestions row (word-matched categories).
+    if (catMatches.length) {
+        const chips = catMatches.map(c =>
+            `<button onclick="selectCategory('${c.id}')" class="inline-flex items-center gap-1.5 bg-primary-fixed/30 text-on-surface px-3 py-1.5 rounded-full text-sm font-semibold border border-primary-fixed/40 hover:bg-primary-fixed/50 transition-colors">${EMOJIS[c.id] || '🔎'} ${catDisplayName(c.id)}</button>`
+        ).join('');
+        const row = document.createElement('div');
+        row.className = 'col-span-full';
+        row.innerHTML = `<div class="text-xs font-semibold text-on-surface-variant mb-2">Categories</div><div class="flex flex-wrap gap-2 mb-4">${chips}</div>`;
+        grid.appendChild(row);
+    }
+
+    document.getElementById('searchMeta').textContent =
+        `${scored.length} match${scored.length === 1 ? '' : 'es'} for "${query}"${catMatches.length ? ` · ${catMatches.length} categor${catMatches.length === 1 ? 'y' : 'ies'}` : ''}`;
+
+    if (results.length === 0 && catMatches.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-10 text-on-surface-variant">No matches. Try "earbuds", "chess", "protein", "books"…</div>`;
         return;
     }
     results.forEach(p => {
