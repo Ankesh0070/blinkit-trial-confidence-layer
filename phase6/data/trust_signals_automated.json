@@ -148,7 +148,7 @@
       "mrp": 2430,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-001.jpg"
+        "GEN2-ELE-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -187,7 +187,7 @@
       "mrp": 2300,
       "image": "power_bank",
       "images": [
-        "GEN-ELE-002.jpg"
+        "GEN2-ELE-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -226,7 +226,7 @@
       "mrp": 295,
       "image": "cable",
       "images": [
-        "GEN-ELE-003.jpg"
+        "GEN2-ELE-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -265,7 +265,7 @@
       "mrp": 1254,
       "image": "headphones",
       "images": [
-        "GEN-ELE-004.jpg"
+        "GEN2-ELE-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -304,7 +304,7 @@
       "mrp": 624,
       "image": "led",
       "images": [
-        "GEN-ELE-005.jpg"
+        "GEN2-ELE-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -343,7 +343,7 @@
       "mrp": 1356,
       "image": "adapter",
       "images": [
-        "GEN-ELE-006.jpg"
+        "GEN2-ELE-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -389,7 +389,7 @@
       "mrp": 195,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-007.jpg"
+        "GEN2-ELE-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -474,7 +474,7 @@
       "mrp": 2237,
       "image": "power_bank",
       "images": [
-        "GEN-ELE-009.jpg"
+        "GEN2-ELE-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -513,7 +513,7 @@
       "mrp": 533,
       "image": "cable",
       "images": [
-        "GEN-ELE-010.jpg"
+        "GEN2-ELE-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -559,7 +559,7 @@
       "mrp": 866,
       "image": "headphones",
       "images": [
-        "GEN-ELE-011.jpg"
+        "GEN2-ELE-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -598,7 +598,7 @@
       "mrp": 267,
       "image": "led",
       "images": [
-        "GEN-ELE-012.jpg"
+        "GEN2-ELE-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -630,7 +630,7 @@
       "mrp": 1337,
       "image": "adapter",
       "images": [
-        "GEN-ELE-013.jpg"
+        "GEN2-ELE-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -669,7 +669,7 @@
       "mrp": 591,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-014.jpg"
+        "GEN2-ELE-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -715,7 +715,7 @@
       "mrp": 1638,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-015.jpg"
+        "GEN2-ELE-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -747,7 +747,7 @@
       "mrp": 1054,
       "image": "power_bank",
       "images": [
-        "GEN-ELE-016.jpg"
+        "GEN2-ELE-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -779,7 +779,7 @@
       "mrp": 478,
       "image": "cable",
       "images": [
-        "GEN-ELE-017.jpg"
+        "GEN2-ELE-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -825,7 +825,7 @@
       "mrp": 799,
       "image": "headphones",
       "images": [
-        "GEN-ELE-018.jpg"
+        "GEN2-ELE-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -857,7 +857,7 @@
       "mrp": 378,
       "image": "led",
       "images": [
-        "GEN-ELE-019.jpg"
+        "GEN2-ELE-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -896,7 +896,7 @@
       "mrp": 582,
       "image": "adapter",
       "images": [
-        "GEN-ELE-020.jpg"
+        "GEN2-ELE-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -942,7 +942,7 @@
       "mrp": 370,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-021.jpg"
+        "GEN2-ELE-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -974,7 +974,7 @@
       "mrp": 2296,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-022.jpg"
+        "GEN2-ELE-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -1006,7 +1006,7 @@
       "mrp": 1136,
       "image": "headphones",
       "images": [
-        "GEN-ELE-023.jpg"
+        "GEN2-ELE-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -1045,7 +1045,7 @@
       "mrp": 974,
       "image": "led",
       "images": [
-        "GEN-ELE-024.jpg"
+        "GEN2-ELE-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1091,7 +1091,7 @@
       "mrp": 476,
       "image": "adapter",
       "images": [
-        "GEN-ELE-025.jpg"
+        "GEN2-ELE-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1137,7 +1137,7 @@
       "mrp": 565,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-026.jpg"
+        "GEN2-ELE-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1176,7 +1176,7 @@
       "mrp": 1698,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-027.jpg"
+        "GEN2-ELE-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -1215,7 +1215,7 @@
       "mrp": 316,
       "image": "cable",
       "images": [
-        "GEN-ELE-028.jpg"
+        "GEN2-ELE-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1247,7 +1247,7 @@
       "mrp": 1162,
       "image": "headphones",
       "images": [
-        "GEN-ELE-029.jpg"
+        "GEN2-ELE-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -1286,7 +1286,7 @@
       "mrp": 799,
       "image": "led",
       "images": [
-        "GEN-ELE-030.jpg"
+        "GEN2-ELE-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -1332,7 +1332,7 @@
       "mrp": 693,
       "image": "adapter",
       "images": [
-        "GEN-ELE-031.jpg"
+        "GEN2-ELE-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -1378,7 +1378,7 @@
       "mrp": 683,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-032.jpg"
+        "GEN2-ELE-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1417,7 +1417,7 @@
       "mrp": 1268,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-033.jpg"
+        "GEN2-ELE-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1456,7 +1456,7 @@
       "mrp": 2207,
       "image": "power_bank",
       "images": [
-        "GEN-ELE-034.jpg"
+        "GEN2-ELE-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1502,7 +1502,7 @@
       "mrp": 684,
       "image": "cable",
       "images": [
-        "GEN-ELE-035.jpg"
+        "GEN2-ELE-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1541,7 +1541,7 @@
       "mrp": 914,
       "image": "headphones",
       "images": [
-        "GEN-ELE-036.jpg"
+        "GEN2-ELE-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1587,7 +1587,7 @@
       "mrp": 1229,
       "image": "led",
       "images": [
-        "GEN-ELE-037.jpg"
+        "GEN2-ELE-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -1626,7 +1626,7 @@
       "mrp": 1011,
       "image": "adapter",
       "images": [
-        "GEN-ELE-038.jpg"
+        "GEN2-ELE-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -1665,7 +1665,7 @@
       "mrp": 188,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-039.jpg"
+        "GEN2-ELE-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -1697,7 +1697,7 @@
       "mrp": 1987,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-040.jpg"
+        "GEN2-ELE-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1736,7 +1736,7 @@
       "mrp": 1252,
       "image": "power_bank",
       "images": [
-        "GEN-ELE-041.jpg"
+        "GEN2-ELE-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -1768,7 +1768,7 @@
       "mrp": 494,
       "image": "cable",
       "images": [
-        "GEN-ELE-042.jpg"
+        "GEN2-ELE-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -1807,7 +1807,7 @@
       "mrp": 2303,
       "image": "headphones",
       "images": [
-        "GEN-ELE-043.jpg"
+        "GEN2-ELE-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -1846,7 +1846,7 @@
       "mrp": 1398,
       "image": "adapter",
       "images": [
-        "GEN-ELE-044.jpg"
+        "GEN2-ELE-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -1885,7 +1885,7 @@
       "mrp": 785,
       "image": "phone_stand",
       "images": [
-        "GEN-ELE-045.jpg"
+        "GEN2-ELE-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -1917,7 +1917,7 @@
       "mrp": 2351,
       "image": "earbuds",
       "images": [
-        "GEN-ELE-046.jpg"
+        "GEN2-ELE-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -1963,7 +1963,7 @@
       "mrp": 733,
       "image": "cable",
       "images": [
-        "GEN-ELE-047.jpg"
+        "GEN2-ELE-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2041,7 +2041,7 @@
       "mrp": 832,
       "image": "led",
       "images": [
-        "GEN-ELE-049.jpg"
+        "GEN2-ELE-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2073,7 +2073,7 @@
       "mrp": 1149,
       "image": "adapter",
       "images": [
-        "GEN-ELE-050.jpg"
+        "GEN2-ELE-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -15552,7 +15552,7 @@
       "mrp": 59,
       "image": "chips",
       "images": [
-        "GEN-MUN-001.jpg"
+        "GEN2-MUN-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -15598,7 +15598,7 @@
       "mrp": 164,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-002.jpg"
+        "GEN2-MUN-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -15637,7 +15637,7 @@
       "mrp": 194,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-003.jpg"
+        "GEN2-MUN-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -15676,7 +15676,7 @@
       "mrp": 98,
       "image": "snacks",
       "images": [
-        "GEN-MUN-004.jpg"
+        "GEN2-MUN-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -15715,7 +15715,7 @@
       "mrp": 53,
       "image": "chips",
       "images": [
-        "GEN-MUN-005.jpg"
+        "GEN2-MUN-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -15747,7 +15747,7 @@
       "mrp": 165,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-006.jpg"
+        "GEN2-MUN-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -15786,7 +15786,7 @@
       "mrp": 172,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-007.jpg"
+        "GEN2-MUN-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -15832,7 +15832,7 @@
       "mrp": 141,
       "image": "snacks",
       "images": [
-        "GEN-MUN-008.jpg"
+        "GEN2-MUN-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -15871,7 +15871,7 @@
       "mrp": 29,
       "image": "chips",
       "images": [
-        "GEN-MUN-009.jpg"
+        "GEN2-MUN-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -15910,7 +15910,7 @@
       "mrp": 129,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-010.jpg"
+        "GEN2-MUN-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -15949,7 +15949,7 @@
       "mrp": 52,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-011.jpg"
+        "GEN2-MUN-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -15981,7 +15981,7 @@
       "mrp": 23,
       "image": "snacks",
       "images": [
-        "GEN-MUN-012.jpg"
+        "GEN2-MUN-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -16020,7 +16020,7 @@
       "mrp": 48,
       "image": "chips",
       "images": [
-        "GEN-MUN-013.jpg"
+        "GEN2-MUN-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -16059,7 +16059,7 @@
       "mrp": 148,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-014.jpg"
+        "GEN2-MUN-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -16098,7 +16098,7 @@
       "mrp": 76,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-015.jpg"
+        "GEN2-MUN-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -16130,7 +16130,7 @@
       "mrp": 160,
       "image": "snacks",
       "images": [
-        "GEN-MUN-016.jpg"
+        "GEN2-MUN-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -16169,7 +16169,7 @@
       "mrp": 23,
       "image": "chips",
       "images": [
-        "GEN-MUN-017.jpg"
+        "GEN2-MUN-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -16215,7 +16215,7 @@
       "mrp": 140,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-018.jpg"
+        "GEN2-MUN-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -16254,7 +16254,7 @@
       "mrp": 37,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-019.jpg"
+        "GEN2-MUN-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -16300,7 +16300,7 @@
       "mrp": 160,
       "image": "snacks",
       "images": [
-        "GEN-MUN-020.jpg"
+        "GEN2-MUN-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -16346,7 +16346,7 @@
       "mrp": 69,
       "image": "chips",
       "images": [
-        "GEN-MUN-021.jpg"
+        "GEN2-MUN-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -16385,7 +16385,7 @@
       "mrp": 251,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-022.jpg"
+        "GEN2-MUN-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -16424,7 +16424,7 @@
       "mrp": 201,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-023.jpg"
+        "GEN2-MUN-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -16463,7 +16463,7 @@
       "mrp": 186,
       "image": "snacks",
       "images": [
-        "GEN-MUN-024.jpg"
+        "GEN2-MUN-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -16502,7 +16502,7 @@
       "mrp": 96,
       "image": "chips",
       "images": [
-        "GEN-MUN-025.jpg"
+        "GEN2-MUN-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -16534,7 +16534,7 @@
       "mrp": 180,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-026.jpg"
+        "GEN2-MUN-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -16573,7 +16573,7 @@
       "mrp": 175,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-027.jpg"
+        "GEN2-MUN-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -16612,7 +16612,7 @@
       "mrp": 152,
       "image": "snacks",
       "images": [
-        "GEN-MUN-028.jpg"
+        "GEN2-MUN-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -16644,7 +16644,7 @@
       "mrp": 81,
       "image": "chips",
       "images": [
-        "GEN-MUN-029.jpg"
+        "GEN2-MUN-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -16690,7 +16690,7 @@
       "mrp": 99,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-030.jpg"
+        "GEN2-MUN-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -16729,7 +16729,7 @@
       "mrp": 169,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-031.jpg"
+        "GEN2-MUN-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -16768,7 +16768,7 @@
       "mrp": 188,
       "image": "snacks",
       "images": [
-        "GEN-MUN-032.jpg"
+        "GEN2-MUN-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -16800,7 +16800,7 @@
       "mrp": 66,
       "image": "chips",
       "images": [
-        "GEN-MUN-033.jpg"
+        "GEN2-MUN-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -16878,7 +16878,7 @@
       "mrp": 88,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-035.jpg"
+        "GEN2-MUN-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -16910,7 +16910,7 @@
       "mrp": 119,
       "image": "snacks",
       "images": [
-        "GEN-MUN-036.jpg"
+        "GEN2-MUN-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -16956,7 +16956,7 @@
       "mrp": 83,
       "image": "chips",
       "images": [
-        "GEN-MUN-037.jpg"
+        "GEN2-MUN-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -17002,7 +17002,7 @@
       "mrp": 88,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-038.jpg"
+        "GEN2-MUN-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -17041,7 +17041,7 @@
       "mrp": 82,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-039.jpg"
+        "GEN2-MUN-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -17073,7 +17073,7 @@
       "mrp": 49,
       "image": "snacks",
       "images": [
-        "GEN-MUN-040.jpg"
+        "GEN2-MUN-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -17112,7 +17112,7 @@
       "mrp": 56,
       "image": "chips",
       "images": [
-        "GEN-MUN-041.jpg"
+        "GEN2-MUN-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17151,7 +17151,7 @@
       "mrp": 118,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-042.jpg"
+        "GEN2-MUN-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -17183,7 +17183,7 @@
       "mrp": 201,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-043.jpg"
+        "GEN2-MUN-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -17222,7 +17222,7 @@
       "mrp": 164,
       "image": "snacks",
       "images": [
-        "GEN-MUN-044.jpg"
+        "GEN2-MUN-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -17261,7 +17261,7 @@
       "mrp": 40,
       "image": "chips",
       "images": [
-        "GEN-MUN-045.jpg"
+        "GEN2-MUN-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17293,7 +17293,7 @@
       "mrp": 183,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-046.jpg"
+        "GEN2-MUN-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17332,7 +17332,7 @@
       "mrp": 45,
       "image": "snacks",
       "images": [
-        "GEN-MUN-047.jpg"
+        "GEN2-MUN-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -17364,7 +17364,7 @@
       "mrp": 95,
       "image": "chips",
       "images": [
-        "GEN-MUN-048.jpg"
+        "GEN2-MUN-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -17403,7 +17403,7 @@
       "mrp": 33,
       "image": "namkeen",
       "images": [
-        "GEN-MUN-049.jpg"
+        "GEN2-MUN-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17435,7 +17435,7 @@
       "mrp": 251,
       "image": "popcorn",
       "images": [
-        "GEN-MUN-050.jpg"
+        "GEN2-MUN-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -17474,7 +17474,7 @@
       "mrp": 41,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-001.jpg"
+        "GEN2-CDJ-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -17513,7 +17513,7 @@
       "mrp": 74,
       "image": "juice",
       "images": [
-        "GEN-CDJ-002.jpg"
+        "GEN2-CDJ-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -17559,7 +17559,7 @@
       "mrp": 195,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-003.jpg"
+        "GEN2-CDJ-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -17591,7 +17591,7 @@
       "mrp": 41,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-004.jpg"
+        "GEN2-CDJ-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -17623,7 +17623,7 @@
       "mrp": 115,
       "image": "juice",
       "images": [
-        "GEN-CDJ-005.jpg"
+        "GEN2-CDJ-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17662,7 +17662,7 @@
       "mrp": 253,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-006.jpg"
+        "GEN2-CDJ-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -17701,7 +17701,7 @@
       "mrp": 85,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-007.jpg"
+        "GEN2-CDJ-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -17740,7 +17740,7 @@
       "mrp": 167,
       "image": "juice",
       "images": [
-        "GEN-CDJ-008.jpg"
+        "GEN2-CDJ-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -17772,7 +17772,7 @@
       "mrp": 132,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-009.jpg"
+        "GEN2-CDJ-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -17818,7 +17818,7 @@
       "mrp": 98,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-010.jpg"
+        "GEN2-CDJ-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -17864,7 +17864,7 @@
       "mrp": 64,
       "image": "juice",
       "images": [
-        "GEN-CDJ-011.jpg"
+        "GEN2-CDJ-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -17903,7 +17903,7 @@
       "mrp": 78,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-012.jpg"
+        "GEN2-CDJ-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -17935,7 +17935,7 @@
       "mrp": 123,
       "image": "juice",
       "images": [
-        "GEN-CDJ-013.jpg"
+        "GEN2-CDJ-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -17967,7 +17967,7 @@
       "mrp": 144,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-014.jpg"
+        "GEN2-CDJ-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -18013,7 +18013,7 @@
       "mrp": 81,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-015.jpg"
+        "GEN2-CDJ-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -18045,7 +18045,7 @@
       "mrp": 117,
       "image": "juice",
       "images": [
-        "GEN-CDJ-016.jpg"
+        "GEN2-CDJ-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -18137,7 +18137,7 @@
       "mrp": 52,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-018.jpg"
+        "GEN2-CDJ-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -18176,7 +18176,7 @@
       "mrp": 184,
       "image": "juice",
       "images": [
-        "GEN-CDJ-019.jpg"
+        "GEN2-CDJ-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -18208,7 +18208,7 @@
       "mrp": 140,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-020.jpg"
+        "GEN2-CDJ-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -18254,7 +18254,7 @@
       "mrp": 87,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-021.jpg"
+        "GEN2-CDJ-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -18293,7 +18293,7 @@
       "mrp": 156,
       "image": "juice",
       "images": [
-        "GEN-CDJ-022.jpg"
+        "GEN2-CDJ-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -18332,7 +18332,7 @@
       "mrp": 252,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-023.jpg"
+        "GEN2-CDJ-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -18371,7 +18371,7 @@
       "mrp": 62,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-024.jpg"
+        "GEN2-CDJ-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -18417,7 +18417,7 @@
       "mrp": 118,
       "image": "juice",
       "images": [
-        "GEN-CDJ-025.jpg"
+        "GEN2-CDJ-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -18456,7 +18456,7 @@
       "mrp": 108,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-026.jpg"
+        "GEN2-CDJ-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -18488,7 +18488,7 @@
       "mrp": 63,
       "image": "juice",
       "images": [
-        "GEN-CDJ-027.jpg"
+        "GEN2-CDJ-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -18520,7 +18520,7 @@
       "mrp": 193,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-028.jpg"
+        "GEN2-CDJ-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -18559,7 +18559,7 @@
       "mrp": 91,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-029.jpg"
+        "GEN2-CDJ-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -18598,7 +18598,7 @@
       "mrp": 99,
       "image": "juice",
       "images": [
-        "GEN-CDJ-030.jpg"
+        "GEN2-CDJ-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -18637,7 +18637,7 @@
       "mrp": 40,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-031.jpg"
+        "GEN2-CDJ-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -18683,7 +18683,7 @@
       "mrp": 173,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-032.jpg"
+        "GEN2-CDJ-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -18715,7 +18715,7 @@
       "mrp": 63,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-033.jpg"
+        "GEN2-CDJ-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -18754,7 +18754,7 @@
       "mrp": 222,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-034.jpg"
+        "GEN2-CDJ-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -18786,7 +18786,7 @@
       "mrp": 58,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-035.jpg"
+        "GEN2-CDJ-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -18832,7 +18832,7 @@
       "mrp": 102,
       "image": "juice",
       "images": [
-        "GEN-CDJ-036.jpg"
+        "GEN2-CDJ-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -18871,7 +18871,7 @@
       "mrp": 77,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-037.jpg"
+        "GEN2-CDJ-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -18910,7 +18910,7 @@
       "mrp": 147,
       "image": "energydrink",
       "images": [
-        "GEN-CDJ-038.jpg"
+        "GEN2-CDJ-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -18942,7 +18942,7 @@
       "mrp": 173,
       "image": "juice",
       "images": [
-        "GEN-CDJ-039.jpg"
+        "GEN2-CDJ-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -18988,7 +18988,7 @@
       "mrp": 52,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-040.jpg"
+        "GEN2-CDJ-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -19027,7 +19027,7 @@
       "mrp": 55,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-041.jpg"
+        "GEN2-CDJ-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -19066,7 +19066,7 @@
       "mrp": 156,
       "image": "juice",
       "images": [
-        "GEN-CDJ-042.jpg"
+        "GEN2-CDJ-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -19105,7 +19105,7 @@
       "mrp": 74,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-043.jpg"
+        "GEN2-CDJ-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -19144,7 +19144,7 @@
       "mrp": 133,
       "image": "juice",
       "images": [
-        "GEN-CDJ-044.jpg"
+        "GEN2-CDJ-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -19183,7 +19183,7 @@
       "mrp": 73,
       "image": "juice",
       "images": [
-        "GEN-CDJ-045.jpg"
+        "GEN2-CDJ-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -19222,7 +19222,7 @@
       "mrp": 54,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-046.jpg"
+        "GEN2-CDJ-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -19261,7 +19261,7 @@
       "mrp": 138,
       "image": "juice",
       "images": [
-        "GEN-CDJ-047.jpg"
+        "GEN2-CDJ-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -19307,7 +19307,7 @@
       "mrp": 79,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-048.jpg"
+        "GEN2-CDJ-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -19339,7 +19339,7 @@
       "mrp": 161,
       "image": "juice",
       "images": [
-        "GEN-CDJ-049.jpg"
+        "GEN2-CDJ-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -19371,7 +19371,7 @@
       "mrp": 76,
       "image": "softdrink",
       "images": [
-        "GEN-CDJ-050.jpg"
+        "GEN2-CDJ-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -23198,7 +23198,7 @@
       "mrp": 141,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-001.jpg"
+        "GEN2-BIS-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -23230,7 +23230,7 @@
       "mrp": 45,
       "image": "rusk",
       "images": [
-        "GEN-BIS-002.jpg"
+        "GEN2-BIS-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -23262,7 +23262,7 @@
       "mrp": 224,
       "image": "cake",
       "images": [
-        "GEN-BIS-003.jpg"
+        "GEN2-BIS-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -23301,7 +23301,7 @@
       "mrp": 170,
       "image": "cookies",
       "images": [
-        "GEN-BIS-004.jpg"
+        "GEN2-BIS-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -23340,7 +23340,7 @@
       "mrp": 95,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-005.jpg"
+        "GEN2-BIS-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -23379,7 +23379,7 @@
       "mrp": 57,
       "image": "rusk",
       "images": [
-        "GEN-BIS-006.jpg"
+        "GEN2-BIS-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -23418,7 +23418,7 @@
       "mrp": 306,
       "image": "cake",
       "images": [
-        "GEN-BIS-007.jpg"
+        "GEN2-BIS-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -23457,7 +23457,7 @@
       "mrp": 113,
       "image": "cookies",
       "images": [
-        "GEN-BIS-008.jpg"
+        "GEN2-BIS-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -23496,7 +23496,7 @@
       "mrp": 160,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-009.jpg"
+        "GEN2-BIS-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -23542,7 +23542,7 @@
       "mrp": 93,
       "image": "rusk",
       "images": [
-        "GEN-BIS-010.jpg"
+        "GEN2-BIS-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -23581,7 +23581,7 @@
       "mrp": 329,
       "image": "cake",
       "images": [
-        "GEN-BIS-011.jpg"
+        "GEN2-BIS-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -23620,7 +23620,7 @@
       "mrp": 168,
       "image": "cookies",
       "images": [
-        "GEN-BIS-012.jpg"
+        "GEN2-BIS-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -23659,7 +23659,7 @@
       "mrp": 196,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-013.jpg"
+        "GEN2-BIS-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -23705,7 +23705,7 @@
       "mrp": 38,
       "image": "rusk",
       "images": [
-        "GEN-BIS-014.jpg"
+        "GEN2-BIS-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -23744,7 +23744,7 @@
       "mrp": 60,
       "image": "cake",
       "images": [
-        "GEN-BIS-015.jpg"
+        "GEN2-BIS-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -23790,7 +23790,7 @@
       "mrp": 103,
       "image": "cookies",
       "images": [
-        "GEN-BIS-016.jpg"
+        "GEN2-BIS-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -23829,7 +23829,7 @@
       "mrp": 90,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-017.jpg"
+        "GEN2-BIS-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -23868,7 +23868,7 @@
       "mrp": 127,
       "image": "cake",
       "images": [
-        "GEN-BIS-018.jpg"
+        "GEN2-BIS-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -23907,7 +23907,7 @@
       "mrp": 275,
       "image": "cookies",
       "images": [
-        "GEN-BIS-019.jpg"
+        "GEN2-BIS-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -23946,7 +23946,7 @@
       "mrp": 62,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-020.jpg"
+        "GEN2-BIS-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -23978,7 +23978,7 @@
       "mrp": 162,
       "image": "rusk",
       "images": [
-        "GEN-BIS-021.jpg"
+        "GEN2-BIS-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -24010,7 +24010,7 @@
       "mrp": 132,
       "image": "cake",
       "images": [
-        "GEN-BIS-022.jpg"
+        "GEN2-BIS-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -24049,7 +24049,7 @@
       "mrp": 168,
       "image": "cookies",
       "images": [
-        "GEN-BIS-023.jpg"
+        "GEN2-BIS-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -24081,7 +24081,7 @@
       "mrp": 57,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-024.jpg"
+        "GEN2-BIS-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -24120,7 +24120,7 @@
       "mrp": 161,
       "image": "rusk",
       "images": [
-        "GEN-BIS-025.jpg"
+        "GEN2-BIS-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -24159,7 +24159,7 @@
       "mrp": 135,
       "image": "cookies",
       "images": [
-        "GEN-BIS-026.jpg"
+        "GEN2-BIS-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24198,7 +24198,7 @@
       "mrp": 177,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-027.jpg"
+        "GEN2-BIS-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -24237,7 +24237,7 @@
       "mrp": 32,
       "image": "rusk",
       "images": [
-        "GEN-BIS-028.jpg"
+        "GEN2-BIS-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24283,7 +24283,7 @@
       "mrp": 190,
       "image": "cake",
       "images": [
-        "GEN-BIS-029.jpg"
+        "GEN2-BIS-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24322,7 +24322,7 @@
       "mrp": 54,
       "image": "cookies",
       "images": [
-        "GEN-BIS-030.jpg"
+        "GEN2-BIS-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -24361,7 +24361,7 @@
       "mrp": 20,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-031.jpg"
+        "GEN2-BIS-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -24393,7 +24393,7 @@
       "mrp": 125,
       "image": "rusk",
       "images": [
-        "GEN-BIS-032.jpg"
+        "GEN2-BIS-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -24439,7 +24439,7 @@
       "mrp": 213,
       "image": "cake",
       "images": [
-        "GEN-BIS-033.jpg"
+        "GEN2-BIS-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -24478,7 +24478,7 @@
       "mrp": 187,
       "image": "cookies",
       "images": [
-        "GEN-BIS-034.jpg"
+        "GEN2-BIS-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -24524,7 +24524,7 @@
       "mrp": 47,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-035.jpg"
+        "GEN2-BIS-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -24563,7 +24563,7 @@
       "mrp": 168,
       "image": "rusk",
       "images": [
-        "GEN-BIS-036.jpg"
+        "GEN2-BIS-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -24595,7 +24595,7 @@
       "mrp": 282,
       "image": "cake",
       "images": [
-        "GEN-BIS-037.jpg"
+        "GEN2-BIS-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24641,7 +24641,7 @@
       "mrp": 123,
       "image": "cookies",
       "images": [
-        "GEN-BIS-038.jpg"
+        "GEN2-BIS-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -24680,7 +24680,7 @@
       "mrp": 182,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-039.jpg"
+        "GEN2-BIS-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -24719,7 +24719,7 @@
       "mrp": 81,
       "image": "rusk",
       "images": [
-        "GEN-BIS-040.jpg"
+        "GEN2-BIS-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -24751,7 +24751,7 @@
       "mrp": 84,
       "image": "cake",
       "images": [
-        "GEN-BIS-041.jpg"
+        "GEN2-BIS-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -24790,7 +24790,7 @@
       "mrp": 275,
       "image": "cookies",
       "images": [
-        "GEN-BIS-042.jpg"
+        "GEN2-BIS-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -24829,7 +24829,7 @@
       "mrp": 95,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-043.jpg"
+        "GEN2-BIS-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -24868,7 +24868,7 @@
       "mrp": 41,
       "image": "rusk",
       "images": [
-        "GEN-BIS-044.jpg"
+        "GEN2-BIS-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -24907,7 +24907,7 @@
       "mrp": 211,
       "image": "cake",
       "images": [
-        "GEN-BIS-045.jpg"
+        "GEN2-BIS-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -24946,7 +24946,7 @@
       "mrp": 205,
       "image": "cookies",
       "images": [
-        "GEN-BIS-046.jpg"
+        "GEN2-BIS-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -24992,7 +24992,7 @@
       "mrp": 101,
       "image": "biscuits",
       "images": [
-        "GEN-BIS-047.jpg"
+        "GEN2-BIS-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -25038,7 +25038,7 @@
       "mrp": 146,
       "image": "rusk",
       "images": [
-        "GEN-BIS-048.jpg"
+        "GEN2-BIS-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -25070,7 +25070,7 @@
       "mrp": 284,
       "image": "cake",
       "images": [
-        "GEN-BIS-049.jpg"
+        "GEN2-BIS-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25109,7 +25109,7 @@
       "mrp": 45,
       "image": "cookies",
       "images": [
-        "GEN-BIS-050.jpg"
+        "GEN2-BIS-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25148,7 +25148,7 @@
       "mrp": 357,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-001.jpg"
+        "GEN2-SWT-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -25180,7 +25180,7 @@
       "mrp": 297,
       "image": "icecream",
       "images": [
-        "GEN-SWT-002.jpg"
+        "GEN2-SWT-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25219,7 +25219,7 @@
       "mrp": 85,
       "image": "candy",
       "images": [
-        "GEN-SWT-003.jpg"
+        "GEN2-SWT-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25258,7 +25258,7 @@
       "mrp": 260,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-004.jpg"
+        "GEN2-SWT-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25297,7 +25297,7 @@
       "mrp": 147,
       "image": "icecream",
       "images": [
-        "GEN-SWT-005.jpg"
+        "GEN2-SWT-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -25336,7 +25336,7 @@
       "mrp": 109,
       "image": "candy",
       "images": [
-        "GEN-SWT-006.jpg"
+        "GEN2-SWT-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -25375,7 +25375,7 @@
       "mrp": 112,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-007.jpg"
+        "GEN2-SWT-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -25414,7 +25414,7 @@
       "mrp": 148,
       "image": "icecream",
       "images": [
-        "GEN-SWT-008.jpg"
+        "GEN2-SWT-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -25446,7 +25446,7 @@
       "mrp": 201,
       "image": "candy",
       "images": [
-        "GEN-SWT-009.jpg"
+        "GEN2-SWT-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25478,7 +25478,7 @@
       "mrp": 391,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-010.jpg"
+        "GEN2-SWT-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25510,7 +25510,7 @@
       "mrp": 123,
       "image": "icecream",
       "images": [
-        "GEN-SWT-011.jpg"
+        "GEN2-SWT-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -25556,7 +25556,7 @@
       "mrp": 229,
       "image": "candy",
       "images": [
-        "GEN-SWT-012.jpg"
+        "GEN2-SWT-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25595,7 +25595,7 @@
       "mrp": 379,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-013.jpg"
+        "GEN2-SWT-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -25634,7 +25634,7 @@
       "mrp": 297,
       "image": "icecream",
       "images": [
-        "GEN-SWT-014.jpg"
+        "GEN2-SWT-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -25666,7 +25666,7 @@
       "mrp": 212,
       "image": "candy",
       "images": [
-        "GEN-SWT-015.jpg"
+        "GEN2-SWT-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -25705,7 +25705,7 @@
       "mrp": 117,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-016.jpg"
+        "GEN2-SWT-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25737,7 +25737,7 @@
       "mrp": 348,
       "image": "icecream",
       "images": [
-        "GEN-SWT-017.jpg"
+        "GEN2-SWT-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -25776,7 +25776,7 @@
       "mrp": 227,
       "image": "candy",
       "images": [
-        "GEN-SWT-018.jpg"
+        "GEN2-SWT-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25822,7 +25822,7 @@
       "mrp": 224,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-019.jpg"
+        "GEN2-SWT-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -25861,7 +25861,7 @@
       "mrp": 305,
       "image": "icecream",
       "images": [
-        "GEN-SWT-020.jpg"
+        "GEN2-SWT-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -25907,7 +25907,7 @@
       "mrp": 110,
       "image": "candy",
       "images": [
-        "GEN-SWT-021.jpg"
+        "GEN2-SWT-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -25946,7 +25946,7 @@
       "mrp": 336,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-022.jpg"
+        "GEN2-SWT-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -25985,7 +25985,7 @@
       "mrp": 157,
       "image": "icecream",
       "images": [
-        "GEN-SWT-023.jpg"
+        "GEN2-SWT-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -26031,7 +26031,7 @@
       "mrp": 190,
       "image": "candy",
       "images": [
-        "GEN-SWT-024.jpg"
+        "GEN2-SWT-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26077,7 +26077,7 @@
       "mrp": 80,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-025.jpg"
+        "GEN2-SWT-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -26116,7 +26116,7 @@
       "mrp": 381,
       "image": "icecream",
       "images": [
-        "GEN-SWT-026.jpg"
+        "GEN2-SWT-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -26148,7 +26148,7 @@
       "mrp": 149,
       "image": "candy",
       "images": [
-        "GEN-SWT-027.jpg"
+        "GEN2-SWT-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -26187,7 +26187,7 @@
       "mrp": 236,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-028.jpg"
+        "GEN2-SWT-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -26226,7 +26226,7 @@
       "mrp": 52,
       "image": "icecream",
       "images": [
-        "GEN-SWT-029.jpg"
+        "GEN2-SWT-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26265,7 +26265,7 @@
       "mrp": 141,
       "image": "candy",
       "images": [
-        "GEN-SWT-030.jpg"
+        "GEN2-SWT-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -26297,7 +26297,7 @@
       "mrp": 215,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-031.jpg"
+        "GEN2-SWT-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -26343,7 +26343,7 @@
       "mrp": 56,
       "image": "icecream",
       "images": [
-        "GEN-SWT-032.jpg"
+        "GEN2-SWT-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -26375,7 +26375,7 @@
       "mrp": 240,
       "image": "candy",
       "images": [
-        "GEN-SWT-033.jpg"
+        "GEN2-SWT-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -26414,7 +26414,7 @@
       "mrp": 99,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-034.jpg"
+        "GEN2-SWT-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26453,7 +26453,7 @@
       "mrp": 100,
       "image": "icecream",
       "images": [
-        "GEN-SWT-035.jpg"
+        "GEN2-SWT-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26499,7 +26499,7 @@
       "mrp": 245,
       "image": "candy",
       "images": [
-        "GEN-SWT-036.jpg"
+        "GEN2-SWT-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -26545,7 +26545,7 @@
       "mrp": 430,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-037.jpg"
+        "GEN2-SWT-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -26577,7 +26577,7 @@
       "mrp": 254,
       "image": "icecream",
       "images": [
-        "GEN-SWT-038.jpg"
+        "GEN2-SWT-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -26616,7 +26616,7 @@
       "mrp": 6,
       "image": "candy",
       "images": [
-        "GEN-SWT-039.jpg"
+        "GEN2-SWT-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26662,7 +26662,7 @@
       "mrp": 17,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-040.jpg"
+        "GEN2-SWT-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -26708,7 +26708,7 @@
       "mrp": 238,
       "image": "icecream",
       "images": [
-        "GEN-SWT-041.jpg"
+        "GEN2-SWT-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -26747,7 +26747,7 @@
       "mrp": 32,
       "image": "candy",
       "images": [
-        "GEN-SWT-042.jpg"
+        "GEN2-SWT-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -26786,7 +26786,7 @@
       "mrp": 290,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-043.jpg"
+        "GEN2-SWT-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -26825,7 +26825,7 @@
       "mrp": 211,
       "image": "icecream",
       "images": [
-        "GEN-SWT-044.jpg"
+        "GEN2-SWT-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -26871,7 +26871,7 @@
       "mrp": 85,
       "image": "candy",
       "images": [
-        "GEN-SWT-045.jpg"
+        "GEN2-SWT-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -26917,7 +26917,7 @@
       "mrp": 189,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-046.jpg"
+        "GEN2-SWT-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -26949,7 +26949,7 @@
       "mrp": 141,
       "image": "icecream",
       "images": [
-        "GEN-SWT-047.jpg"
+        "GEN2-SWT-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -26988,7 +26988,7 @@
       "mrp": 228,
       "image": "candy",
       "images": [
-        "GEN-SWT-048.jpg"
+        "GEN2-SWT-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -27027,7 +27027,7 @@
       "mrp": 84,
       "image": "chocolate",
       "images": [
-        "GEN-SWT-049.jpg"
+        "GEN2-SWT-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -27066,7 +27066,7 @@
       "mrp": 230,
       "image": "icecream",
       "images": [
-        "GEN-SWT-050.jpg"
+        "GEN2-SWT-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
