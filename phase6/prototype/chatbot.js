@@ -27,7 +27,7 @@ function injectChatbot() {
     
     const html = `
     <!-- Chatbot FAB & Window -->
-    <div id="chatWidget" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[110] flex flex-col items-end">
+    <div id="chatWidget" class="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-[110] flex flex-col items-end pointer-events-none">
         <!-- Chat Window -->
         <div id="chatWindow" class="pointer-events-none opacity-0 scale-90 w-[350px] h-[500px] max-h-[70vh] bg-surface rounded-2xl shadow-2xl border border-outline-variant/30 flex flex-col overflow-hidden mb-4 transition-[opacity,transform] duration-200 ease-out origin-bottom-right">
             <!-- Header -->
@@ -57,7 +57,7 @@ function injectChatbot() {
         </div>
         
         <!-- FAB -->
-        <button id="chatFab" onclick="toggleChat()" class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center relative">
+        <button id="chatFab" onclick="toggleChat()" class="pointer-events-auto w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center justify-center relative">
             <span class="material-symbols-outlined text-3xl">chat</span>
         </button>
     </div>`;
