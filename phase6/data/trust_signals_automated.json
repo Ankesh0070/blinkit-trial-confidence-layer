@@ -2155,8 +2155,7 @@
       "mrp": 903,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-1.jpg",
-        "BEAUTY-002-2.jpg"
+        "GEN-BEA-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -2195,8 +2194,7 @@
       "mrp": 659,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-1.jpg",
-        "BEAUTY-003-2.jpg"
+        "GEN-BEA-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -2282,8 +2280,7 @@
       "mrp": 508,
       "image": "razor",
       "images": [
-        "BEAUTY-005-1.jpg",
-        "BEAUTY-005-2.jpg"
+        "GEN-BEA-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2322,8 +2319,7 @@
       "mrp": 477,
       "image": "kajal",
       "images": [
-        "BEAUTY-006-1.jpg",
-        "BEAUTY-006-2.jpg"
+        "GEN-BEA-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2355,8 +2351,7 @@
       "mrp": 1264,
       "image": "serum",
       "images": [
-        "BEAUTY-007-1.jpg",
-        "BEAUTY-007-2.jpg"
+        "GEN-BEA-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -2428,8 +2423,7 @@
       "mrp": 1028,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-2.jpg",
-        "BEAUTY-001-3.jpg"
+        "GEN-BEA-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -2468,8 +2462,7 @@
       "mrp": 481,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-2.jpg",
-        "BEAUTY-003-3.jpg"
+        "GEN-BEA-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -2501,8 +2494,7 @@
       "mrp": 426,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-2.jpg",
-        "BEAUTY-004-3.jpg"
+        "GEN-BEA-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -2541,8 +2533,7 @@
       "mrp": 576,
       "image": "razor",
       "images": [
-        "BEAUTY-005-2.jpg",
-        "BEAUTY-005-3.jpg"
+        "GEN-BEA-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -2621,8 +2612,7 @@
       "mrp": 350,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-2.jpg",
-        "BEAUTY-008-3.jpg"
+        "GEN-BEA-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2654,8 +2644,7 @@
       "mrp": 322,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-3.jpg",
-        "BEAUTY-001-1.jpg"
+        "GEN-BEA-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -2694,8 +2683,7 @@
       "mrp": 836,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-2.jpg",
-        "BEAUTY-002-3.jpg"
+        "GEN-BEA-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2727,8 +2715,7 @@
       "mrp": 650,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-3.jpg",
-        "BEAUTY-003-1.jpg"
+        "GEN-BEA-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -2760,8 +2747,7 @@
       "mrp": 294,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-3.jpg",
-        "BEAUTY-004-1.jpg"
+        "GEN-BEA-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -2800,8 +2786,7 @@
       "mrp": 572,
       "image": "razor",
       "images": [
-        "BEAUTY-005-3.jpg",
-        "BEAUTY-005-1.jpg"
+        "GEN-BEA-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -2840,8 +2825,7 @@
       "mrp": 166,
       "image": "kajal",
       "images": [
-        "BEAUTY-006-2.jpg",
-        "BEAUTY-006-3.jpg"
+        "GEN-BEA-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -2887,8 +2871,7 @@
       "mrp": 1259,
       "image": "serum",
       "images": [
-        "BEAUTY-007-3.jpg",
-        "BEAUTY-007-1.jpg"
+        "GEN-BEA-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -2920,8 +2903,7 @@
       "mrp": 147,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-3.jpg",
-        "BEAUTY-008-1.jpg"
+        "GEN-BEA-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -2960,8 +2942,7 @@
       "mrp": 960,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-1.jpg",
-        "BEAUTY-001-2.jpg"
+        "GEN-BEA-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -3000,8 +2981,7 @@
       "mrp": 302,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-3.jpg",
-        "BEAUTY-002-1.jpg"
+        "GEN-BEA-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -3033,8 +3013,7 @@
       "mrp": 543,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-1.jpg",
-        "BEAUTY-003-2.jpg"
+        "GEN-BEA-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -3066,8 +3045,7 @@
       "mrp": 380,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-1.jpg",
-        "BEAUTY-004-2.jpg"
+        "GEN-BEA-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -3106,8 +3084,7 @@
       "mrp": 820,
       "image": "razor",
       "images": [
-        "BEAUTY-005-1.jpg",
-        "BEAUTY-005-2.jpg"
+        "GEN-BEA-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -3153,8 +3130,7 @@
       "mrp": 466,
       "image": "kajal",
       "images": [
-        "BEAUTY-006-3.jpg",
-        "BEAUTY-006-1.jpg"
+        "GEN-BEA-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -3200,8 +3176,7 @@
       "mrp": 749,
       "image": "serum",
       "images": [
-        "BEAUTY-007-1.jpg",
-        "BEAUTY-007-2.jpg"
+        "GEN-BEA-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -3247,8 +3222,7 @@
       "mrp": 469,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-1.jpg",
-        "BEAUTY-008-2.jpg"
+        "GEN-BEA-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -3287,8 +3261,7 @@
       "mrp": 763,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-2.jpg",
-        "BEAUTY-001-3.jpg"
+        "GEN-BEA-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -3327,8 +3300,7 @@
       "mrp": 662,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-1.jpg",
-        "BEAUTY-002-2.jpg"
+        "GEN-BEA-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -3374,8 +3346,7 @@
       "mrp": 182,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-2.jpg",
-        "BEAUTY-003-3.jpg"
+        "GEN-BEA-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -3421,8 +3392,7 @@
       "mrp": 532,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-2.jpg",
-        "BEAUTY-004-3.jpg"
+        "GEN-BEA-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -3508,8 +3478,7 @@
       "mrp": 467,
       "image": "kajal",
       "images": [
-        "BEAUTY-006-1.jpg",
-        "BEAUTY-006-2.jpg"
+        "GEN-BEA-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -3548,8 +3517,7 @@
       "mrp": 1421,
       "image": "serum",
       "images": [
-        "BEAUTY-007-2.jpg",
-        "BEAUTY-007-3.jpg"
+        "GEN-BEA-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -3588,8 +3556,7 @@
       "mrp": 178,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-2.jpg",
-        "BEAUTY-008-3.jpg"
+        "GEN-BEA-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -3621,8 +3588,7 @@
       "mrp": 688,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-3.jpg",
-        "BEAUTY-001-1.jpg"
+        "GEN-BEA-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -3694,8 +3660,7 @@
       "mrp": 138,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-3.jpg",
-        "BEAUTY-003-1.jpg"
+        "GEN-BEA-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -3727,8 +3692,7 @@
       "mrp": 204,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-3.jpg",
-        "BEAUTY-004-1.jpg"
+        "GEN-BEA-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -3767,8 +3731,7 @@
       "mrp": 236,
       "image": "razor",
       "images": [
-        "BEAUTY-005-3.jpg",
-        "BEAUTY-005-1.jpg"
+        "GEN-BEA-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -3807,8 +3770,7 @@
       "mrp": 881,
       "image": "serum",
       "images": [
-        "BEAUTY-007-3.jpg",
-        "BEAUTY-007-1.jpg"
+        "GEN-BEA-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -3887,8 +3849,7 @@
       "mrp": 810,
       "image": "moisturizer",
       "images": [
-        "BEAUTY-001-1.jpg",
-        "BEAUTY-001-2.jpg"
+        "GEN-BEA-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -3927,8 +3888,7 @@
       "mrp": 516,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-3.jpg",
-        "BEAUTY-002-1.jpg"
+        "GEN-BEA-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -3967,8 +3927,7 @@
       "mrp": 281,
       "image": "face_wash",
       "images": [
-        "BEAUTY-003-1.jpg",
-        "BEAUTY-003-2.jpg"
+        "GEN-BEA-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -4007,8 +3966,7 @@
       "mrp": 885,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-1.jpg",
-        "BEAUTY-004-2.jpg"
+        "GEN-BEA-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -4047,8 +4005,7 @@
       "mrp": 896,
       "image": "razor",
       "images": [
-        "BEAUTY-005-1.jpg",
-        "BEAUTY-005-2.jpg"
+        "GEN-BEA-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -4087,8 +4044,7 @@
       "mrp": 64,
       "image": "pain_relief",
       "images": [
-        "PHARMA-001-1.jpg",
-        "PHARMA-003-1.jpg"
+        "GEN-PHA-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -4127,7 +4083,7 @@
       "mrp": 155,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -4166,7 +4122,7 @@
       "mrp": 156,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -4212,7 +4168,7 @@
       "mrp": 101,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -4251,7 +4207,7 @@
       "mrp": 121,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -4290,7 +4246,7 @@
       "mrp": 163,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -4375,8 +4331,7 @@
       "mrp": 174,
       "image": "pain_relief",
       "images": [
-        "PHARMA-003-1.jpg",
-        "PHARMA-001-1.jpg"
+        "GEN-PHA-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -4408,7 +4363,7 @@
       "mrp": 317,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -4454,7 +4409,7 @@
       "mrp": 137,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -4525,7 +4480,7 @@
       "mrp": 296,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -4564,7 +4519,7 @@
       "mrp": 237,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -4603,7 +4558,7 @@
       "mrp": 234,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -4649,8 +4604,7 @@
       "mrp": 140,
       "image": "pain_relief",
       "images": [
-        "PHARMA-001-1.jpg",
-        "PHARMA-003-1.jpg"
+        "GEN-PHA-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -4735,7 +4689,7 @@
       "mrp": 52,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -4774,7 +4728,7 @@
       "mrp": 157,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -4813,7 +4767,7 @@
       "mrp": 226,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -4852,7 +4806,7 @@
       "mrp": 264,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -4923,8 +4877,7 @@
       "mrp": 82,
       "image": "pain_relief",
       "images": [
-        "PHARMA-003-1.jpg",
-        "PHARMA-001-1.jpg"
+        "GEN-PHA-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -4956,7 +4909,7 @@
       "mrp": 353,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -4995,7 +4948,7 @@
       "mrp": 49,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -5034,7 +4987,7 @@
       "mrp": 179,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -5105,7 +5058,7 @@
       "mrp": 126,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -5137,7 +5090,7 @@
       "mrp": 813,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -5169,8 +5122,7 @@
       "mrp": 310,
       "image": "pain_relief",
       "images": [
-        "PHARMA-001-1.jpg",
-        "PHARMA-003-1.jpg"
+        "GEN-PHA-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -5202,7 +5154,7 @@
       "mrp": 495,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -5287,7 +5239,7 @@
       "mrp": 251,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -5326,7 +5278,7 @@
       "mrp": 115,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -5358,7 +5310,7 @@
       "mrp": 234,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -5390,7 +5342,7 @@
       "mrp": 749,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -5436,8 +5388,7 @@
       "mrp": 179,
       "image": "pain_relief",
       "images": [
-        "PHARMA-003-1.jpg",
-        "PHARMA-001-1.jpg"
+        "GEN-PHA-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -5469,7 +5420,7 @@
       "mrp": 320,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -5508,7 +5459,7 @@
       "mrp": 83,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -5540,7 +5491,7 @@
       "mrp": 283,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -5579,7 +5530,7 @@
       "mrp": 256,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -5618,7 +5569,7 @@
       "mrp": 789,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -5664,8 +5615,7 @@
       "mrp": 45,
       "image": "pain_relief",
       "images": [
-        "PHARMA-001-1.jpg",
-        "PHARMA-003-1.jpg"
+        "GEN-PHA-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -5704,7 +5654,7 @@
       "mrp": 251,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -5750,7 +5700,7 @@
       "mrp": 194,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -5789,7 +5739,7 @@
       "mrp": 152,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -5828,7 +5778,7 @@
       "mrp": 101,
       "image": "antacid",
       "images": [
-        "PHARMA-007-1.jpg"
+        "GEN-PHA-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -5860,7 +5810,7 @@
       "mrp": 177,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -5906,8 +5856,7 @@
       "mrp": 296,
       "image": "pain_relief",
       "images": [
-        "PHARMA-003-1.jpg",
-        "PHARMA-001-1.jpg"
+        "GEN-PHA-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -5946,7 +5895,7 @@
       "mrp": 265,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -5985,7 +5934,7 @@
       "mrp": 76,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -6031,7 +5980,7 @@
       "mrp": 368,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -6077,8 +6026,7 @@
       "mrp": 583,
       "image": "baby_wash",
       "images": [
-        "baby_2-1.jpg",
-        "BABY-003-1.jpg"
+        "GEN-BAB-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -6124,7 +6072,7 @@
       "mrp": 340,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -6163,7 +6111,7 @@
       "mrp": 412,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -6209,7 +6157,7 @@
       "mrp": 220,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -6248,7 +6196,7 @@
       "mrp": 331,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -6280,7 +6228,7 @@
       "mrp": 253,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -6326,7 +6274,7 @@
       "mrp": 563,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -6372,8 +6320,7 @@
       "mrp": 622,
       "image": "baby_wash",
       "images": [
-        "BABY-003-1.jpg",
-        "baby_2-1.jpg"
+        "GEN-BAB-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -6405,7 +6352,7 @@
       "mrp": 598,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -6444,7 +6391,7 @@
       "mrp": 263,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -6476,7 +6423,7 @@
       "mrp": 153,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -6515,7 +6462,7 @@
       "mrp": 218,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -6554,7 +6501,7 @@
       "mrp": 181,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -6586,7 +6533,7 @@
       "mrp": 609,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -6632,7 +6579,7 @@
       "mrp": 668,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -6671,7 +6618,7 @@
       "mrp": 203,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -6710,7 +6657,7 @@
       "mrp": 132,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -6742,7 +6689,7 @@
       "mrp": 426,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -6781,7 +6728,7 @@
       "mrp": 333,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -6827,7 +6774,7 @@
       "mrp": 779,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -6866,8 +6813,7 @@
       "mrp": 345,
       "image": "baby_wash",
       "images": [
-        "baby_2-1.jpg",
-        "BABY-003-1.jpg"
+        "GEN-BAB-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -6906,7 +6852,7 @@
       "mrp": 123,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -6945,7 +6891,7 @@
       "mrp": 510,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -6977,7 +6923,7 @@
       "mrp": 64,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -7016,7 +6962,7 @@
       "mrp": 181,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -7048,7 +6994,7 @@
       "mrp": 209,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -7087,7 +7033,7 @@
       "mrp": 918,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -7126,8 +7072,7 @@
       "mrp": 157,
       "image": "baby_wash",
       "images": [
-        "BABY-003-1.jpg",
-        "baby_2-1.jpg"
+        "GEN-BAB-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -7166,7 +7111,7 @@
       "mrp": 373,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -7205,7 +7150,7 @@
       "mrp": 297,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -7237,7 +7182,7 @@
       "mrp": 184,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -7269,7 +7214,7 @@
       "mrp": 421,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -7301,7 +7246,7 @@
       "mrp": 396,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -7347,8 +7292,7 @@
       "mrp": 578,
       "image": "baby_wash",
       "images": [
-        "baby_2-1.jpg",
-        "BABY-003-1.jpg"
+        "GEN-BAB-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -7387,7 +7331,7 @@
       "mrp": 412,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -7426,7 +7370,7 @@
       "mrp": 390,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -7472,7 +7416,7 @@
       "mrp": 255,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -7511,7 +7455,7 @@
       "mrp": 517,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -7550,7 +7494,7 @@
       "mrp": 485,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -7589,8 +7533,7 @@
       "mrp": 513,
       "image": "baby_wash",
       "images": [
-        "BABY-003-1.jpg",
-        "baby_2-1.jpg"
+        "GEN-BAB-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -7629,7 +7572,7 @@
       "mrp": 153,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -7668,7 +7611,7 @@
       "mrp": 393,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -7700,7 +7643,7 @@
       "mrp": 69,
       "image": "baby_soap",
       "images": [
-        "BABY-006-1.jpg"
+        "GEN-BAB-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -7739,7 +7682,7 @@
       "mrp": 370,
       "image": "baby_cereal",
       "images": [
-        "BABY-007-1.jpg"
+        "GEN-BAB-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -7778,7 +7721,7 @@
       "mrp": 143,
       "image": "baby_shampoo",
       "images": [
-        "BABY-008-1.jpg"
+        "GEN-BAB-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -7810,7 +7753,7 @@
       "mrp": 1004,
       "image": "diaper",
       "images": [
-        "baby_1-1.jpg"
+        "GEN-BAB-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -7849,8 +7792,7 @@
       "mrp": 615,
       "image": "baby_wash",
       "images": [
-        "baby_2-1.jpg",
-        "BABY-003-1.jpg"
+        "GEN-BAB-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -7889,7 +7831,7 @@
       "mrp": 460,
       "image": "baby_lotion",
       "images": [
-        "BABY-004-1.jpg"
+        "GEN-BAB-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -7928,7 +7870,7 @@
       "mrp": 129,
       "image": "baby_powder",
       "images": [
-        "BABY-005-1.jpg"
+        "GEN-BAB-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -7960,8 +7902,7 @@
       "mrp": 465,
       "image": "detergent",
       "images": [
-        "home_1-1.jpg",
-        "HOME-002-1.jpg"
+        "GEN-HOM-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
