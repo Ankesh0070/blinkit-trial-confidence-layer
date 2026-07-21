@@ -187,8 +187,7 @@
       "mrp": 2300,
       "image": "power_bank",
       "images": [
-        "ELEC-002-1.jpg",
-        "ELEC-002-2.jpg"
+        "GEN-ELE-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -670,7 +669,7 @@
       "mrp": 591,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -943,7 +942,7 @@
       "mrp": 370,
       "image": "phone_stand",
       "images": [
-        "ELEC-008-1.jpg"
+        "GEN-ELE-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -1092,8 +1091,7 @@
       "mrp": 476,
       "image": "adapter",
       "images": [
-        "ELEC-007-1.jpg",
-        "ELEC-006-1.jpg"
+        "GEN-ELE-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -1288,8 +1286,7 @@
       "mrp": 799,
       "image": "led",
       "images": [
-        "ELEC-005-1.jpg",
-        "ELEC-005-2.jpg"
+        "GEN-ELE-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -1920,8 +1917,7 @@
       "mrp": 2351,
       "image": "earbuds",
       "images": [
-        "ELEC-001-2.jpg",
-        "ELEC-001-3.jpg"
+        "GEN-ELE-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -2240,8 +2236,7 @@
       "mrp": 849,
       "image": "shampoo",
       "images": [
-        "BEAUTY-004-1.jpg",
-        "BEAUTY-004-2.jpg"
+        "GEN-BEA-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -2390,8 +2385,7 @@
       "mrp": 130,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-1.jpg",
-        "BEAUTY-008-2.jpg"
+        "GEN-BEA-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -2572,8 +2566,7 @@
       "mrp": 504,
       "image": "serum",
       "images": [
-        "BEAUTY-007-2.jpg",
-        "BEAUTY-007-3.jpg"
+        "GEN-BEA-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -3431,8 +3424,7 @@
       "mrp": 279,
       "image": "razor",
       "images": [
-        "BEAUTY-005-2.jpg",
-        "BEAUTY-005-3.jpg"
+        "GEN-BEA-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -3620,8 +3612,7 @@
       "mrp": 1255,
       "image": "concealer",
       "images": [
-        "BEAUTY-002-2.jpg",
-        "BEAUTY-002-3.jpg"
+        "GEN-BEA-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -3802,8 +3793,7 @@
       "mrp": 337,
       "image": "toothpaste",
       "images": [
-        "BEAUTY-008-3.jpg",
-        "BEAUTY-008-1.jpg"
+        "GEN-BEA-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -4292,7 +4282,7 @@
       "mrp": 1043,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -4441,7 +4431,7 @@
       "mrp": 194,
       "image": "cold_relief",
       "images": [
-        "PHARMA-005-1.jpg"
+        "GEN-PHA-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -4650,7 +4640,7 @@
       "mrp": 235,
       "image": "antiseptic",
       "images": [
-        "PHARMA-002-1.jpg"
+        "GEN-PHA-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -4845,7 +4835,7 @@
       "mrp": 611,
       "image": "multivitamin",
       "images": [
-        "PHARMA-008-1.jpg"
+        "GEN-PHA-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -5019,7 +5009,7 @@
       "mrp": 300,
       "image": "first_aid",
       "images": [
-        "PHARMA-006-1.jpg"
+        "GEN-PHA-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -5200,7 +5190,7 @@
       "mrp": 133,
       "image": "oral_rehydration",
       "images": [
-        "PHARMA-004-1.jpg"
+        "GEN-PHA-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -9356,7 +9346,7 @@
       "mrp": 272,
       "image": "fabric_conditioner",
       "images": [
-        "HOME-007-1.jpg"
+        "GEN-HOM-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.8,
@@ -9810,8 +9800,7 @@
       "mrp": 1771,
       "image": "pet_food",
       "images": [
-        "pet_1-1.jpg",
-        "PET-002-1.jpg"
+        "GEN-PET-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -10045,8 +10034,7 @@
       "mrp": 273,
       "image": "pet_treats",
       "images": [
-        "PET-008-1.jpg",
-        "PET-003-1.jpg"
+        "GEN-PET-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -10422,8 +10410,7 @@
       "mrp": 337,
       "image": "pet_treats",
       "images": [
-        "PET-008-1.jpg",
-        "PET-003-1.jpg"
+        "GEN-PET-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -10565,8 +10552,7 @@
       "mrp": 682,
       "image": "pet_treats",
       "images": [
-        "PET-003-1.jpg",
-        "PET-008-1.jpg"
+        "GEN-PET-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -10988,7 +10974,7 @@
       "mrp": 524,
       "image": "cat_food",
       "images": [
-        "PET-004-1.jpg"
+        "GEN-PET-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -11197,7 +11183,7 @@
       "mrp": 556,
       "image": "cat_food",
       "images": [
-        "PET-004-1.jpg"
+        "GEN-PET-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -12580,7 +12566,7 @@
       "mrp": 114,
       "image": "panty_liner",
       "images": [
-        "INT-005-1.jpg"
+        "GEN-INT-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -13332,8 +13318,7 @@
       "mrp": 580,
       "image": "condom",
       "images": [
-        "INT-006-1.jpg",
-        "INT-007-1.jpg"
+        "GEN-INT-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -13787,7 +13772,7 @@
       "mrp": 210,
       "image": "paneer",
       "images": [
-        "DBE-5-1.jpg"
+        "GEN-DBE-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -14021,7 +14006,7 @@
       "mrp": 193,
       "image": "eggs",
       "images": [
-        "DBE-3-1.jpg"
+        "GEN-DBE-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -14886,7 +14871,7 @@
       "mrp": 68,
       "image": "milk",
       "images": [
-        "DBE-1-1.jpg"
+        "GEN-DBE-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -30276,8 +30261,7 @@
       "mrp": 227,
       "image": "frozenfood",
       "images": [
-        "INF-3-1.jpg",
-        "INF-6-1.jpg"
+        "GEN-INF-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -30323,8 +30307,7 @@
       "mrp": 51,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -30363,8 +30346,7 @@
       "mrp": 151,
       "image": "frozenfood",
       "images": [
-        "INF-6-1.jpg",
-        "INF-7-1.jpg"
+        "GEN-INF-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -30403,7 +30385,7 @@
       "mrp": 73,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -30442,8 +30424,7 @@
       "mrp": 61,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -30475,8 +30456,7 @@
       "mrp": 200,
       "image": "frozenfood",
       "images": [
-        "INF-7-1.jpg",
-        "INF-8-1.jpg"
+        "GEN-INF-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -30515,8 +30495,7 @@
       "mrp": 116,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -30548,8 +30527,7 @@
       "mrp": 247,
       "image": "frozenfood",
       "images": [
-        "INF-8-1.jpg",
-        "INF-2-1.jpg"
+        "GEN-INF-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -30588,8 +30566,7 @@
       "mrp": 35,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -30628,8 +30605,7 @@
       "mrp": 210,
       "image": "frozenfood",
       "images": [
-        "INF-2-1.jpg",
-        "INF-3-1.jpg"
+        "GEN-INF-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -30661,7 +30637,7 @@
       "mrp": 203,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -30700,8 +30676,7 @@
       "mrp": 123,
       "image": "frozenfood",
       "images": [
-        "INF-3-1.jpg",
-        "INF-6-1.jpg"
+        "GEN-INF-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -30740,7 +30715,7 @@
       "mrp": 255,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -30779,8 +30754,7 @@
       "mrp": 72,
       "image": "frozenfood",
       "images": [
-        "INF-6-1.jpg",
-        "INF-7-1.jpg"
+        "GEN-INF-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -30819,8 +30793,7 @@
       "mrp": 190,
       "image": "noodles",
       "images": [
-        "INF-1-1.jpg",
-        "INF-4-1.jpg"
+        "GEN-INF-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -30859,8 +30832,7 @@
       "mrp": 239,
       "image": "frozenfood",
       "images": [
-        "INF-7-1.jpg",
-        "INF-8-1.jpg"
+        "GEN-INF-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -30899,7 +30871,7 @@
       "mrp": 75,
       "image": "soup",
       "images": [
-        "INF-5-1.jpg"
+        "GEN-INF-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -30931,8 +30903,7 @@
       "mrp": 250,
       "image": "noodles",
       "images": [
-        "INF-4-1.jpg",
-        "INF-1-1.jpg"
+        "GEN-INF-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -30964,7 +30935,7 @@
       "mrp": 71,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-001.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -31003,7 +30974,7 @@
       "mrp": 35,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-002.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -31035,7 +31006,7 @@
       "mrp": 25,
       "image": "onion",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-003.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -31074,7 +31045,7 @@
       "mrp": 41,
       "image": "lemon",
       "images": [
-        "VEG-4-1.jpg"
+        "GEN-VEG-004.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -31113,7 +31084,7 @@
       "mrp": 52,
       "image": "cucumber",
       "images": [
-        "VEG-5-1.jpg"
+        "GEN-VEG-005.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -31159,7 +31130,7 @@
       "mrp": 238,
       "image": "strawberry",
       "images": [
-        "VEG-6-1.jpg"
+        "GEN-VEG-006.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -31198,7 +31169,7 @@
       "mrp": 278,
       "image": "kiwi",
       "images": [
-        "VEG-7-1.jpg"
+        "GEN-VEG-007.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -31230,7 +31201,7 @@
       "mrp": 73,
       "image": "capsicum",
       "images": [
-        "VEG-8-1.jpg"
+        "GEN-VEG-008.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -31269,7 +31240,7 @@
       "mrp": 62,
       "image": "tomato",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-009.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -31308,7 +31279,7 @@
       "mrp": 63,
       "image": "banana",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-010.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -31347,7 +31318,7 @@
       "mrp": 315,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-011.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -31386,7 +31357,7 @@
       "mrp": 76,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-012.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -31432,7 +31403,7 @@
       "mrp": 114,
       "image": "onion",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-013.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -31471,7 +31442,7 @@
       "mrp": 98,
       "image": "lemon",
       "images": [
-        "VEG-4-1.jpg"
+        "GEN-VEG-014.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -31510,7 +31481,7 @@
       "mrp": 74,
       "image": "cucumber",
       "images": [
-        "VEG-5-1.jpg"
+        "GEN-VEG-015.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -31549,7 +31520,7 @@
       "mrp": 126,
       "image": "strawberry",
       "images": [
-        "VEG-6-1.jpg"
+        "GEN-VEG-016.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -31588,7 +31559,7 @@
       "mrp": 235,
       "image": "kiwi",
       "images": [
-        "VEG-7-1.jpg"
+        "GEN-VEG-017.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -31627,7 +31598,7 @@
       "mrp": 107,
       "image": "capsicum",
       "images": [
-        "VEG-8-1.jpg"
+        "GEN-VEG-018.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -31666,7 +31637,7 @@
       "mrp": 45,
       "image": "tomato",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-019.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -31698,7 +31669,7 @@
       "mrp": 293,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-020.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
@@ -31737,7 +31708,7 @@
       "mrp": 93,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-021.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -31776,7 +31747,7 @@
       "mrp": 65,
       "image": "onion",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-022.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -31815,7 +31786,7 @@
       "mrp": 37,
       "image": "lemon",
       "images": [
-        "VEG-4-1.jpg"
+        "GEN-VEG-023.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -31861,7 +31832,7 @@
       "mrp": 17,
       "image": "cucumber",
       "images": [
-        "VEG-5-1.jpg"
+        "GEN-VEG-024.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -31893,7 +31864,7 @@
       "mrp": 306,
       "image": "strawberry",
       "images": [
-        "VEG-6-1.jpg"
+        "GEN-VEG-025.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -31925,7 +31896,7 @@
       "mrp": 109,
       "image": "kiwi",
       "images": [
-        "VEG-7-1.jpg"
+        "GEN-VEG-026.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -31964,7 +31935,7 @@
       "mrp": 66,
       "image": "capsicum",
       "images": [
-        "VEG-8-1.jpg"
+        "GEN-VEG-027.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -32003,7 +31974,7 @@
       "mrp": 43,
       "image": "tomato",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-028.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -32035,7 +32006,7 @@
       "mrp": 105,
       "image": "banana",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-029.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -32074,7 +32045,7 @@
       "mrp": 245,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-030.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -32113,7 +32084,7 @@
       "mrp": 91,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-031.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.7,
@@ -32145,7 +32116,7 @@
       "mrp": 34,
       "image": "lemon",
       "images": [
-        "VEG-4-1.jpg"
+        "GEN-VEG-032.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.6,
@@ -32184,7 +32155,7 @@
       "mrp": 58,
       "image": "cucumber",
       "images": [
-        "VEG-5-1.jpg"
+        "GEN-VEG-033.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -32216,7 +32187,7 @@
       "mrp": 108,
       "image": "strawberry",
       "images": [
-        "VEG-6-1.jpg"
+        "GEN-VEG-034.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -32248,7 +32219,7 @@
       "mrp": 273,
       "image": "kiwi",
       "images": [
-        "VEG-7-1.jpg"
+        "GEN-VEG-035.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -32287,7 +32258,7 @@
       "mrp": 85,
       "image": "capsicum",
       "images": [
-        "VEG-8-1.jpg"
+        "GEN-VEG-036.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.5,
@@ -32326,7 +32297,7 @@
       "mrp": 90,
       "image": "tomato",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-037.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.3,
@@ -32365,7 +32336,7 @@
       "mrp": 115,
       "image": "banana",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-038.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.2,
@@ -32404,7 +32375,7 @@
       "mrp": 53,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-039.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -32443,7 +32414,7 @@
       "mrp": 79,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-040.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.9,
@@ -32489,7 +32460,7 @@
       "mrp": 98,
       "image": "onion",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-041.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.8,
@@ -32528,7 +32499,7 @@
       "mrp": 110,
       "image": "lemon",
       "images": [
-        "VEG-4-1.jpg"
+        "GEN-VEG-042.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -32574,7 +32545,7 @@
       "mrp": 50,
       "image": "cucumber",
       "images": [
-        "VEG-5-1.jpg"
+        "GEN-VEG-043.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.6,
@@ -32620,7 +32591,7 @@
       "mrp": 166,
       "image": "strawberry",
       "images": [
-        "VEG-6-1.jpg"
+        "GEN-VEG-044.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -32652,7 +32623,7 @@
       "mrp": 167,
       "image": "kiwi",
       "images": [
-        "VEG-7-1.jpg"
+        "GEN-VEG-045.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.5,
@@ -32691,7 +32662,7 @@
       "mrp": 179,
       "image": "capsicum",
       "images": [
-        "VEG-8-1.jpg"
+        "GEN-VEG-046.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.4,
@@ -32723,7 +32694,7 @@
       "mrp": 84,
       "image": "banana",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-047.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4.1,
@@ -32769,7 +32740,7 @@
       "mrp": 183,
       "image": "apple",
       "images": [
-        "VEG-1-1.jpg"
+        "GEN-VEG-048.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.4,
@@ -32801,7 +32772,7 @@
       "mrp": 95,
       "image": "potato",
       "images": [
-        "VEG-2-1.jpg"
+        "GEN-VEG-049.jpg"
       ],
       "trust_signals": {
         "avg_rating": 3.7,
@@ -32847,7 +32818,7 @@
       "mrp": 107,
       "image": "onion",
       "images": [
-        "VEG-3-1.jpg"
+        "GEN-VEG-050.jpg"
       ],
       "trust_signals": {
         "avg_rating": 4,
