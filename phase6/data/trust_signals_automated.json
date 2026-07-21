@@ -3070,7 +3070,7 @@
     },
     {
       "product_id": "BEA-027",
-      "product_name": "Wilkinson Razor Guard",
+      "product_name": "Gillette Razor Guard",
       "category": "personal_care_beauty",
       "subcategory": "razor",
       "price": 651,
@@ -3417,7 +3417,7 @@
     },
     {
       "product_id": "BEA-035",
-      "product_name": "Wilkinson Trimmer 5 Blade",
+      "product_name": "LetsShave Trimmer 5 Blade",
       "category": "personal_care_beauty",
       "subcategory": "razor",
       "price": 207,
@@ -10325,7 +10325,7 @@
     },
     {
       "product_id": "PET-015",
-      "product_name": "Intersand Cat Litter Unscented 10L",
+      "product_name": "Drools Cat Litter Unscented 10L",
       "category": "pet",
       "subcategory": "cat_litter",
       "price": 213,
@@ -11059,7 +11059,7 @@
     },
     {
       "product_id": "PET-034",
-      "product_name": "Intersand Clumping Litter Lavender 10L",
+      "product_name": "Drools Clumping Litter Lavender 10L",
       "category": "pet",
       "subcategory": "cat_litter",
       "price": 515,
@@ -15825,7 +15825,7 @@
     },
     {
       "product_id": "MUN-008",
-      "product_name": "Doritos Namkeen Snack Tedhe Medhe 90g",
+      "product_name": "Kurkure Namkeen Snack Tedhe Medhe 90g",
       "category": "munchies",
       "subcategory": "snacks",
       "price": 103,
@@ -16123,7 +16123,7 @@
     },
     {
       "product_id": "MUN-016",
-      "product_name": "Doritos Namkeen Snack Masala Munch 90g",
+      "product_name": "Kurkure Namkeen Snack Masala Munch 90g",
       "category": "munchies",
       "subcategory": "snacks",
       "price": 116,
@@ -16605,7 +16605,7 @@
     },
     {
       "product_id": "MUN-028",
-      "product_name": "Doritos Multigrain Chips Masala Munch 80g",
+      "product_name": "Cornitos Nachos Masala Munch 80g",
       "category": "munchies",
       "subcategory": "snacks",
       "price": 118,
@@ -17325,7 +17325,7 @@
     },
     {
       "product_id": "MUN-047",
-      "product_name": "Doritos Namkeen Snack Chilli Chataka 80g",
+      "product_name": "Kurkure Namkeen Snack Chilli Chataka 80g",
       "category": "munchies",
       "subcategory": "snacks",
       "price": 40,
@@ -25251,7 +25251,7 @@
     },
     {
       "product_id": "SWT-004",
-      "product_name": "Amul Silk Fruit & Nut 40g",
+      "product_name": "Cadbury Silk Fruit & Nut 40g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 236,
@@ -25471,7 +25471,7 @@
     },
     {
       "product_id": "SWT-010",
-      "product_name": "Nestle Silk Fruit & Nut 40g",
+      "product_name": "Cadbury Silk Roast Almond 40g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 279,
@@ -25588,7 +25588,7 @@
     },
     {
       "product_id": "SWT-013",
-      "product_name": "Amul KitKat Roasted Almond 150g",
+      "product_name": "Nestle KitKat Dessert 150g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 321,
@@ -25698,7 +25698,7 @@
     },
     {
       "product_id": "SWT-016",
-      "product_name": "Amul Dairy Milk Hazelnut 150g",
+      "product_name": "Cadbury Dairy Milk Hazelnut 150g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 94,
@@ -25939,7 +25939,7 @@
     },
     {
       "product_id": "SWT-022",
-      "product_name": "Amul Dairy Milk Roasted Almond 150g",
+      "product_name": "Cadbury Dairy Milk Crackle 150g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 314,
@@ -26070,7 +26070,7 @@
     },
     {
       "product_id": "SWT-025",
-      "product_name": "Amul KitKat Dark 40g",
+      "product_name": "Nestle KitKat Dark 40g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 61,
@@ -26779,7 +26779,7 @@
     },
     {
       "product_id": "SWT-043",
-      "product_name": "Amul KitKat Fruit & Nut 150g",
+      "product_name": "Nestle KitKat Chunky 150g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 238,
@@ -26910,7 +26910,7 @@
     },
     {
       "product_id": "SWT-046",
-      "product_name": "Amul Dairy Milk Dark 40g",
+      "product_name": "Cadbury Dairy Milk Dark 40g",
       "category": "sweet_tooth",
       "subcategory": "chocolate",
       "price": 164,
