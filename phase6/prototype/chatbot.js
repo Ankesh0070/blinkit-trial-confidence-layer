@@ -252,7 +252,13 @@ const CHAT_CATEGORIES = [
     { id: 'baby', name: 'Baby Care', emoji: '🧸', kw: ['baby', 'diaper', 'infant', 'wipes', 'baby wash', 'baby lotion', 'baby powder'] },
     { id: 'home_cleaning', name: 'Home & Cleaning', emoji: '🧹', kw: ['clean', 'detergent', 'floor', 'toilet', 'dishwash', 'home care', 'glass cleaner', 'garbage'] },
     { id: 'pet', name: 'Pet Care', emoji: '🐕', kw: ['pet', 'dog', 'cat', 'litter', 'pet food', 'treats'] },
-    { id: 'intimate_personal', name: 'Intimate Care', emoji: '🛡️', kw: ['intimate', 'sanitary', 'sanitary pad', 'feminine', 'condom', 'panty liner'] }
+    { id: 'intimate_personal', name: 'Intimate Care', emoji: '🛡️', kw: ['intimate', 'sanitary', 'sanitary pad', 'feminine', 'condom', 'panty liner'] },
+    { id: 'books', name: 'Books', emoji: '📚', kw: ['book', 'novel', 'fiction', 'self help', 'read', 'author', 'paperback', 'story', 'academic', 'guide'] },
+    { id: 'jewellery', name: 'Jewellery', emoji: '💍', kw: ['jewellery', 'jewelry', 'earring', 'necklace', 'ring', 'bracelet', 'bangle', 'pendant', 'anklet', 'jhumka'] },
+    { id: 'spiritual', name: 'Spiritual Needs', emoji: '🕉️', kw: ['spiritual', 'pooja', 'puja', 'agarbatti', 'incense', 'diya', 'idol', 'camphor', 'dhoop', 'rudraksha', 'temple', 'god'] },
+    { id: 'stationery_games', name: 'Stationery & Games', emoji: '✏️', kw: ['stationery', 'pen', 'notebook', 'chess', 'ludo', 'cards', 'uno', 'carrom', 'board game', 'sketch', 'geometry'] },
+    { id: 'supplements', name: 'Supplements', emoji: '💪', kw: ['supplement', 'protein', 'whey', 'multivitamin', 'omega', 'biotin', 'collagen', 'mass gainer', 'protein bar', 'gym', 'nutrition'] },
+    { id: 'sports_outdoor', name: 'Sports & Outdoor Games', emoji: '🏏', kw: ['sports', 'cricket', 'bat', 'football', 'badminton', 'volleyball', 'basketball', 'skipping', 'frisbee', 'outdoor', 'game', 'ball'] }
 ];
 
 // In-page navigation if the store app is loaded; otherwise let the href load it.

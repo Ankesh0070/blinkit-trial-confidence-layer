@@ -13,7 +13,7 @@
     },
     "snacks_beverages": {
       "mentions": 659,
-      "pct_of_corpus": 2.0,
+      "pct_of_corpus": 2,
       "density_flag": "dense",
       "eligible_for_ai_signals": true,
       "phase": "not_targeted",
@@ -74,6 +74,54 @@
       "eligible_for_ai_signals": true,
       "phase": "phase5",
       "note": "Phase 5 full catalog scale-out. Override to TRUE."
+    },
+    "books": {
+      "mentions": 180,
+      "pct_of_corpus": 0.53,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
+    },
+    "jewellery": {
+      "mentions": 150,
+      "pct_of_corpus": 0.44,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
+    },
+    "spiritual": {
+      "mentions": 130,
+      "pct_of_corpus": 0.38,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
+    },
+    "stationery_games": {
+      "mentions": 165,
+      "pct_of_corpus": 0.49,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
+    },
+    "supplements": {
+      "mentions": 210,
+      "pct_of_corpus": 0.62,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
+    },
+    "sports_outdoor": {
+      "mentions": 145,
+      "pct_of_corpus": 0.43,
+      "density_flag": "dense",
+      "eligible_for_ai_signals": true,
+      "phase": "phase5_expansion",
+      "note": "New Phase 5 expansion category with automated trust pipeline."
     }
   }
 }

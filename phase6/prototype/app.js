@@ -23,6 +23,15 @@ const EMOJIS = {
     'vegetables_fruits': '🥬', 'dairy_bread_eggs': '🥛', 'munchies': '🍿', 'cold_drinks_juices': '🥤',
     'atta_rice_dal': '🌾', 'tea_coffee': '☕', 'biscuits_bakery': '🍪', 'sweet_tooth': '🍫',
     'masala_oil': '🧂', 'instant_frozen': '🧊',
+    // new expansion category emojis
+    'books': '📚', 'jewellery': '💍', 'spiritual': '🕉️', 'stationery_games': '✏️', 'supplements': '💪', 'sports_outdoor': '🏏',
+    // new expansion subcategory emojis
+    'fiction': '📖', 'self_help': '📗', 'non_fiction': '📘', 'children': '📙', 'academic': '🎓',
+    'earrings': '💎', 'necklace': '📿', 'ring': '💍', 'bracelet': '📿', 'bangles': '💫', 'pendant': '🔮',
+    'incense': '🪔', 'diya': '🪔', 'idol': '🕉️', 'pooja': '🛕', 'camphor': '🔥', 'rudraksha': '📿',
+    'pen': '🖊️', 'notebook': '📓', 'chess': '♟️', 'ludo': '🎲', 'cards': '🃏', 'art': '🖍️', 'carrom': '⚫',
+    'whey_protein': '💪', 'multivitamin': '💊', 'omega3': '🐟', 'plant_protein': '🌱', 'beauty': '✨', 'bar': '🍫',
+    'cricket_bat': '🏏', 'football': '⚽', 'badminton': '🏸', 'ball_sports': '🏀', 'fitness': '🤸', 'outdoor': '🥏',
     // grocery subcategory emojis
     'tomato': '🍅', 'onion': '🧅', 'banana': '🍌', 'apple': '🍎', 'potato': '🥔',
     'milk': '🥛', 'bread': '🍞', 'eggs': '🥚', 'butter': '🧈', 'paneer': '🧀',
@@ -54,7 +63,13 @@ const ALL_CATEGORIES = [
     { id: 'baby', name: 'Baby Care', type: 'trial' },
     { id: 'home_cleaning', name: 'Home & Cleaning', type: 'trial' },
     { id: 'pet', name: 'Pet Care', type: 'trial' },
-    { id: 'intimate_personal', name: 'Intimate Care', type: 'trial' }
+    { id: 'intimate_personal', name: 'Intimate Care', type: 'trial' },
+    { id: 'books', name: 'Books', type: 'trial' },
+    { id: 'jewellery', name: 'Jewellery', type: 'trial' },
+    { id: 'spiritual', name: 'Spiritual Needs', type: 'trial' },
+    { id: 'stationery_games', name: 'Stationery & Games', type: 'trial' },
+    { id: 'supplements', name: 'Supplements', type: 'trial' },
+    { id: 'sports_outdoor', name: 'Sports & Outdoor Games', type: 'trial' }
 ];
 const GROCERY_IDS = new Set(ALL_CATEGORIES.filter(c => c.type === 'grocery').map(c => c.id));
 const catDisplayName = id => trustData?.category_signals?.[id]?.display_name || ALL_CATEGORIES.find(c => c.id === id)?.name || id;
@@ -182,7 +197,7 @@ function renderRecommendationStrip() {
     const strip = document.getElementById('recStrip');
     strip.innerHTML = '';
     
-    const categoriesToEvaluate = ['electronics', 'personal_care_beauty', 'pharmacy_health', 'baby', 'home_cleaning', 'pet', 'intimate_personal'];
+    const categoriesToEvaluate = ['electronics', 'personal_care_beauty', 'pharmacy_health', 'baby', 'home_cleaning', 'pet', 'intimate_personal', 'books', 'jewellery', 'spiritual', 'stationery_games', 'supplements', 'sports_outdoor'];
     
     categoriesToEvaluate.forEach(catId => {
         const gateStatus = evaluateConfidenceGate(catId);
