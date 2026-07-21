@@ -22,8 +22,19 @@ app.get('/api/health', (req, res) => res.json({
 // Open the bare URL straight into the store UI.
 app.get('/', (req, res) => res.redirect('/prototype/index.html'));
 
-// Serve the static frontend files from Phase 6
-app.use(express.static(path.join(__dirname, 'phase6')));
+// Serve the static frontend files from Phase 6.
+// HTML / JS / JSON are revalidated every load so catalog + UI updates show
+// immediately (no stale "Explore broken / only grocery" from a cached page);
+// images may be cached since their URLs are version-stamped.
+app.use(express.static(path.join(__dirname, 'phase6'), {
+    setHeaders: (res, filePath) => {
+        if (/\.(html|js|json)$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+        } else {
+            res.setHeader('Cache-Control', 'public, max-age=86400');
+        }
+    }
+}));
 
 // Example Backend API Endpoint leveraging the API keys
 app.post('/api/analyze-review', async (req, res) => {
