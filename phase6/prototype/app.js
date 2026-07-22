@@ -118,6 +118,88 @@ function imgTag(url, product, cls) {
     return `<img src="${url}" class="${cls}" onerror="this.onerror=null;this.src='${placeholderImg(product)}'">`;
 }
 
+// Seed realistic past-order history for each demo profile so the Orders page
+// (and the Profile tab's recent-orders widget) actually shows history that
+// matches what user_profiles.json declares for that persona — total_orders_90d,
+// categories_purchased_90d, and last_non_grocery_purchase — instead of a blank
+// "No orders yet" on a fresh browser. Runs once (localStorage-guarded); never
+// overwrites orders a real session already placed.
+const ORDER_SEED_VERSION = 'v1';
+function seedOrderHistory() {
+    if (localStorage.getItem('blinkit_orders_seeded') === ORDER_SEED_VERSION) return;
+    if (JSON.parse(localStorage.getItem('blinkit_orders') || '[]').length) {
+        localStorage.setItem('blinkit_orders_seeded', ORDER_SEED_VERSION);
+        return;
+    }
+
+    const byCat = {};
+    trustData.products.forEach(p => (byCat[p.category] = byCat[p.category] || []).push(p));
+    const pick = (catId, n, offset) => {
+        const pool = byCat[catId] || [];
+        if (!pool.length) return [];
+        const out = [];
+        for (let i = 0; i < n; i++) out.push(pool[(offset + i * 7) % pool.length]);
+        return out;
+    };
+    const toItem = (p, qty) => ({
+        id: p.product_id, name: p.product_name, price: p.price, mrp: p.mrp,
+        image: p.image || p.subcategory, category: p.category, category_name: catDisplayName(p.category), qty
+    });
+    const GROCERY_CATS = ALL_CATEGORIES.filter(c => c.type === 'grocery').map(c => c.id);
+    const orderTotal = items => items.reduce((s, i) => s + i.price * i.qty, 0);
+    const daysAgoISO = d => new Date(Date.now() - d * 86400000 - Math.random() * 3600000).toISOString();
+
+    let orderSeq = 1;
+    const mkOrder = (profileId, daysAgo, items, novelCategories = []) => ({
+        orderId: 'BK' + String(20000000 + orderSeq++).padStart(8, '0'),
+        profile: profileId,
+        placedAt: daysAgoISO(daysAgo),
+        items,
+        total: orderTotal(items),
+        payment: (orderSeq % 2 === 0) ? 'cod' : 'upi',
+        novelCategories
+    });
+
+    const orders = [];
+
+    // user_a — Cold Start (Grocery Loyalist): total_orders_90d=34, groceries only,
+    // no trial-category purchase (last_non_grocery_purchase: null).
+    for (let i = 0; i < 34; i++) {
+        const cat = GROCERY_CATS[i % GROCERY_CATS.length];
+        const items = pick(cat, 1 + (i % 3), i).map(p => toItem(p, 1 + (i % 2)));
+        if (items.length) orders.push(mkOrder('user_a', Math.floor(i * (89 / 34)) + 1, items));
+    }
+
+    // user_b — Electronics Explorer: total_orders_90d=12 (9 grocery + 3 electronics).
+    // First electronics order 70 days ago is their CCAR activation (novel);
+    // repeat electronics purchases at 42 and 15 days ago (days_ago:15 matches
+    // last_non_grocery_purchase) prove the trial stuck.
+    for (let i = 0; i < 9; i++) {
+        const cat = GROCERY_CATS[i % GROCERY_CATS.length];
+        const items = pick(cat, 1 + (i % 2), i + 3).map(p => toItem(p, 1));
+        if (items.length) orders.push(mkOrder('user_b', 20 + i * 7, items));
+    }
+    [[70, true], [42, false], [15, false]].forEach(([d, isNovel], i) => {
+        const items = pick('electronics', 1, i * 5).map(p => toItem(p, 1));
+        if (items.length) orders.push(mkOrder('user_b', d, items, isNovel ? ['electronics'] : []));
+    });
+
+    // user_c — Dormant Buyer (Out of Window): total_orders_90d=8, groceries only
+    // within the window, PLUS one lapsed personal_care_beauty trial 120 days ago
+    // (outside the 90d window — never repeated, hence "dormant"/not CCAR-active).
+    for (let i = 0; i < 8; i++) {
+        const cat = GROCERY_CATS[i % GROCERY_CATS.length];
+        const items = pick(cat, 1 + (i % 2), i + 1).map(p => toItem(p, 1));
+        if (items.length) orders.push(mkOrder('user_c', 5 + i * 10, items));
+    }
+    const beautyItems = pick('personal_care_beauty', 2, 2).map(p => toItem(p, 1));
+    if (beautyItems.length) orders.push(mkOrder('user_c', 120, beautyItems, ['personal_care_beauty']));
+
+    orders.sort((a, b) => new Date(b.placedAt) - new Date(a.placedAt)); // newest first, matches placeOrder's unshift
+    localStorage.setItem('blinkit_orders', JSON.stringify(orders));
+    localStorage.setItem('blinkit_orders_seeded', ORDER_SEED_VERSION);
+}
+
 async function init() {
     const cb = `?v=${IMG_VER}`; // cache-bust data so catalog/image updates show without a manual clear
     const trustRes = await fetch('../data/trust_signals_automated.json' + cb);
@@ -131,6 +213,8 @@ async function init() {
 
     // Manifest of locally-bundled product images (product_id -> count).
     try { imgManifest = await (await fetch('img/manifest.json' + cb)).json(); } catch (e) { imgManifest = {}; }
+
+    seedOrderHistory();
 
     renderApp();
     applyUrlIntent();
@@ -1076,7 +1160,7 @@ function doSearch(query) {
 function renderOrders() {
     const list = document.getElementById('ordersList');
     if (!list) return;
-    const orders = JSON.parse(localStorage.getItem('blinkit_orders') || '[]');
+    const orders = JSON.parse(localStorage.getItem('blinkit_orders') || '[]').filter(o => o.profile === currentProfile);
 
     if (orders.length === 0) {
         list.innerHTML = `
