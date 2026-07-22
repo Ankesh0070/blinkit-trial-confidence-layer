@@ -43,13 +43,14 @@ function injectChatbot() {
             <!-- Messages Area -->
             <div id="chatMessages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-surface-container-lowest">
                 <!-- Initial greeting -->
-                <div class="self-start max-w-[85%] bg-surface-container p-3 rounded-2xl rounded-tl-sm text-on-surface font-body-md text-sm border border-outline-variant/20 shadow-sm">
+                <div class="self-start max-w-[85%] bg-surface-container p-3 rounded-2xl rounded-tl-sm text-on-surface font-body-md text-sm border border-outline-variant/20 shadow-sm whitespace-pre-wrap">
                     Hi! I'm your Blinkit product discovery assistant. What are you looking for today?
-                </div>
+
+Aap Hindi, Tamil, Telugu ya kisi bhi Indian language mein pooch sakte hain — main usi bhasha mein jawab dunga! 🙂</div>
             </div>
             <!-- Input Area -->
             <div class="p-3 bg-surface border-t border-outline-variant/20 flex gap-2 items-center">
-                <input type="text" id="chatInput" placeholder="Ask about products..." class="flex-1 bg-surface-container-high rounded-full px-4 py-2 text-sm font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface border-none" onkeypress="handleChatKeyPress(event)">
+                <input type="text" id="chatInput" placeholder="Ask in any language..." class="flex-1 bg-surface-container-high rounded-full px-4 py-2 text-sm font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 text-on-surface border-none" onkeypress="handleChatKeyPress(event)">
                 <button onclick="sendMessage()" class="bg-primary text-on-primary p-2 rounded-full hover:bg-primary-fixed-dim transition-colors flex items-center justify-center shadow-md">
                     <span class="material-symbols-outlined text-[20px]">send</span>
                 </button>
@@ -189,6 +190,28 @@ function buildReply(text) {
     };
 }
 
+// Ask the multilingual AI assistant (detects & replies in the user's own
+// language/script, including Hinglish). Local catalog search still runs so
+// the AI is given real product facts (never invents names/prices) and so we
+// have an accurate "View products" link regardless of what language the
+// reply comes back in.
+async function askAiReply(text) {
+    const hits = findProducts(text);
+    const catalogFacts = hits.slice(0, 5).map(p => ({ name: p.product_name, price: p.price, category: p.category }));
+    const searchQuery = hits.length ? chatTokens(text).join(' ') : null;
+
+    const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory.slice(-8), catalogFacts }),
+        signal: AbortSignal.timeout(15000)
+    });
+    if (!res.ok) throw new Error('chat api http ' + res.status);
+    const data = await res.json();
+    if (!data.success) throw new Error(data.error || 'chat api failed');
+    return { text: data.reply, categoryIds: data.category_ids || [], searchQuery };
+}
+
 async function sendMessage() {
     const input = document.getElementById('chatInput');
     const text = input.value.trim();
@@ -200,11 +223,17 @@ async function sendMessage() {
 
     const loadingId = appendLoading();
 
-    // Simulate natural typing delay (300-800ms)
-    await new Promise(r => setTimeout(r, 300 + Math.random() * 500));
+    let reply;
+    try {
+        reply = await askAiReply(text);
+    } catch (e) {
+        // AI unavailable (no API key, offline, rate-limited, etc.) — fall back
+        // to the local rule-based assistant so chat still works (English/Hinglish only).
+        await new Promise(r => setTimeout(r, 200));
+        reply = buildReply(text);
+    }
 
     removeLoading(loadingId);
-    const reply = buildReply(text);
     chatHistory.push({ role: 'assistant', content: reply.text });
     appendMessage('assistant', reply.text);
     appendActionLinks(reply, text);
@@ -258,7 +287,17 @@ const CHAT_CATEGORIES = [
     { id: 'spiritual', name: 'Spiritual Needs', emoji: '🕉️', kw: ['spiritual', 'pooja', 'puja', 'agarbatti', 'incense', 'diya', 'idol', 'camphor', 'dhoop', 'rudraksha', 'temple', 'god'] },
     { id: 'stationery_games', name: 'Stationery & Games', emoji: '✏️', kw: ['stationery', 'pen', 'notebook', 'chess', 'ludo', 'cards', 'uno', 'carrom', 'board game', 'sketch', 'geometry'] },
     { id: 'supplements', name: 'Supplements', emoji: '💪', kw: ['supplement', 'protein', 'whey', 'multivitamin', 'omega', 'biotin', 'collagen', 'mass gainer', 'protein bar', 'gym', 'nutrition'] },
-    { id: 'sports_outdoor', name: 'Sports & Outdoor Games', emoji: '🏏', kw: ['sports', 'cricket', 'bat', 'football', 'badminton', 'volleyball', 'basketball', 'skipping', 'frisbee', 'outdoor', 'game', 'ball'] }
+    { id: 'sports_outdoor', name: 'Sports & Outdoor Games', emoji: '🏏', kw: ['sports', 'cricket', 'bat', 'football', 'badminton', 'volleyball', 'basketball', 'skipping', 'frisbee', 'outdoor', 'game', 'ball'] },
+    { id: 'vegetables_fruits', name: 'Vegetables & Fruits', emoji: '🥬', kw: ['vegetable', 'fruit', 'apple', 'potato', 'onion', 'tamatar', 'sabzi', 'fresh'] },
+    { id: 'dairy_bread_eggs', name: 'Dairy, Bread & Eggs', emoji: '🥛', kw: ['milk', 'bread', 'egg', 'butter', 'paneer', 'cheese', 'curd', 'dairy'] },
+    { id: 'atta_rice_dal', name: 'Atta, Rice & Dal', emoji: '🌾', kw: ['atta', 'rice', 'dal', 'flour', 'grain', 'wheat'] },
+    { id: 'masala_oil', name: 'Masala, Oil & More', emoji: '🧂', kw: ['oil', 'masala', 'spice', 'salt', 'jeera', 'haldi', 'mirch'] },
+    { id: 'munchies', name: 'Munchies', emoji: '🍿', kw: ['snack', 'chip', 'munch', 'namkeen', 'popcorn'] },
+    { id: 'cold_drinks_juices', name: 'Cold Drinks & Juices', emoji: '🥤', kw: ['drink', 'cold drink', 'juice', 'coke', 'pepsi', 'frooti', 'soda', 'water'] },
+    { id: 'tea_coffee', name: 'Tea, Coffee & Health Drinks', emoji: '☕', kw: ['tea', 'coffee', 'chai', 'green tea', 'bru', 'nescafe'] },
+    { id: 'biscuits_bakery', name: 'Biscuits & Bakery', emoji: '🍪', kw: ['biscuit', 'cookie', 'rusk', 'cake', 'bakery'] },
+    { id: 'sweet_tooth', name: 'Sweet Tooth', emoji: '🍫', kw: ['chocolate', 'sweet', 'candy', 'ice cream', 'mithai', 'dessert'] },
+    { id: 'instant_frozen', name: 'Instant & Frozen', emoji: '🧊', kw: ['noodle', 'maggi', 'instant', 'frozen', 'soup', 'ready to eat'] }
 ];
 
 // In-page navigation if the store app is loaded; otherwise let the href load it.
@@ -303,8 +342,17 @@ function appendActionLinks(reply, userText) {
         return;
     }
 
-    // Otherwise fall back to category chips derived from the text.
-    let actions = reply.browse ? [] : extractChatActions(reply.text, userText);
+    // AI-provided category ids (language-agnostic — works no matter what
+    // language the reply text came back in).
+    let actions = [];
+    if (Array.isArray(reply.categoryIds) && reply.categoryIds.length) {
+        actions = reply.categoryIds.map(id => CHAT_CATEGORIES.find(c => c.id === id)).filter(Boolean).slice(0, 3);
+    }
+    // Fallback: legacy English keyword-matching (only relevant for the local
+    // rule-based reply path, which is always in English).
+    if (!actions.length && !reply.browse) {
+        actions = extractChatActions(reply.text, userText);
+    }
     if (actions.length === 0) {
         wrap.innerHTML = chip('index.html?view=categories', 'return chipCategories()', '🧭 Browse all categories');
     } else {
