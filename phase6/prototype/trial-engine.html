@@ -221,6 +221,7 @@ Object.entries(PERSONAS).forEach(([k, p]) => {
   state[k] = { qty: p.cart.map(() => 1), trialAdded: false, ordered: false, orderId: null };
 });
 let currentKey = 'A';
+let pendingReset = null;   // persona to reset to a fresh baseline cart after an order is placed
 const S = () => state[currentKey];
 const P0 = () => PERSONAS[currentKey];
 
@@ -402,6 +403,7 @@ function placeOrder() {
       ${trialLine}
       <button onclick="closeCheckout()" class="w-full mt-5 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl active:scale-[0.98] transition-transform">Continue Shopping</button>
     </div>`;
+  pendingReset = currentKey;   // order done → clear this persona's cart to baseline on close
   renderJson();
 }
 function showSheet() {
@@ -412,6 +414,12 @@ function closeCheckout() {
   const sheet = document.getElementById('checkoutSheet');
   sheet.style.transform = 'translateY(100%)';
   setTimeout(() => document.getElementById('checkoutOverlay').classList.add('hidden'), 300);
+  if (pendingReset) {   // an order was just placed → reset that persona to a fresh baseline cart
+    const k = pendingReset; pendingReset = null;
+    const p = PERSONAS[k];
+    state[k] = { qty: p.cart.map(() => 1), trialAdded: false, ordered: false, orderId: null };
+    if (k === currentKey) renderAll();
+  }
 }
 
 renderAll();
