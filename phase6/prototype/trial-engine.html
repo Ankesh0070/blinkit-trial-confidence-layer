@@ -14,11 +14,12 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
   .drawer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-  .drawer.open { max-height: 680px; }
+  .drawer.open { max-height: 700px; }
   .chev { transition: transform .3s ease; }
   .chev.open { transform: rotate(180deg); }
   @keyframes pop { 0%{transform:scale(.92);opacity:0} 100%{transform:scale(1);opacity:1} }
   .pop { animation: pop .22s ease; }
+  .sheet { transition: transform .3s ease; }
   @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
   .code-key{color:#F2C94C} .code-str{color:#7ee787} .code-num{color:#79c0ff}
 </style>
@@ -26,7 +27,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
 <body class="flex justify-center min-h-screen">
 
 <!-- Mobile phone frame -->
-<div class="w-full max-w-md my-4 h-[calc(100vh-2rem)] bg-gray-50 shadow-2xl rounded-3xl border border-gray-300 overflow-hidden flex flex-col">
+<div class="w-full max-w-md my-4 h-[calc(100vh-2rem)] bg-gray-50 shadow-2xl rounded-3xl border border-gray-300 overflow-hidden flex flex-col relative">
 
   <!-- Sticky top header -->
   <div class="flex-shrink-0 bg-brand px-4 pt-3 pb-3 z-20">
@@ -42,7 +43,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
   </div>
 
   <!-- Scrollable content -->
-  <div class="flex-1 overflow-y-auto no-scrollbar">
+  <div class="flex-1 overflow-y-auto no-scrollbar" id="scrollArea">
 
     <!-- 1. Persona simulator -->
     <div class="px-4 pt-4">
@@ -63,7 +64,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
           </div>
           <span id="cartCount" class="text-[11px] font-bold text-brandDark/60"></span>
         </div>
-        <div id="cartItems" class="flex flex-col gap-2.5"></div>
+        <div id="cartItems" class="flex flex-col gap-3"></div>
       </div>
     </div>
 
@@ -98,17 +99,13 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
               </div>
             </div>
 
-            <!-- 4. Why AI Suggested This (research link) -->
             <div class="mt-3 rounded-lg bg-brand/15 border border-brand/40 p-2.5">
               <div class="flex items-start gap-2">
                 <span class="text-[15px] leading-none mt-0.5">🧠</span>
-                <p class="text-[11px] text-brandDark leading-snug">
-                  <b>AI Insight (From 5,000+ Reviews):</b> <span id="aiInsight" class="text-brandDark/75"></span>
-                </p>
+                <p class="text-[11px] text-brandDark leading-snug"><b>AI Insight (From 5,000+ Reviews):</b> <span id="aiInsight" class="text-brandDark/75"></span></p>
               </div>
             </div>
 
-            <!-- Trust badges -->
             <div class="mt-2.5 flex flex-col gap-1.5">
               <div class="flex items-center gap-2 bg-white rounded-lg p-2 border border-black/5">
                 <span id="ic-shield" class="text-ctaGreen shrink-0"></span>
@@ -119,7 +116,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
                 <p class="text-[11px] text-brandDark leading-snug"><b>Instant 10-min Return Pickup</b></p>
               </div>
               <div class="flex items-center gap-2 bg-white rounded-lg p-2 border border-black/5">
-                <span id="ic-star" class="text-brand shrink-0" style="color:#E5A800;"></span>
+                <span id="ic-star" class="shrink-0" style="color:#E5A800;"></span>
                 <p class="text-[11px] text-brandDark leading-snug"><b>4.8/5</b> <span class="text-brandDark/60">Rated by 12,000+ Quick-Commerce Trialists</span></p>
               </div>
             </div>
@@ -139,7 +136,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
       </button>
       <div id="drawer" class="drawer">
         <div class="bg-[#0d1117] rounded-b-2xl -mt-2 pt-4 px-4 pb-4 border-x border-b border-black/10">
-          <div class="text-[10px] font-bold uppercase tracking-wider text-white/40 mb-2">Model reasoning · real-time</div>
+          <div class="text-[10px] font-bold uppercase tracking-wider text-white/40 mb-2">Live persona &amp; cart state · model reasoning</div>
           <pre id="aiJson" class="text-[11.5px] leading-relaxed font-mono text-white/90 overflow-x-auto no-scrollbar whitespace-pre"></pre>
         </div>
       </div>
@@ -157,16 +154,24 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
           <div id="barBreak" class="text-white/45 text-[10px]"></div>
         </div>
       </div>
-      <button class="bg-ctaGreen text-white font-extrabold text-[13.5px] px-5 py-2.5 rounded-xl flex items-center gap-1.5 active:scale-95 transition-transform">
+      <button id="checkoutBtn" onclick="openCheckout()" class="bg-ctaGreen text-white font-extrabold text-[13.5px] px-5 py-2.5 rounded-xl flex items-center gap-1.5 active:scale-95 transition-transform">
         Checkout <span id="ic-arrow"></span>
       </button>
+    </div>
+  </div>
+
+  <!-- Checkout / order-placed overlay (inside frame) -->
+  <div id="checkoutOverlay" class="absolute inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-black/40" onclick="closeCheckout()"></div>
+    <div id="checkoutSheet" class="sheet absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-5 pb-6" style="transform:translateY(100%);">
+      <div id="checkoutBody"></div>
     </div>
   </div>
 
 </div>
 
 <script>
-// ---------- Lucide icons (inline SVG) ----------
+// ---------- Lucide icons ----------
 const P = {
   clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   pin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
@@ -177,54 +182,46 @@ const P = {
   zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
   star:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.44a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 10.228a.53.53 0 0 1 .294-.904l5.165-.756a2.12 2.12 0 0 0 1.597-1.16z"/>',
   cpu:'<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>',
-  chev:'<path d="m6 9 6 6 6-6"/>', plus:'<path d="M5 12h14M12 5v14"/>', check:'<path d="M20 6 9 17l-5-5"/>', arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>'
+  chev:'<path d="m6 9 6 6 6-6"/>', plus:'<path d="M5 12h14M12 5v14"/>', minus:'<path d="M5 12h14"/>', check:'<path d="M20 6 9 17l-5-5"/>',
+  trash:'<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>',
+  arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>', close:'<path d="M18 6 6 18M6 6l12 12"/>',
+  party:'<path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01M22 8h.01M15 2h.01M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/>'
 };
 function icon(n, s = 18, w = 2.2) { return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`; }
 
-// ---------- Persona data ----------
+// ---------- Persona catalog ----------
 const PERSONAS = {
-  A: {
-    who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly Grocery Buyer',
-    cart: [
-      { name: 'Aashirvaad Atta 5kg', price: 255, emoji: '🌾' },
-      { name: 'Amul Taaza Milk 2L', price: 132, emoji: '🥛' },
-      { name: 'Amul Butter 100g', price: 56, emoji: '🧈' }
-    ],
+  A: { who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly Grocery Buyer',
+    cart: [ { name: 'Aashirvaad Atta 5kg', price: 255, emoji: '🌾' }, { name: 'Amul Taaza Milk 2L', price: 132, emoji: '🥛' }, { name: 'Amul Butter 100g', price: 56, emoji: '🧈' } ],
     target: 'Personal Care', confidence: 94,
     context: "Since you're stocking up on weekly groceries, <b>82% of similar shoppers</b> added this Personal Care micro-trial to their order.",
     trial: { name: 'Minimalist 10% Vit C Face Serum', size: '10ml Trial Size', price: 29, mrp: 499, emoji: '🧴', target: 'Personal Care' },
     aiInsight: "78% of Grocery-only buyers avoid Personal Care due to <b>“Size &amp; Price Hesitation”</b>. This ₹29 micro-trial eliminates purchase risk.",
-    ai: { vector: ['Atta 5kg', 'Milk 2L', 'Amul Butter'], propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Vit C Serum — Trial Pack 10ml', rule: 'Low-AOV Sample + Instant Refund + Size-Hesitation Buster' }
-  },
-  B: {
-    who: 'Priya', avatar: '👩🏻', sub: 'Snack & Beverage Buyer',
-    cart: [
-      { name: 'Tetley Green Tea 25s', price: 150, emoji: '🍵' },
-      { name: 'Quaker Oats 1kg', price: 175, emoji: '🥣' },
-      { name: 'Sleepy Owl Cold Brew', price: 120, emoji: '🧊' }
-    ],
+    ai: { propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Vit C Serum — Trial Pack 10ml', rule: 'Low-AOV Sample + Instant Refund + Size-Hesitation Buster' } },
+  B: { who: 'Priya', avatar: '👩🏻', sub: 'Snack & Beverage Buyer',
+    cart: [ { name: 'Tetley Green Tea 25s', price: 150, emoji: '🍵' }, { name: 'Quaker Oats 1kg', price: 175, emoji: '🥣' }, { name: 'Sleepy Owl Cold Brew', price: 120, emoji: '🧊' } ],
     target: 'Superfoods / Healthy Snacks', confidence: 90,
     context: "Health-first snackers like you added this Superfood sample <b>3× more often</b> after a green-tea run — try it risk-free.",
     trial: { name: 'True Elements Organic Seed Mix', size: '30g Sample', price: 19, mrp: 199, emoji: '🌰', target: 'Superfoods' },
     aiInsight: "72% of snack &amp; beverage buyers skip Superfoods citing <b>“Taste Uncertainty”</b>. This ₹19 sample removes the risk.",
-    ai: { vector: ['Green Tea', 'Oats', 'Cold Brew'], propensity: { 'Superfoods': 0.83, 'Beverages': 0.17 }, sku: 'Seed Mix — Sample 30g', rule: 'Taste-Uncertainty Buster + No-Questions Refund' }
-  },
-  C: {
-    who: 'Ankit', avatar: '🧑🏻‍🦱', sub: 'Household Essentials',
-    cart: [
-      { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' },
-      { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' },
-      { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' }
-    ],
+    ai: { propensity: { 'Superfoods': 0.83, 'Beverages': 0.17 }, sku: 'Seed Mix — Sample 30g', rule: 'Taste-Uncertainty Buster + No-Questions Refund' } },
+  C: { who: 'Ankit', avatar: '🧑🏻‍🦱', sub: 'Household Essentials',
+    cart: [ { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' }, { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }, { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' } ],
     target: 'Baby Care', confidence: 88,
     context: "Household-essentials shoppers like you tried this Baby Care sample after their cleaning run — <b>gentle &amp; dermatologist-tested</b>.",
     trial: { name: 'Mamaearth Gentle Baby Wipes', size: 'Gentle 15-pack', price: 15, mrp: 99, emoji: '🍼', target: 'Baby Care' },
     aiInsight: "68% of household shoppers avoid Baby Care over <b>“Safety Doubt”</b>. This ₹15 gentle 15-pack builds first-trial confidence.",
-    ai: { vector: ['Detergent', 'Dishwash', 'Tissue'], propensity: { 'Baby Care': 0.74, 'Home Care': 0.26 }, sku: 'Baby Wipes — 15-pack Trial', rule: 'Safety-First Sample + One-Tap Return' }
-  }
+    ai: { propensity: { 'Baby Care': 0.74, 'Home Care': 0.26 }, sku: 'Baby Wipes — 15-pack Trial', rule: 'Safety-First Sample + One-Tap Return' } }
 };
 
-let currentKey = 'A', trialAdded = false;
+// ---------- Per-persona LIVE STATE (each persona remembers its own cart) ----------
+const state = {};
+Object.entries(PERSONAS).forEach(([k, p]) => {
+  state[k] = { qty: p.cart.map(() => 1), trialAdded: false, ordered: false, orderId: null };
+});
+let currentKey = 'A';
+const S = () => state[currentKey];
+const P0 = () => PERSONAS[currentKey];
 
 // static icons
 document.getElementById('ic-clock').innerHTML = icon('clock', 16) + '<span class="text-[11px] font-bold ml-1">8 min</span>';
@@ -239,51 +236,72 @@ document.getElementById('ic-cpu').innerHTML = icon('cpu', 18);
 document.getElementById('chev').innerHTML = icon('chev', 18);
 document.getElementById('ic-arrow').innerHTML = icon('arrow', 15);
 
-function baseTotal(p) { return p.cart.reduce((s, c) => s + c.price, 0); }
-function grandTotal(p) { return baseTotal(p) + (trialAdded ? p.trial.price : 0); }
-function cartCount(p) { return p.cart.length + (trialAdded ? 1 : 0); }
+// ---------- totals ----------
+function baseTotal(k = currentKey) { const p = PERSONAS[k], s = state[k]; return p.cart.reduce((sum, c, i) => sum + c.price * s.qty[i], 0); }
+function grandTotal(k = currentKey) { const p = PERSONAS[k], s = state[k]; return baseTotal(k) + (s.trialAdded ? p.trial.price : 0); }
+function itemUnits(k = currentKey) { const s = state[k]; return s.qty.reduce((a, b) => a + b, 0) + (s.trialAdded ? 1 : 0); }
+function distinctLines(k = currentKey) { const s = state[k]; return s.qty.filter(q => q > 0).length + (s.trialAdded ? 1 : 0); }
 
+// ---------- persona list (shows live item count per persona) ----------
 function renderPersonas() {
   document.getElementById('personaList').innerHTML = Object.entries(PERSONAS).map(([k, p]) => {
     const sel = k === currentKey;
     const items = p.cart.map(c => c.name.split(' ').slice(0, 2).join(' ')).join(' · ');
+    const units = itemUnits(k);
     return `<button onclick="selectPersona('${k}')" class="text-left rounded-2xl border p-3 flex items-center gap-3 transition-all ${sel ? 'border-brand bg-[#FFFBEF] ring-2 ring-brand/40' : 'border-black/5 bg-white'}">
       <div class="w-11 h-11 rounded-full ${sel ? 'bg-brand' : 'bg-black/5'} flex items-center justify-center text-2xl shrink-0">${p.avatar}</div>
       <div class="min-w-0 flex-1">
-        <div class="flex items-center gap-2"><span class="font-extrabold text-[14px] text-brandDark">${p.who}</span><span class="text-[9px] font-bold text-brandDark/45">${p.sub}</span></div>
+        <div class="flex items-center gap-2"><span class="font-extrabold text-[14px] text-brandDark">${p.who}</span><span class="text-[9px] font-bold text-brandDark/45">${p.sub}</span>
+          <span class="text-[9px] font-extrabold text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded ml-auto">${units} in cart</span></div>
         <div class="text-[11px] text-brandDark/55 truncate">🛒 ${items}</div>
         <div class="text-[10px] font-bold text-ctaGreen mt-0.5">➔ Recommends: ${p.target}</div>
       </div>
-      ${sel ? `<span class="text-brandDark">${icon('check', 18, 3)}</span>` : ''}
+      ${sel ? `<span class="text-brandDark shrink-0">${icon('check', 18, 3)}</span>` : ''}
     </button>`;
   }).join('');
 }
 
+// ---------- cart with quantity steppers + remove ----------
 function renderCart() {
-  const p = PERSONAS[currentKey];
-  const rows = p.cart.map(c => `
-    <div class="flex items-center gap-3">
+  const p = P0(), s = S();
+  const rows = p.cart.map((c, i) => {
+    if (s.qty[i] <= 0) return '';
+    return `<div class="flex items-center gap-3 pop">
       <div class="w-9 h-9 rounded-lg bg-[#F5F5F3] flex items-center justify-center text-lg shrink-0">${c.emoji}</div>
-      <div class="flex-1 text-[13px] text-brandDark font-medium">${c.name}</div>
-      <div class="text-[13px] font-bold text-brandDark tabular-nums">₹${c.price}</div>
-    </div>`).join('');
-  const trialRow = trialAdded ? `
+      <div class="flex-1 min-w-0">
+        <div class="text-[13px] text-brandDark font-medium truncate">${c.name}</div>
+        <div class="text-[11px] text-brandDark/45">₹${c.price} each</div>
+      </div>
+      <div class="flex items-center gap-1.5 bg-[#F5F5F3] rounded-lg px-1 py-1 shrink-0">
+        <button onclick="stepQty(${i},-1)" class="w-6 h-6 rounded-md bg-white flex items-center justify-center text-brandDark active:scale-90 transition-transform">${s.qty[i] === 1 ? icon('trash', 13, 2.2) : icon('minus', 14, 2.6)}</button>
+        <span class="text-[12px] font-extrabold text-brandDark w-4 text-center tabular-nums">${s.qty[i]}</span>
+        <button onclick="stepQty(${i},1)" class="w-6 h-6 rounded-md bg-ctaGreen text-white flex items-center justify-center active:scale-90 transition-transform">${icon('plus', 14, 2.6)}</button>
+      </div>
+      <div class="text-[13px] font-bold text-brandDark tabular-nums w-12 text-right shrink-0">₹${c.price * s.qty[i]}</div>
+    </div>`;
+  }).join('');
+
+  const trialRow = s.trialAdded ? `
     <div class="flex items-center gap-3 pop">
       <div class="w-9 h-9 rounded-lg bg-brand/25 flex items-center justify-center text-lg shrink-0">${p.trial.emoji}</div>
-      <div class="flex-1 text-[13px] text-brandDark font-semibold">${p.trial.name} <span class="text-[9px] font-extrabold text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded ml-1">TRIAL</span></div>
-      <div class="text-[13px] font-bold text-brandDark tabular-nums">₹${p.trial.price}</div>
+      <div class="flex-1 min-w-0"><div class="text-[13px] text-brandDark font-semibold truncate">${p.trial.name} <span class="text-[9px] font-extrabold text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded">TRIAL</span></div><div class="text-[11px] text-brandDark/45">${p.trial.size}</div></div>
+      <button onclick="toggleTrial()" class="w-6 h-6 rounded-md bg-[#F5F5F3] text-brandDark flex items-center justify-center shrink-0 active:scale-90 transition-transform">${icon('trash', 13, 2.2)}</button>
+      <div class="text-[13px] font-bold text-brandDark tabular-nums w-12 text-right shrink-0">₹${p.trial.price}</div>
     </div>` : '';
-  const sub = `
+
+  const empty = distinctLines() === 0 ? `<div class="text-center py-6 text-[12px] text-brandDark/40">Cart is empty — add items or a trial sample.</div>` : '';
+  const sub = distinctLines() > 0 ? `
     <div class="flex items-center justify-between pt-2.5 mt-1 border-t border-black/5">
       <span class="text-[12px] font-bold text-brandDark/60">Grand total</span>
-      <span class="text-[15px] font-extrabold text-brandDark tabular-nums">₹${grandTotal(p)}</span>
-    </div>`;
-  document.getElementById('cartItems').innerHTML = rows + trialRow + sub;
-  document.getElementById('cartCount').textContent = cartCount(p) + ' item' + (cartCount(p) > 1 ? 's' : '');
+      <span class="text-[15px] font-extrabold text-brandDark tabular-nums">₹${grandTotal()}</span>
+    </div>` : '';
+
+  document.getElementById('cartItems').innerHTML = rows + trialRow + empty + sub;
+  document.getElementById('cartCount').textContent = itemUnits() + ' item' + (itemUnits() !== 1 ? 's' : '');
 }
 
 function renderNudge() {
-  const p = PERSONAS[currentKey], t = p.trial;
+  const p = P0(), t = p.trial;
   document.getElementById('matchBadge').textContent = p.confidence + '% Match';
   document.getElementById('contextText').innerHTML = p.context;
   document.getElementById('trialEmoji').textContent = t.emoji;
@@ -296,10 +314,9 @@ function renderNudge() {
   document.getElementById('aiInsight').innerHTML = p.aiInsight;
   renderCta();
 }
-
 function renderCta() {
-  const p = PERSONAS[currentKey], btn = document.getElementById('trialCta');
-  if (trialAdded) {
+  const p = P0(), s = S(), btn = document.getElementById('trialCta');
+  if (s.trialAdded) {
     btn.className = "w-full mt-3 bg-ctaGreen text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
     btn.innerHTML = icon('check', 18, 3) + ` Trial Added · tap to remove`;
   } else {
@@ -307,39 +324,87 @@ function renderCta() {
     btn.innerHTML = icon('plus', 18, 3) + ` Add Trial Sample (+₹${p.trial.price})`;
   }
 }
-
 function renderBar() {
-  const p = PERSONAS[currentKey];
-  document.getElementById('barCount').textContent = cartCount(p) + ' items · incl. taxes';
-  document.getElementById('barTotal').textContent = '₹' + grandTotal(p);
-  document.getElementById('barBreak').textContent = trialAdded ? `(₹${baseTotal(p)} + ₹${p.trial.price} trial)` : '';
+  const empty = distinctLines() === 0;
+  document.getElementById('barCount').textContent = empty ? 'Cart empty' : itemUnits() + ' items · incl. taxes';
+  document.getElementById('barTotal').textContent = '₹' + grandTotal();
+  document.getElementById('barBreak').textContent = S().trialAdded ? `(₹${baseTotal()} + ₹${P0().trial.price} trial)` : '';
+  const btn = document.getElementById('checkoutBtn');
+  btn.style.opacity = empty ? '0.5' : '1';
+  btn.style.pointerEvents = empty ? 'none' : 'auto';
 }
-
 function renderJson() {
-  const p = PERSONAS[currentKey], a = p.ai;
+  const p = P0(), s = S(), a = p.ai;
+  const vec = p.cart.map((c, i) => s.qty[i] > 0 ? `<span class="code-str">"${c.name.split(' ').slice(0, 2).join(' ')} ×${s.qty[i]}"</span>` : null).filter(Boolean).join(', ');
   const prop = Object.entries(a.propensity).map(([k, v]) => `    <span class="code-str">"${k}"</span>: <span class="code-num">${v}</span>`).join(',\n');
   document.getElementById('aiJson').innerHTML =
 `{
   <span class="code-key">"active_user_vector"</span>: {
     <span class="code-str">"persona"</span>: <span class="code-str">"${p.who}"</span>,
-    <span class="code-str">"cart"</span>: [${a.vector.map(v => `<span class="code-str">"${v}"</span>`).join(', ')}]
+    <span class="code-str">"live_cart"</span>: [${vec}],
+    <span class="code-str">"cart_value"</span>: <span class="code-num">${baseTotal()}</span>
   },
   <span class="code-key">"category_propensity_score"</span>: {
 ${prop}
   },
   <span class="code-key">"recommended_sku_trigger"</span>: <span class="code-str">"${a.sku}"</span>,
   <span class="code-key">"friction_buster_rule_applied"</span>: <span class="code-str">"${a.rule}"</span>,
-  <span class="code-key">"evidence_base"</span>: <span class="code-str">"5,000+ public reviews · 7 user interviews"</span>,
   <span class="code-key">"match_confidence"</span>: <span class="code-num">${(p.confidence / 100).toFixed(2)}</span>,
-  <span class="code-key">"trial_in_cart"</span>: <span class="code-num">${trialAdded}</span>,
+  <span class="code-key">"trial_in_cart"</span>: <span class="code-num">${s.trialAdded}</span>,
+  <span class="code-key">"order_placed"</span>: <span class="code-num">${s.ordered}</span>,
   <span class="code-key">"decision"</span>: <span class="code-str">"SURFACE_MICRO_TRIAL"</span>
 }`;
 }
-
 function renderAll() { renderPersonas(); renderCart(); renderNudge(); renderBar(); renderJson(); }
-function selectPersona(k) { currentKey = k; trialAdded = false; renderAll(); }
-function toggleTrial() { trialAdded = !trialAdded; renderCta(); renderCart(); renderBar(); renderJson(); }
+
+// ---------- interactions ----------
+function selectPersona(k) { currentKey = k; renderAll(); }
+function stepQty(i, d) { const s = S(); s.qty[i] = Math.max(0, s.qty[i] + d); renderPersonas(); renderCart(); renderBar(); renderJson(); }
+function toggleTrial() { S().trialAdded = !S().trialAdded; renderPersonas(); renderCta(); renderCart(); renderBar(); renderJson(); }
 function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); document.getElementById('chev').classList.toggle('open'); }
+
+// ---------- functional checkout ----------
+function openCheckout() {
+  if (distinctLines() === 0) return;
+  const p = P0(), s = S();
+  const lines = p.cart.map((c, i) => s.qty[i] > 0 ? `<div class="flex justify-between text-[12.5px] py-1"><span class="text-brandDark/70">${c.name} × ${s.qty[i]}</span><span class="font-bold tabular-nums">₹${c.price * s.qty[i]}</span></div>` : '').join('');
+  const tline = s.trialAdded ? `<div class="flex justify-between text-[12.5px] py-1"><span class="text-ctaGreen font-semibold">${p.trial.name} (Trial)</span><span class="font-bold tabular-nums">₹${p.trial.price}</span></div>` : '';
+  document.getElementById('checkoutBody').innerHTML = `
+    <div class="flex items-center justify-between mb-3">
+      <div class="text-[16px] font-extrabold text-brandDark">Order Summary</div>
+      <button onclick="closeCheckout()" class="w-8 h-8 rounded-full bg-[#F5F5F3] flex items-center justify-center text-brandDark/60">${icon('close', 18)}</button>
+    </div>
+    <div class="text-[11px] text-brandDark/50 mb-2">${p.who} · ${p.sub}</div>
+    <div class="border-y border-black/5 py-2 mb-3">${lines}${tline}</div>
+    <div class="flex justify-between items-center mb-4"><span class="text-[13px] font-bold text-brandDark/70">To pay</span><span class="text-[20px] font-extrabold text-brandDark tabular-nums">₹${grandTotal()}</span></div>
+    <button onclick="placeOrder()" class="w-full bg-ctaGreen text-white font-extrabold text-[14px] py-3.5 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">${icon('check', 18, 3)} Place Order · ₹${grandTotal()}</button>
+    <p class="text-center text-[10px] text-brandDark/40 mt-2">Prototype checkout — no real payment is processed.</p>`;
+  showSheet();
+}
+function placeOrder() {
+  const s = S(), p = P0();
+  s.ordered = true; s.orderId = 'BK' + Date.now().toString().slice(-8);
+  const trialLine = s.trialAdded ? `<div class="mt-2 inline-flex items-center gap-1.5 text-[11px] font-bold text-ctaGreen bg-ctaGreen/10 px-3 py-1.5 rounded-full">✨ New-category trial: ${p.trial.name}</div>` : '';
+  document.getElementById('checkoutBody').innerHTML = `
+    <div class="text-center py-3">
+      <div class="w-16 h-16 mx-auto rounded-full bg-ctaGreen/12 flex items-center justify-center text-ctaGreen mb-3">${icon('party', 34, 2)}</div>
+      <div class="text-[18px] font-extrabold text-brandDark">Order Placed!</div>
+      <div class="text-[12.5px] text-brandDark/60 mt-1">Arriving in <b class="text-brandDark">8 minutes</b> · ${p.who}</div>
+      <div class="text-[11px] text-brandDark/40 mt-1">Order ${s.orderId} · ₹${grandTotal()} paid</div>
+      ${trialLine}
+      <button onclick="closeCheckout()" class="w-full mt-5 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl active:scale-[0.98] transition-transform">Continue Shopping</button>
+    </div>`;
+  renderJson();
+}
+function showSheet() {
+  document.getElementById('checkoutOverlay').classList.remove('hidden');
+  requestAnimationFrame(() => { document.getElementById('checkoutSheet').style.transform = 'translateY(0)'; });
+}
+function closeCheckout() {
+  const sheet = document.getElementById('checkoutSheet');
+  sheet.style.transform = 'translateY(100%)';
+  setTimeout(() => document.getElementById('checkoutOverlay').classList.add('hidden'), 300);
+}
 
 renderAll();
 </script>
