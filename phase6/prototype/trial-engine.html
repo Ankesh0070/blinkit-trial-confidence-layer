@@ -85,13 +85,14 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
             <div class="flex gap-3">
               <div id="trialEmoji" class="w-16 h-16 rounded-xl bg-white border border-black/5 flex items-center justify-center text-3xl shrink-0"></div>
               <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[9px] font-extrabold uppercase tracking-wide text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded">Micro-Trial</span>
-                  <span id="trialTarget" class="text-[9px] font-bold text-brandDark/50"></span>
+                <span id="trialTarget" class="text-[9px] font-bold text-brandDark/50 uppercase tracking-wide"></span>
+                <div id="trialName" class="text-[13.5px] font-extrabold text-brandDark leading-tight mt-0.5"></div>
+                <div class="flex flex-wrap items-center gap-1.5 mt-2">
+                  <span id="fullBadge" class="text-[9.5px] font-bold text-brandDark/55 bg-black/[0.06] px-2 py-0.5 rounded-full"></span>
+                  <span id="microBadge" class="text-[9.5px] font-extrabold text-brandDark bg-brand px-2 py-0.5 rounded-full"></span>
                 </div>
-                <div id="trialName" class="text-[13.5px] font-extrabold text-brandDark leading-tight mt-1"></div>
-                <div id="trialSize" class="text-[11px] text-brandDark/60"></div>
-                <div class="flex items-center gap-2 mt-1.5">
+                <div id="trialUses" class="text-[10.5px] font-bold text-ctaGreen mt-1.5"></div>
+                <div class="flex items-center gap-2 mt-1">
                   <span id="trialPrice" class="text-[16px] font-extrabold text-brandDark"></span>
                   <span id="trialMrp" class="text-[12px] text-brandDark/40 line-through"></span>
                   <span id="trialOff" class="text-[10px] font-extrabold text-ctaGreen"></span>
@@ -195,21 +196,21 @@ const PERSONAS = {
     cart: [ { name: 'Aashirvaad Atta 5kg', price: 255, emoji: '🌾' }, { name: 'Amul Taaza Milk 2L', price: 132, emoji: '🥛' }, { name: 'Amul Butter 100g', price: 56, emoji: '🧈' } ],
     target: 'Personal Care', confidence: 94,
     context: "Since you're stocking up on weekly groceries, <b>82% of similar shoppers</b> added this Personal Care micro-trial to their order.",
-    trial: { name: 'Minimalist 10% Vit C Face Serum', size: '10ml Trial Size', price: 29, mrp: 499, emoji: '🧴', target: 'Personal Care' },
+    trial: { name: 'Minimalist 10% Vitamin C Serum', pod: '10ml Micro-Trial Pod', size: '10ml', price: 29, fullSize: '30ml', fullPrice: 699, uses: '3–5 Uses  |  Zero-Risk Trial', emoji: '🧴', target: 'Personal Care' },
     aiInsight: "78% of Grocery-only buyers avoid Personal Care due to <b>“Size &amp; Price Hesitation”</b>. This ₹29 micro-trial eliminates purchase risk.",
     ai: { propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Vit C Serum — Trial Pack 10ml', rule: 'Low-AOV Sample + Instant Refund + Size-Hesitation Buster' } },
   B: { who: 'Priya', avatar: '👩🏻', sub: 'Snack & Beverage Buyer',
     cart: [ { name: 'Tetley Green Tea 25s', price: 150, emoji: '🍵' }, { name: 'Quaker Oats 1kg', price: 175, emoji: '🥣' }, { name: 'Sleepy Owl Cold Brew', price: 120, emoji: '🧊' } ],
     target: 'Superfoods / Healthy Snacks', confidence: 90,
     context: "Health-first snackers like you added this Superfood sample <b>3× more often</b> after a green-tea run — try it risk-free.",
-    trial: { name: 'True Elements Organic Seed Mix', size: '30g Sample', price: 19, mrp: 199, emoji: '🌰', target: 'Superfoods' },
+    trial: { name: 'True Elements Organic Seed Mix', pod: '30g Micro-Trial Pod', size: '30g', price: 19, fullSize: '200g', fullPrice: 199, uses: '4–6 Servings  |  Zero-Risk Trial', emoji: '🌰', target: 'Superfoods' },
     aiInsight: "72% of snack &amp; beverage buyers skip Superfoods citing <b>“Taste Uncertainty”</b>. This ₹19 sample removes the risk.",
     ai: { propensity: { 'Superfoods': 0.83, 'Beverages': 0.17 }, sku: 'Seed Mix — Sample 30g', rule: 'Taste-Uncertainty Buster + No-Questions Refund' } },
   C: { who: 'Ankit', avatar: '🧑🏻‍🦱', sub: 'Household Essentials',
     cart: [ { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' }, { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }, { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' } ],
     target: 'Baby Care', confidence: 88,
     context: "Household-essentials shoppers like you tried this Baby Care sample after their cleaning run — <b>gentle &amp; dermatologist-tested</b>.",
-    trial: { name: 'Mamaearth Gentle Baby Wipes', size: 'Gentle 15-pack', price: 15, mrp: 99, emoji: '🍼', target: 'Baby Care' },
+    trial: { name: 'Mamaearth Gentle Baby Wipes', pod: '15-pack Micro-Trial', size: '15-pack', price: 15, fullSize: '72-pack', fullPrice: 199, uses: '15 Wipes  |  Zero-Risk Trial', emoji: '🍼', target: 'Baby Care' },
     aiInsight: "68% of household shoppers avoid Baby Care over <b>“Safety Doubt”</b>. This ₹15 gentle 15-pack builds first-trial confidence.",
     ai: { propensity: { 'Baby Care': 0.74, 'Home Care': 0.26 }, sku: 'Baby Wipes — 15-pack Trial', rule: 'Safety-First Sample + One-Tap Return' } }
 };
@@ -305,12 +306,14 @@ function renderNudge() {
   document.getElementById('matchBadge').textContent = p.confidence + '% Match';
   document.getElementById('contextText').innerHTML = p.context;
   document.getElementById('trialEmoji').textContent = t.emoji;
-  document.getElementById('trialTarget').textContent = '· ' + t.target;
-  document.getElementById('trialName').textContent = t.name;
-  document.getElementById('trialSize').textContent = t.size;
+  document.getElementById('trialTarget').textContent = t.target;
+  document.getElementById('trialName').textContent = t.name + ' (' + t.pod + ')';
+  document.getElementById('fullBadge').textContent = 'Full Pack: ' + t.fullSize + ' @ ₹' + t.fullPrice;
+  document.getElementById('microBadge').textContent = '🧪 Micro-Trial Pack: ' + t.size + ' @ ₹' + t.price;
+  document.getElementById('trialUses').textContent = t.uses;
   document.getElementById('trialPrice').textContent = '₹' + t.price;
-  document.getElementById('trialMrp').textContent = '₹' + t.mrp;
-  document.getElementById('trialOff').textContent = Math.round((1 - t.price / t.mrp) * 100) + '% OFF';
+  document.getElementById('trialMrp').textContent = '₹' + t.fullPrice;
+  document.getElementById('trialOff').textContent = Math.round((1 - t.price / t.fullPrice) * 100) + '% OFF';
   document.getElementById('aiInsight').innerHTML = p.aiInsight;
   renderCta();
 }
@@ -318,10 +321,10 @@ function renderCta() {
   const p = P0(), s = S(), btn = document.getElementById('trialCta');
   if (s.trialAdded) {
     btn.className = "w-full mt-3 bg-ctaGreen text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
-    btn.innerHTML = icon('check', 18, 3) + ` Trial Added · tap to remove`;
+    btn.innerHTML = icon('check', 18, 3) + ` Micro-Trial Added · tap to remove`;
   } else {
     btn.className = "w-full mt-3 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
-    btn.innerHTML = icon('plus', 18, 3) + ` Add Trial Sample (+₹${p.trial.price})`;
+    btn.innerHTML = icon('plus', 18, 3) + ` Add ₹${p.trial.price} Micro-Trial`;
   }
 }
 function renderBar() {
@@ -348,6 +351,11 @@ function renderJson() {
 ${prop}
   },
   <span class="code-key">"recommended_sku_trigger"</span>: <span class="code-str">"${a.sku}"</span>,
+  <span class="code-key">"sku_type"</span>: <span class="code-str">"MICRO_TRIAL_POD_${p.trial.size.toUpperCase().replace(/[^A-Z0-9]/g, '')}"</span>,
+  <span class="code-key">"trial_price"</span>: <span class="code-num">${p.trial.price}</span>,
+  <span class="code-key">"full_sku_price"</span>: <span class="code-num">${p.trial.fullPrice}</span>,
+  <span class="code-key">"margin_impact"</span>: <span class="code-str">"LOGISTICS_COVERED_BY_PAID_TRIAL"</span>,
+  <span class="code-key">"freeloader_protection"</span>: <span class="code-str">"ACTIVE_PAID_GATE"</span>,
   <span class="code-key">"friction_buster_rule_applied"</span>: <span class="code-str">"${a.rule}"</span>,
   <span class="code-key">"match_confidence"</span>: <span class="code-num">${(p.confidence / 100).toFixed(2)}</span>,
   <span class="code-key">"trial_in_cart"</span>: <span class="code-num">${s.trialAdded}</span>,
