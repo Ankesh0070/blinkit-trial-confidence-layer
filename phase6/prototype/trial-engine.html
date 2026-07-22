@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blinkit — Trial & Confidence Engine</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#111111', brandGreen: '#2E9E3A' } } } };
+</script>
+<style>
+  html, body { background: #ECECEA; }
+  body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .drawer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .drawer.open { max-height: 640px; }
+  .chev { transition: transform .3s ease; }
+  .chev.open { transform: rotate(180deg); }
+  @keyframes pop { 0%{transform:scale(.9);opacity:0} 100%{transform:scale(1);opacity:1} }
+  .pop { animation: pop .25s ease; }
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+  .code-key{color:#F2C94C} .code-str{color:#7ee787} .code-num{color:#79c0ff}
+</style>
+</head>
+<body class="min-h-screen flex justify-center">
+
+<!-- Phone frame -->
+<div class="w-full max-w-[440px] bg-[#FAFAF8] min-h-screen shadow-2xl relative pb-28">
+
+  <!-- App bar -->
+  <div class="sticky top-0 z-30 bg-brand px-4 pt-3 pb-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-brandDark">blink</span><span class="text-brandGreen">it</span></span>
+      </div>
+      <div class="flex items-center gap-1 text-brandDark/80" id="ic-clock"></div>
+    </div>
+    <div class="flex items-center gap-1.5 mt-1.5 text-brandDark">
+      <span id="ic-pin"></span>
+      <span class="text-[13px] font-semibold">Delivery in <span class="font-extrabold">8 minutes</span></span>
+      <span class="text-[11px] text-brandDark/60 ml-1">· Home · Sector 22</span>
+    </div>
+  </div>
+
+  <!-- 1. Persona & Cart Simulator -->
+  <div class="px-4 pt-4">
+    <div class="flex items-center gap-2 mb-2">
+      <span id="ic-users" class="text-brandDark"></span>
+      <h2 class="text-[13px] font-extrabold text-brandDark uppercase tracking-wide">Simulate User Persona &amp; Active Cart</h2>
+    </div>
+    <div class="flex flex-col gap-2" id="personaList"></div>
+  </div>
+
+  <!-- Active cart -->
+  <div class="px-4 pt-4">
+    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-4">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span id="ic-cart" class="text-brandDark"></span>
+          <span class="text-[14px] font-extrabold text-brandDark">Current Cart Items</span>
+        </div>
+        <span id="cartCount" class="text-[11px] font-bold text-brandDark/60"></span>
+      </div>
+      <div id="cartItems" class="flex flex-col gap-2.5"></div>
+    </div>
+  </div>
+
+  <!-- 2. AI Contextual Discovery Banner -->
+  <div class="px-4 pt-4">
+    <div class="rounded-2xl overflow-hidden shadow-lg border border-black/5">
+      <!-- nudge header -->
+      <div class="bg-brandDark px-4 py-3">
+        <div class="flex items-center gap-2">
+          <span id="ic-sparkles" class="text-brand"></span>
+          <span class="text-white font-extrabold text-[13px] leading-tight">AI Smart Cross-Category Nudge</span>
+          <span id="matchBadge" class="ml-auto text-brandDark bg-brand text-[11px] font-extrabold px-2.5 py-1 rounded-full"></span>
+        </div>
+      </div>
+      <!-- context + product -->
+      <div class="bg-white p-4">
+        <p id="contextText" class="text-[13px] text-brandDark/80 leading-relaxed mb-3"></p>
+
+        <!-- micro-trial product card -->
+        <div class="rounded-xl border border-brand/50 bg-[#FFFBEF] p-3">
+          <div class="flex gap-3">
+            <div id="trialEmoji" class="w-16 h-16 rounded-xl bg-white border border-black/5 flex items-center justify-center text-3xl shrink-0"></div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1.5">
+                <span class="text-[9px] font-extrabold uppercase tracking-wide text-brandGreen bg-brandGreen/10 px-1.5 py-0.5 rounded">Micro-Trial</span>
+                <span id="trialTarget" class="text-[9px] font-bold text-brandDark/50"></span>
+              </div>
+              <div id="trialName" class="text-[13.5px] font-extrabold text-brandDark leading-tight mt-1"></div>
+              <div id="trialSize" class="text-[11px] text-brandDark/60"></div>
+              <div class="flex items-center gap-2 mt-1.5">
+                <span id="trialPrice" class="text-[16px] font-extrabold text-brandDark"></span>
+                <span id="trialMrp" class="text-[12px] text-brandDark/40 line-through"></span>
+                <span id="trialOff" class="text-[10px] font-extrabold text-brandGreen"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Confidence & Risk-Free Layer -->
+          <div class="mt-3 flex flex-col gap-1.5">
+            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
+              <span id="ic-shield" class="text-brandGreen shrink-0 mt-0.5"></span>
+              <p class="text-[11px] text-brandDark leading-snug"><b>100% Quality Refund Guarantee:</b> <span class="text-brandDark/60">No-questions-asked refund if it doesn't suit you.</span></p>
+            </div>
+            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
+              <span id="ic-chart" class="text-[#2a78d6] shrink-0 mt-0.5"></span>
+              <p class="text-[11px] text-brandDark leading-snug"><b>AI Proof:</b> <span class="text-brandDark/60">Verified by <span class="font-bold text-brandDark">12,400+</span> quick-commerce trials this month.</span></p>
+            </div>
+            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
+              <span id="ic-tag" class="text-[#eb6834] shrink-0 mt-0.5"></span>
+              <p class="text-[11px] text-brandDark leading-snug"><b>Zero-Friction Return:</b> <span class="text-brandDark/60">One-tap return pickup with your next 10-min grocery order.</span></p>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <button id="trialCta" onclick="toggleTrial()" class="w-full mt-3 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. AI Logic & Prompt Inspector -->
+  <div class="px-4 pt-4">
+    <button onclick="toggleDrawer()" class="w-full bg-white rounded-2xl border border-black/5 shadow-sm px-4 py-3 flex items-center gap-2">
+      <span id="ic-cpu" class="text-brandDark"></span>
+      <span class="text-[12.5px] font-extrabold text-brandDark text-left leading-tight">How the AI Discovery Engine Powered This Recommendation</span>
+      <span id="chev" class="chev ml-auto text-brandDark/50" ></span>
+    </button>
+    <div id="drawer" class="drawer">
+      <div class="bg-[#0d1117] rounded-b-2xl -mt-2 pt-4 px-4 pb-4 border-x border-b border-black/10">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-white/40 mb-2">Model reasoning · real-time</div>
+        <pre id="aiJson" class="text-[11.5px] leading-relaxed font-mono text-white/90 overflow-x-auto no-scrollbar whitespace-pre"></pre>
+      </div>
+    </div>
+    <p class="text-center text-[10px] text-brandDark/40 mt-4 mb-2">Trial &amp; Confidence Engine · AI-native cross-category discovery MVP</p>
+  </div>
+
+  <!-- sticky cart total bar -->
+  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] z-40 px-4 pb-4">
+    <div class="bg-brandDark rounded-2xl shadow-2xl px-4 py-3 flex items-center justify-between">
+      <div>
+        <div id="barCount" class="text-white/60 text-[11px] font-semibold"></div>
+        <div id="barTotal" class="text-white text-[18px] font-extrabold leading-tight"></div>
+      </div>
+      <button class="bg-brand text-brandDark font-extrabold text-[13.5px] px-5 py-2.5 rounded-xl flex items-center gap-1.5">
+        Proceed <span id="ic-arrow"></span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ---------- Lucide icons (inline SVG, offline-safe) ----------
+const P = {
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  pin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  cart:'<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
+  sparkles:'<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/>',
+  shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+  tag:'<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>',
+  cpu:'<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>',
+  chev:'<path d="m6 9 6 6 6-6"/>',
+  plus:'<path d="M5 12h14M12 5v14"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>'
+};
+function icon(name, size = 18, sw = 2.2) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${P[name]}</svg>`;
+}
+
+// ---------- Persona data ----------
+const PERSONAS = {
+  A: {
+    who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly grocery run',
+    cart: [
+      { name: 'Aashirvaad Atta 5kg', price: 249, emoji: '🌾' },
+      { name: 'Amul Gold Milk 500ml', price: 33, emoji: '🥛' },
+      { name: 'Amul Butter 100g', price: 56, emoji: '🧈' }
+    ],
+    target: 'Personal Care Discovery', confidence: 94,
+    context: "Since you're stocking up on weekly groceries, <b>82% of similar shoppers</b> added this Personal Care micro-trial to their order.",
+    trial: { name: 'Minimalist 10% Vitamin C Serum', size: '10ml Trial Size', price: 29, mrp: 499, emoji: '🧴', target: 'Personal Care' },
+    ai: { vector: ['Atta', 'Milk', 'Butter'], propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Trial Pack 10ml', rule: 'Low AOV Sample + Instant Refund Badge' }
+  },
+  B: {
+    who: 'Priya', avatar: '👩🏻', sub: 'Evening tea & snacks',
+    cart: [
+      { name: 'Bru Instant Coffee 100g', price: 185, emoji: '☕' },
+      { name: 'Britannia Digestive Biscuits', price: 40, emoji: '🍪' }
+    ],
+    target: 'Pet Care / Healthy Snacks', confidence: 91,
+    context: "Coffee &amp; digestive-biscuit shoppers who own a pet added this Pet Care starter <b>3× more often</b> — try it risk-free.",
+    trial: { name: 'Drools Chicken & Egg Dog Food', size: '100g Trial Pack', price: 39, mrp: 299, emoji: '🐕', target: 'Pet Care' },
+    ai: { vector: ['Coffee', 'Digestive Biscuits'], propensity: { 'Pet Care': 0.76, 'Healthy Snacks': 0.19 }, sku: 'Pet Starter 100g', rule: 'First-Pet-Trial Nudge + No-Questions Refund' }
+  },
+  C: {
+    who: 'Neha', avatar: '👩🏻‍🦱', sub: 'Household cleaning haul',
+    cart: [
+      { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' },
+      { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }
+    ],
+    target: 'Baby Care / Home Care', confidence: 89,
+    context: "Household-essentials shoppers like you tried this Baby Care sample after their cleaning run — <b>gentle &amp; dermatologist-tested</b>.",
+    trial: { name: 'Mamaearth Gentle Baby Wash', size: '50ml Trial Size', price: 49, mrp: 249, emoji: '🍼', target: 'Baby Care' },
+    ai: { vector: ['Detergent', 'Dishwash Bar'], propensity: { 'Baby Care': 0.71, 'Home Care': 0.24 }, sku: 'Baby Wash 50ml Trial', rule: 'Safety-First Sample + One-Tap Return' }
+  }
+};
+
+let currentKey = 'A';
+let trialAdded = false;
+
+// static icons
+document.getElementById('ic-clock').innerHTML = icon('clock', 16) + '<span class="text-[11px] font-bold ml-1">8 min</span>';
+document.getElementById('ic-pin').innerHTML = icon('pin', 15);
+document.getElementById('ic-users').innerHTML = icon('users', 17);
+document.getElementById('ic-cart').innerHTML = icon('cart', 17);
+document.getElementById('ic-sparkles').innerHTML = icon('sparkles', 17);
+document.getElementById('ic-shield').innerHTML = icon('shield', 16);
+document.getElementById('ic-chart').innerHTML = icon('chart', 16);
+document.getElementById('ic-tag').innerHTML = icon('tag', 16);
+document.getElementById('ic-cpu').innerHTML = icon('cpu', 18);
+document.getElementById('chev').innerHTML = icon('chev', 18);
+document.getElementById('ic-arrow').innerHTML = icon('arrow', 15);
+
+function renderPersonas() {
+  document.getElementById('personaList').innerHTML = Object.entries(PERSONAS).map(([k, p]) => {
+    const sel = k === currentKey;
+    const items = p.cart.map(c => c.name.split(' ').slice(0, 2).join(' ')).join(' · ');
+    return `<button onclick="selectPersona('${k}')" class="text-left rounded-2xl border p-3 flex items-center gap-3 transition-all ${sel ? 'border-brand bg-[#FFFBEF] ring-2 ring-brand/40' : 'border-black/5 bg-white'}">
+      <div class="w-11 h-11 rounded-full ${sel ? 'bg-brand' : 'bg-black/5'} flex items-center justify-center text-2xl shrink-0">${p.avatar}</div>
+      <div class="min-w-0 flex-1">
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-[14px] text-brandDark">${p.who}</span>
+          <span class="text-[9px] font-bold text-brandDark/45">${p.sub}</span>
+        </div>
+        <div class="text-[11px] text-brandDark/55 truncate">🛒 ${items}</div>
+        <div class="text-[10px] font-bold text-brandGreen mt-0.5">➔ Target: ${p.target}</div>
+      </div>
+      ${sel ? `<span class="text-brandDark">${icon('check', 18, 3)}</span>` : ''}
+    </button>`;
+  }).join('');
+}
+
+function cartTotal(p) { return p.cart.reduce((s, c) => s + c.price, 0) + (trialAdded ? p.trial.price : 0); }
+function cartCount(p) { return p.cart.length + (trialAdded ? 1 : 0); }
+
+function renderCart() {
+  const p = PERSONAS[currentKey];
+  const rows = p.cart.map(c => `
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-[#F5F5F3] flex items-center justify-center text-lg shrink-0">${c.emoji}</div>
+      <div class="flex-1 text-[13px] text-brandDark font-medium">${c.name}</div>
+      <div class="text-[13px] font-bold text-brandDark tabular-nums">₹${c.price}</div>
+    </div>`).join('');
+  const trialRow = trialAdded ? `
+    <div class="flex items-center gap-3 pop">
+      <div class="w-9 h-9 rounded-lg bg-brand/25 flex items-center justify-center text-lg shrink-0">${p.trial.emoji}</div>
+      <div class="flex-1 text-[13px] text-brandDark font-semibold">${p.trial.name} <span class="text-[9px] font-extrabold text-brandGreen bg-brandGreen/10 px-1.5 py-0.5 rounded ml-1">TRIAL</span></div>
+      <div class="text-[13px] font-bold text-brandDark tabular-nums">₹${p.trial.price}</div>
+    </div>` : '';
+  const subtotal = `
+    <div class="flex items-center justify-between pt-2.5 mt-1 border-t border-black/5">
+      <span class="text-[12px] font-bold text-brandDark/60">Item total</span>
+      <span class="text-[15px] font-extrabold text-brandDark tabular-nums">₹${cartTotal(p)}</span>
+    </div>`;
+  document.getElementById('cartItems').innerHTML = rows + trialRow + subtotal;
+  document.getElementById('cartCount').textContent = cartCount(p) + ' item' + (cartCount(p) > 1 ? 's' : '');
+}
+
+function renderNudge() {
+  const p = PERSONAS[currentKey], t = p.trial;
+  document.getElementById('matchBadge').textContent = p.confidence + '% Match Confidence';
+  document.getElementById('contextText').innerHTML = p.context;
+  document.getElementById('trialEmoji').textContent = t.emoji;
+  document.getElementById('trialTarget').textContent = '· ' + t.target;
+  document.getElementById('trialName').textContent = t.name;
+  document.getElementById('trialSize').textContent = t.size;
+  document.getElementById('trialPrice').textContent = '₹' + t.price;
+  document.getElementById('trialMrp').textContent = '₹' + t.mrp;
+  document.getElementById('trialOff').textContent = Math.round((1 - t.price / t.mrp) * 100) + '% OFF';
+  renderCta();
+}
+
+function renderCta() {
+  const p = PERSONAS[currentKey], btn = document.getElementById('trialCta');
+  if (trialAdded) {
+    btn.className = "w-full mt-3 bg-brandGreen text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
+    btn.innerHTML = icon('check', 18, 3) + ` Added to Cart · Tap to remove`;
+  } else {
+    btn.className = "w-full mt-3 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
+    btn.innerHTML = icon('plus', 18, 3) + ` Add Trial Sample to Cart (+₹${p.trial.price})`;
+  }
+}
+
+function renderBar() {
+  const p = PERSONAS[currentKey];
+  document.getElementById('barCount').textContent = cartCount(p) + ' items in cart';
+  document.getElementById('barTotal').textContent = '₹' + cartTotal(p);
+}
+
+function renderJson() {
+  const a = PERSONAS[currentKey].ai, p = PERSONAS[currentKey];
+  const prop = Object.entries(a.propensity).map(([k, v]) => `    <span class="code-str">"${k}"</span>: <span class="code-num">${v}</span>`).join(',\n');
+  const j =
+`{
+  <span class="code-key">"user_vector_input"</span>: {
+    <span class="code-str">"cart"</span>: [${a.vector.map(v => `<span class="code-str">"${v}"</span>`).join(', ')}]
+  },
+  <span class="code-key">"category_propensity_score"</span>: {
+${prop}
+  },
+  <span class="code-key">"recommended_sku_trigger"</span>: <span class="code-str">"${a.sku}"</span>,
+  <span class="code-key">"risk_mitigation_rule_triggered"</span>: <span class="code-str">"${a.rule}"</span>,
+  <span class="code-key">"match_confidence"</span>: <span class="code-num">${(p.confidence / 100).toFixed(2)}</span>,
+  <span class="code-key">"decision"</span>: <span class="code-str">"SURFACE_MICRO_TRIAL"</span>
+}`;
+  document.getElementById('aiJson').innerHTML = j;
+}
+
+function renderAll() { renderPersonas(); renderCart(); renderNudge(); renderBar(); renderJson(); }
+
+function selectPersona(k) {
+  currentKey = k; trialAdded = false; // reset trial on persona switch
+  renderAll();
+}
+function toggleTrial() { trialAdded = !trialAdded; renderCta(); renderCart(); renderBar(); }
+function toggleDrawer() {
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('chev').classList.toggle('open');
+}
+
+renderAll();
+</script>
+</body>
+</html>
