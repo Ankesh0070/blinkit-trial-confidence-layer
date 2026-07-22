@@ -6,33 +6,32 @@
 <title>Blinkit — Trial & Confidence Engine</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#111111', brandGreen: '#2E9E3A' } } } };
+tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#111111', ctaGreen: '#0C831F' } } } };
 </script>
 <style>
-  html, body { background: #ECECEA; }
+  html, body { background: #D7D8DC; }
   body { font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
   .drawer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-  .drawer.open { max-height: 640px; }
+  .drawer.open { max-height: 680px; }
   .chev { transition: transform .3s ease; }
   .chev.open { transform: rotate(180deg); }
-  @keyframes pop { 0%{transform:scale(.9);opacity:0} 100%{transform:scale(1);opacity:1} }
-  .pop { animation: pop .25s ease; }
+  @keyframes pop { 0%{transform:scale(.92);opacity:0} 100%{transform:scale(1);opacity:1} }
+  .pop { animation: pop .22s ease; }
   @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
   .code-key{color:#F2C94C} .code-str{color:#7ee787} .code-num{color:#79c0ff}
 </style>
 </head>
-<body class="min-h-screen flex justify-center">
+<body class="flex justify-center min-h-screen">
 
-<!-- Phone frame -->
-<div class="w-full max-w-[440px] bg-[#FAFAF8] min-h-screen shadow-2xl relative pb-28">
+<!-- Mobile phone frame -->
+<div class="w-full max-w-md my-4 h-[calc(100vh-2rem)] bg-gray-50 shadow-2xl rounded-3xl border border-gray-300 overflow-hidden flex flex-col">
 
-  <!-- App bar -->
-  <div class="sticky top-0 z-30 bg-brand px-4 pt-3 pb-3">
+  <!-- Sticky top header -->
+  <div class="flex-shrink-0 bg-brand px-4 pt-3 pb-3 z-20">
     <div class="flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-brandDark">blink</span><span class="text-brandGreen">it</span></span>
-      </div>
+      <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-brandDark">blink</span><span class="text-ctaGreen">it</span></span>
       <div class="flex items-center gap-1 text-brandDark/80" id="ic-clock"></div>
     </div>
     <div class="flex items-center gap-1.5 mt-1.5 text-brandDark">
@@ -42,111 +41,124 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
     </div>
   </div>
 
-  <!-- 1. Persona & Cart Simulator -->
-  <div class="px-4 pt-4">
-    <div class="flex items-center gap-2 mb-2">
-      <span id="ic-users" class="text-brandDark"></span>
-      <h2 class="text-[13px] font-extrabold text-brandDark uppercase tracking-wide">Simulate User Persona &amp; Active Cart</h2>
-    </div>
-    <div class="flex flex-col gap-2" id="personaList"></div>
-  </div>
+  <!-- Scrollable content -->
+  <div class="flex-1 overflow-y-auto no-scrollbar">
 
-  <!-- Active cart -->
-  <div class="px-4 pt-4">
-    <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-4">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <span id="ic-cart" class="text-brandDark"></span>
-          <span class="text-[14px] font-extrabold text-brandDark">Current Cart Items</span>
-        </div>
-        <span id="cartCount" class="text-[11px] font-bold text-brandDark/60"></span>
+    <!-- 1. Persona simulator -->
+    <div class="px-4 pt-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span id="ic-users" class="text-brandDark"></span>
+        <h2 class="text-[12.5px] font-extrabold text-brandDark uppercase tracking-wide">Simulate User Persona &amp; Active Cart</h2>
       </div>
-      <div id="cartItems" class="flex flex-col gap-2.5"></div>
+      <div class="flex flex-col gap-2" id="personaList"></div>
     </div>
-  </div>
 
-  <!-- 2. AI Contextual Discovery Banner -->
-  <div class="px-4 pt-4">
-    <div class="rounded-2xl overflow-hidden shadow-lg border border-black/5">
-      <!-- nudge header -->
-      <div class="bg-brandDark px-4 py-3">
-        <div class="flex items-center gap-2">
-          <span id="ic-sparkles" class="text-brand"></span>
-          <span class="text-white font-extrabold text-[13px] leading-tight">AI Smart Cross-Category Nudge</span>
-          <span id="matchBadge" class="ml-auto text-brandDark bg-brand text-[11px] font-extrabold px-2.5 py-1 rounded-full"></span>
-        </div>
-      </div>
-      <!-- context + product -->
-      <div class="bg-white p-4">
-        <p id="contextText" class="text-[13px] text-brandDark/80 leading-relaxed mb-3"></p>
-
-        <!-- micro-trial product card -->
-        <div class="rounded-xl border border-brand/50 bg-[#FFFBEF] p-3">
-          <div class="flex gap-3">
-            <div id="trialEmoji" class="w-16 h-16 rounded-xl bg-white border border-black/5 flex items-center justify-center text-3xl shrink-0"></div>
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-1.5">
-                <span class="text-[9px] font-extrabold uppercase tracking-wide text-brandGreen bg-brandGreen/10 px-1.5 py-0.5 rounded">Micro-Trial</span>
-                <span id="trialTarget" class="text-[9px] font-bold text-brandDark/50"></span>
-              </div>
-              <div id="trialName" class="text-[13.5px] font-extrabold text-brandDark leading-tight mt-1"></div>
-              <div id="trialSize" class="text-[11px] text-brandDark/60"></div>
-              <div class="flex items-center gap-2 mt-1.5">
-                <span id="trialPrice" class="text-[16px] font-extrabold text-brandDark"></span>
-                <span id="trialMrp" class="text-[12px] text-brandDark/40 line-through"></span>
-                <span id="trialOff" class="text-[10px] font-extrabold text-brandGreen"></span>
-              </div>
-            </div>
+    <!-- Active cart -->
+    <div class="px-4 pt-4">
+      <div class="bg-white rounded-2xl border border-black/5 shadow-sm p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span id="ic-cart" class="text-brandDark"></span>
+            <span class="text-[14px] font-extrabold text-brandDark">Current Cart Items</span>
           </div>
+          <span id="cartCount" class="text-[11px] font-bold text-brandDark/60"></span>
+        </div>
+        <div id="cartItems" class="flex flex-col gap-2.5"></div>
+      </div>
+    </div>
 
-          <!-- 3. Confidence & Risk-Free Layer -->
-          <div class="mt-3 flex flex-col gap-1.5">
-            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
-              <span id="ic-shield" class="text-brandGreen shrink-0 mt-0.5"></span>
-              <p class="text-[11px] text-brandDark leading-snug"><b>100% Quality Refund Guarantee:</b> <span class="text-brandDark/60">No-questions-asked refund if it doesn't suit you.</span></p>
-            </div>
-            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
-              <span id="ic-chart" class="text-[#2a78d6] shrink-0 mt-0.5"></span>
-              <p class="text-[11px] text-brandDark leading-snug"><b>AI Proof:</b> <span class="text-brandDark/60">Verified by <span class="font-bold text-brandDark">12,400+</span> quick-commerce trials this month.</span></p>
-            </div>
-            <div class="flex items-start gap-2 bg-white rounded-lg p-2 border border-black/5">
-              <span id="ic-tag" class="text-[#eb6834] shrink-0 mt-0.5"></span>
-              <p class="text-[11px] text-brandDark leading-snug"><b>Zero-Friction Return:</b> <span class="text-brandDark/60">One-tap return pickup with your next 10-min grocery order.</span></p>
-            </div>
+    <!-- 2. AI Contextual Discovery Banner -->
+    <div class="px-4 pt-4">
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-black/5">
+        <div class="bg-brandDark px-4 py-3">
+          <div class="flex items-center gap-2">
+            <span id="ic-sparkles" class="text-brand"></span>
+            <span class="text-white font-extrabold text-[13px] leading-tight">AI Smart Cross-Category Nudge</span>
+            <span id="matchBadge" class="ml-auto text-brandDark bg-brand text-[11px] font-extrabold px-2.5 py-1 rounded-full"></span>
           </div>
+        </div>
+        <div class="bg-white p-4">
+          <p id="contextText" class="text-[13px] text-brandDark/80 leading-relaxed mb-3"></p>
 
-          <!-- CTA -->
-          <button id="trialCta" onclick="toggleTrial()" class="w-full mt-3 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"></button>
+          <div class="rounded-xl border border-brand/50 bg-[#FFFBEF] p-3">
+            <div class="flex gap-3">
+              <div id="trialEmoji" class="w-16 h-16 rounded-xl bg-white border border-black/5 flex items-center justify-center text-3xl shrink-0"></div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-[9px] font-extrabold uppercase tracking-wide text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded">Micro-Trial</span>
+                  <span id="trialTarget" class="text-[9px] font-bold text-brandDark/50"></span>
+                </div>
+                <div id="trialName" class="text-[13.5px] font-extrabold text-brandDark leading-tight mt-1"></div>
+                <div id="trialSize" class="text-[11px] text-brandDark/60"></div>
+                <div class="flex items-center gap-2 mt-1.5">
+                  <span id="trialPrice" class="text-[16px] font-extrabold text-brandDark"></span>
+                  <span id="trialMrp" class="text-[12px] text-brandDark/40 line-through"></span>
+                  <span id="trialOff" class="text-[10px] font-extrabold text-ctaGreen"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Why AI Suggested This (research link) -->
+            <div class="mt-3 rounded-lg bg-brand/15 border border-brand/40 p-2.5">
+              <div class="flex items-start gap-2">
+                <span class="text-[15px] leading-none mt-0.5">🧠</span>
+                <p class="text-[11px] text-brandDark leading-snug">
+                  <b>AI Insight (From 5,000+ Reviews):</b> <span id="aiInsight" class="text-brandDark/75"></span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="mt-2.5 flex flex-col gap-1.5">
+              <div class="flex items-center gap-2 bg-white rounded-lg p-2 border border-black/5">
+                <span id="ic-shield" class="text-ctaGreen shrink-0"></span>
+                <p class="text-[11px] text-brandDark leading-snug"><b>100% Quality Refund Guarantee</b></p>
+              </div>
+              <div class="flex items-center gap-2 bg-white rounded-lg p-2 border border-black/5">
+                <span id="ic-zap" class="text-[#eb6834] shrink-0"></span>
+                <p class="text-[11px] text-brandDark leading-snug"><b>Instant 10-min Return Pickup</b></p>
+              </div>
+              <div class="flex items-center gap-2 bg-white rounded-lg p-2 border border-black/5">
+                <span id="ic-star" class="text-brand shrink-0" style="color:#E5A800;"></span>
+                <p class="text-[11px] text-brandDark leading-snug"><b>4.8/5</b> <span class="text-brandDark/60">Rated by 12,000+ Quick-Commerce Trialists</span></p>
+              </div>
+            </div>
+
+            <button id="trialCta" onclick="toggleTrial()" class="w-full mt-3 font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"></button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 4. AI Logic & Prompt Inspector -->
-  <div class="px-4 pt-4">
-    <button onclick="toggleDrawer()" class="w-full bg-white rounded-2xl border border-black/5 shadow-sm px-4 py-3 flex items-center gap-2">
-      <span id="ic-cpu" class="text-brandDark"></span>
-      <span class="text-[12.5px] font-extrabold text-brandDark text-left leading-tight">How the AI Discovery Engine Powered This Recommendation</span>
-      <span id="chev" class="chev ml-auto text-brandDark/50" ></span>
-    </button>
-    <div id="drawer" class="drawer">
-      <div class="bg-[#0d1117] rounded-b-2xl -mt-2 pt-4 px-4 pb-4 border-x border-b border-black/10">
-        <div class="text-[10px] font-bold uppercase tracking-wider text-white/40 mb-2">Model reasoning · real-time</div>
-        <pre id="aiJson" class="text-[11.5px] leading-relaxed font-mono text-white/90 overflow-x-auto no-scrollbar whitespace-pre"></pre>
+    <!-- 5. Developer & Evaluator AI Trace -->
+    <div class="px-4 pt-4 pb-4">
+      <button onclick="toggleDrawer()" class="w-full bg-white rounded-2xl border border-black/5 shadow-sm px-4 py-3 flex items-center gap-2">
+        <span id="ic-cpu" class="text-brandDark"></span>
+        <span class="text-[12.5px] font-extrabold text-brandDark text-left leading-tight">Developer &amp; Evaluator AI Trace</span>
+        <span id="chev" class="chev ml-auto text-brandDark/50"></span>
+      </button>
+      <div id="drawer" class="drawer">
+        <div class="bg-[#0d1117] rounded-b-2xl -mt-2 pt-4 px-4 pb-4 border-x border-b border-black/10">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-white/40 mb-2">Model reasoning · real-time</div>
+          <pre id="aiJson" class="text-[11.5px] leading-relaxed font-mono text-white/90 overflow-x-auto no-scrollbar whitespace-pre"></pre>
+        </div>
       </div>
+      <p class="text-center text-[10px] text-brandDark/40 mt-4">Trial &amp; Confidence Engine · AI-native cross-category discovery MVP</p>
     </div>
-    <p class="text-center text-[10px] text-brandDark/40 mt-4 mb-2">Trial &amp; Confidence Engine · AI-native cross-category discovery MVP</p>
   </div>
 
-  <!-- sticky cart total bar -->
-  <div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] z-40 px-4 pb-4">
-    <div class="bg-brandDark rounded-2xl shadow-2xl px-4 py-3 flex items-center justify-between">
+  <!-- Sticky bottom checkout bar -->
+  <div class="flex-shrink-0 bg-brandDark px-4 py-3 z-20">
+    <div class="flex items-center justify-between">
       <div>
-        <div id="barCount" class="text-white/60 text-[11px] font-semibold"></div>
-        <div id="barTotal" class="text-white text-[18px] font-extrabold leading-tight"></div>
+        <div id="barCount" class="text-white/55 text-[11px] font-semibold"></div>
+        <div class="flex items-baseline gap-2">
+          <div id="barTotal" class="text-white text-[19px] font-extrabold leading-tight"></div>
+          <div id="barBreak" class="text-white/45 text-[10px]"></div>
+        </div>
       </div>
-      <button class="bg-brand text-brandDark font-extrabold text-[13.5px] px-5 py-2.5 rounded-xl flex items-center gap-1.5">
-        Proceed <span id="ic-arrow"></span>
+      <button class="bg-ctaGreen text-white font-extrabold text-[13.5px] px-5 py-2.5 rounded-xl flex items-center gap-1.5 active:scale-95 transition-transform">
+        Checkout <span id="ic-arrow"></span>
       </button>
     </div>
   </div>
@@ -154,7 +166,7 @@ tailwind.config = { theme: { extend: { colors: { brand: '#F2C94C', brandDark: '#
 </div>
 
 <script>
-// ---------- Lucide icons (inline SVG, offline-safe) ----------
+// ---------- Lucide icons (inline SVG) ----------
 const P = {
   clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   pin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
@@ -162,58 +174,57 @@ const P = {
   cart:'<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
   sparkles:'<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/>',
   shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
-  chart:'<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
-  tag:'<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>',
+  zap:'<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  star:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.44a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 10.228a.53.53 0 0 1 .294-.904l5.165-.756a2.12 2.12 0 0 0 1.597-1.16z"/>',
   cpu:'<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>',
-  chev:'<path d="m6 9 6 6 6-6"/>',
-  plus:'<path d="M5 12h14M12 5v14"/>',
-  check:'<path d="M20 6 9 17l-5-5"/>',
-  arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>'
+  chev:'<path d="m6 9 6 6 6-6"/>', plus:'<path d="M5 12h14M12 5v14"/>', check:'<path d="M20 6 9 17l-5-5"/>', arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>'
 };
-function icon(name, size = 18, sw = 2.2) {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${P[name]}</svg>`;
-}
+function icon(n, s = 18, w = 2.2) { return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${P[n]}</svg>`; }
 
 // ---------- Persona data ----------
 const PERSONAS = {
   A: {
-    who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly grocery run',
+    who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly Grocery Buyer',
     cart: [
-      { name: 'Aashirvaad Atta 5kg', price: 249, emoji: '🌾' },
-      { name: 'Amul Gold Milk 500ml', price: 33, emoji: '🥛' },
+      { name: 'Aashirvaad Atta 5kg', price: 255, emoji: '🌾' },
+      { name: 'Amul Taaza Milk 2L', price: 132, emoji: '🥛' },
       { name: 'Amul Butter 100g', price: 56, emoji: '🧈' }
     ],
-    target: 'Personal Care Discovery', confidence: 94,
+    target: 'Personal Care', confidence: 94,
     context: "Since you're stocking up on weekly groceries, <b>82% of similar shoppers</b> added this Personal Care micro-trial to their order.",
-    trial: { name: 'Minimalist 10% Vitamin C Serum', size: '10ml Trial Size', price: 29, mrp: 499, emoji: '🧴', target: 'Personal Care' },
-    ai: { vector: ['Atta', 'Milk', 'Butter'], propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Trial Pack 10ml', rule: 'Low AOV Sample + Instant Refund Badge' }
+    trial: { name: 'Minimalist 10% Vit C Face Serum', size: '10ml Trial Size', price: 29, mrp: 499, emoji: '🧴', target: 'Personal Care' },
+    aiInsight: "78% of Grocery-only buyers avoid Personal Care due to <b>“Size &amp; Price Hesitation”</b>. This ₹29 micro-trial eliminates purchase risk.",
+    ai: { vector: ['Atta 5kg', 'Milk 2L', 'Amul Butter'], propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Vit C Serum — Trial Pack 10ml', rule: 'Low-AOV Sample + Instant Refund + Size-Hesitation Buster' }
   },
   B: {
-    who: 'Priya', avatar: '👩🏻', sub: 'Evening tea & snacks',
+    who: 'Priya', avatar: '👩🏻', sub: 'Snack & Beverage Buyer',
     cart: [
-      { name: 'Bru Instant Coffee 100g', price: 185, emoji: '☕' },
-      { name: 'Britannia Digestive Biscuits', price: 40, emoji: '🍪' }
+      { name: 'Tetley Green Tea 25s', price: 150, emoji: '🍵' },
+      { name: 'Quaker Oats 1kg', price: 175, emoji: '🥣' },
+      { name: 'Sleepy Owl Cold Brew', price: 120, emoji: '🧊' }
     ],
-    target: 'Pet Care / Healthy Snacks', confidence: 91,
-    context: "Coffee &amp; digestive-biscuit shoppers who own a pet added this Pet Care starter <b>3× more often</b> — try it risk-free.",
-    trial: { name: 'Drools Chicken & Egg Dog Food', size: '100g Trial Pack', price: 39, mrp: 299, emoji: '🐕', target: 'Pet Care' },
-    ai: { vector: ['Coffee', 'Digestive Biscuits'], propensity: { 'Pet Care': 0.76, 'Healthy Snacks': 0.19 }, sku: 'Pet Starter 100g', rule: 'First-Pet-Trial Nudge + No-Questions Refund' }
+    target: 'Superfoods / Healthy Snacks', confidence: 90,
+    context: "Health-first snackers like you added this Superfood sample <b>3× more often</b> after a green-tea run — try it risk-free.",
+    trial: { name: 'True Elements Organic Seed Mix', size: '30g Sample', price: 19, mrp: 199, emoji: '🌰', target: 'Superfoods' },
+    aiInsight: "72% of snack &amp; beverage buyers skip Superfoods citing <b>“Taste Uncertainty”</b>. This ₹19 sample removes the risk.",
+    ai: { vector: ['Green Tea', 'Oats', 'Cold Brew'], propensity: { 'Superfoods': 0.83, 'Beverages': 0.17 }, sku: 'Seed Mix — Sample 30g', rule: 'Taste-Uncertainty Buster + No-Questions Refund' }
   },
   C: {
-    who: 'Neha', avatar: '👩🏻‍🦱', sub: 'Household cleaning haul',
+    who: 'Ankit', avatar: '🧑🏻‍🦱', sub: 'Household Essentials',
     cart: [
       { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' },
-      { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }
+      { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' },
+      { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' }
     ],
-    target: 'Baby Care / Home Care', confidence: 89,
+    target: 'Baby Care', confidence: 88,
     context: "Household-essentials shoppers like you tried this Baby Care sample after their cleaning run — <b>gentle &amp; dermatologist-tested</b>.",
-    trial: { name: 'Mamaearth Gentle Baby Wash', size: '50ml Trial Size', price: 49, mrp: 249, emoji: '🍼', target: 'Baby Care' },
-    ai: { vector: ['Detergent', 'Dishwash Bar'], propensity: { 'Baby Care': 0.71, 'Home Care': 0.24 }, sku: 'Baby Wash 50ml Trial', rule: 'Safety-First Sample + One-Tap Return' }
+    trial: { name: 'Mamaearth Gentle Baby Wipes', size: 'Gentle 15-pack', price: 15, mrp: 99, emoji: '🍼', target: 'Baby Care' },
+    aiInsight: "68% of household shoppers avoid Baby Care over <b>“Safety Doubt”</b>. This ₹15 gentle 15-pack builds first-trial confidence.",
+    ai: { vector: ['Detergent', 'Dishwash', 'Tissue'], propensity: { 'Baby Care': 0.74, 'Home Care': 0.26 }, sku: 'Baby Wipes — 15-pack Trial', rule: 'Safety-First Sample + One-Tap Return' }
   }
 };
 
-let currentKey = 'A';
-let trialAdded = false;
+let currentKey = 'A', trialAdded = false;
 
 // static icons
 document.getElementById('ic-clock').innerHTML = icon('clock', 16) + '<span class="text-[11px] font-bold ml-1">8 min</span>';
@@ -222,11 +233,15 @@ document.getElementById('ic-users').innerHTML = icon('users', 17);
 document.getElementById('ic-cart').innerHTML = icon('cart', 17);
 document.getElementById('ic-sparkles').innerHTML = icon('sparkles', 17);
 document.getElementById('ic-shield').innerHTML = icon('shield', 16);
-document.getElementById('ic-chart').innerHTML = icon('chart', 16);
-document.getElementById('ic-tag').innerHTML = icon('tag', 16);
+document.getElementById('ic-zap').innerHTML = icon('zap', 16);
+document.getElementById('ic-star').innerHTML = icon('star', 16);
 document.getElementById('ic-cpu').innerHTML = icon('cpu', 18);
 document.getElementById('chev').innerHTML = icon('chev', 18);
 document.getElementById('ic-arrow').innerHTML = icon('arrow', 15);
+
+function baseTotal(p) { return p.cart.reduce((s, c) => s + c.price, 0); }
+function grandTotal(p) { return baseTotal(p) + (trialAdded ? p.trial.price : 0); }
+function cartCount(p) { return p.cart.length + (trialAdded ? 1 : 0); }
 
 function renderPersonas() {
   document.getElementById('personaList').innerHTML = Object.entries(PERSONAS).map(([k, p]) => {
@@ -235,20 +250,14 @@ function renderPersonas() {
     return `<button onclick="selectPersona('${k}')" class="text-left rounded-2xl border p-3 flex items-center gap-3 transition-all ${sel ? 'border-brand bg-[#FFFBEF] ring-2 ring-brand/40' : 'border-black/5 bg-white'}">
       <div class="w-11 h-11 rounded-full ${sel ? 'bg-brand' : 'bg-black/5'} flex items-center justify-center text-2xl shrink-0">${p.avatar}</div>
       <div class="min-w-0 flex-1">
-        <div class="flex items-center gap-2">
-          <span class="font-extrabold text-[14px] text-brandDark">${p.who}</span>
-          <span class="text-[9px] font-bold text-brandDark/45">${p.sub}</span>
-        </div>
+        <div class="flex items-center gap-2"><span class="font-extrabold text-[14px] text-brandDark">${p.who}</span><span class="text-[9px] font-bold text-brandDark/45">${p.sub}</span></div>
         <div class="text-[11px] text-brandDark/55 truncate">🛒 ${items}</div>
-        <div class="text-[10px] font-bold text-brandGreen mt-0.5">➔ Target: ${p.target}</div>
+        <div class="text-[10px] font-bold text-ctaGreen mt-0.5">➔ Recommends: ${p.target}</div>
       </div>
       ${sel ? `<span class="text-brandDark">${icon('check', 18, 3)}</span>` : ''}
     </button>`;
   }).join('');
 }
-
-function cartTotal(p) { return p.cart.reduce((s, c) => s + c.price, 0) + (trialAdded ? p.trial.price : 0); }
-function cartCount(p) { return p.cart.length + (trialAdded ? 1 : 0); }
 
 function renderCart() {
   const p = PERSONAS[currentKey];
@@ -261,21 +270,21 @@ function renderCart() {
   const trialRow = trialAdded ? `
     <div class="flex items-center gap-3 pop">
       <div class="w-9 h-9 rounded-lg bg-brand/25 flex items-center justify-center text-lg shrink-0">${p.trial.emoji}</div>
-      <div class="flex-1 text-[13px] text-brandDark font-semibold">${p.trial.name} <span class="text-[9px] font-extrabold text-brandGreen bg-brandGreen/10 px-1.5 py-0.5 rounded ml-1">TRIAL</span></div>
+      <div class="flex-1 text-[13px] text-brandDark font-semibold">${p.trial.name} <span class="text-[9px] font-extrabold text-ctaGreen bg-ctaGreen/10 px-1.5 py-0.5 rounded ml-1">TRIAL</span></div>
       <div class="text-[13px] font-bold text-brandDark tabular-nums">₹${p.trial.price}</div>
     </div>` : '';
-  const subtotal = `
+  const sub = `
     <div class="flex items-center justify-between pt-2.5 mt-1 border-t border-black/5">
-      <span class="text-[12px] font-bold text-brandDark/60">Item total</span>
-      <span class="text-[15px] font-extrabold text-brandDark tabular-nums">₹${cartTotal(p)}</span>
+      <span class="text-[12px] font-bold text-brandDark/60">Grand total</span>
+      <span class="text-[15px] font-extrabold text-brandDark tabular-nums">₹${grandTotal(p)}</span>
     </div>`;
-  document.getElementById('cartItems').innerHTML = rows + trialRow + subtotal;
+  document.getElementById('cartItems').innerHTML = rows + trialRow + sub;
   document.getElementById('cartCount').textContent = cartCount(p) + ' item' + (cartCount(p) > 1 ? 's' : '');
 }
 
 function renderNudge() {
   const p = PERSONAS[currentKey], t = p.trial;
-  document.getElementById('matchBadge').textContent = p.confidence + '% Match Confidence';
+  document.getElementById('matchBadge').textContent = p.confidence + '% Match';
   document.getElementById('contextText').innerHTML = p.context;
   document.getElementById('trialEmoji').textContent = t.emoji;
   document.getElementById('trialTarget').textContent = '· ' + t.target;
@@ -284,56 +293,53 @@ function renderNudge() {
   document.getElementById('trialPrice').textContent = '₹' + t.price;
   document.getElementById('trialMrp').textContent = '₹' + t.mrp;
   document.getElementById('trialOff').textContent = Math.round((1 - t.price / t.mrp) * 100) + '% OFF';
+  document.getElementById('aiInsight').innerHTML = p.aiInsight;
   renderCta();
 }
 
 function renderCta() {
   const p = PERSONAS[currentKey], btn = document.getElementById('trialCta');
   if (trialAdded) {
-    btn.className = "w-full mt-3 bg-brandGreen text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
-    btn.innerHTML = icon('check', 18, 3) + ` Added to Cart · Tap to remove`;
+    btn.className = "w-full mt-3 bg-ctaGreen text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
+    btn.innerHTML = icon('check', 18, 3) + ` Trial Added · tap to remove`;
   } else {
     btn.className = "w-full mt-3 bg-brandDark text-white font-extrabold text-[13.5px] py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform";
-    btn.innerHTML = icon('plus', 18, 3) + ` Add Trial Sample to Cart (+₹${p.trial.price})`;
+    btn.innerHTML = icon('plus', 18, 3) + ` Add Trial Sample (+₹${p.trial.price})`;
   }
 }
 
 function renderBar() {
   const p = PERSONAS[currentKey];
-  document.getElementById('barCount').textContent = cartCount(p) + ' items in cart';
-  document.getElementById('barTotal').textContent = '₹' + cartTotal(p);
+  document.getElementById('barCount').textContent = cartCount(p) + ' items · incl. taxes';
+  document.getElementById('barTotal').textContent = '₹' + grandTotal(p);
+  document.getElementById('barBreak').textContent = trialAdded ? `(₹${baseTotal(p)} + ₹${p.trial.price} trial)` : '';
 }
 
 function renderJson() {
-  const a = PERSONAS[currentKey].ai, p = PERSONAS[currentKey];
+  const p = PERSONAS[currentKey], a = p.ai;
   const prop = Object.entries(a.propensity).map(([k, v]) => `    <span class="code-str">"${k}"</span>: <span class="code-num">${v}</span>`).join(',\n');
-  const j =
+  document.getElementById('aiJson').innerHTML =
 `{
-  <span class="code-key">"user_vector_input"</span>: {
+  <span class="code-key">"active_user_vector"</span>: {
+    <span class="code-str">"persona"</span>: <span class="code-str">"${p.who}"</span>,
     <span class="code-str">"cart"</span>: [${a.vector.map(v => `<span class="code-str">"${v}"</span>`).join(', ')}]
   },
   <span class="code-key">"category_propensity_score"</span>: {
 ${prop}
   },
   <span class="code-key">"recommended_sku_trigger"</span>: <span class="code-str">"${a.sku}"</span>,
-  <span class="code-key">"risk_mitigation_rule_triggered"</span>: <span class="code-str">"${a.rule}"</span>,
+  <span class="code-key">"friction_buster_rule_applied"</span>: <span class="code-str">"${a.rule}"</span>,
+  <span class="code-key">"evidence_base"</span>: <span class="code-str">"5,000+ public reviews · 7 user interviews"</span>,
   <span class="code-key">"match_confidence"</span>: <span class="code-num">${(p.confidence / 100).toFixed(2)}</span>,
+  <span class="code-key">"trial_in_cart"</span>: <span class="code-num">${trialAdded}</span>,
   <span class="code-key">"decision"</span>: <span class="code-str">"SURFACE_MICRO_TRIAL"</span>
 }`;
-  document.getElementById('aiJson').innerHTML = j;
 }
 
 function renderAll() { renderPersonas(); renderCart(); renderNudge(); renderBar(); renderJson(); }
-
-function selectPersona(k) {
-  currentKey = k; trialAdded = false; // reset trial on persona switch
-  renderAll();
-}
-function toggleTrial() { trialAdded = !trialAdded; renderCta(); renderCart(); renderBar(); }
-function toggleDrawer() {
-  document.getElementById('drawer').classList.toggle('open');
-  document.getElementById('chev').classList.toggle('open');
-}
+function selectPersona(k) { currentKey = k; trialAdded = false; renderAll(); }
+function toggleTrial() { trialAdded = !trialAdded; renderCta(); renderCart(); renderBar(); renderJson(); }
+function toggleDrawer() { document.getElementById('drawer').classList.toggle('open'); document.getElementById('chev').classList.toggle('open'); }
 
 renderAll();
 </script>
