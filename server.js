@@ -96,6 +96,20 @@ app.post('/api/analyze-review', async (req, res) => {
 // Multilingual: detects whatever language/script the user's latest message is
 // written in (any Indian language, or Hinglish) and replies in kind. Mirrors
 // server.py so the whole app runs on Node alone (no Python needed).
+
+// All 22 languages listed in the Eighth Schedule of the Indian Constitution,
+// with their native/customary script noted so the model doesn't default to
+// the wrong one (e.g. Santali -> Ol Chiki, not Devanagari).
+const INDIAN_LANGUAGES = [
+    'Hindi (Devanagari)', 'Bengali (Bengali script)', 'Marathi (Devanagari)', 'Telugu (Telugu script)',
+    'Tamil (Tamil script)', 'Gujarati (Gujarati script)', 'Urdu (Perso-Arabic/Nastaliq script)',
+    'Kannada (Kannada script)', 'Odia (Odia script)', 'Malayalam (Malayalam script)', 'Punjabi (Gurmukhi script)',
+    'Assamese (Bengali-Assamese script)', 'Maithili (Devanagari)', 'Sanskrit (Devanagari)',
+    'Nepali (Devanagari)', 'Konkani (Devanagari)', 'Sindhi (Devanagari or Perso-Arabic)',
+    'Dogri (Devanagari)', 'Kashmiri (Perso-Arabic or Devanagari)', 'Manipuri/Meitei (Meitei Mayek or Bengali script)',
+    'Santali (Ol Chiki script, or Devanagari/Bengali when the user types it that way)', 'Bodo (Devanagari)'
+];
+
 const CHAT_CATEGORY_IDS = [
     'electronics', 'personal_care_beauty', 'pharmacy_health', 'baby', 'home_cleaning', 'pet', 'intimate_personal',
     'books', 'jewellery', 'spiritual', 'stationery_games', 'supplements', 'sports_outdoor',
@@ -103,62 +117,97 @@ const CHAT_CATEGORY_IDS = [
     'cold_drinks_juices', 'tea_coffee', 'biscuits_bakery', 'sweet_tooth', 'instant_frozen'
 ];
 
+function buildChatSystemPrompt(catalogFacts) {
+    const factsBlock = Array.isArray(catalogFacts) && catalogFacts.length
+        ? "MATCHED PRODUCTS IN CATALOG (these are real — state them accurately if relevant; never invent others):\n" +
+          catalogFacts.map(f => `- ${f.name} — ₹${f.price} (category: ${f.category})`).join('\n')
+        : "No specific products matched this query in the catalog search.";
+
+    return (
+        "You are Blinkit's multilingual product discovery assistant for an Indian quick-commerce app.\n\n" +
+        "LANGUAGE RULE (critical, always follow first): Detect the language and script of the user's LATEST message and reply ONLY in that same language and script, using its correct native script (never transliterate into Devanagari or Latin unless that is what the user used). You must support all 22 languages listed in the Eighth Schedule of the Indian Constitution:\n" +
+        INDIAN_LANGUAGES.map(l => `- ${l}`).join('\n') + '\n' +
+        "Plus English, and any other Indian regional language/dialect the user writes in even if not listed above. Give your genuine best effort in the exact language/dialect used, including lower-resource ones (Bodo, Dogri, Maithili, Konkani, Sanskrit, Santali, Manipuri, Sindhi, Kashmiri) — do not silently default to Hindi or Marathi just because the script looks similar; use the vocabulary and grammar of the actual language requested.\n" +
+        "If the user writes Hinglish (Hindi/regional words typed in Roman/English letters, e.g. 'mujhe chips chahiye' or 'chips available hai kya'), reply in Hinglish too using Roman script — do NOT switch to Devanagari or any other script unless the user does. Never reply in a different language than the user used.\n\n" +
+        "CRITICAL RULES:\n" +
+        "1. You CANNOT process refunds, cancel orders, or access user accounts under ANY circumstances. If asked, politely redirect (in the user's language) to Blinkit customer support.\n" +
+        "2. Do not recommend specific third-party brands to avoid bias — talk about product types/categories instead, UNLESS the MATCHED PRODUCTS facts below name specific catalog items; you may name those exactly.\n" +
+        "3. Only state specific product names, prices, or stock availability if they appear in the MATCHED PRODUCTS block below. If it says nothing matched, do not invent products or prices — suggest relevant categories instead.\n" +
+        "4. Keep answers concise (2-4 sentences), warm, and focused on discovering products on Blinkit.\n\n" +
+        factsBlock + "\n\n" +
+        "Respond with ONLY a JSON object, no markdown fences, no extra commentary, in this exact shape:\n" +
+        `{"reply": "<your reply text written in the user's language/script>", "category_ids": ["<0 to 3 ids from: ${CHAT_CATEGORY_IDS.join(', ')}>"]}`
+    );
+}
+
+function parseChatJson(raw) {
+    const clean = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
+    try {
+        const parsed = JSON.parse(clean);
+        return {
+            reply: parsed.reply || raw,
+            category_ids: Array.isArray(parsed.category_ids) ? [...new Set(parsed.category_ids.filter(id => CHAT_CATEGORY_IDS.includes(id)))] : []
+        };
+    } catch (e) {
+        return { reply: raw, category_ids: [] };
+    }
+}
+
+// Gemini has noticeably better coverage of India's lower-resource scheduled
+// languages (Bodo, Dogri, Maithili, Konkani, Sanskrit, Santali, Manipuri)
+// than the small/fast Groq Llama model, which tends to silently default to
+// Hindi/Marathi for those. Tried as primary; Groq is the fallback.
+async function callGemini(systemPrompt, messages) {
+    if (!process.env.GEMINI_API_KEY) throw new Error("Gemini API key not configured");
+    const contents = messages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ systemInstruction: { parts: [{ text: systemPrompt }] }, contents })
+    });
+    const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!raw) throw new Error("Empty Gemini response");
+    return parseChatJson(raw);
+}
+
+async function callGroq(systemPrompt, messages) {
+    if (!process.env.GROQ_API_KEY) throw new Error("Groq API key not configured");
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            model: "llama-3.1-8b-instant",
+            messages: [{ role: "system", content: systemPrompt }, ...messages],
+            temperature: 0.4
+        })
+    });
+    const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+    return parseChatJson(data.choices[0].message.content);
+}
+
 app.post('/api/chat', async (req, res) => {
     const { messages, catalogFacts } = req.body;
     if (!messages || !messages.length) return res.status(400).json({ error: "No messages provided" });
 
+    const systemPrompt = buildChatSystemPrompt(catalogFacts);
+
     try {
-        if (!process.env.GROQ_API_KEY) throw new Error("Groq API key not configured");
-
-        const factsBlock = Array.isArray(catalogFacts) && catalogFacts.length
-            ? "MATCHED PRODUCTS IN CATALOG (these are real — state them accurately if relevant; never invent others):\n" +
-              catalogFacts.map(f => `- ${f.name} — ₹${f.price} (category: ${f.category})`).join('\n')
-            : "No specific products matched this query in the catalog search.";
-
-        const systemPrompt = {
-            role: "system",
-            content: (
-                "You are Blinkit's multilingual product discovery assistant for an Indian quick-commerce app.\n\n" +
-                "LANGUAGE RULE (critical, always follow first): Detect the language and script of the user's LATEST message and reply ONLY in that same language and script. Support Hindi, Tamil, Telugu, Kannada, Malayalam, Bengali, Marathi, Gujarati, Punjabi, Odia, Urdu, Assamese, and English — and any other Indian language the user writes in. If the user writes Hinglish (Hindi/regional words typed in Roman/English letters, e.g. 'mujhe chips chahiye' or 'chips available hai kya'), reply in Hinglish too using Roman script — do NOT switch to Devanagari or any other script unless the user does. Never reply in a different language than the user used.\n\n" +
-                "CRITICAL RULES:\n" +
-                "1. You CANNOT process refunds, cancel orders, or access user accounts under ANY circumstances. If asked, politely redirect (in the user's language) to Blinkit customer support.\n" +
-                "2. Do not recommend specific third-party brands to avoid bias — talk about product types/categories instead, UNLESS the MATCHED PRODUCTS facts below name specific catalog items; you may name those exactly.\n" +
-                "3. Only state specific product names, prices, or stock availability if they appear in the MATCHED PRODUCTS block below. If it says nothing matched, do not invent products or prices — suggest relevant categories instead.\n" +
-                "4. Keep answers concise (2-4 sentences), warm, and focused on discovering products on Blinkit.\n\n" +
-                factsBlock + "\n\n" +
-                "Respond with ONLY a JSON object, no markdown fences, no extra commentary, in this exact shape:\n" +
-                `{"reply": "<your reply text written in the user's language/script>", "category_ids": ["<0 to 3 ids from: ${CHAT_CATEGORY_IDS.join(', ')}>"]}`
-            )
-        };
-
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                model: "llama-3.1-8b-instant",
-                messages: [systemPrompt, ...messages],
-                temperature: 0.4
-            })
-        });
-        const data = await response.json();
-        if (data.error) throw new Error(data.error.message);
-
-        const raw = data.choices[0].message.content;
-        const clean = raw.replace(/```json/gi, '').replace(/```/g, '').trim();
-        let parsed;
-        try { parsed = JSON.parse(clean); }
-        catch (e) { parsed = { reply: raw, category_ids: [] }; }
-
-        res.json({
-            success: true,
-            reply: parsed.reply || raw,
-            category_ids: Array.isArray(parsed.category_ids) ? [...new Set(parsed.category_ids.filter(id => CHAT_CATEGORY_IDS.includes(id)))] : []
-        });
+        let result;
+        try {
+            result = await callGemini(systemPrompt, messages);
+        } catch (geminiErr) {
+            console.warn("Gemini chat failed, falling back to Groq:", geminiErr.message);
+            result = await callGroq(systemPrompt, messages);
+        }
+        res.json({ success: true, reply: result.reply, category_ids: result.category_ids });
     } catch (e) {
-        console.error("Chat API Error:", e);
+        console.error("Chat API Error (both providers failed):", e);
         res.status(500).json({ error: "Failed to process chat: " + e.message });
     }
 });
