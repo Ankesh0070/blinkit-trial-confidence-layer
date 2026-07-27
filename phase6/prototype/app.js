@@ -514,10 +514,198 @@ function openPdp(productId) {
         ${aiSection}
         <button class="w-full bg-primary text-on-primary py-4 rounded-xl font-label-md font-bold shadow-md hover:opacity-90 transition-opacity" onclick="addToCart()">Add to Cart</button>
         <button class="w-full mt-2 bg-surface-container-high text-on-surface py-4 rounded-xl font-label-md font-bold hover:bg-surface-container-highest transition-colors" onclick="buyNow()">Buy Now</button>
+        ${renderPdpReviews(product)}
     `;
 
     document.getElementById('pdpSheet').classList.remove('opacity-0', 'pointer-events-none');
     document.getElementById('pdpContent').classList.remove('translate-y-full');
+
+    // Populate the review list now that the reviews section is in the DOM.
+    if (product.trust_signals && Array.isArray(product.trust_signals.reviews) && product.trust_signals.reviews.length) {
+        renderPdpReviewList(unifiedId);
+    }
+}
+
+// ============================================================
+// REVIEWS SECTION (PDP)
+// Renders 5-30 realistic reviews per product with distribution
+// bars, verified-buyer chips, filter, and Show-more pagination.
+// ============================================================
+let currentPdpReviewsShown = 10;
+let currentPdpReviewFilter = 'all'; // 'all' | 'verified' | 5 | 4 | 3
+
+function renderPdpReviews(product) {
+    const ts = product && product.trust_signals;
+    const reviews = (ts && ts.reviews) || [];
+    if (!reviews.length) return '';
+
+    // Reset UI state for each PDP open
+    currentPdpReviewsShown = 10;
+    currentPdpReviewFilter = 'all';
+
+    // Distribution counts (1-5 stars)
+    const dist = [0, 0, 0, 0, 0];
+    reviews.forEach(r => { if (r.rating >= 1 && r.rating <= 5) dist[r.rating - 1]++; });
+    const total = reviews.length;
+    const verifiedCount = reviews.filter(r => r.verified).length;
+
+    const bar = (stars) => {
+        const c = dist[stars - 1];
+        const pct = total ? Math.round((c / total) * 100) : 0;
+        return `
+            <div class="flex items-center gap-2 text-xs">
+                <span class="w-6 font-semibold text-on-surface">${stars}★</span>
+                <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+                    <div class="h-full bg-[#0d8345] rounded-full" style="width:${pct}%"></div>
+                </div>
+                <span class="w-8 text-right text-on-surface-variant tabular-nums">${c}</span>
+            </div>`;
+    };
+
+    return `
+    <div id="pdpReviewsSection" class="mt-8 border-t border-outline-variant/30 pt-6">
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#F7D032]" style="font-variation-settings:'FILL' 1;">reviews</span>
+                <h3 class="font-headline-md font-bold text-on-surface">What working professionals say</h3>
+            </div>
+            <span class="text-xs font-semibold text-on-surface-variant">${total} review${total !== 1 ? 's' : ''}</span>
+        </div>
+
+        <!-- Summary row: big rating + distribution bars -->
+        <div class="grid grid-cols-[auto,1fr] gap-4 items-center bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/20 mb-5">
+            <div class="text-center px-2">
+                <div class="text-4xl font-bold text-on-surface leading-none">${ts.avg_rating}</div>
+                <div class="text-[10px] text-on-surface-variant mt-1">out of 5</div>
+                <div class="text-[10px] text-[#0d8345] font-semibold mt-2">${verifiedCount} verified</div>
+            </div>
+            <div class="flex flex-col gap-1.5">
+                ${[5,4,3,2,1].map(bar).join('')}
+            </div>
+        </div>
+
+        <!-- Filter chips -->
+        <div id="pdpReviewFilters" class="flex gap-2 mb-4 overflow-x-auto no-scrollbar pb-1">
+            ${reviewFilterChip('all', `All (${total})`)}
+            ${reviewFilterChip('verified', `Verified (${verifiedCount})`)}
+            ${dist[4] > 0 ? reviewFilterChip(5, `5★ (${dist[4]})`) : ''}
+            ${dist[3] > 0 ? reviewFilterChip(4, `4★ (${dist[3]})`) : ''}
+            ${dist[2] > 0 ? reviewFilterChip(3, `3★ (${dist[2]})`) : ''}
+        </div>
+
+        <!-- Review list -->
+        <div id="pdpReviewList" class="flex flex-col gap-3"></div>
+
+        <!-- Show more -->
+        <button id="pdpReviewMoreBtn" class="hidden w-full mt-4 bg-surface-container-high text-on-surface py-3 rounded-xl font-label-md font-bold hover:bg-surface-container-highest transition-colors" onclick="pdpShowMoreReviews()">
+            Show more reviews
+        </button>
+    </div>
+    `;
+}
+
+function reviewFilterChip(id, label) {
+    const active = currentPdpReviewFilter === id;
+    return `<button onclick="pdpFilterReviews('${id}')" class="chip-${id} shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${active ? 'bg-primary text-on-primary border-primary' : 'bg-surface text-on-surface-variant border-outline-variant/30 hover:border-primary/50'}">${label}</button>`;
+}
+
+function pdpFilterReviews(id) {
+    // 'all' and 'verified' stay strings, star levels are ints
+    currentPdpReviewFilter = (id === 'all' || id === 'verified') ? id : parseInt(id, 10);
+    currentPdpReviewsShown = 10;
+    // Re-render filter chips (active state) and list
+    const product = trustData.products.find(p => (p.product_id || p.id) === currentPdpProductId);
+    if (!product) return;
+    const ts = product.trust_signals;
+    const reviews = ts.reviews || [];
+    const dist = [0,0,0,0,0];
+    reviews.forEach(r => { if (r.rating >= 1 && r.rating <= 5) dist[r.rating - 1]++; });
+    const total = reviews.length;
+    const verifiedCount = reviews.filter(r => r.verified).length;
+    const filtersEl = document.getElementById('pdpReviewFilters');
+    if (filtersEl) {
+        filtersEl.innerHTML = `
+            ${reviewFilterChip('all', `All (${total})`)}
+            ${reviewFilterChip('verified', `Verified (${verifiedCount})`)}
+            ${dist[4] > 0 ? reviewFilterChip(5, `5★ (${dist[4]})`) : ''}
+            ${dist[3] > 0 ? reviewFilterChip(4, `4★ (${dist[3]})`) : ''}
+            ${dist[2] > 0 ? reviewFilterChip(3, `3★ (${dist[2]})`) : ''}
+        `;
+    }
+    renderPdpReviewList(currentPdpProductId);
+}
+
+function pdpShowMoreReviews() {
+    currentPdpReviewsShown += 10;
+    renderPdpReviewList(currentPdpProductId);
+}
+
+function renderPdpReviewList(productId) {
+    const product = trustData.products.find(p => (p.product_id || p.id) === productId);
+    if (!product) return;
+    const listEl = document.getElementById('pdpReviewList');
+    const moreBtn = document.getElementById('pdpReviewMoreBtn');
+    if (!listEl) return;
+
+    const all = (product.trust_signals && product.trust_signals.reviews) || [];
+    const filtered = all.filter(r => {
+        if (currentPdpReviewFilter === 'all') return true;
+        if (currentPdpReviewFilter === 'verified') return r.verified;
+        return r.rating === currentPdpReviewFilter;
+    });
+
+    // Sort: most recent first (days > weeks > months, roughly)
+    const dateWeight = (d) => {
+        const m = /^(\d+)\s+(day|week|month)/.exec(d || '');
+        if (!m) return 999999;
+        const n = parseInt(m[1], 10);
+        const unit = m[2];
+        return unit === 'day' ? n : unit === 'week' ? n * 7 : n * 30;
+    };
+    const sorted = [...filtered].sort((a, b) => dateWeight(a.date) - dateWeight(b.date));
+
+    const toShow = sorted.slice(0, currentPdpReviewsShown);
+    listEl.innerHTML = toShow.map(r => reviewCard(r)).join('') ||
+        `<div class="text-sm text-on-surface-variant text-center py-6">No reviews match this filter.</div>`;
+
+    if (moreBtn) {
+        if (sorted.length > currentPdpReviewsShown) {
+            moreBtn.classList.remove('hidden');
+            moreBtn.textContent = `Show ${Math.min(10, sorted.length - currentPdpReviewsShown)} more reviews`;
+        } else {
+            moreBtn.classList.add('hidden');
+        }
+    }
+}
+
+function reviewCard(r) {
+    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    const starColor = r.rating >= 4 ? '#0d8345' : r.rating === 3 ? '#c07a00' : '#c53030';
+    const initials = (r.reviewer || 'AB').split(' ').map(s => s[0] || '').join('').slice(0, 2).toUpperCase();
+    const avatarColors = ['#F7D032','#0d8345','#3B82F6','#D64545','#8B5CF6','#EC4899','#14B8A6','#F97316'];
+    const avatarBg = avatarColors[initials.charCodeAt(0) % avatarColors.length];
+    return `
+    <div class="bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/20">
+        <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background:${avatarBg}">${initials}</div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-sm font-semibold text-on-surface">${escapeHtml(r.reviewer || 'Anonymous')}</span>
+                    ${r.verified ? '<span class="text-[10px] font-bold text-[#0d8345] bg-[#0d8345]/10 px-1.5 py-0.5 rounded">✓ Verified Buyer</span>' : ''}
+                    <span class="text-[10px] text-on-surface-variant">${escapeHtml(r.city || '')} · ${escapeHtml(r.date || '')}</span>
+                </div>
+                <div class="flex items-center gap-2 mt-1">
+                    <span class="text-sm tabular-nums" style="color:${starColor}; letter-spacing:1px;">${stars}</span>
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-on-surface-variant">${(r.theme || '').replace(/_/g, ' ')}</span>
+                </div>
+                <p class="text-sm text-on-surface mt-2 leading-relaxed">${escapeHtml(r.text || '')}</p>
+            </div>
+        </div>
+    </div>`;
+}
+
+function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 }
 
 async function runLiveAnalysis(productId) {

@@ -192,27 +192,27 @@ function icon(n, s = 18, w = 2.2) { return `<svg xmlns="http://www.w3.org/2000/s
 
 // ---------- Persona catalog ----------
 const PERSONAS = {
-  A: { who: 'Rohan', avatar: '🧑🏻', sub: 'Weekly Grocery Buyer',
-    cart: [ { name: 'Aashirvaad Atta 5kg', price: 255, emoji: '🌾' }, { name: 'Amul Taaza Milk 2L', price: 132, emoji: '🥛' }, { name: 'Amul Butter 100g', price: 56, emoji: '🧈' } ],
+  A: { who: 'Rohan', avatar: '🧑🏻‍💻', sub: 'SDE @ Fintech · 26, Bengaluru',
+    cart: [ { name: 'Nescafé Classic Coffee 200g', price: 599, emoji: '☕' }, { name: 'Britannia Marie Gold 250g', price: 40, emoji: '🍪' }, { name: 'Amul Taaza Milk 1L', price: 68, emoji: '🥛' } ],
     target: 'Personal Care', confidence: 94,
-    context: "Since you're stocking up on weekly groceries, <b>82% of similar shoppers</b> added this Personal Care micro-trial to their order.",
-    trial: { name: 'Minimalist 10% Vitamin C Serum', pod: '10ml Micro-Trial Pod', size: '10ml', price: 29, fullSize: '30ml', fullPrice: 699, uses: '3–5 Uses  |  Zero-Risk Trial', emoji: '🧴', target: 'Personal Care' },
-    aiInsight: "78% of Grocery-only buyers avoid Personal Care due to <b>“Size &amp; Price Hesitation”</b>. This ₹29 micro-trial eliminates purchase risk.",
+    context: "You're stocking WFH coffee &amp; standup snacks — <b>82% of Bengaluru SDEs</b> added this Personal Care micro-trial before their client-facing week.",
+    trial: { name: 'Minimalist 10% Vitamin C Serum', pod: '10ml Micro-Trial Pod', size: '10ml', price: 29, fullSize: '30ml', fullPrice: 699, uses: 'Under-eye tired-look fix  |  Zero-Risk Trial', emoji: '🧴', target: 'Personal Care' },
+    aiInsight: "78% of desk-bound techies avoid skincare over <b>“Size &amp; Price Hesitation”</b>. This ₹29 micro-trial fixes the on-camera tired look before your next demo.",
     ai: { propensity: { 'Personal Care': 0.88, 'Pet Care': 0.12 }, sku: 'Vit C Serum — Trial Pack 10ml', rule: 'Low-AOV Sample + Instant Refund + Size-Hesitation Buster' } },
-  B: { who: 'Priya', avatar: '👩🏻', sub: 'Snack & Beverage Buyer',
+  B: { who: 'Priya', avatar: '👩🏻‍💼', sub: 'Product Manager · 28, Gurugram',
     cart: [ { name: 'Tetley Green Tea 25s', price: 150, emoji: '🍵' }, { name: 'Quaker Oats 1kg', price: 175, emoji: '🥣' }, { name: 'Sleepy Owl Cold Brew', price: 120, emoji: '🧊' } ],
-    target: 'Superfoods / Healthy Snacks', confidence: 90,
-    context: "Health-first snackers like you added this Superfood sample <b>3× more often</b> after a green-tea run — try it risk-free.",
-    trial: { name: 'True Elements Organic Seed Mix', pod: '30g Micro-Trial Pod', size: '30g', price: 19, fullSize: '200g', fullPrice: 199, uses: '4–6 Servings  |  Zero-Risk Trial', emoji: '🌰', target: 'Superfoods' },
-    aiInsight: "72% of snack &amp; beverage buyers skip Superfoods citing <b>“Taste Uncertainty”</b>. This ₹19 sample removes the risk.",
+    target: 'Superfoods / Desk Snacks', confidence: 90,
+    context: "Between-meeting fuel — <b>3× more PMs</b> added this Superfood sample after a green-tea + oats run for their sprint-week desk drawer.",
+    trial: { name: 'True Elements Organic Seed Mix', pod: '30g Micro-Trial Pod', size: '30g', price: 19, fullSize: '200g', fullPrice: 199, uses: 'Between-meetings crunch  |  Zero-Risk Trial', emoji: '🌰', target: 'Superfoods' },
+    aiInsight: "72% of PMs skip Superfoods citing <b>“Taste Uncertainty”</b>. This ₹19 desk-drawer sample removes the risk before you commit to 200g.",
     ai: { propensity: { 'Superfoods': 0.83, 'Beverages': 0.17 }, sku: 'Seed Mix — Sample 30g', rule: 'Taste-Uncertainty Buster + No-Questions Refund' } },
-  C: { who: 'Ankit', avatar: '🧑🏻‍🦱', sub: 'Household Essentials',
-    cart: [ { name: 'Surf Excel Detergent 1kg', price: 210, emoji: '🧴' }, { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }, { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' } ],
-    target: 'Baby Care', confidence: 88,
-    context: "Household-essentials shoppers like you tried this Baby Care sample after their cleaning run — <b>gentle &amp; dermatologist-tested</b>.",
-    trial: { name: 'Mamaearth Gentle Baby Wipes', pod: '15-pack Micro-Trial', size: '15-pack', price: 15, fullSize: '72-pack', fullPrice: 199, uses: '15 Wipes  |  Zero-Risk Trial', emoji: '🍼', target: 'Baby Care' },
-    aiInsight: "68% of household shoppers avoid Baby Care over <b>“Safety Doubt”</b>. This ₹15 gentle 15-pack builds first-trial confidence.",
-    ai: { propensity: { 'Baby Care': 0.74, 'Home Care': 0.26 }, sku: 'Baby Wipes — 15-pack Trial', rule: 'Safety-First Sample + One-Tap Return' } }
+  C: { who: 'Ankit', avatar: '🧑🏻‍🎓', sub: 'Consultant · 24, Mumbai PG',
+    cart: [ { name: 'Surf Excel Matic 1kg', price: 210, emoji: '🧴' }, { name: 'Vim Dishwash Bar', price: 30, emoji: '🧼' }, { name: 'Origami Tissue 100 pulls', price: 75, emoji: '🧻' } ],
+    target: 'Supplements', confidence: 88,
+    context: "Consultants on PG-life stocking basics — <b>gym-after-work protein</b> is the most-added trial for late-twenties professionals in your zone.",
+    trial: { name: 'GNC AMP Amplified Whey Sample', pod: '30g Single Serve', size: '30g', price: 49, fullSize: '1kg', fullPrice: 3299, uses: '1 Post-Workout Shake  |  Zero-Risk Trial', emoji: '💪', target: 'Supplements' },
+    aiInsight: "68% of hostel/PG consultants avoid supplements over <b>“₹3k+ upfront doubt”</b>. This ₹49 single-serve builds first-shake confidence before you commit.",
+    ai: { propensity: { 'Supplements': 0.74, 'Home Care': 0.26 }, sku: 'Whey Sample — 30g Trial', rule: 'Single-Serve Sample + One-Tap Return' } }
 };
 
 // ---------- Per-persona LIVE STATE (each persona remembers its own cart) ----------

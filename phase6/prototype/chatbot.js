@@ -44,9 +44,11 @@ function injectChatbot() {
             <div id="chatMessages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-surface-container-lowest">
                 <!-- Initial greeting -->
                 <div class="self-start max-w-[85%] bg-surface-container p-3 rounded-2xl rounded-tl-sm text-on-surface font-body-md text-sm border border-outline-variant/20 shadow-sm whitespace-pre-wrap">
-                    Hi! I'm your Blinkit product discovery assistant. What are you looking for today?
+                    Hey — I know your calendar is packed. Tell me what you need and I'll get it to your desk in minutes ⚡
 
-Aap Hindi, Tamil, Telugu ya kisi bhi Indian language mein pooch sakte hain — main usi bhasha mein jawab dunga! 🙂</div>
+Try: "coffee for standups", "back-pain patch", "protein for gym", "team snacks for offsite"
+
+Hindi, Tamil, Telugu ya kisi bhi Indian language mein pooch sakte ho — main usi bhasha mein jawab dunga 🙂</div>
             </div>
             <!-- Input Area -->
             <div class="p-3 bg-surface border-t border-outline-variant/20 flex gap-2 items-center">
