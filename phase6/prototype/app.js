@@ -7,6 +7,25 @@ let currentProfile = 'user_a'; // Default to Cold Start User
 let currentCategory = 'electronics'; // Default category tab
 let showTrustedOnly = false;         // "Blinkit Trusted" filter toggle in the grid
 
+// Reviews are stored in per-category JSON files under /data/reviews/*.json
+// (each ~2 MB, ~8-9K reviews). Lazy-load on PDP open, cache by category
+// so a second product from the same category is instant.
+const reviewsCache = {};    // { category: { product_id: [reviews...] } }
+async function loadCategoryReviews(category) {
+    if (reviewsCache[category]) return reviewsCache[category];
+    try {
+        const r = await fetch(`../data/reviews/${category}.json`);
+        if (!r.ok) throw new Error('http ' + r.status);
+        const j = await r.json();
+        reviewsCache[category] = j;
+        return j;
+    } catch (e) {
+        console.warn('reviews fetch failed for', category, e);
+        reviewsCache[category] = {};
+        return {};
+    }
+}
+
 function toggleTrustedOnly() {
     showTrustedOnly = !showTrustedOnly;
     renderProducts();
@@ -566,9 +585,15 @@ function openPdp(productId) {
     document.getElementById('pdpSheet').classList.remove('opacity-0', 'pointer-events-none');
     document.getElementById('pdpContent').classList.remove('translate-y-full');
 
-    // Populate the review list now that the reviews section is in the DOM.
-    if (product.trust_signals && Array.isArray(product.trust_signals.reviews) && product.trust_signals.reviews.length) {
-        renderPdpReviewList(unifiedId);
+    // Lazy-load reviews for this product's category, then populate the list.
+    if (product.trust_signals && product.trust_signals.reviews_count > 0) {
+        loadCategoryReviews(product.category).then(byPid => {
+            // Attach reviews onto the product object so renderPdpReviewList can find them.
+            const revs = byPid[unifiedId] || [];
+            product.trust_signals.reviews = revs;
+            // Only render if the PDP is still showing this product (user hasn't switched)
+            if (currentPdpProductId === unifiedId) renderPdpReviewList(unifiedId);
+        });
     }
 }
 
@@ -583,11 +608,33 @@ let currentPdpReviewFilter = 'all'; // 'all' | 'verified' | 5 | 4 | 3
 function renderPdpReviews(product) {
     const ts = product && product.trust_signals;
     const reviews = (ts && ts.reviews) || [];
-    if (!reviews.length) return '';
+    const reviewsCount = (ts && ts.reviews_count) || reviews.length;
 
     // Reset UI state for each PDP open
     currentPdpReviewsShown = 10;
     currentPdpReviewFilter = 'all';
+
+    // No reviews yet AND count is 0 → skip section entirely
+    if (!reviews.length && !reviewsCount) return '';
+
+    // Reviews not loaded yet — render section with a loading skeleton
+    if (!reviews.length && reviewsCount > 0) {
+        return `
+        <div id="pdpReviewsSection" class="mt-8 border-t border-outline-variant/30 pt-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[#F7D032]" style="font-variation-settings:'FILL' 1;">reviews</span>
+                    <h3 class="font-headline-md font-bold text-on-surface">What working professionals say</h3>
+                </div>
+                <span class="text-xs font-semibold text-on-surface-variant">${reviewsCount.toLocaleString('en-IN')} review${reviewsCount !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="flex flex-col gap-3">
+                ${[0,1,2].map(() => '<div class="h-24 rounded-2xl bg-surface-container-lowest border border-outline-variant/20 animate-pulse"></div>').join('')}
+            </div>
+            <div id="pdpReviewList" class="hidden"></div>
+            <button id="pdpReviewMoreBtn" class="hidden"></button>
+        </div>`;
+    }
 
     // Distribution counts (1-5 stars)
     const dist = [0, 0, 0, 0, 0];
@@ -689,9 +736,22 @@ function pdpShowMoreReviews() {
 function renderPdpReviewList(productId) {
     const product = trustData.products.find(p => (p.product_id || p.id) === productId);
     if (!product) return;
+    let section = document.getElementById('pdpReviewsSection');
+    if (!section) return;
+
+    // If the section is still a skeleton (no filter chips yet), rebuild it
+    // with the freshly-loaded reviews so the summary bars, chip row and list
+    // appear together instead of piecemeal.
+    const hasFilters = document.getElementById('pdpReviewFilters');
+    if (!hasFilters) {
+        section.outerHTML = renderPdpReviews(product);
+        section = document.getElementById('pdpReviewsSection');
+    }
+
     const listEl = document.getElementById('pdpReviewList');
     const moreBtn = document.getElementById('pdpReviewMoreBtn');
     if (!listEl) return;
+    listEl.classList.remove('hidden');
 
     const all = (product.trust_signals && product.trust_signals.reviews) || [];
     const filtered = all.filter(r => {
