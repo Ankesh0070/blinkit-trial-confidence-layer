@@ -117,18 +117,68 @@ const CHAT_CATEGORY_IDS = [
     'cold_drinks_juices', 'tea_coffee', 'biscuits_bakery', 'sweet_tooth', 'instant_frozen'
 ];
 
-function buildChatSystemPrompt(catalogFacts) {
+// Deterministic script detection. The model was silently defaulting to Hindi
+// for Tamil/Bengali/etc. inputs, so we hard-detect the script in Node from
+// Unicode ranges and inject the answer directly into the prompt as an
+// authoritative fact — the model no longer gets to guess.
+const SCRIPT_RANGES = [
+    // [regex, script name, default language, sibling languages sharing the script]
+    { re: /[஀-௿]/, script: 'Tamil',       lang: 'Tamil',       siblings: [] },
+    { re: /[ঀ-৿]/, script: 'Bengali',     lang: 'Bengali',     siblings: ['Assamese', 'Manipuri (Meitei)'] },
+    { re: /[਀-੿]/, script: 'Gurmukhi',    lang: 'Punjabi',     siblings: [] },
+    { re: /[઀-૿]/, script: 'Gujarati',    lang: 'Gujarati',    siblings: [] },
+    { re: /[଀-୿]/, script: 'Odia',        lang: 'Odia',        siblings: [] },
+    { re: /[ఀ-౿]/, script: 'Telugu',      lang: 'Telugu',      siblings: [] },
+    { re: /[ಀ-೿]/, script: 'Kannada',     lang: 'Kannada',     siblings: [] },
+    { re: /[ഀ-ൿ]/, script: 'Malayalam',   lang: 'Malayalam',   siblings: [] },
+    { re: /[᱐-᱿]/, script: 'Ol Chiki',    lang: 'Santali',     siblings: [] },
+    { re: /[ꯀ-꯿]/, script: 'Meitei Mayek', lang: 'Manipuri (Meitei)', siblings: [] },
+    { re: /[؀-ۿ]/, script: 'Perso-Arabic', lang: 'Urdu',       siblings: ['Kashmiri', 'Sindhi'] },
+    { re: /[ऀ-ॿ]/, script: 'Devanagari',  lang: 'Hindi',       siblings: ['Marathi', 'Nepali', 'Sanskrit', 'Bodo', 'Dogri', 'Maithili', 'Konkani', 'Sindhi'] }
+];
+
+function detectLanguage(text) {
+    if (!text) return { script: 'Latin', lang: 'English', siblings: ['Hinglish'], isRoman: true };
+    // Count chars per script range; the range with the most chars wins.
+    // Ties break by SCRIPT_RANGES order (non-Devanagari scripts before Devanagari,
+    // so a stray "namaste" written in Hindi doesn't override a Tamil message).
+    let winner = null, winnerCount = 0;
+    for (const r of SCRIPT_RANGES) {
+        const m = text.match(new RegExp(r.re.source, 'g'));
+        const c = m ? m.length : 0;
+        if (c > winnerCount) { winner = r; winnerCount = c; }
+    }
+    if (winner) return { script: winner.script, lang: winner.lang, siblings: winner.siblings, isRoman: false };
+    // Pure Latin/ASCII — could be English or Hinglish; let the model decide from vocab.
+    return { script: 'Latin', lang: 'English or Hinglish', siblings: [], isRoman: true };
+}
+
+function buildChatSystemPrompt(catalogFacts, userLastMessage) {
+    const detected = detectLanguage(userLastMessage || '');
+    const siblingHint = detected.siblings.length
+        ? ` (or, if the user's vocabulary makes it clear, one of the other languages that share this script: ${detected.siblings.join(', ')})`
+        : '';
+    const languageBlock = detected.isRoman
+        ? "🌐 SCRIPT DETECTED (deterministic, not your guess): the user is writing in the LATIN/ROMAN alphabet.\n" +
+          "→ If the vocabulary is English (e.g. \"I want shampoo\"), reply in ENGLISH.\n" +
+          "→ If the vocabulary is Hinglish (Hindi/regional words in Roman letters, e.g. \"mujhe chips chahiye\"), reply in HINGLISH using Roman letters.\n" +
+          "→ NEVER switch to Devanagari, Tamil, Bengali or any non-Latin script when the user typed in Roman letters.\n\n"
+        : `🌐 SCRIPT DETECTED (deterministic, not your guess): the user is writing in the ${detected.script} script.\n` +
+          `→ You MUST reply in ${detected.lang}${siblingHint}, using the ${detected.script} script — nothing else.\n` +
+          `→ DO NOT reply in Hindi or any other language just because ${detected.lang} feels similar. The user typed ${detected.script}; you reply in ${detected.script}.\n` +
+          `→ If you cannot write fluently in ${detected.lang}, still respond in the ${detected.script} script — do not silently switch to Hindi/Devanagari.\n\n`;
+
     const factsBlock = Array.isArray(catalogFacts) && catalogFacts.length
         ? "MATCHED PRODUCTS IN CATALOG (these are real — state them accurately if relevant; never invent others):\n" +
           catalogFacts.map(f => `- ${f.name} — ₹${f.price} (category: ${f.category})`).join('\n')
         : "No specific products matched this query in the catalog search.";
 
     return (
+        languageBlock +
         "You are Blinkit's multilingual product discovery assistant for an Indian quick-commerce app.\n\n" +
-        "LANGUAGE RULE (critical, always follow first): Detect the language and script of the user's LATEST message and reply ONLY in that same language and script, using its correct native script (never transliterate into Devanagari or Latin unless that is what the user used). You must support all 22 languages listed in the Eighth Schedule of the Indian Constitution:\n" +
+        "You support all 22 languages listed in the Eighth Schedule of the Indian Constitution:\n" +
         INDIAN_LANGUAGES.map(l => `- ${l}`).join('\n') + '\n' +
-        "Plus English, and any other Indian regional language/dialect the user writes in even if not listed above. Give your genuine best effort in the exact language/dialect used, including lower-resource ones (Bodo, Dogri, Maithili, Konkani, Sanskrit, Santali, Manipuri, Sindhi, Kashmiri) — do not silently default to Hindi or Marathi just because the script looks similar; use the vocabulary and grammar of the actual language requested.\n" +
-        "If the user writes Hinglish (Hindi/regional words typed in Roman/English letters, e.g. 'mujhe chips chahiye' or 'chips available hai kya'), reply in Hinglish too using Roman script — do NOT switch to Devanagari or any other script unless the user does. Never reply in a different language than the user used.\n\n" +
+        "Plus English. Give your genuine best effort in the exact language/dialect used, including lower-resource ones (Bodo, Dogri, Maithili, Konkani, Sanskrit, Santali, Manipuri, Sindhi, Kashmiri).\n\n" +
         "CRITICAL RULES:\n" +
         "1. You CANNOT process refunds, cancel orders, or access user accounts under ANY circumstances. If asked, politely redirect (in the user's language) to Blinkit customer support.\n" +
         "2. Do not recommend specific third-party brands to avoid bias — talk about product types/categories instead, UNLESS the MATCHED PRODUCTS facts below name specific catalog items; you may name those exactly.\n" +
@@ -160,7 +210,7 @@ function parseChatJson(raw) {
 async function callGemini(systemPrompt, messages) {
     if (!process.env.GEMINI_API_KEY) throw new Error("Gemini API key not configured");
     const contents = messages.map(m => ({ role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] }));
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ systemInstruction: { parts: [{ text: systemPrompt }] }, contents })
@@ -181,9 +231,9 @@ async function callGroq(systemPrompt, messages) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            model: "llama-3.1-8b-instant",
+            model: "llama-3.3-70b-versatile",
             messages: [{ role: "system", content: systemPrompt }, ...messages],
-            temperature: 0.4
+            temperature: 0.3
         })
     });
     const data = await response.json();
@@ -195,7 +245,11 @@ app.post('/api/chat', async (req, res) => {
     const { messages, catalogFacts } = req.body;
     if (!messages || !messages.length) return res.status(400).json({ error: "No messages provided" });
 
-    const systemPrompt = buildChatSystemPrompt(catalogFacts);
+    // Detect language from the user's LATEST message (last user turn), so the
+    // system prompt can be authoritatively pinned to the right script — not
+    // the model's guess.
+    const lastUser = [...messages].reverse().find(m => m.role === 'user');
+    const systemPrompt = buildChatSystemPrompt(catalogFacts, lastUser ? lastUser.content : '');
 
     try {
         let result;
