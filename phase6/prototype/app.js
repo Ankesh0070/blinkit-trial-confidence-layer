@@ -5,6 +5,12 @@ let densityFlags = null;
 let userProfiles = null;
 let currentProfile = 'user_a'; // Default to Cold Start User
 let currentCategory = 'electronics'; // Default category tab
+let showTrustedOnly = false;         // "Blinkit Trusted" filter toggle in the grid
+
+function toggleTrustedOnly() {
+    showTrustedOnly = !showTrustedOnly;
+    renderProducts();
+}
 let currentPdpProductId = null; // Product currently open in the PDP sheet
 
 // Emojis
@@ -382,11 +388,13 @@ function createProductCard(product, showAi) {
 
     const imgs = productImages(product);
     const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
+    const trusted = product.trust_signals && product.trust_signals.trusted_pick;
     card.innerHTML = `
         <div class="product-image-container relative aspect-square bg-white overflow-hidden">
             ${imgTag(imgs[0], product, 'w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500')}
             ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
             ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>` : ''}
+            ${trusted ? `<span class="absolute top-2 right-2 flex items-center gap-1 bg-gradient-to-r from-[#F7D032] to-[#F2C94C] text-[#111] text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-md shadow-md border border-black/10" title="Blinkit Trusted: high ratings, high reorder rate"><span class="material-symbols-outlined text-[12px]" style="font-variation-settings:'FILL' 1;">verified</span>Trusted</span>` : ''}
         </div>
         <div class="p-4 flex-grow flex flex-col gap-2">
             <h3 class="font-label-md text-label-md text-on-surface line-clamp-2">${product.product_name}</h3>
@@ -402,12 +410,38 @@ function createProductCard(product, showAi) {
 function renderProducts() {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
-    const products = trustData.products.filter(p => p.category === currentCategory);
+    const all = trustData.products.filter(p => p.category === currentCategory);
+    const trustedCount = all.filter(p => p.trust_signals?.trusted_pick).length;
+    const products = showTrustedOnly ? all.filter(p => p.trust_signals?.trusted_pick) : all;
     const gateStatus = evaluateConfidenceGate(currentCategory);
     const heading = document.getElementById('productsHeading');
     if (heading) {
         heading.textContent = `${EMOJIS[currentCategory] || ''} ${catDisplayName(currentCategory)}`;
     }
+
+    // Filter toolbar — "All (n)" and "Blinkit Trusted (n)" toggle chips.
+    let toolbar = document.getElementById('productsToolbar');
+    if (!toolbar) {
+        toolbar = document.createElement('div');
+        toolbar.id = 'productsToolbar';
+        toolbar.className = 'flex items-center gap-2 mb-4 -mt-1 overflow-x-auto no-scrollbar';
+        grid.parentNode.insertBefore(toolbar, grid);
+    }
+    toolbar.innerHTML = `
+        <button onclick="showTrustedOnly=false;renderProducts();" class="shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${!showTrustedOnly ? 'bg-on-surface text-surface border-on-surface' : 'bg-surface text-on-surface-variant border-outline-variant/30 hover:border-primary/50'}">
+            All (${all.length})
+        </button>
+        <button onclick="showTrustedOnly=true;renderProducts();" class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${showTrustedOnly ? 'bg-gradient-to-r from-[#F7D032] to-[#F2C94C] text-[#111] border-[#F7D032]' : 'bg-surface text-on-surface-variant border-outline-variant/30 hover:border-[#F7D032]'}">
+            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1;">verified</span>
+            Blinkit Trusted (${trustedCount})
+        </button>
+    `;
+
+    if (!products.length) {
+        grid.innerHTML = `<div class="col-span-full text-center text-sm text-on-surface-variant py-10">No Trusted picks in this category. Try All.</div>`;
+        return;
+    }
+
     products.forEach(product => grid.appendChild(createProductCard(product, gateStatus.show_ai_signals)));
 }
 
@@ -463,9 +497,21 @@ function openPdp(productId) {
     currentPdpProductId = unifiedId;
 
     const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
+    const trusted = product.trust_signals && product.trust_signals.trusted_pick;
+    const trustedBadge = trusted ? `
+        <div class="mb-3 flex items-center gap-2.5 bg-gradient-to-r from-[#FFF8E3] to-[#FFF3D0] border border-[#F7D032]/60 rounded-xl px-3 py-2.5 shadow-sm">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#F7D032] to-[#E8A33D] flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings:'FILL' 1;">verified</span>
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="text-[11px] font-black uppercase tracking-wider text-[#7A5B06] leading-none">Blinkit Trusted</div>
+                <div class="text-[11px] text-on-surface-variant leading-tight mt-0.5">${product.trust_signals.trusted_pick_reason}</div>
+            </div>
+        </div>` : '';
     const priceBlock = `
         <div class="mb-5">
             <h2 class="font-headline-md text-on-surface mb-1">${product.product_name}</h2>
+            ${trustedBadge}
             <div class="flex items-center gap-2">
                 <span class="font-headline-md font-bold text-on-surface">₹${product.price}</span>
                 ${product.mrp > product.price ? `<span class="text-sm text-outline line-through">₹${product.mrp}</span>` : ''}
