@@ -402,22 +402,40 @@ function createProductCard(product, showAi) {
     }
 
     const card = document.createElement('div');
-    card.className = "product-card rounded-3xl overflow-hidden flex flex-col cursor-pointer group bg-surface shadow-sm border border-outline-variant/20 hover:shadow-md transition-shadow";
+    const trusted = product.trust_signals && product.trust_signals.trusted_pick;
+    // Trusted products get a subtle yellow-tinted border to visually rank them up
+    card.className = `product-card rounded-3xl overflow-hidden flex flex-col cursor-pointer group bg-surface shadow-sm border transition-shadow hover:shadow-md ${trusted ? 'border-[#F7D032] shadow-[0_2px_10px_-3px_rgba(247,208,50,0.5)]' : 'border-outline-variant/20'}`;
     card.onclick = () => openPdp(pid);
 
     const imgs = productImages(product);
     const off = product.mrp > product.price ? Math.round((1 - product.price / product.mrp) * 100) : 0;
-    const trusted = product.trust_signals && product.trust_signals.trusted_pick;
+    const ts = product.trust_signals || {};
+    const avg = ts.avg_rating;
+    const totalRatings = ts.total_ratings;
+    // Compact rating pill — always shown when we have data
+    const ratingChip = (avg != null) ? `
+        <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-[#0d8345] px-1.5 py-0.5 rounded">
+                ${avg}★
+            </span>
+            ${totalRatings ? `<span class="text-[10.5px] text-on-surface-variant font-medium">(${fmtCount(totalRatings)})</span>` : ''}
+        </div>` : '';
+
     card.innerHTML = `
         <div class="product-image-container relative aspect-square bg-white overflow-hidden">
             ${imgTag(imgs[0], product, 'w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500')}
             ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
             ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>` : ''}
-            ${trusted ? `<span class="absolute top-2 right-2 flex items-center gap-1 bg-gradient-to-r from-[#F7D032] to-[#F2C94C] text-[#111] text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-md shadow-md border border-black/10" title="Blinkit Trusted: high ratings, high reorder rate"><span class="material-symbols-outlined text-[12px]" style="font-variation-settings:'FILL' 1;">verified</span>Trusted</span>` : ''}
+            ${trusted ? `
+              <div class="absolute top-2 right-2 flex items-center gap-1 bg-[#111] text-[#F7D032] pl-1 pr-2 py-1 rounded-lg shadow-lg border border-[#F7D032]/40" title="Blinkit Trusted: high ratings, high reorder rate">
+                <img src="img/blinkit-trusted-badge.svg" class="w-4 h-4" alt="">
+                <span class="text-[9.5px] font-black uppercase tracking-[0.06em] leading-none">Blinkit<br>Trusted</span>
+              </div>` : ''}
         </div>
-        <div class="p-4 flex-grow flex flex-col gap-2">
-            <h3 class="font-label-md text-label-md text-on-surface line-clamp-2">${product.product_name}</h3>
-            <div class="font-headline-md text-on-surface font-bold">₹${product.price} <span class="text-xs text-outline font-normal line-through">₹${product.mrp}</span></div>
+        <div class="p-4 flex-grow flex flex-col gap-1.5">
+            <h3 class="font-label-md text-label-md text-on-surface line-clamp-2 min-h-[2.6em]">${product.product_name}</h3>
+            ${ratingChip}
+            <div class="font-headline-md text-on-surface font-bold mt-0.5">₹${product.price} <span class="text-xs text-outline font-normal line-through">₹${product.mrp}</span></div>
             <div class="flex items-center gap-1 text-[11px] font-semibold text-[#0d8345] -mt-1">
                 <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1;">bolt</span> Delivery in minutes
             </div>
@@ -426,10 +444,37 @@ function createProductCard(product, showAi) {
     return card;
 }
 
+// Format big rating counts like Amazon/Flipkart: 2,569 → "2.5K", 12,300 → "12K"
+function fmtCount(n) {
+    if (n == null) return '';
+    if (n >= 10000) return Math.round(n / 1000) + 'K';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return n.toLocaleString('en-IN');
+}
+
+// Sort key: Trusted first, then within each tier by composite score
+// (rating × log(ratings) × repeat_purchase). Puts the strongest products
+// at the top of the grid — the "front" the user asked for.
+function productSortKey(p) {
+    const ts = p.trust_signals || {};
+    const rating = ts.avg_rating || 0;
+    const ratings = ts.total_ratings || 1;
+    const repeat = (ts.repeat_purchase_pct || 0) / 100;
+    return {
+        trusted: ts.trusted_pick ? 1 : 0,
+        score: rating * Math.log10(Math.max(ratings, 10)) * (1 + repeat),
+    };
+}
+function compareProducts(a, b) {
+    const ka = productSortKey(a), kb = productSortKey(b);
+    if (kb.trusted !== ka.trusted) return kb.trusted - ka.trusted;
+    return kb.score - ka.score;
+}
+
 function renderProducts() {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
-    const all = trustData.products.filter(p => p.category === currentCategory);
+    const all = trustData.products.filter(p => p.category === currentCategory).slice().sort(compareProducts);
     const trustedCount = all.filter(p => p.trust_signals?.trusted_pick).length;
     const products = showTrustedOnly ? all.filter(p => p.trust_signals?.trusted_pick) : all;
     const gateStatus = evaluateConfidenceGate(currentCategory);
