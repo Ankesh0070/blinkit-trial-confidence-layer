@@ -421,19 +421,29 @@ function createProductCard(product, showAi) {
             ${totalRatings ? `<span class="text-[10.5px] text-on-surface-variant font-medium">(${fmtCount(totalRatings)})</span>` : ''}
         </div>` : '';
 
+    // Front-and-center Trusted ribbon (like Amazon's Choice), placed above
+    // the image so users see it BEFORE the product itself.
+    const trustedRibbon = trusted ? `
+        <div class="flex items-center gap-1.5 bg-[#111] text-[#F7D032] px-2 py-1">
+            <img src="img/blinkit-trusted-badge.svg" class="w-4 h-4 shrink-0" alt="">
+            <span class="text-[10px] font-black uppercase tracking-[0.08em] leading-none">Blinkit Trusted</span>
+            <span class="ml-auto text-[8.5px] font-semibold text-[#F7D032]/80 uppercase leading-none tracking-wider">Top Rated</span>
+        </div>` : '';
+
+    // Compact reason chip below product name (small print of the earned badge)
+    const trustedReason = trusted && ts.trusted_pick_reason ? `
+        <div class="text-[10px] text-on-surface-variant leading-tight -mt-0.5">${ts.trusted_pick_reason}</div>` : '';
+
     card.innerHTML = `
+        ${trustedRibbon}
         <div class="product-image-container relative aspect-square bg-white overflow-hidden">
             ${imgTag(imgs[0], product, 'w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500')}
             ${off ? `<span class="absolute top-2 left-2 bg-primary text-on-primary text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow-sm">${off}% OFF</span>` : ''}
             ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-white/85 backdrop-blur text-on-surface text-[10px] font-semibold px-1.5 py-0.5 rounded-md flex items-center gap-0.5"><span class="material-symbols-outlined text-[12px]">photo_library</span>${imgs.length}</span>` : ''}
-            ${trusted ? `
-              <div class="absolute top-2 right-2 flex items-center gap-1 bg-[#111] text-[#F7D032] pl-1 pr-2 py-1 rounded-lg shadow-lg border border-[#F7D032]/40" title="Blinkit Trusted: high ratings, high reorder rate">
-                <img src="img/blinkit-trusted-badge.svg" class="w-4 h-4" alt="">
-                <span class="text-[9.5px] font-black uppercase tracking-[0.06em] leading-none">Blinkit<br>Trusted</span>
-              </div>` : ''}
         </div>
         <div class="p-4 flex-grow flex flex-col gap-1.5">
             <h3 class="font-label-md text-label-md text-on-surface line-clamp-2 min-h-[2.6em]">${product.product_name}</h3>
+            ${trustedReason}
             ${ratingChip}
             <div class="font-headline-md text-on-surface font-bold mt-0.5">₹${product.price} <span class="text-xs text-outline font-normal line-through">₹${product.mrp}</span></div>
             <div class="flex items-center gap-1 text-[11px] font-semibold text-[#0d8345] -mt-1">
