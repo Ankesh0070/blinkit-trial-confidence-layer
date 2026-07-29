@@ -686,6 +686,14 @@ AIR_FRESHENER_NEG = []
 # (imported below).
 # ============================================================================
 
+# Load the extended pools (v3.1) so every remaining category also gets
+# subcategory-specific templates rather than falling back to v2's generic
+# category-level pool.
+try:
+    from subcategory_pools_extended import EXTENDED_POOLS
+except ImportError:
+    EXTENDED_POOLS = {}
+
 SUB_POOLS = {
     ("electronics", "earbuds"):     (EARBUDS_POS, EARBUDS_MIX, EARBUDS_NEG),
     ("electronics", "headphones"):  (HEADPHONES_POS, HEADPHONES_MIX, HEADPHONES_NEG),
@@ -736,6 +744,11 @@ SUB_POOLS = {
     ("home_cleaning", "dishwash"):        (DETERGENT_POS, DETERGENT_MIX, DETERGENT_NEG),
     ("home_cleaning", "utensil_cleaner"): (DETERGENT_POS, DETERGENT_MIX, DETERGENT_NEG),
 }
+
+# Merge the extended pools for the remaining categories.  If a key was
+# already in SUB_POOLS above (rare), the earlier entry wins.
+for _key, _val in EXTENDED_POOLS.items():
+    SUB_POOLS.setdefault(_key, _val)
 
 
 # ---------- FALLBACK: category-level pools (from v2) for the remaining ------
