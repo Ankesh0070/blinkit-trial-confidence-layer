@@ -262,10 +262,150 @@ function applyUrlIntent() {
 }
 
 function renderApp() {
-    renderCategoryNav();
-    renderRecommendationStrip();
+    renderHome();
     renderCategoryView();
     updateCartBadge();
+}
+
+// ── Blinkit-style home ────────────────────────────────────────────────────
+function renderHome() {
+    renderHomeCategoryGrid();
+    renderOrderAgainStrip();
+    renderDealsStrip();
+}
+
+function renderHomeCategoryGrid() {
+    const grid = document.getElementById('homeCategoryGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    // Stitch design: 8 featured tiles with real product photos.
+    // First tile is highlighted (yellow tint) — the user's primary "grocery" lane.
+    // Includes Baby Care so the AI Trial Confidence demo is one click away from home.
+    const FEATURED = [
+        { id: 'vegetables_fruits', label: 'Grocery', highlighted: true,
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDx8gAnPZaMKaqoHg1h3SSgphULxVDN6-xdUCiSYxVi7rkzBkJbhrLtTmwgb4ARIMaX1AyjMmfIWLWOB32gNWbC1nFiQTCz1DaWMrI6svt69vdtp1lrk_b-xt7Mc-OXKykG07o3u1hWyRaleEOgnpw5KlOfI30ntRPe780WjFGLQtvreotK1fmI6fehMvU2SwLg0OWWXfURuQmyF07dVnbKB1zx3_EGXEum7TBv4_NOhNdla5sTl8oP' },
+        { id: 'vegetables_fruits', label: 'Fruits',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAf4FLYZv_JL4MNx_iXcmNKjP_vFT8359I4n4l6eO3e3ijtVmw4BRdmfpjCFYlJwYAusgZzdJecQTZQk0XTwO4AMK9PYLrkev7xPgmxwGcaHyNa6wXOgHPKoX1Udvnkc2sMWaEI8hcJP1AtdeengqY6pBd0lqAeYgeAmlK0cOLogY4MtIRj9gLAs9Nn1VJtsRs4sWanl8e_2S0ajxNxqY3fMaFoNZZBXow9l2lBLyk9ocRf_aem1VxE' },
+        { id: 'dairy_bread_eggs', label: 'Dairy',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfP82yiEBj_SpD-1VeiQthrAXjcC_Z0oo9k1kczIAO_x0sNjo3DZEr999pMfZ_mHSylrf8dnUXMHOkrqMzAQN1WJoxwyIIBtt81ywgcJlO7uaRlm2_Qns7UYT0fJClgRqFJ2iVJSrPVf72Fjgn1uFjHQZqr1jdvDsWIr_uryCkUxW0ICgS0X5ETUDtOEyjyGrpP7Kw2QhJ30eoKj3_6I8SHqQDtCn7vVC9X4mc9OeRS0GyKW7f-zpO' },
+        { id: 'munchies', label: 'Snacks',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDmvx_aYDzzGiXNb3SD-Yr5vHY2uSgsBQCNEuguDoyMGu4GJYka4o5mhxuO9NTj7HRDeLNGNeTHJPEQUplCmJK5sp-bodKiaXQ1AJJpCeLwt0zDLd0XTeKE68bgHozJonbUW7n0SuDePGGd2uXrdYakefIX6O46mMWNYt5HYwTk8_uD2I28uIQ2EVm-ufKex7fdfLW7_H4SRHs1SO75qOLsCW2ZaSdwUHEj1lwj85XHZp46-sGK8UwS' },
+        { id: 'cold_drinks_juices', label: 'Beverages',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsdGpAaJzeZo0lSLs2lyxDUGqdxdx6rpXuKqFIvy0xJKQCeVbXdPx7PLYT-V-zl6N_wePUJA9ZTI4umWcWxEEA-THWn8s8qXDTgtMxVVuB5575mfpN8uwjY4venFdDfY4VSM8SN4PU2YnMRwUJtGi-pWZTB6E-fKR-nCpDk-ggWNhJe6nQDd1SmP56OUGyqvFK1kpObSFiyi2sskf9YWtGqIF_qICeOwd81EDnGN1exXoE-5sSLmEe' },
+        { id: 'personal_care_beauty', label: 'Personal Care',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBa53qRSD-nlbxLwIST0roT1L6mO3BSCifLym0RjebUm1Zg1Zo6zLrgedzTFoqK9TrXq6oyUY0cE8G0pY4Tx7kYW3xMtw0A4TRz-5akjJMv_lSTI2Z_LrBQPvCUMEvqe0u2PSWdyRJCN0fH4PnEM2zNew33TFKXM5K0_2SLxlqPbt-Hz2BH756fTTkqszae8OsjaDewpBBOtSGXFv1lETJOPtF9nW8FRJppV7iJrvmiTXFuZjTrCCle' },
+        { id: 'home_cleaning', label: 'Cleaning',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKkGCIs83pRJbfg4f5XhAI2h0YbKeiBntfL4E0sB0MOC8JxviE9VX7P9NWyC06ErCi76E369mtxWKySE2dBmrCSAKYSIs6gwcUu3OJoqTtR0ACOOy8NMRczx9P7vtJjly8DI489I_jOLBhrLSvudi2X811EIa4qDjGU5J0QAY3HtU_nBphsSBpel4EowFXbCx39lKiIXCm1G1-Vlvhi7sS6JcsWZmERtRqasVq0hohzuba_35tF1vW' },
+        { id: 'baby', label: 'Baby Care',
+          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUmFZAI6uiwWrebcbszQTE0OPXwKu0SP01f1rOyjW8Fyt_0GbYMUJR-B_Pp5Ulzu-Qq6XidoX5PX3oIHnVfCKsCaaWnA3_gHyax_GS795HgVGz1hkOcU-B0DO8Opb_DZ0JCUbiYDkXM-xJXwm7ORuS1V02rrDD6OEsoXghCFJcbJ_Mrf0wePup1DsbuTlxB13FKaTEnCgUAXk7X3S-nrJyAq6_BUKF2xXhsQGaQCJjzvnTaujz1u0Q' }
+    ];
+
+    FEATURED.forEach(cat => {
+        const tile = document.createElement('button');
+        tile.onclick = () => selectCategory(cat.id);
+        tile.className = 'flex flex-col items-center gap-1 cursor-pointer text-left';
+        const wrapClass = cat.highlighted
+            ? 'w-full aspect-square rounded-xl bg-primary/20 flex items-center justify-center border-2 border-primary overflow-hidden shadow-sm'
+            : 'w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant/20';
+        const labelClass = cat.highlighted
+            ? 'text-[11px] font-bold text-on-surface text-center leading-tight mt-1'
+            : 'text-[11px] font-semibold text-on-surface-variant text-center leading-tight mt-1';
+        tile.innerHTML = `
+            <div class="${wrapClass}">
+                <img src="${cat.img}" alt="${cat.label}" class="w-full h-full object-cover ${cat.highlighted ? 'mix-blend-multiply opacity-80' : ''}"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-size:32px;&quot;>${EMOJIS[cat.id] || '🛒'}</span>';">
+            </div>
+            <span class="${labelClass}">${cat.label}</span>
+        `;
+        grid.appendChild(tile);
+    });
+}
+
+function renderOrderAgainStrip() {
+    const section = document.getElementById('orderAgainSection');
+    const strip = document.getElementById('orderAgainStrip');
+    if (!section || !strip) return;
+
+    const orders = (userProfiles.users[currentProfile] && userProfiles.users[currentProfile].orders) || [];
+    if (!orders.length) { section.classList.add('hidden'); return; }
+
+    // Flatten last 6 unique products from recent orders.
+    const seen = new Set();
+    const products = [];
+    for (const order of orders) {
+        for (const item of (order.items || [])) {
+            const pid = item.product_id || item.id;
+            if (seen.has(pid)) continue;
+            const p = trustData.products.find(x => (x.product_id || x.id) === pid);
+            if (!p) continue;
+            seen.add(pid);
+            products.push(p);
+            if (products.length >= 8) break;
+        }
+        if (products.length >= 8) break;
+    }
+    if (!products.length) { section.classList.add('hidden'); return; }
+
+    section.classList.remove('hidden');
+    strip.innerHTML = products.map(p => `
+        <div class="shrink-0 w-40 bg-surface rounded-2xl border border-outline-variant/20 p-3 cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all" onclick="openPdp('${p.product_id || p.id}')">
+            <div class="w-full h-24 bg-surface-container-lowest rounded-xl mb-2 flex items-center justify-center overflow-hidden">
+                <img src="${productImg(p)}" alt="" class="max-w-full max-h-full object-contain" onerror="this.style.display='none';">
+            </div>
+            <div class="text-[12px] font-semibold text-on-surface line-clamp-2 leading-tight">${escapeHtml(p.product_name || '')}</div>
+            <div class="flex items-center justify-between mt-2">
+                <span class="text-sm font-bold text-on-surface">₹${p.price}</span>
+                <button onclick="event.stopPropagation(); addToCartFromCard('${p.product_id || p.id}')" class="text-[11px] font-bold text-primary bg-primary/10 border border-primary/30 px-2.5 py-1 rounded-lg hover:bg-primary/20">ADD</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderDealsStrip() {
+    const strip = document.getElementById('dealsStrip');
+    if (!strip) return;
+    // Show products with best % off (top 8).
+    const deals = trustData.products
+        .filter(p => p.mrp && p.price && p.mrp > p.price)
+        .map(p => ({ p, off: Math.round((1 - p.price / p.mrp) * 100) }))
+        .sort((a, b) => b.off - a.off)
+        .slice(0, 8)
+        .map(x => x.p);
+
+    strip.innerHTML = deals.map(p => `
+        <div class="shrink-0 w-40 bg-surface rounded-2xl border border-outline-variant/20 p-3 cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all" onclick="openPdp('${p.product_id || p.id}')">
+            <div class="w-full h-24 bg-surface-container-lowest rounded-xl mb-2 flex items-center justify-center overflow-hidden relative">
+                <img src="${productImg(p)}" alt="" class="max-w-full max-h-full object-contain" onerror="this.style.display='none';">
+                <span class="absolute top-1 left-1 text-[10px] font-bold bg-primary text-on-primary px-1.5 py-0.5 rounded">${Math.round((1 - p.price / p.mrp) * 100)}% OFF</span>
+            </div>
+            <div class="text-[12px] font-semibold text-on-surface line-clamp-2 leading-tight">${escapeHtml(p.product_name || '')}</div>
+            <div class="flex items-center justify-between mt-2">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-sm font-bold text-on-surface">₹${p.price}</span>
+                    <span class="text-[10px] text-outline line-through">₹${p.mrp}</span>
+                </div>
+                <button onclick="event.stopPropagation(); addToCartFromCard('${p.product_id || p.id}')" class="text-[11px] font-bold text-primary bg-primary/10 border border-primary/30 px-2.5 py-1 rounded-lg hover:bg-primary/20">ADD</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function productImg(product) {
+    // Reuse whatever field the app already has; fallback to placeholder.
+    return product.image_url || product.img || `img/icons/${product.category || ''}.svg?v=${IMG_VER}`;
+}
+
+function addToCartFromCard(pid) {
+    const product = trustData.products.find(p => (p.product_id || p.id) === pid);
+    if (!product) return;
+    if (typeof window.addProductToCart === 'function') {
+        window.addProductToCart(product);
+    } else {
+        // Fall back to opening the PDP so the user can add from there.
+        openPdp(pid);
+    }
+    updateCartBadge && updateCartBadge();
 }
 
 // Logic: Check if we show AI signals based on density flags (Phase 5 override)
@@ -343,17 +483,24 @@ function renderRecommendationStrip() {
 
 function renderCategoryNav() {
     const nav = document.getElementById('categoryNav');
+    if (!nav) return;
     nav.innerHTML = '';
 
-    ALL_CATEGORIES.forEach(cat => {
+    // Show siblings in the same family (grocery vs trial) plus the active one
+    // itself, so users can jump between related categories from within a
+    // category page without going back to home.
+    const currentType = ALL_CATEGORIES.find(c => c.id === currentCategory)?.type;
+    const siblings = ALL_CATEGORIES.filter(c => c.type === currentType);
+
+    siblings.forEach(cat => {
         const catId = cat.id;
         const isActive = currentCategory === catId;
         const btn = document.createElement('button');
 
         if (isActive) {
-            btn.className = "shrink-0 px-5 py-2.5 rounded-full font-label-md text-label-md bg-primary-fixed/40 text-on-surface border border-primary-fixed/50 whitespace-nowrap shadow-sm";
+            btn.className = "shrink-0 px-4 py-1.5 rounded-full font-label-md text-xs bg-primary text-on-primary border border-primary whitespace-nowrap shadow-sm font-bold";
         } else {
-            btn.className = "shrink-0 px-5 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/20 whitespace-nowrap";
+            btn.className = "shrink-0 px-4 py-1.5 rounded-full font-label-md text-xs bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors border border-outline-variant/30 whitespace-nowrap";
         }
 
         btn.onclick = () => selectCategory(catId);
@@ -364,8 +511,11 @@ function renderCategoryNav() {
 
 function selectCategory(categoryId) {
     currentCategory = categoryId;
-    renderCategoryNav();          // keep the home pills in sync
-    showView('products');         // open the dedicated products page (renders the grid)
+    // Set the page heading before showing the view so the header is correct
+    // as the products view mounts.
+    const heading = document.getElementById('productsHeading');
+    if (heading) heading.textContent = catDisplayName(categoryId);
+    showView('products');         // opens the category page (renders grid + AI trust banner + sibling chips)
 }
 
 function renderCategoryView() {
@@ -379,7 +529,49 @@ function renderCategoryView() {
         fallbackMessage.style.display = 'none';
     }
 
+    // Sibling filter chips (now live inside the category page, not on home).
+    renderCategoryNav();
+    // AI trust banner scoped to THIS category.
+    renderCategoryTrustBanner(currentCategory);
     renderProducts();
+}
+
+// AI trust layer, scoped to the currently-open category. Lives at the top
+// of the category (products) page — that's the "existing screen" the feature
+// is embedded into per the brief.
+function renderCategoryTrustBanner(categoryId) {
+    const el = document.getElementById('categoryTrustBanner');
+    if (!el) return;
+    const gate = evaluateConfidenceGate(categoryId);
+
+    // Grocery lanes: no AI banner — the user is in their habitual lane.
+    if (gate.is_grocery || !gate.show_ai_signals) { el.innerHTML = ''; return; }
+
+    const catData = trustData.category_signals[categoryId];
+    if (!catData) { el.innerHTML = ''; return; }
+
+    const isNovel = gate.is_novel;
+    const headline = isNovel
+        ? `New to <span class="text-primary">${catData.display_name}</span>? Here's why ${catData.social_proof_pct || 82}% of grocery buyers try this.`
+        : `You've tried <span class="text-primary">${catData.display_name}</span> — here's what's working for repeat buyers.`;
+
+    const highlight = (catData.top_theme || catData.reason || 'Peer-verified picks');
+    const trialPrice = catData.trial_price_hint || '₹15–29';
+
+    el.innerHTML = `
+    <div class="rounded-3xl p-5 md:p-6 relative overflow-hidden border border-primary-fixed/40 bg-gradient-to-br from-primary-fixed/20 via-surface to-surface shadow-sm ai-glow">
+        <div class="absolute -right-16 -top-16 w-56 h-56 bg-primary-fixed rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+        <div class="relative z-10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-primary-fixed/60 flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined text-on-surface" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="text-[11px] font-black uppercase tracking-wider text-[#7A5B06] mb-1">AI Trial Confidence &middot; ${isNovel ? 'New Category' : 'Repeat Category'}</div>
+                <h3 class="font-headline-md text-on-surface font-bold leading-snug">${headline}</h3>
+                <p class="text-sm text-on-surface-variant mt-1.5 leading-relaxed">${escapeHtml(highlight)} &middot; try a ${trialPrice} micro-pod &middot; 100% instant-refund if it disappoints.</p>
+            </div>
+        </div>
+    </div>`;
 }
 
 // Shared product-card builder (used by home grid, search, categories).
@@ -641,14 +833,35 @@ function openPdp(productId) {
     document.getElementById('pdpContent').classList.remove('translate-y-full');
 
     // Lazy-load reviews for this product's category, then populate the list.
+    const userReviews = loadUserReviews(unifiedId);
     if (product.trust_signals && product.trust_signals.reviews_count > 0) {
         loadCategoryReviews(product.category).then(byPid => {
             // Attach reviews onto the product object so renderPdpReviewList can find them.
+            // User-submitted reviews go first so they're immediately visible.
             const revs = byPid[unifiedId] || [];
-            product.trust_signals.reviews = revs;
+            product.trust_signals.reviews = [...userReviews, ...revs];
+            if (userReviews.length) {
+                product.trust_signals.reviews_count =
+                    (product.trust_signals.reviews_count || revs.length) + userReviews.length;
+            }
             // Only render if the PDP is still showing this product (user hasn't switched)
             if (currentPdpProductId === unifiedId) renderPdpReviewList(unifiedId);
         });
+    } else if (userReviews.length) {
+        // Product had zero real reviews but has user-submitted ones — show those.
+        product.trust_signals = product.trust_signals || {};
+        product.trust_signals.reviews = userReviews;
+        product.trust_signals.reviews_count = userReviews.length;
+        const avg = userReviews.reduce((a, r) => a + (r.rating || 0), 0) / userReviews.length;
+        product.trust_signals.avg_rating = Math.round(avg * 10) / 10;
+        // Rebuild the reviews section from scratch (was rendered as empty-state).
+        const section = document.getElementById('pdpReviewsSection');
+        if (section) {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = renderPdpReviews(product);
+            section.replaceWith(wrapper.firstElementChild);
+            renderPdpReviewList(unifiedId);
+        }
     }
 }
 
@@ -664,13 +877,36 @@ function renderPdpReviews(product) {
     const ts = product && product.trust_signals;
     const reviews = (ts && ts.reviews) || [];
     const reviewsCount = (ts && ts.reviews_count) || reviews.length;
+    const productId = product.product_id || product.id;
 
     // Reset UI state for each PDP open
     currentPdpReviewsShown = 10;
     currentPdpReviewFilter = 'all';
 
-    // No reviews yet AND count is 0 → skip section entirely
-    if (!reviews.length && !reviewsCount) return '';
+    // No reviews yet — show "Be the first to review" panel with the form
+    if (!reviews.length && !reviewsCount) {
+        return `
+        <div id="pdpReviewsSection" class="mt-8 border-t border-outline-variant/30 pt-6">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[#F7D032]" style="font-variation-settings:'FILL' 1;">reviews</span>
+                    <h3 class="font-headline-md font-bold text-on-surface">Reviews</h3>
+                </div>
+                <button onclick="toggleReviewForm()" class="text-xs font-bold text-[#0d8345] bg-[#0d8345]/10 hover:bg-[#0d8345]/20 border border-[#0d8345]/30 rounded-full px-3 py-1.5 transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1;">edit</span>
+                    Write a review
+                </button>
+            </div>
+            <div class="bg-surface-container-lowest border border-outline-variant/20 rounded-2xl p-6 text-center">
+                <span class="material-symbols-outlined text-[40px] text-on-surface-variant" style="font-variation-settings:'FILL' 0;">rate_review</span>
+                <div class="text-sm font-semibold text-on-surface mt-2">Be the first to review this product</div>
+                <div class="text-xs text-on-surface-variant mt-1">Your feedback helps others decide.</div>
+            </div>
+            <div id="pdpReviewList" class="hidden"></div>
+            <button id="pdpReviewMoreBtn" class="hidden"></button>
+            ${renderReviewForm(productId)}
+        </div>`;
+    }
 
     // Reviews not loaded yet — render section with a loading skeleton
     if (!reviews.length && reviewsCount > 0) {
@@ -721,7 +957,7 @@ function renderPdpReviews(product) {
         </div>
 
         <!-- Summary row: big rating + distribution bars -->
-        <div class="grid grid-cols-[auto,1fr] gap-4 items-center bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/20 mb-5">
+        <div class="grid grid-cols-[auto,1fr] gap-4 items-center bg-surface-container-lowest rounded-2xl p-4 border border-outline-variant/20 mb-4">
             <div class="text-center px-2">
                 <div class="text-4xl font-bold text-on-surface leading-none">${ts.avg_rating}</div>
                 <div class="text-[10px] text-on-surface-variant mt-1">out of 5</div>
@@ -731,6 +967,12 @@ function renderPdpReviews(product) {
                 ${[5,4,3,2,1].map(bar).join('')}
             </div>
         </div>
+
+        <!-- Write-a-review CTA -->
+        <button onclick="toggleReviewForm()" class="w-full mb-4 flex items-center justify-center gap-2 bg-[#0d8345]/10 hover:bg-[#0d8345]/20 text-[#0d8345] border border-[#0d8345]/30 rounded-xl py-3 font-label-md font-bold transition-colors">
+            <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1;">edit</span>
+            Write a review
+        </button>
 
         <!-- Filter chips -->
         <div id="pdpReviewFilters" class="flex gap-2 mb-4 overflow-x-auto no-scrollbar pb-1">
@@ -748,8 +990,172 @@ function renderPdpReviews(product) {
         <button id="pdpReviewMoreBtn" class="hidden w-full mt-4 bg-surface-container-high text-on-surface py-3 rounded-xl font-label-md font-bold hover:bg-surface-container-highest transition-colors" onclick="pdpShowMoreReviews()">
             Show more reviews
         </button>
+
+        ${renderReviewForm(productId)}
     </div>
     `;
+}
+
+// ============================================================
+// USER-SUBMITTED REVIEWS — form + localStorage persistence
+// ============================================================
+let currentReviewFormRating = 0;
+
+function renderReviewForm(productId) {
+    return `
+    <div id="pdpReviewForm" data-product-id="${escapeHtml(productId)}" class="hidden mt-5 bg-surface-container-lowest border border-[#0d8345]/40 rounded-2xl p-4">
+        <div class="flex items-center justify-between mb-3">
+            <div class="text-sm font-bold text-on-surface">Share your experience</div>
+            <button onclick="toggleReviewForm()" class="text-on-surface-variant hover:text-on-surface" aria-label="Close">
+                <span class="material-symbols-outlined text-[20px]">close</span>
+            </button>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Your rating</label>
+            <div id="reviewFormStars" class="flex gap-1 mt-1.5 text-3xl leading-none">
+                ${[1,2,3,4,5].map(n => `<button type="button" onclick="setReviewFormRating(${n})" data-star="${n}" class="reviewStarBtn text-[#c9c9c4] hover:text-[#F7D032] transition-colors" style="letter-spacing:2px;">★</button>`).join('')}
+            </div>
+            <div id="reviewFormRatingLabel" class="text-[11px] text-on-surface-variant mt-1 h-4">Tap to rate</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Your name <span class="text-on-surface-variant/70 font-normal normal-case">(optional)</span></label>
+            <input type="text" id="reviewFormName" maxlength="40" placeholder="e.g. Rahul S." class="mt-1.5 w-full bg-surface border border-outline-variant/40 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-[#0d8345]">
+        </div>
+
+        <div class="mb-3">
+            <label class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Your review</label>
+            <textarea id="reviewFormText" maxlength="500" rows="3" placeholder="What did you think of this product?" class="mt-1.5 w-full bg-surface border border-outline-variant/40 rounded-lg px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-[#0d8345] resize-none"></textarea>
+            <div class="flex justify-between mt-1">
+                <div id="reviewFormError" class="text-[11px] text-[#c53030] font-semibold"></div>
+                <div id="reviewFormCount" class="text-[11px] text-on-surface-variant ml-auto">0 / 500</div>
+            </div>
+        </div>
+
+        <div class="flex gap-2">
+            <button onclick="toggleReviewForm()" class="flex-1 bg-surface-container-high text-on-surface py-2.5 rounded-lg font-label-md font-bold hover:bg-surface-container-highest transition-colors text-sm">Cancel</button>
+            <button onclick="submitUserReview()" class="flex-1 bg-[#0d8345] text-white py-2.5 rounded-lg font-label-md font-bold hover:opacity-90 transition-opacity text-sm">Submit review</button>
+        </div>
+    </div>`;
+}
+
+function toggleReviewForm() {
+    const form = document.getElementById('pdpReviewForm');
+    if (!form) return;
+    const isHidden = form.classList.contains('hidden');
+    if (isHidden) {
+        form.classList.remove('hidden');
+        currentReviewFormRating = 0;
+        paintReviewFormStars(0);
+        const label = document.getElementById('reviewFormRatingLabel');
+        if (label) label.textContent = 'Tap to rate';
+        const err = document.getElementById('reviewFormError');
+        if (err) err.textContent = '';
+        setTimeout(() => form.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50);
+        // Live character counter
+        const txt = document.getElementById('reviewFormText');
+        const cnt = document.getElementById('reviewFormCount');
+        if (txt && cnt) {
+            txt.oninput = () => { cnt.textContent = `${txt.value.length} / 500`; };
+        }
+    } else {
+        form.classList.add('hidden');
+    }
+}
+
+function setReviewFormRating(n) {
+    currentReviewFormRating = n;
+    paintReviewFormStars(n);
+    const label = document.getElementById('reviewFormRatingLabel');
+    if (label) {
+        const labels = ['', 'Poor', 'Below average', 'Okay', 'Good', 'Excellent'];
+        label.textContent = labels[n] || '';
+    }
+}
+
+function paintReviewFormStars(n) {
+    document.querySelectorAll('#reviewFormStars .reviewStarBtn').forEach(btn => {
+        const s = parseInt(btn.dataset.star, 10);
+        btn.style.color = s <= n ? '#F7D032' : '#c9c9c4';
+    });
+}
+
+function submitUserReview() {
+    const form = document.getElementById('pdpReviewForm');
+    const err = document.getElementById('reviewFormError');
+    if (!form) return;
+    const productId = form.dataset.productId;
+    const rating = currentReviewFormRating;
+    const text = (document.getElementById('reviewFormText').value || '').trim();
+    const nameRaw = (document.getElementById('reviewFormName').value || '').trim();
+
+    if (!rating) { err.textContent = 'Please pick a rating.'; return; }
+    if (text.length < 10) { err.textContent = 'Please write at least 10 characters.'; return; }
+
+    const review = {
+        reviewer: nameRaw || 'You',
+        city: '',
+        rating,
+        date: 'just now',
+        verified: false,
+        theme: 'user_submitted',
+        sentiment: rating >= 4 ? 'positive' : rating === 3 ? 'neutral' : 'negative',
+        text,
+        _userSubmitted: true
+    };
+
+    // Persist to localStorage per product so it survives reloads.
+    const key = 'pdpUserReviews:' + productId;
+    let stored = [];
+    try { stored = JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { stored = []; }
+    stored.unshift(review);
+    try { localStorage.setItem(key, JSON.stringify(stored)); } catch (e) { /* quota — ignore */ }
+
+    // Merge into in-memory product so the list updates without a reload.
+    const product = trustData.products.find(p => (p.product_id || p.id) === productId);
+    if (product) {
+        product.trust_signals = product.trust_signals || {};
+        product.trust_signals.reviews = product.trust_signals.reviews || [];
+        product.trust_signals.reviews.unshift(review);
+        product.trust_signals.reviews_count = (product.trust_signals.reviews_count || 0) + 1;
+        // Recompute avg_rating including the new one.
+        const rs = product.trust_signals.reviews;
+        const avg = rs.reduce((a, r) => a + (r.rating || 0), 0) / rs.length;
+        product.trust_signals.avg_rating = Math.round(avg * 10) / 10;
+
+        // Re-render the whole reviews section (updates count, bars, avg, list).
+        const section = document.getElementById('pdpReviewsSection');
+        if (section) {
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = renderPdpReviews(product);
+            section.replaceWith(wrapper.firstElementChild);
+            renderPdpReviewList(productId);
+        }
+    }
+
+    // Confirmation toast
+    showReviewToast();
+}
+
+function showReviewToast() {
+    let toast = document.getElementById('reviewToast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'reviewToast';
+        toast.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#0d8345] text-white px-5 py-3 rounded-full shadow-lg text-sm font-semibold z-[9999] flex items-center gap-2 opacity-0 transition-opacity duration-200';
+        toast.innerHTML = `<span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1;">check_circle</span> Review posted — thank you!`;
+        document.body.appendChild(toast);
+    }
+    requestAnimationFrame(() => { toast.style.opacity = '1'; });
+    clearTimeout(showReviewToast._t);
+    showReviewToast._t = setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+}
+
+function loadUserReviews(productId) {
+    try {
+        return JSON.parse(localStorage.getItem('pdpUserReviews:' + productId) || '[]');
+    } catch (e) { return []; }
 }
 
 function reviewFilterChip(id, label) {
@@ -815,8 +1221,10 @@ function renderPdpReviewList(productId) {
         return r.rating === currentPdpReviewFilter;
     });
 
-    // Sort: most recent first (days > weeks > months, roughly)
+    // Sort: most recent first (days > weeks > months, roughly).
+    // "just now" (user-submitted) always pins to the top.
     const dateWeight = (d) => {
+        if (/just\s*now/i.test(d || '')) return -1;
         const m = /^(\d+)\s+(day|week|month)/.exec(d || '');
         if (!m) return 999999;
         const n = parseInt(m[1], 10);
@@ -853,7 +1261,8 @@ function reviewCard(r) {
                 <div class="flex items-center gap-2 flex-wrap">
                     <span class="text-sm font-semibold text-on-surface">${escapeHtml(r.reviewer || 'Anonymous')}</span>
                     ${r.verified ? '<span class="text-[10px] font-bold text-[#0d8345] bg-[#0d8345]/10 px-1.5 py-0.5 rounded">✓ Verified Buyer</span>' : ''}
-                    <span class="text-[10px] text-on-surface-variant">${escapeHtml(r.city || '')} · ${escapeHtml(r.date || '')}</span>
+                    ${r._userSubmitted ? '<span class="text-[10px] font-bold text-[#F7D032] bg-[#F7D032]/15 px-1.5 py-0.5 rounded">You posted</span>' : ''}
+                    <span class="text-[10px] text-on-surface-variant">${escapeHtml(r.city || '')}${r.city ? ' · ' : ''}${escapeHtml(r.date || '')}</span>
                 </div>
                 <div class="flex items-center gap-2 mt-1">
                     <span class="text-sm tabular-nums" style="color:${starColor}; letter-spacing:1px;">${stars}</span>

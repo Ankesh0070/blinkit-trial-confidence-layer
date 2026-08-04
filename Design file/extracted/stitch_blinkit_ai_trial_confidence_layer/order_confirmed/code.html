@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#715d00",
+                        "on-background": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c19",
+                        "primary-fixed-dim": "#e9c323",
+                        "surface-dim": "#dbdad5",
+                        "on-surface-variant": "#4d4633",
+                        "on-primary-fixed": "#231b00",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "primary-container": "#f7d032",
+                        "background": "#faf9f4",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface": "#faf9f4",
+                        "surface-container": "#efeee9",
+                        "surface-bright": "#faf9f4",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e8e3",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#8ffb87",
+                        "secondary": "#006e16",
+                        "on-secondary-fixed": "#002203",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#74dd6e",
+                        "surface-container-low": "#f5f4ef",
+                        "outline": "#7e7761",
+                        "outline-variant": "#d0c6ad",
+                        "on-secondary-container": "#007518",
+                        "tertiary-container": "#d5d2d2",
+                        "secondary-container": "#8ffb87",
+                        "tertiary": "#5f5e5e",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#e9c323",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#554500",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-secondary-fixed-variant": "#00530e",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary-container": "#6d5900",
+                        "surface-variant": "#e3e3de",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#715d00",
+                        "primary-fixed": "#ffe178",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary-container": "#5b5a5a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "8px",
+                        "sm": "12px",
+                        "margin-desktop": "40px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "12px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Outfit"],
+                        "display-lg": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Top Navigation (Suppressed on this transactional screen as per Semantic Shell Mandate, replaced with a contextual header) -->
+<header class="w-full px-margin-mobile py-sm gap-xs bg-primary-container dark:bg-primary shadow-sm flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary-container">close</span>
+</div>
+<div class="text-headline-sm-mobile font-headline-sm font-bold text-on-primary-container">
+            Delivery in 10 minutes
+        </div>
+<div>
+<!-- Empty placeholder for balance -->
+</div>
+</header>
+<main class="w-full max-w-md mx-auto px-margin-mobile py-xl flex flex-col gap-xl">
+<!-- Celebration Header -->
+<section class="flex flex-col items-center justify-center text-center gap-sm">
+<div class="w-24 h-24 rounded-full bg-secondary-container flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-on-secondary-container text-5xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-on-background mt-4">Order Placed!</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Your order is being prepared and will be with you shortly.</p>
+</section>
+<!-- Map Placeholder -->
+<section class="w-full rounded-xl overflow-hidden shadow-sm border border-outline-variant h-64 relative">
+<img class="w-full h-full object-cover" data-alt="A stylized, simplified street map focusing on a central route, featuring bright, clean lines and soft pastel tones consistent with a modern corporate grocery delivery app in light mode. The map highlights a specific location with a subtle animated pulse, conveying quick and efficient delivery service in a dense urban environment." data-location="London" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQffGGWhkaldglGwYhx28LDqOEGKSfQPV4jeCcuevCyWL1IRGz82dVoADd0ommN-0Vd-o-Nvb4tKEyvYHtMI6G6TqaU0VMsRupsVP2mPV7NmehAw0XmIixWALBtgl8I-Z6dOeup9656DYNBxJObndvVCY2FvLGIVfbk-AFnxft2bm200vvMi3QEwqTzteVUq_1EwgfHgIYqyLJ5Xov4Es9oLvisC5hx7YxL1fOAIDqJrenLhk3LiAE"/>
+<!-- Overlay to simulate UI on top of map -->
+<div class="absolute bottom-4 left-4 right-4 bg-surface-container-lowest p-md rounded-lg shadow-lg flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-xl">electric_moped</span>
+</div>
+<div>
+<div class="text-label-lg font-label-lg text-on-background">Partner assigned</div>
+<div class="text-body-md font-body-md text-on-surface-variant">Arriving in ~10 mins</div>
+</div>
+</div>
+</section>
+<!-- Order Summary -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col gap-md">
+<h2 class="text-headline-sm font-headline-sm text-on-background border-b border-outline-variant pb-2">Order Summary</h2>
+<div class="flex flex-col gap-sm">
+<!-- Item 1 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="text-body-md font-body-md font-medium">1x</span>
+<span class="text-body-md font-body-md">Himalaya Face Wash</span>
+</div>
+<span class="text-body-md font-body-md font-medium">$4.50</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="text-body-md font-body-md font-medium">2x</span>
+<span class="text-body-md font-body-md">Oat Milk 1L</span>
+</div>
+<span class="text-body-md font-body-md font-medium">$7.00</span>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-sm flex justify-between items-center">
+<span class="text-label-lg font-label-lg text-on-surface-variant">Total</span>
+<span class="text-headline-sm font-headline-sm text-on-background">$11.50</span>
+</div>
+</section>
+<!-- Delivery Details -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-md flex flex-col gap-sm">
+<h2 class="text-label-lg font-label-lg text-on-surface-variant uppercase tracking-wider">Delivery To</h2>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<div>
+<div class="text-body-md font-body-md font-medium">Home</div>
+<div class="text-body-md font-body-md text-on-surface-variant">123 Market Street, Apt 4B<br/>San Francisco, CA 94105</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button for Tracking -->
+<div class="fixed bottom-0 left-0 w-full p-margin-mobile bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-40">
+<button class="w-full bg-on-background text-on-primary py-4 rounded-full text-label-lg font-label-lg shadow-lg flex items-center justify-center gap-2 hover:bg-inverse-surface transition-colors">
+            Track Order
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</body></html>

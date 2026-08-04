@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delivery App - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#715d00",
+                        "on-background": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c19",
+                        "primary-fixed-dim": "#e9c323",
+                        "surface-dim": "#dbdad5",
+                        "on-surface-variant": "#4d4633",
+                        "on-primary-fixed": "#231b00",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "primary-container": "#f7d032",
+                        "background": "#faf9f4",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface": "#faf9f4",
+                        "surface-container": "#efeee9",
+                        "surface-bright": "#faf9f4",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e9e8e3",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "secondary-fixed": "#8ffb87",
+                        "secondary": "#006e16",
+                        "on-secondary-fixed": "#002203",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#74dd6e",
+                        "surface-container-low": "#f5f4ef",
+                        "outline": "#7e7761",
+                        "outline-variant": "#d0c6ad",
+                        "on-secondary-container": "#007518",
+                        "tertiary-container": "#d5d2d2",
+                        "secondary-container": "#8ffb87",
+                        "tertiary": "#5f5e5e",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#e9c323",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#554500",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e3e3de",
+                        "on-secondary-fixed-variant": "#00530e",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary-container": "#6d5900",
+                        "surface-variant": "#e3e3de",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#715d00",
+                        "primary-fixed": "#ffe178",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-tertiary-container": "#5b5a5a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "8px",
+                        "sm": "12px",
+                        "margin-desktop": "40px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "12px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Outfit"],
+                        "display-lg": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="docked full-width top-0 sticky z-40">
+<div class="bg-primary-container dark:bg-primary shadow-sm flex flex-col w-full px-margin-mobile py-sm gap-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary-container dark:text-on-primary">location_on</span>
+<div>
+<h1 class="text-headline-sm-mobile font-headline-sm text-on-primary-container dark:text-on-primary font-bold">Delivery in 10 minutes</h1>
+<p class="text-label-lg font-label-lg text-on-primary-fixed-variant dark:text-on-primary-fixed">Home · Sector 22, Bengaluru</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-on-primary-container">
+<img alt="Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8SET9VU3tBB7FaMKue5MCtLzKfF3iQPPke5fCg0rbmdyMue51M59a_Np9EhpDUPhqcDXGI8Smt7LfmHV23VQvPEeUby0FnYRgFMjduBD56DZg9IfVGPSjinyWEhVYCJdSMH2I0xTbqHo5NBjDlShBIETUNlPJfnugz4YvPfNa_x_wdrsJ7rFOix3WdmCBBvTaEPpc-olIrGrRhKs0wNUvrUsV_DygqLOxQMLnAg6vWBlnI9Hj9I36ZHBdP2tgq1rnXg"/>
+</div>
+</div>
+</div>
+<div class="mt-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface text-on-surface border border-outline-variant rounded-xl py-2 pl-10 pr-4 text-body-md font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder-on-surface-variant" placeholder="Search 'Milk'" type="text"/>
+</div>
+</div>
+</div>
+</header>
+<main class="px-margin-mobile py-md flex flex-col gap-xl">
+<!-- Hero Promos -->
+<section class="flex gap-sm overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2">
+<div class="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[40%] bg-surface-container-low rounded-xl overflow-hidden shadow-sm relative group cursor-pointer">
+<div class="h-32 bg-cover bg-center" data-alt="A brightly lit, top-down photograph of traditional Indian Paan arrangements on a pristine white marble surface. Fresh green betel leaves, colourful sweet fillings, and delicate silver foil are arranged meticulously. The aesthetic is clean, modern, and appetizing, fitting a premium grocery delivery app. Warm, natural lighting highlights the textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDx4G3TDBV3-OXkFWJXqqktfdf6aDJE8j7cco6BH3IYRkE0kQZBxfDvpLpfOywEiu3xwSSHMZpINuvpythtcWcvGRXAIu-RZtDxUF9Zv9cXtg1xCCy6diNKsju82-z-_dHW0mwNki9Q1paAPj1EtNcW8Gp_HmzfY6YBWSiTtaE9wNBh2vrExUeL41UoDVlFohtFEfTnYszdgqoaK-zsJAz9SwMYZCvm-7gOouWWvlmRSu36xZatr-9f')"></div>
+<div class="p-3 bg-white absolute bottom-0 left-0 right-0 bg-opacity-90 backdrop-blur-sm">
+<h3 class="text-body-md font-headline-sm font-bold text-on-background">Paan Corner</h3>
+<p class="text-label-sm text-on-surface-variant">Fresh &amp; Authentic</p>
+</div>
+</div>
+<div class="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[40%] bg-surface-container-low rounded-xl overflow-hidden shadow-sm relative group cursor-pointer">
+<div class="h-32 bg-cover bg-center" data-alt="A clean, clinical arrangement of various pharmacy items, including branded medicine boxes, first aid supplies, and health supplements on a soft off-white background. The lighting is bright and even, creating a trustworthy and sterile mood. The aesthetic is modern and corporate, suitable for a fast delivery service." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnFGAnnxU-xhbV2GjA8BeNB_EoS1Qxlm6CNSO5h5De2YqxoUJVNekctfguzXZoHQF0NNyCztf9PIl6lMtNqTWTXsXGy1GbMZHJt1d9ExL5oQi4ZDCZbJ0EDe44seSNks3aZMfBXkx02Rq5Cgp5uziXJaXfzoXg3rfj8OFM-KDI8LZbPyFKUbccTN2OjvxY71TFpjZlu8FWjKKn4jToY6_9vu4K_ipwuyKukBZpiPr4s6zWVJiNrDMl')"></div>
+<div class="p-3 bg-white absolute bottom-0 left-0 right-0 bg-opacity-90 backdrop-blur-sm">
+<h3 class="text-body-md font-headline-sm font-bold text-on-background">Pharmacy</h3>
+<p class="text-label-sm text-on-surface-variant">Essentials &amp; Meds</p>
+</div>
+</div>
+<div class="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[40%] bg-surface-container-low rounded-xl overflow-hidden shadow-sm relative group cursor-pointer">
+<div class="h-32 bg-cover bg-center" data-alt="A cheerful, high-quality image of premium pet food bags, colorful dog toys, and grooming products arranged neatly on a warm, inviting background. A fluffy, out-of-focus golden retriever puppy peeks from the corner. The lighting is bright and sunny, evoking a friendly and approachable mood for a delivery app's pet care section." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCt-Q6DoBeGdkfRe_5GZOq1ts8H6TpPHeCvgC2taVBGOzWJAwp5n_FVfkuqRletHiNw37nOFSZvB9eJkRWx5sZeNsSB6E6r6c5tnE5U7OElEvX4sV8-RATfanROb9O7c-pp_g1M2cEWd_fWmIGaC06OVW3DCqLojeAIMl9zpuIapXDkePb7TrHOV2SbGrFxdOWgkuP6gu8Pe6P8mxpqqN4TrBas1vtDUuvDCX2JQUXv84ZbwJ1x67Ae')"></div>
+<div class="p-3 bg-white absolute bottom-0 left-0 right-0 bg-opacity-90 backdrop-blur-sm">
+<h3 class="text-body-md font-headline-sm font-bold text-on-background">Pet Care</h3>
+<p class="text-label-sm text-on-surface-variant">For Your Furry Friends</p>
+</div>
+</div>
+</section>
+<!-- Categories Grid -->
+<section>
+<h2 class="text-headline-md font-headline-md mb-sm">Shop by Category</h2>
+<div class="grid grid-cols-4 gap-gutter">
+<!-- Highlighted Category -->
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-primary-container/20 flex items-center justify-center border border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply opacity-80" data-alt="A stylized, high-contrast flat lay of fresh vegetables (tomatoes, spinach, bell peppers) and pantry staples on a very light, warm yellow background. The lighting is crisp and even, suitable for a modern delivery app interface. The image feels energetic and appetizing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx8gAnPZaMKaqoHg1h3SSgphULxVDN6-xdUCiSYxVi7rkzBkJbhrLtTmwgb4ARIMaX1AyjMmfIWLWOB32gNWbC1nFiQTCz1DaWMrI6svt69vdtp1lrk_b-xt7Mc-OXKykG07o3u1hWyRaleEOgnpw5KlOfI30ntRPe780WjFGLQtvreotK1fmI6fehMvU2SwLg0OWWXfURuQmyF07dVnbKB1zx3_EGXEum7TBv4_NOhNdla5sTl8oP"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-background font-bold">Grocery</span>
+</div>
+<!-- Neutral Categories -->
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A neat arrangement of various fresh fruits like apples, bananas, and oranges on a clean white surface. Soft, ambient lighting creates a fresh and healthy vibe. Minimalist and modern aesthetic for a grocery app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf4FLYZv_JL4MNx_iXcmNKjP_vFT8359I4n4l6eO3e3ijtVmw4BRdmfpjCFYlJwYAusgZzdJecQTZQk0XTwO4AMK9PYLrkev7xPgmxwGcaHyNa6wXOgHPKoX1Udvnkc2sMWaEI8hcJP1AtdeengqY6pBd0lqAeYgeAmlK0cOLogY4MtIRj9gLAs9Nn1VJtsRs4sWanl8e_2S0ajxNxqY3fMaFoNZZBXow9l2lBLyk9ocRf_aem1VxE"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Fruits</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, top-down shot of dairy products including a glass bottle of milk, blocks of cheese, and a tub of yogurt on a bright, off-white background. The lighting is cool and fresh, emphasizing cleanliness and quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfP82yiEBj_SpD-1VeiQthrAXjcC_Z0oo9k1kczIAO_x0sNjo3DZEr999pMfZ_mHSylrf8dnUXMHOkrqMzAQN1WJoxwyIIBtt81ywgcJlO7uaRlm2_Qns7UYT0fJClgRqFJ2iVJSrPVf72Fjgn1uFjHQZqr1jdvDsWIr_uryCkUxW0ICgS0X5ETUDtOEyjyGrpP7Kw2QhJ30eoKj3_6I8SHqQDtCn7vVC9X4mc9OeRS0GyKW7f-zpO"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Dairy</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A neatly stacked arrangement of various packaged snacks, chips, and biscuits on a simple, light background. The lighting is bright and appealing, creating a tempting and accessible look for a quick delivery service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvx_aYDzzGiXNb3SD-Yr5vHY2uSgsBQCNEuguDoyMGu4GJYka4o5mhxuO9NTj7HRDeLNGNeTHJPEQUplCmJK5sp-bodKiaXQ1AJJpCeLwt0zDLd0XTeKE68bgHozJonbUW7n0SuDePGGd2uXrdYakefIX6O46mMWNYt5HYwTk8_uD2I28uIQ2EVm-ufKex7fdfLW7_H4SRHs1SO75qOLsCW2ZaSdwUHEj1lwj85XHZp46-sGK8UwS"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Snacks</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A refreshing composition of various cold beverages, including soda cans, juice bottles, and water, surrounded by ice cubes on a clean, light surface. The lighting is bright, highlighting the condensation on the bottles, creating a thirsty mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsdGpAaJzeZo0lSLs2lyxDUGqdxdx6rpXuKqFIvy0xJKQCeVbXdPx7PLYT-V-zl6N_wePUJA9ZTI4umWcWxEEA-THWn8s8qXDTgtMxVVuB5575mfpN8uwjY4venFdDfY4VSM8SN4PU2YnMRwUJtGi-pWZTB6E-fKR-nCpDk-ggWNhJe6nQDd1SmP56OUGyqvFK1kpObSFiyi2sskf9YWtGqIF_qICeOwd81EDnGN1exXoE-5sSLmEe"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Beverages</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist display of personal care items like shampoo bottles, soap bars, and toothpaste on a pristine white background. The lighting is soft and even, suggesting hygiene and modern living." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa53qRSD-nlbxLwIST0roT1L6mO3BSCifLym0RjebUm1Zg1Zo6zLrgedzTFoqK9TrXq6oyUY0cE8G0pY4Tx7kYW3xMtw0A4TRz-5akjJMv_lSTI2Z_LrBQPvCUMEvqe0u2PSWdyRJCN0fH4PnEM2zNew33TFKXM5K0_2SLxlqPbt-Hz2BH756fTTkqszae8OsjaDewpBBOtSGXFv1lETJOPtF9nW8FRJppV7iJrvmiTXFuZjTrCCle"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Personal Care</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A tidy arrangement of household cleaning supplies, including a spray bottle, sponges, and dish soap on a clean, light grey surface. The aesthetic is practical and orderly, with bright lighting emphasizing cleanliness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKkGCIs83pRJbfg4f5XhAI2h0YbKeiBntfL4E0sB0MOC8JxviE9VX7P9NWyC06ErCi76E369mtxWKySE2dBmrCSAKYSIs6gwcUu3OJoqTtR0ACOOy8NMRczx9P7vtJjly8DI489I_jOLBhrLSvudi2X811EIa4qDjGU5J0QAY3HtU_nBphsSBpel4EowFXbCx39lKiIXCm1G1-Vlvhi7sS6JcsWZmERtRqasVq0hohzuba_35tF1vW"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Cleaning</span>
+</div>
+<div class="flex flex-col items-center gap-1 cursor-pointer">
+<div class="w-full aspect-square rounded-xl bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated display of packaged meats and eggs on a clean, light-colored wooden board against a white background. The lighting is neutral and clear, focusing on freshness and quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUmFZAI6uiwWrebcbszQTE0OPXwKu0SP01f1rOyjW8Fyt_0GbYMUJR-B_Pp5Ulzu-Qq6XidoX5PX3oIHnVfCKsCaaWnA3_gHyax_GS795HgVGz1hkOcU-B0DO8Opb_DZ0JCUbiYDkXM-xJXwm7ORuS1V02rrDD6OEsoXghCFJcbJ_Mrf0wePup1DsbuTlxB13FKaTEnCgUAXk7X3S-nrJyAq6_BUKF2xXhsQGaQCJjzvnTaujz1u0Q"/>
+</div>
+<span class="text-label-sm font-label-sm text-center text-on-surface-variant">Meat &amp; Eggs</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl border-t border-outline-variant dark:border-outline bg-surface dark:bg-surface-container-low shadow-lg">
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface dark:bg-surface-container-low">
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim font-bold hover:bg-surface-container-high dark:hover:bg-surface-container-highest scale-90 transition-all duration-150 p-2 rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-label-sm font-label-sm mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-label-sm font-label-sm mt-1">Categories</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-label-sm font-label-sm mt-1">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-label-sm mt-1">Account</span>
+</button>
+</div>
+</nav>
+</body></html>

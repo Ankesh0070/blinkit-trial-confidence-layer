@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cart Sheet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#715d00",
+                    "on-background": "#1b1c19",
+                    "inverse-surface": "#30312e",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c19",
+                    "primary-fixed-dim": "#e9c323",
+                    "surface-dim": "#dbdad5",
+                    "on-surface-variant": "#4d4633",
+                    "on-primary-fixed": "#231b00",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "primary-container": "#f7d032",
+                    "background": "#faf9f4",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "surface": "#faf9f4",
+                    "surface-container": "#efeee9",
+                    "surface-bright": "#faf9f4",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e9e8e3",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "secondary-fixed": "#8ffb87",
+                    "secondary": "#006e16",
+                    "on-secondary-fixed": "#002203",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#74dd6e",
+                    "surface-container-low": "#f5f4ef",
+                    "outline": "#7e7761",
+                    "outline-variant": "#d0c6ad",
+                    "on-secondary-container": "#007518",
+                    "tertiary-container": "#d5d2d2",
+                    "secondary-container": "#8ffb87",
+                    "tertiary": "#5f5e5e",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#e9c323",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#554500",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e3e3de",
+                    "on-secondary-fixed-variant": "#00530e",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary-container": "#6d5900",
+                    "surface-variant": "#e3e3de",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#715d00",
+                    "primary-fixed": "#ffe178",
+                    "tertiary-fixed": "#e5e2e1",
+                    "on-tertiary-container": "#5b5a5a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xs": "8px",
+                    "sm": "12px",
+                    "margin-desktop": "40px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-mobile": "16px",
+                    "gutter": "12px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-lg": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Outfit"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Outfit"
+                    ],
+                    "headline-lg": [
+                            "Outfit"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "Outfit"
+                    ],
+                    "display-lg": [
+                            "Outfit"
+                    ]
+            },
+            "fontSize": {
+                    "label-lg": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "10px",
+                            {
+                                    "lineHeight": "14px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "22px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "30px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "28px",
+                            {
+                                    "lineHeight": "34px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .ai-glow {
+            background: radial-gradient(circle at center, rgba(247, 208, 50, 0.15) 0%, rgba(255,255,255,0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen overflow-hidden flex flex-col md:w-[400px] md:mx-auto md:border-x md:border-outline-variant md:shadow-2xl md:relative relative">
+<!-- Top App Bar -->
+<header class="docked full-width top-0 bg-primary-container dark:bg-primary shadow-sm text-on-primary-container dark:text-on-primary flex flex-col w-full px-margin-mobile py-sm gap-xs z-50">
+<div class="flex items-center justify-between">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-headline-sm-mobile font-headline-sm md:text-headline-sm text-center flex-1 font-bold">Delivery in 10 minutes</h1>
+<div class="w-10"></div> <!-- spacer for centering -->
+</div>
+<div class="flex items-center text-label-lg font-label-lg px-2 text-on-primary-fixed-variant">
+<span class="material-symbols-outlined mr-2" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="truncate">Delivering to Home - 123 Main St, Apt 4B</span>
+</div>
+</header>
+<!-- Cart Content Scrollable Area -->
+<main class="flex-1 overflow-y-auto bg-surface-container pb-24">
+<!-- Delivery Time Strip -->
+<div class="bg-surface-container-lowest p-md mb-xs flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-sm">
+<div class="bg-secondary/10 p-2 rounded-full text-secondary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Arriving in</p>
+<p class="font-headline-md text-headline-md text-secondary">10 mins</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Order packed</p>
+<div class="w-24 h-2 bg-surface-variant rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-secondary w-1/3 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Items List -->
+<div class="bg-surface-container-lowest px-md py-sm shadow-sm flex flex-col gap-sm">
+<h2 class="font-headline-sm text-headline-sm mb-xs text-on-surface">Your Items</h2>
+<!-- Item 1: Aashirvaad Atta -->
+<div class="flex items-start gap-md py-sm border-b border-surface-variant">
+<img class="w-20 h-20 object-cover rounded-lg border border-surface-variant" data-alt="A high-quality product photo of a 5kg bag of Aashirvaad Select Premium Sharbati Atta on a clean white background. The packaging is gold and red, clearly displaying the brand name. Soft, even lighting highlights the product details, creating a premium and trustworthy aesthetic consistent with a modern grocery app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSKLTW0gMtyjoDms1Pg7cwe4BnoP3vouUlbpjslaAICDPnox0iIYfd81OhfFNxgLqlrPbHhKUp388woTRjmhj5efMPI-r1WHSm9gf-8H7aS-SxInQ0c3UZjfptmetmija6GnY3fJhEfgqWOCCql3cIXi--M7qXwSZMSrf7n73cb6uQJAhgiHPn_cRX1I_qknMTqdJmvFuGl9XA7XRr23_vtWFDEX0m1Ej-zZ5IFq264xxGohzekU5e"/>
+<div class="flex-1">
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-1">Aashirvaad</p>
+<h3 class="font-body-md text-body-md text-on-surface mb-2 leading-tight">Select Premium Sharbati Atta</h3>
+<div class="flex items-center justify-between">
+<p class="font-headline-sm text-headline-sm text-on-surface">₹249 <span class="text-label-sm text-on-surface-variant line-through ml-1">₹280</span></p>
+<div class="flex items-center gap-2 bg-surface-variant rounded-lg p-1">
+<button class="w-6 h-6 flex items-center justify-center text-on-surface hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-label-lg text-label-lg w-4 text-center">1</span>
+<button class="w-6 h-6 flex items-center justify-center text-secondary hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2: Amul Butter -->
+<div class="flex items-start gap-md py-sm">
+<img class="w-20 h-20 object-cover rounded-lg border border-surface-variant" data-alt="A high-quality product photo of a 500g block of Amul Pasteurised Butter in its iconic yellow packaging, presented on a pure white background. The lighting is bright and clean, emphasizing the familiar design and reinforcing a reliable, fast-delivery service aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhLs51EUG_87sU-Uz1ES0tTiKfml5QOPdPYttvg5krSk6xXUlE2TsQ2o-cs3fcBMc7ao3F8bWt4kIlAehlpdGGUm-8z7R4ndq_LJfwcs-oD1NZaJf2BuPTD5Dz7Gfg0rfC1hfFRv0nZAM8XA3kileo28y6dZZOY86FKd5XeebPBvgqG6dt-bYsfYzPd8aIQXhbkB6mEKspasHx_cMitCNiI1RKz3HuE118FLaM_9ENWty2RTlYSXzz"/>
+<div class="flex-1">
+<p class="font-label-lg text-label-lg text-on-surface-variant mb-1">Amul</p>
+<h3 class="font-body-md text-body-md text-on-surface mb-2 leading-tight">Pasteurised Butter</h3>
+<div class="flex items-center justify-between">
+<p class="font-headline-sm text-headline-sm text-on-surface">₹275</p>
+<div class="flex items-center gap-2 bg-surface-variant rounded-lg p-1">
+<button class="w-6 h-6 flex items-center justify-center text-on-surface hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">remove</span></button>
+<span class="font-label-lg text-label-lg w-4 text-center">2</span>
+<button class="w-6 h-6 flex items-center justify-center text-secondary hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Cross-Category Nudge -->
+<div class="mx-md my-sm bg-surface-container-lowest rounded-xl border border-primary-container p-md relative overflow-hidden ai-glow">
+<div class="flex items-center justify-between mb-sm relative z-10">
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="text-primary-container">✦</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold">Frequently Paired</span>
+</div>
+<div class="bg-primary/10 text-primary font-label-sm text-label-sm px-2 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">auto_awesome</span>
+                    82% Match
+                </div>
+</div>
+<div class="flex items-center gap-md relative z-10">
+<img class="w-16 h-16 object-cover rounded-lg border border-surface-variant" data-alt="A small, sleek micro-trial pod of Minimalist skincare product (e.g., a serum or moisturizer) sitting on a minimal, soft off-white surface. The lighting is diffused and modern, emphasizing the clean, scientific branding of the product. The composition suggests a small, easily addable impulse purchase." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmIwLNAYvketOBFvZOfSLppjFB95EPzdrKG1QqlADZG8gZSmk9naiUAh-AiNlFJdUman6IV4owRM-7jcDoihg6qMOMqqASNkQrRx8e4VPEEKkJeeJbuCKSm28gZeOD1utKn-p57Mi7PiDctf34jtoy1ys2_8laOTZP0VhkuxiGAiQSUn1tU-S4shqgaCe9umB6241d1Wit6anRrBhqWtP5Ii0_2YtQWCF1fof6ovPRHqlF6b37vZOH"/>
+<div class="flex-1">
+<h4 class="font-label-lg text-label-lg text-on-surface leading-tight mb-1">Minimalist Micro-Trial Pod</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 line-clamp-2">Try the new Vitamin C serum for glowing skin.</p>
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">₹99</span>
+<button class="border border-secondary text-secondary font-label-lg text-label-lg px-4 py-1 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors">
+                            ADD
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bill Details -->
+<div class="bg-surface-container-lowest mt-sm p-md shadow-sm">
+<details class="group">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Bill Details</h2>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="pt-sm mt-sm border-t border-surface-variant space-y-sm">
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Item Total</span>
+<span>₹799</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Handling Charge</span>
+<span>₹15</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-secondary">
+<span>Delivery Fee</span>
+<span>FREE</span>
+</div>
+<div class="flex justify-between font-headline-sm text-headline-sm text-on-surface pt-sm border-t border-surface-variant mt-sm">
+<span>To Pay</span>
+<span>₹814</span>
+</div>
+</div>
+</details>
+</div>
+<!-- Bottom spacing for sticky CTA -->
+<div class="h-20"></div>
+</main>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 left-0 w-full z-50 p-md bg-surface border-t border-outline-variant dark:border-outline md:absolute md:bottom-0">
+<button class="w-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm py-md rounded-xl shadow-lg flex items-center justify-between px-lg hover:bg-primary hover:text-on-primary transition-colors">
+<div class="text-left flex flex-col">
+<span class="font-label-sm text-label-sm opacity-80">Total</span>
+<span>₹814</span>
+</div>
+<div class="flex items-center gap-2">
+<span>Place Order</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</button>
+</div>
+</body></html>
