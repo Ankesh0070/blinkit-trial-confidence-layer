@@ -282,23 +282,26 @@ function renderHomeCategoryGrid() {
     // Stitch design: 8 featured tiles with real product photos.
     // First tile is highlighted (yellow tint) — the user's primary "grocery" lane.
     // Includes Baby Care so the AI Trial Confidence demo is one click away from home.
+    // All local, brand-clean product/produce photography — none carry any
+    // Blinkit watermark/logo (unlike the earlier Stitch mock images, which
+    // had "blinkit" baked into several tiles).
     const FEATURED = [
         { id: 'vegetables_fruits', label: 'Grocery', highlighted: true,
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDx8gAnPZaMKaqoHg1h3SSgphULxVDN6-xdUCiSYxVi7rkzBkJbhrLtTmwgb4ARIMaX1AyjMmfIWLWOB32gNWbC1nFiQTCz1DaWMrI6svt69vdtp1lrk_b-xt7Mc-OXKykG07o3u1hWyRaleEOgnpw5KlOfI30ntRPe780WjFGLQtvreotK1fmI6fehMvU2SwLg0OWWXfURuQmyF07dVnbKB1zx3_EGXEum7TBv4_NOhNdla5sTl8oP' },
+          img: `img/HOME-GROCERY.jpg?v=${IMG_VER}` },
         { id: 'vegetables_fruits', label: 'Fruits',
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAf4FLYZv_JL4MNx_iXcmNKjP_vFT8359I4n4l6eO3e3ijtVmw4BRdmfpjCFYlJwYAusgZzdJecQTZQk0XTwO4AMK9PYLrkev7xPgmxwGcaHyNa6wXOgHPKoX1Udvnkc2sMWaEI8hcJP1AtdeengqY6pBd0lqAeYgeAmlK0cOLogY4MtIRj9gLAs9Nn1VJtsRs4sWanl8e_2S0ajxNxqY3fMaFoNZZBXow9l2lBLyk9ocRf_aem1VxE' },
+          img: `img/HOME-FRUITS.jpg?v=${IMG_VER}` },
         { id: 'dairy_bread_eggs', label: 'Dairy',
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDfP82yiEBj_SpD-1VeiQthrAXjcC_Z0oo9k1kczIAO_x0sNjo3DZEr999pMfZ_mHSylrf8dnUXMHOkrqMzAQN1WJoxwyIIBtt81ywgcJlO7uaRlm2_Qns7UYT0fJClgRqFJ2iVJSrPVf72Fjgn1uFjHQZqr1jdvDsWIr_uryCkUxW0ICgS0X5ETUDtOEyjyGrpP7Kw2QhJ30eoKj3_6I8SHqQDtCn7vVC9X4mc9OeRS0GyKW7f-zpO' },
+          img: `img/POOL-BUTTER-1.jpg?v=${IMG_VER}` },
         { id: 'munchies', label: 'Snacks',
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDmvx_aYDzzGiXNb3SD-Yr5vHY2uSgsBQCNEuguDoyMGu4GJYka4o5mhxuO9NTj7HRDeLNGNeTHJPEQUplCmJK5sp-bodKiaXQ1AJJpCeLwt0zDLd0XTeKE68bgHozJonbUW7n0SuDePGGd2uXrdYakefIX6O46mMWNYt5HYwTk8_uD2I28uIQ2EVm-ufKex7fdfLW7_H4SRHs1SO75qOLsCW2ZaSdwUHEj1lwj85XHZp46-sGK8UwS' },
+          img: `img/POOL-CHIPS-1.jpg?v=${IMG_VER}` },
         { id: 'cold_drinks_juices', label: 'Beverages',
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsdGpAaJzeZo0lSLs2lyxDUGqdxdx6rpXuKqFIvy0xJKQCeVbXdPx7PLYT-V-zl6N_wePUJA9ZTI4umWcWxEEA-THWn8s8qXDTgtMxVVuB5575mfpN8uwjY4venFdDfY4VSM8SN4PU2YnMRwUJtGi-pWZTB6E-fKR-nCpDk-ggWNhJe6nQDd1SmP56OUGyqvFK1kpObSFiyi2sskf9YWtGqIF_qICeOwd81EDnGN1exXoE-5sSLmEe' },
+          img: `img/POOL-JUICE-1.jpg?v=${IMG_VER}` },
         { id: 'personal_care_beauty', label: 'Personal Care',
           img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBa53qRSD-nlbxLwIST0roT1L6mO3BSCifLym0RjebUm1Zg1Zo6zLrgedzTFoqK9TrXq6oyUY0cE8G0pY4Tx7kYW3xMtw0A4TRz-5akjJMv_lSTI2Z_LrBQPvCUMEvqe0u2PSWdyRJCN0fH4PnEM2zNew33TFKXM5K0_2SLxlqPbt-Hz2BH756fTTkqszae8OsjaDewpBBOtSGXFv1lETJOPtF9nW8FRJppV7iJrvmiTXFuZjTrCCle' },
         { id: 'home_cleaning', label: 'Cleaning',
           img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKkGCIs83pRJbfg4f5XhAI2h0YbKeiBntfL4E0sB0MOC8JxviE9VX7P9NWyC06ErCi76E369mtxWKySE2dBmrCSAKYSIs6gwcUu3OJoqTtR0ACOOy8NMRczx9P7vtJjly8DI489I_jOLBhrLSvudi2X811EIa4qDjGU5J0QAY3HtU_nBphsSBpel4EowFXbCx39lKiIXCm1G1-Vlvhi7sS6JcsWZmERtRqasVq0hohzuba_35tF1vW' },
         { id: 'baby', label: 'Baby Care',
-          img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUmFZAI6uiwWrebcbszQTE0OPXwKu0SP01f1rOyjW8Fyt_0GbYMUJR-B_Pp5Ulzu-Qq6XidoX5PX3oIHnVfCKsCaaWnA3_gHyax_GS795HgVGz1hkOcU-B0DO8Opb_DZ0JCUbiYDkXM-xJXwm7ORuS1V02rrDD6OEsoXghCFJcbJ_Mrf0wePup1DsbuTlxB13FKaTEnCgUAXk7X3S-nrJyAq6_BUKF2xXhsQGaQCJjzvnTaujz1u0Q' }
+          img: `img/HOME-BABYCARE.jpg?v=${IMG_VER}` }
     ];
 
     FEATURED.forEach(cat => {
@@ -313,7 +316,7 @@ function renderHomeCategoryGrid() {
             : 'text-[11px] font-semibold text-on-surface-variant text-center leading-tight mt-1';
         tile.innerHTML = `
             <div class="${wrapClass}">
-                <img src="${cat.img}" alt="${cat.label}" class="w-full h-full object-cover ${cat.highlighted ? 'mix-blend-multiply opacity-80' : ''}"
+                <img src="${cat.img}" alt="${cat.label}" class="w-full h-full object-cover"
                      onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;font-size:32px;&quot;>${EMOJIS[cat.id] || '🛒'}</span>';">
             </div>
             <span class="${labelClass}">${cat.label}</span>
