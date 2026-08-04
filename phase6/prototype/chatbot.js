@@ -44,11 +44,11 @@ function injectChatbot() {
             <div id="chatMessages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3 bg-surface-container-lowest">
                 <!-- Initial greeting -->
                 <div class="self-start max-w-[85%] bg-surface-container p-3 rounded-2xl rounded-tl-sm text-on-surface font-body-md text-sm border border-outline-variant/20 shadow-sm whitespace-pre-wrap">
-                    Hey — I know your calendar is packed. Tell me what you need and I'll get it to your desk in minutes ⚡
+                    Hey — bata do kya chahiye ya kya problem hai, main real products suggest kar dunga jo 10 min mein deliver ho jayenge ⚡
 
-Try: "coffee for standups", "back-pain patch", "protein for gym", "team snacks for offsite"
+Try: "sar dard ho raha hai", "acne ho gaya", "gym stack chahiye", "dinner banana hai", "bacha bimar hai"
 
-Hindi, Tamil, Telugu ya kisi bhi Indian language mein pooch sakte ho — main usi bhasha mein jawab dunga 🙂</div>
+Hindi, Tamil, Telugu ya any Indian language mein pooch sakte ho 🙂</div>
             </div>
             <!-- Input Area -->
             <div class="p-3 bg-surface border-t border-outline-variant/20 flex gap-2 items-center">
@@ -155,6 +155,205 @@ function hasWholeWord(text, word) {
     return new RegExp('\\b' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(text);
 }
 
+// ============================================================
+// PROBLEM / SITUATION INTENTS — the "concierge" layer
+// Turn conversational asks like "sar dard ho raha hai" or
+// "acne ho gaya" into a concrete shopping list. Each intent
+// maps to catalog search tokens + an empathetic reply. When
+// matched, we render real product cards inline in chat.
+// ============================================================
+const PROBLEM_INTENTS = [
+    // ── Health & wellness ───────────────────────────────────
+    { keywords: ['headache','sar dard','sirdard','head pain','migraine','sardard'],
+      tokens: ['paracetamol','pain relief','balm','tablet'],
+      reply: "Sar dard? A paracetamol tablet + a cooling balm usually helps within an hour. Delivered in 10 min 💊" },
+    { keywords: ['fever','bukhar','temperature','body ache','badan dard'],
+      tokens: ['paracetamol','thermometer','ors','tablet'],
+      reply: "Bukhar? Take a paracetamol, keep an ORS for hydration, and check temp with a thermometer. Ye sab yahan hain 🌡️" },
+    { keywords: ['cough','cold','khasi','jukham','sardi','throat','gala kharab'],
+      tokens: ['vaporub','ors','antiseptic','vitamin'],
+      reply: "Cold/cough ke liye — vaporub for the chest, ORS for hydration, and vitamin C. Add karo yahan se 🤧" },
+    { keywords: ['stomach','pet dard','pet me dard','stomach pain','diarrhea','dast','loose motion','acidity','gas'],
+      tokens: ['ors','antacid','sachet','tablet'],
+      reply: "Pet ki problem? An ORS sachet + antacid usually settles it in an hour. Yeh rahe:" },
+    { keywords: ['baby sick','bacha bimar','bacha ro','infant fever','baccha bimar','baby crying'],
+      tokens: ['ors','baby wash','diaper','baby lotion'],
+      reply: "Bacha bimar hai — pehle ORS for hydration, phir a soothing baby wash + fresh diapers. Ye rahe:" },
+    { keywords: ['cut','wound','chot','bleeding','scrape'],
+      tokens: ['antiseptic','bandaid','bandage','spray'],
+      reply: "Chot lagi hai? Antiseptic first, phir band-aid/bandage. Yeh sab quick delivery ho jayega:" },
+
+    // ── Skincare & beauty ───────────────────────────────────
+    { keywords: ['acne','pimple','daane','breakout','face broke','muhase'],
+      tokens: ['face wash','moisturizer','serum'],
+      reply: "Acne ke liye — gentle face wash + non-comedogenic moisturizer + a niacinamide serum. Consistency = key:" },
+    { keywords: ['dry skin','skin dry','flaky','rukhi twacha','skin flake'],
+      tokens: ['moisturizer','lotion','face cream'],
+      reply: "Dry skin? A rich moisturizer + body lotion combo lagega. Try these:" },
+    { keywords: ['hair fall','hair loss','baal jhad','baal gir','hair thin'],
+      tokens: ['shampoo','hair oil','biotin','supplement'],
+      reply: "Hair fall? Biotin supplement + a mild shampoo + weekly oiling — 6-8 weeks mein farak dikhega:" },
+    { keywords: ['dark circle','under eye','dark spot','pigmentation'],
+      tokens: ['serum','concealer','cream'],
+      reply: "Dark circles ke liye — under-eye serum + concealer for instant cover-up. Long-term ke liye good sleep also 😅" },
+
+    // ── Cooking / meals ─────────────────────────────────────
+    { keywords: ['dinner banana','dinner cook','khana banana','quick meal','dinner idea'],
+      tokens: ['atta','noodles','rice','dal','paneer'],
+      reply: "Dinner options — instant se lekar proper meal tak, yahan dono hain:" },
+    { keywords: ['breakfast','nashta','morning food','subah ka nasht'],
+      tokens: ['bread','butter','milk','eggs','coffee'],
+      reply: "Nashta ke liye — bread + butter + milk classic combo. Ye rahe:" },
+    { keywords: ['tea','chai','coffee','morning drink'],
+      tokens: ['tea','coffee','milk','biscuit'],
+      reply: "Chai/coffee session? Ye rahe essentials:" },
+    { keywords: ['party','guests','mehmaan','get together','friends aa rahe','function'],
+      tokens: ['chips','namkeen','cold drink','chocolate','biscuit'],
+      reply: "Mehmaan aa rahe hain? Ye sab 10 min mein deliver ho jayega:" },
+
+    // ── Fitness & lifestyle ─────────────────────────────────
+    { keywords: ['gym','workout','fitness','protein','muscle','bodybuilding'],
+      tokens: ['whey protein','protein bar','supplement','multivitamin'],
+      reply: "Gym stack? Whey protein + protein bars + a multivitamin — solid combo for muscle recovery 💪" },
+    { keywords: ['weight loss','diet','healthy eating','wajan kam'],
+      tokens: ['oats','green tea','supplement','protein bar'],
+      reply: "Weight loss journey? Oats + green tea + protein bars replace sugar cravings. Try these:" },
+    { keywords: ['study','exam','padhai','all nighter','late night work'],
+      tokens: ['coffee','energy drink','chocolate','nuts'],
+      reply: "Padhai/deadline mode? Focus fuel — coffee, dark chocolate, energy drinks:" },
+
+    // ── Home & pets ─────────────────────────────────────────
+    { keywords: ['house dirty','ghar ganda','cleaning day','deep clean','safai'],
+      tokens: ['floor cleaner','detergent','toilet cleaner','dishwash','garbage bag'],
+      reply: "Cleaning day? Yahan poora essentials pack hai — floor + toilet + dish + laundry:" },
+    { keywords: ['pet hungry','dog food','cat food','pet snack','doggy','kitty'],
+      tokens: ['pet food','treats','pet shampoo'],
+      reply: "Pet ke liye? Food + treats + grooming — sab 10 min mein 🐕" },
+
+    // ── Period / intimate ───────────────────────────────────
+    { keywords: ['period','periods','monthly','menstrual','cramp','maasik'],
+      tokens: ['sanitary pad','pain relief','tablet'],
+      reply: "Period essentials — sanitary pads + pain relief for cramps. Discreet packaging mein aata hai:" }
+];
+
+function matchProblemIntent(text) {
+    const t = text.toLowerCase();
+    for (const intent of PROBLEM_INTENTS) {
+        if (intent.keywords.some(k => t.includes(k))) return intent;
+    }
+    return null;
+}
+
+// Broader token-based search — a problem intent hands us 3-5 token stems and
+// we pull the top matches (spread across sub-products for variety).
+function findProductsByTokens(tokens, limit = 6) {
+    if (!CHAT_CATALOG.length || !tokens.length) return [];
+    const scored = new Map(); // pid -> { p, score }
+    for (const p of CHAT_CATALOG) {
+        const hay = chatNorm(`${p.product_name || ''} ${p.subcategory || ''} ${p.category || ''}`);
+        let s = 0;
+        for (const t of tokens) if (hay.includes(chatNorm(t))) s++;
+        if (s > 0) {
+            const pid = p.product_id || p.id;
+            const prev = scored.get(pid);
+            if (!prev || s > prev.score) scored.set(pid, { p, score: s });
+        }
+    }
+    const arr = [...scored.values()];
+    arr.sort((a, b) => b.score - a.score || (a.p.price || 0) - (b.p.price || 0));
+    // Spread across distinct subcategories for a more useful mix.
+    const seenSub = new Set();
+    const spread = [];
+    const overflow = [];
+    for (const { p } of arr) {
+        const sub = p.subcategory || p.category || '_';
+        if (!seenSub.has(sub)) { seenSub.add(sub); spread.push(p); }
+        else overflow.push(p);
+        if (spread.length >= limit) break;
+    }
+    if (spread.length < limit) spread.push(...overflow.slice(0, limit - spread.length));
+    return spread;
+}
+
+// Best-effort product image resolver — mirrors the main app's logic but
+// self-contained so the chatbot works even without app.js.
+function chatProductImg(p) {
+    if (typeof productImages === 'function') {
+        const arr = productImages(p);
+        if (arr && arr[0]) return arr[0];
+    }
+    if (Array.isArray(p.images) && p.images.length) {
+        const base = document.location.pathname.includes('/prototype/') ? 'img/' : 'prototype/img/';
+        return base + p.images[0];
+    }
+    return `https://placehold.co/200x200/f4f5f7/8a8f98?text=${encodeURIComponent((p.product_name || '').split(' ').slice(0,2).join(' '))}`;
+}
+
+// Open PDP if the store app is present, otherwise deep-link to it.
+function chatOpenProduct(pid) {
+    if (typeof openPdp === 'function' && document.getElementById('pdpContent')) {
+        openPdp(pid);
+        if (isChatOpen) toggleChat();
+        return false;
+    }
+    location.href = `index.html?pdp=${encodeURIComponent(pid)}`;
+    return false;
+}
+
+// Add-from-card: uses the store's addToCart when available, else navigates.
+function chatAddProduct(pid) {
+    if (typeof addProductToCart === 'function') {
+        const p = CHAT_CATALOG.find(x => (x.product_id || x.id) === pid);
+        if (p) addProductToCart(p);
+    } else if (typeof addToCart === 'function') {
+        addToCart(pid);
+    } else {
+        return chatOpenProduct(pid);
+    }
+    // Small toast-like feedback inside chat
+    const feedback = document.createElement('div');
+    feedback.className = 'fixed top-4 left-1/2 -translate-x-1/2 bg-[#0d8345] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg z-[9999] transition-opacity';
+    feedback.textContent = '✓ Added to cart';
+    document.body.appendChild(feedback);
+    setTimeout(() => { feedback.style.opacity = '0'; setTimeout(() => feedback.remove(), 300); }, 1400);
+    return false;
+}
+
+// Render product cards inline inside the chat window. Called after a
+// problem intent match or when the standard product search returns hits.
+function appendProductCards(products) {
+    if (!products || !products.length) return;
+    const messagesDiv = document.getElementById('chatMessages');
+    const wrap = document.createElement('div');
+    wrap.className = 'self-start max-w-full w-full';
+    const cardHtml = products.slice(0, 6).map(p => {
+        const pid = p.product_id || p.id;
+        const name = (p.product_name || '').replace(/"/g, '&quot;');
+        const img = chatProductImg(p);
+        const price = p.price != null ? `₹${p.price}` : '';
+        const mrp = (p.mrp && p.mrp > p.price) ? `<span class="text-[9px] text-outline line-through ml-1">₹${p.mrp}</span>` : '';
+        const off = (p.mrp && p.mrp > p.price) ? `<span class="text-[9px] font-bold text-on-primary bg-primary px-1 py-0.5 rounded absolute top-1 left-1">${Math.round((1 - p.price / p.mrp) * 100)}% OFF</span>` : '';
+        return `
+        <div class="shrink-0 w-32 bg-surface rounded-xl border border-outline-variant/25 p-2 cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all">
+            <div class="w-full h-20 bg-surface-container-lowest rounded-lg mb-1.5 flex items-center justify-center overflow-hidden relative" onclick="return chatOpenProduct('${pid}')">
+                ${off}
+                <img src="${img}" alt="${name}" class="max-w-full max-h-full object-contain" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span style=&quot;font-size:24px;&quot;>📦</span>');">
+            </div>
+            <div class="text-[11px] font-semibold text-on-surface leading-tight line-clamp-2 h-8" onclick="return chatOpenProduct('${pid}')">${name}</div>
+            <div class="flex items-center justify-between mt-1.5">
+                <div class="flex flex-col leading-tight">
+                    <span class="text-xs font-bold text-on-surface">${price}</span>
+                    ${mrp ? `<span class="text-[9px] text-outline line-through">₹${p.mrp}</span>` : ''}
+                </div>
+                <button onclick="event.stopPropagation(); return chatAddProduct('${pid}')" class="text-[10px] font-bold text-primary bg-primary/10 border border-primary/30 px-2 py-1 rounded-md hover:bg-primary/20 whitespace-nowrap">ADD</button>
+            </div>
+        </div>`;
+    }).join('');
+    wrap.innerHTML = `<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-1 px-1">${cardHtml}</div>`;
+    messagesDiv.appendChild(wrap);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
 // Decide the assistant's reply: specific product first (user's priority),
 // then greeting/canned, then category hint, then a polite coming-soon.
 function buildReply(text) {
@@ -223,6 +422,32 @@ async function sendMessage() {
     appendMessage('user', text);
     chatHistory.push({ role: 'user', content: text });
 
+    // Problem/situation intent — highest-priority path. If the user is
+    // describing a problem ("sar dard ho raha hai"), we skip the AI round-
+    // trip, give an empathetic canned reply, and render real product cards
+    // in-place so they can add to cart without leaving chat.
+    const problem = matchProblemIntent(text);
+    if (problem) {
+        const products = findProductsByTokens(problem.tokens);
+        // Small artificial delay so it doesn't feel jarring.
+        const loadingId = appendLoading();
+        await new Promise(r => setTimeout(r, 350));
+        removeLoading(loadingId);
+        chatHistory.push({ role: 'assistant', content: problem.reply });
+        appendMessage('assistant', problem.reply);
+        if (products.length) {
+            appendProductCards(products);
+            // Also offer a shortcut to see everything in that category.
+            appendActionLinks({
+                text: problem.reply,
+                searchQuery: problem.tokens.slice(0, 2).join(' ')
+            }, text);
+        } else {
+            appendActionLinks({ text: problem.reply, browse: true }, text);
+        }
+        return;
+    }
+
     const loadingId = appendLoading();
 
     let reply;
@@ -238,6 +463,15 @@ async function sendMessage() {
     removeLoading(loadingId);
     chatHistory.push({ role: 'assistant', content: reply.text });
     appendMessage('assistant', reply.text);
+
+    // If the standard product search turned up hits, render cards inline
+    // instead of just a text list — this is the direct-name path
+    // ("do you have maggi?") where the reply text already listed names.
+    const directHits = findProducts(text);
+    if (directHits && directHits.length) {
+        appendProductCards(directHits);
+    }
+
     appendActionLinks(reply, text);
 }
 
