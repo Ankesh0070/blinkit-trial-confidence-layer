@@ -572,6 +572,11 @@ function renderCategoryTrustBanner(categoryId) {
                 <div class="text-[11px] font-black uppercase tracking-wider text-[#7A5B06] mb-1">AI Trial Confidence &middot; ${isNovel ? 'New Category' : 'Repeat Category'}</div>
                 <h3 class="font-headline-md text-on-surface font-bold leading-snug">${headline}</h3>
                 <p class="text-sm text-on-surface-variant mt-1.5 leading-relaxed">${escapeHtml(highlight)} &middot; try a ${trialPrice} micro-pod &middot; 100% instant-refund if it disappoints.</p>
+                ${isNovel ? `
+                <div class="mt-3 inline-flex items-center gap-1.5 bg-white border border-[#0d8345]/40 text-[#0d8345] rounded-full px-3 py-1.5 shadow-sm">
+                    <span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1;">verified</span>
+                    <span class="text-xs font-bold">Guaranteed 5–20% cashback on new-category orders ≥ ₹100</span>
+                </div>` : ''}
             </div>
         </div>
     </div>`;
@@ -1471,6 +1476,121 @@ function novelCategoriesInCart() {
     return [...set];
 }
 
+// ── CASHBACK ENGINE ──────────────────────────────────────────────────────
+// Guaranteed cashback on first-time (new-category) shopping. Applies ONLY
+// to the subtotal of items from categories the user has never bought from
+// before — that ties the reward directly to the CCAR (Cross-Category
+// Activation Rate) North Star. Grocery lanes never count.
+//
+// Ladder (guaranteed, no lottery):
+//   ₹100  – ₹499    →  5%   (kicks in at ≥ ₹100)
+//   ₹500  – ₹1,999  → 10%
+//   ₹2,000 – ₹4,999 → 15%
+//   ₹5,000 – ₹10,000 → 20%
+// Cap: ₹2,000 max cashback (= 20% of ₹10,000).
+const CASHBACK_TIERS = [
+    { min:  100, rate: 0.05, nextAt:  500, nextRate: 0.10 },
+    { min:  500, rate: 0.10, nextAt: 2000, nextRate: 0.15 },
+    { min: 2000, rate: 0.15, nextAt: 5000, nextRate: 0.20 },
+    { min: 5000, rate: 0.20, nextAt: null, nextRate: null }
+];
+const CASHBACK_MAX = 2000;
+const CASHBACK_ELIGIBLE_MIN = 100;
+
+// Subtotal of the cart items that come from new-to-user, non-grocery
+// (trial) categories. This is the base the cashback rate applies to.
+function newCategorySubtotal() {
+    return cart.reduce((s, i) => s + (isTrialNovel(i.category) ? i.price * i.qty : 0), 0);
+}
+
+function computeCashback() {
+    const subtotal = newCategorySubtotal();
+    if (subtotal < CASHBACK_ELIGIBLE_MIN) {
+        // Not eligible yet — show the delta to unlock 5%.
+        return {
+            eligible: false,
+            subtotal,
+            rate: 0,
+            amount: 0,
+            capped: false,
+            toNext: CASHBACK_ELIGIBLE_MIN - subtotal,
+            nextRate: 0.05,
+            nextAt: CASHBACK_ELIGIBLE_MIN,
+            reasonIfIneligible: subtotal === 0
+                ? 'Add items from a new category to start'
+                : `Add ₹${CASHBACK_ELIGIBLE_MIN - subtotal} more of new-category items`
+        };
+    }
+
+    // Find the active tier and the next one (for the progress banner).
+    let tier = CASHBACK_TIERS[0];
+    for (const t of CASHBACK_TIERS) if (subtotal >= t.min) tier = t;
+
+    const rawAmount = Math.round(subtotal * tier.rate);
+    const amount = Math.min(rawAmount, CASHBACK_MAX);
+    const capped = rawAmount > CASHBACK_MAX;
+
+    return {
+        eligible: true,
+        subtotal,
+        rate: tier.rate,
+        amount,
+        capped,
+        toNext: tier.nextAt ? Math.max(0, tier.nextAt - subtotal) : 0,
+        nextRate: tier.nextRate,
+        nextAt: tier.nextAt
+    };
+}
+
+// Compact banner for the cart sheet — always visible when cart has items,
+// so users know the reward exists even before they cross ₹100.
+function renderCashbackBanner() {
+    const cb = computeCashback();
+
+    if (!cb.eligible) {
+        return `
+        <div class="mt-4 rounded-2xl p-4 bg-primary-fixed/15 border border-primary-fixed/40">
+            <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-[22px]" style="color:#d97706; font-variation-settings:'FILL' 1;">redeem</span>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-bold text-on-surface">Guaranteed 5–20% cashback on new categories</div>
+                    <div class="text-[11px] text-on-surface-variant mt-0.5 leading-snug">${cb.reasonIfIneligible} to unlock <b>5%</b> cashback (up to <b>₹2,000</b> on baskets ≥ ₹10,000).</div>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    const pct = Math.round(cb.rate * 100);
+    const toNextTxt = cb.nextAt
+        ? `Add ₹${cb.toNext} more new-category items to unlock <b>${Math.round(cb.nextRate * 100)}%</b>`
+        : `You're at the top tier — max ${pct}% cashback active`;
+
+    // Progress toward the next tier (or 100% if maxed out).
+    const nextMin = cb.nextAt || cb.subtotal;
+    const prevMin = CASHBACK_TIERS.slice().reverse().find(t => t.min <= cb.subtotal && t.nextAt === cb.nextAt)?.min || CASHBACK_ELIGIBLE_MIN;
+    const progressPct = cb.nextAt
+        ? Math.min(100, Math.round(((cb.subtotal - prevMin) / (nextMin - prevMin)) * 100))
+        : 100;
+
+    return `
+    <div class="mt-4 rounded-2xl p-4 border-2 border-primary bg-gradient-to-br from-primary-fixed/30 via-primary-fixed/10 to-transparent shadow-sm">
+        <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-[26px]" style="color:#0d8345; font-variation-settings:'FILL' 1;">verified</span>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2 flex-wrap">
+                    <div class="text-sm font-bold text-on-surface">Guaranteed cashback earned</div>
+                    <div class="text-lg font-bold" style="color:#0d8345">₹${cb.amount} <span class="text-[11px] font-semibold text-on-surface-variant">(${pct}%)</span></div>
+                </div>
+                <div class="text-[11px] text-on-surface-variant mt-0.5">On ₹${cb.subtotal} of new-category items${cb.capped ? ` &middot; capped at ₹${CASHBACK_MAX}` : ''}</div>
+                <div class="mt-2 h-1.5 bg-surface-container rounded-full overflow-hidden">
+                    <div class="h-full rounded-full" style="width:${progressPct}%; background:#0d8345;"></div>
+                </div>
+                <div class="text-[11px] text-on-surface-variant mt-1.5">${toNextTxt}</div>
+            </div>
+        </div>
+    </div>`;
+}
+
 // ---- App Sheet helpers (shared by cart / checkout / confirmation) ----
 function openAppSheet(html) {
     const content = document.getElementById('appSheetContent');
@@ -1561,6 +1681,7 @@ function renderCart() {
                 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings:'FILL' 1;color:#f7d032">auto_awesome</span>
                 <p class="text-xs text-on-surface leading-snug"><b>First trial in ${novel.map(c=>trustData.category_signals[c].display_name).join(' & ')}.</b> Completing this order activates a new category for you.</p>
             </div>` : ''}
+            ${renderCashbackBanner()}
             <div>${itemsHtml}</div>
 
             <div class="mt-4 bg-surface-container-low rounded-2xl p-4">
@@ -1661,6 +1782,16 @@ function renderCheckout() {
                 <div class="border-t border-outline-variant/20 mt-2 pt-2 flex justify-between font-bold text-on-surface">
                     <span>To pay</span><span>₹${fees.total}</span>
                 </div>
+                ${(() => { const cb = computeCashback(); return cb.eligible ? `
+                <div class="mt-2 flex justify-between items-center bg-primary-fixed/20 border border-primary-fixed/40 rounded-lg px-3 py-2">
+                    <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]" style="color:#0d8345; font-variation-settings:'FILL' 1;">verified</span>
+                        <span class="text-xs font-bold text-on-surface">Cashback (guaranteed, ${Math.round(cb.rate*100)}%)</span>
+                    </div>
+                    <span class="text-sm font-bold" style="color:#0d8345">+₹${cb.amount}</span>
+                </div>
+                <div class="text-[10px] text-on-surface-variant mt-1 leading-snug">Credited to your Blinkit wallet within 24 hours of delivery. Applies to the ₹${cb.subtotal} new-category subtotal only.</div>
+                ` : ''; })()}
             </div>
         </div>
         <div class="sticky bottom-0 bg-surface px-6 py-4 border-t border-outline-variant/15">
@@ -1676,6 +1807,9 @@ function placeOrder() {
     const itemTotal = cartItemTotal();
     const fees = computeFees(itemTotal);
     const novel = novelCategoriesInCart();
+    // Snapshot cashback BEFORE we mutate the profile — otherwise the
+    // categories become "not novel anymore" and cashback would recompute to 0.
+    const cashback = computeCashback();
     const orderId = 'BK' + Date.now().toString().slice(-8);
     const orderedItems = [...cart];
 
@@ -1700,22 +1834,32 @@ function placeOrder() {
         items: orderedItems,
         total: fees.total,
         payment: selectedPayment,
-        novelCategories: novel.filter(c => c !== 'groceries_fresh' && c !== 'snacks_beverages' && c !== 'dairy')
+        novelCategories: novel.filter(c => c !== 'groceries_fresh' && c !== 'snacks_beverages' && c !== 'dairy'),
+        cashback: cashback.eligible ? { amount: cashback.amount, rate: cashback.rate, subtotal: cashback.subtotal } : null
     });
     localStorage.setItem('blinkit_orders', JSON.stringify(orders));
+
+    // Track lifetime cashback earned per user (shown on Profile / Orders later).
+    if (cashback.eligible) {
+        const walletKey = 'blinkit_wallet_' + currentProfile;
+        const wallet = JSON.parse(localStorage.getItem(walletKey) || '{"balance":0,"history":[]}');
+        wallet.balance += cashback.amount;
+        wallet.history.unshift({ orderId, amount: cashback.amount, at: new Date().toISOString() });
+        localStorage.setItem(walletKey, JSON.stringify(wallet));
+    }
 
     // Clear the cart; the trial is complete.
     cart = [];
     saveCart();
 
-    renderConfirmation({ orderId, fees, novel, orderedItems, payment: selectedPayment });
+    renderConfirmation({ orderId, fees, novel, orderedItems, payment: selectedPayment, cashback });
 
     // Reflect the activated categories across the app (rec strip stops nudging
     // a category the user has now purchased).
     renderApp();
 }
 
-function renderConfirmation({ orderId, fees, novel, orderedItems, payment }) {
+function renderConfirmation({ orderId, fees, novel, orderedItems, payment, cashback }) {
     const novelNames = novel
         .filter(c => c !== 'groceries_fresh' && c !== 'snacks_beverages' && c !== 'dairy')
         .map(c => trustData.category_signals[c].display_name);
@@ -1756,6 +1900,17 @@ function renderConfirmation({ orderId, fees, novel, orderedItems, payment }) {
                 <div class="flex justify-between text-sm py-1"><span class="text-on-surface-variant">Amount</span><span class="font-bold text-on-surface">₹${fees.total}</span></div>
                 <div class="text-xs text-on-surface-variant mt-2 pt-2 border-t border-outline-variant/20 leading-snug">${itemsLine}</div>
             </div>
+
+            ${cashback && cashback.eligible ? `
+            <div class="mt-5 rounded-2xl p-5 border-2 border-primary bg-gradient-to-br from-primary-fixed/30 via-primary-fixed/10 to-transparent text-center relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-primary-fixed rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="text-3xl mb-1">💰</div>
+                    <div class="text-[11px] font-black uppercase tracking-wider" style="color:#0d8345">Guaranteed cashback earned</div>
+                    <div class="font-headline-lg text-on-surface mt-1">₹${cashback.amount} <span class="text-sm font-semibold text-on-surface-variant">(${Math.round(cashback.rate*100)}%)</span></div>
+                    <p class="text-[11px] text-on-surface-variant leading-snug mt-2">Credited to your Blinkit wallet within 24 hours of delivery. Earned on ₹${cashback.subtotal} of new-category items.</p>
+                </div>
+            </div>` : ''}
 
             ${ccarPanel}
 
